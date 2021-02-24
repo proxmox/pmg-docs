@@ -138,7 +138,7 @@ Server over a period of time.
 # pmgbackup remote set archive --keep-last 3 --keep-daily 14 --keep-weekly 8 --keep-monthly 12 --keep-yearly 7
 ----
 
-If prune settigns are configured, the backup-group of {pmg} is pruned
+If prune settings are configured, the backup-group of {pmg} is pruned
 automatically after each successful backup.
 
 The public settings are stored in `/etc/pmg/pbs/pbs.conf`, sensitive settings,
@@ -218,7 +218,7 @@ allows the Proxmox Backup Server to pick it up during garbage collection.
 # pmgbackup proxmox-backup forget archive pmg 2020-11-16T14:03:04Z
 ----
 
-TIP: You can configure and access all backup related functionallity on both,
+TIP: You can configure and access all backup related functionality on both,
 the web interface and the command line interface.
 
 Scheduled Backups
