@@ -97,6 +97,7 @@ Analyzing/Upgrading existing Databases...done
 restore finished
 ----
 
+[[pmgbackup_pbs]]
 Proxmox Backup Server
 ---------------------
 
@@ -105,6 +106,7 @@ need configure the instance as backup 'remote'. You can then directly create
 and restore backups, as well as create a scheduled 'backup job' to run
 regular backups.
 
+[[pmgbackup_pbs_remotes]]
 Remotes
 ~~~~~~~
 
@@ -158,6 +160,7 @@ pbs: archive
         username pmgbackup@pbs!token
 ----
 
+[[pmgbackup_pbs_jobs]]
 Backup Jobs
 ~~~~~~~~~~~
 
@@ -221,6 +224,7 @@ allows the Proxmox Backup Server to pick it up during garbage collection.
 TIP: You can configure and access all backup related functionality on both,
 the web interface and the command line interface.
 
+[[pmgbackup_pbs_schedule]]
 Scheduled Backups
 ^^^^^^^^^^^^^^^^^
 
