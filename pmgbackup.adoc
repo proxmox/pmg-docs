@@ -143,6 +143,10 @@ Server over a period of time.
 If prune settings are configured, the backup-group of {pmg} is pruned
 automatically after each successful backup.
 
+The `notify` and `include-statistics` setting of a remote define the defaults
+for notifications and whether to include the statistic database in backups.
+They are also used for xref:pmgbackup_pbs_schedule[scheduled backups].
+
 The public settings are stored in `/etc/pmg/pbs/pbs.conf`, sensitive settings,
 like passwords are stored in individual files named after the remote inside
 `/etc/pmg/pbs/`:
