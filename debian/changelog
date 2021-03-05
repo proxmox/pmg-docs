@@ -1,3 +1,11 @@
+pmg-docs (6.3-2) pmg; urgency=medium
+
+  * backup: fix typos and shortly document #3146 and #3154
+
+  * backup: add anchors to Proxmox Backup Server sections
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 05 Mar 2021 22:50:18 +0100
+
 pmg-docs (6.3-1) pmg; urgency=medium
 
   * document Proxmox Backup Server integration
