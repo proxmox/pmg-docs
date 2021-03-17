@@ -450,15 +450,14 @@ ifndef::manvolnum[]
 [thumbnail="pmg-gui-mailproxy-transports.png", big=1]
 endif::manvolnum[]
 
-You can use {pmg} to send emails to different internal
-email servers. For example you can send emails addressed to
-domain.com to your first email server, and emails addressed to
-subdomain.domain.com to a second one.
+You can use {pmg} to send emails to different internal email servers. For
+example you can send emails addressed to domain.com to your first email server,
+and emails addressed to subdomain.domain.com to a second one.
 
 You can add the IP addresses, hostname, transport protocol (smtp/lmtp),
-transport ports and mail domains (or just single email addresses)
-of your additional email servers. When transport protocol is set to `lmtp`,
-the option 'Use MX' is useless and will be automatically set to 'No'.
+transport ports and mail domains (or just single email addresses) of your
+additional email servers. When transport protocol is set to `lmtp`, the option
+'Use MX' is useless and will be automatically set to 'No'.
 
 
 [[pmgconfig_mailproxy_networks]]
@@ -469,11 +468,11 @@ ifndef::manvolnum[]
 [thumbnail="pmg-gui-mailproxy-networks.png", big=1]
 endif::manvolnum[]
 
-You can add additional internal (trusted) IP networks or hosts.
-All hosts in this list are allowed to relay.
+You can add additional internal (trusted) IP networks or hosts.  All hosts in
+this list are allowed to relay.
 
-NOTE: Hosts in the same subnet with Proxmox can relay by default and
-it’s not needed to add them in this list.
+NOTE: Hosts in the same subnet with Proxmox can relay by default and it’s not
+needed to add them in this list.
 
 
 [[pmgconfig_mailproxy_tls]]
@@ -484,11 +483,10 @@ ifndef::manvolnum[]
 [thumbnail="pmg-gui-mailproxy-tls.png", big=1]
 endif::manvolnum[]
 
-Transport Layer Security (TLS) provides certificate-based
-authentication and encrypted sessions. An encrypted session protects
-the information that is transmitted with SMTP mail. When you activate
-TLS, {pmg} automatically generates a new self signed
-certificate for you (`/etc/pmg/pmg-tls.pem`).
+Transport Layer Security (TLS) provides certificate-based authentication and
+encrypted sessions. An encrypted session protects the information that is
+transmitted with SMTP mail. When you activate TLS, {pmg} automatically
+generates a new self signed certificate for you (`/etc/pmg/pmg-tls.pem`).
 
 {pmg} uses opportunistic TLS encryption by default. The SMTP transaction is
 encrypted if the 'STARTTLS' ESMTP feature is supported by the remote
