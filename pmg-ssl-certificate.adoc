@@ -3,12 +3,11 @@ Certificate Management
 ----------------------
 
 Access to the administration web-interface is always encrypted through `https`.
-Each {pmg} host creates by default its own (self-signed) Certificate Authority
-(CA) and generates a certificate for the node which gets signed by the
-aforementioned CA.
-These certificates are used for encrypted communication with
-the cluster's `pmgproxy` service for any API call, between an user and the
-web-interface or between nodes in a cluster.
+Each {pmg} host creates by default its own (self-signed) certificate. This
+certificate is used for encrypted communication with the host's `pmgproxy`
+service for any API call, between an user and the web-interface or between
+nodes in a cluster. Certificate verification in a {pmg} cluster is done based
+on pinning the certificate fingerprints in the cluster configuration.
 
 [[sysadmin_certs_api_gui]]
 Certificates for the API and SMTP
@@ -41,7 +40,7 @@ can upload that certificate simply over the web interface.
 
 [thumbnail="pmg-gui-certs-upload-custom.png"]
 
-Note that any certificates key file must not be password protected.
+Note that any certificate key files must not be password protected.
 
 [[sysadmin_certs_get_trusted_acme_cert]]
 Trusted certificates via Let's Encrypt (ACME)
@@ -65,7 +64,7 @@ ACME Account
 [thumbnail="pmg-gui-acme-create-account.png"]
 
 You need to register an ACME account per cluster with the endpoint you want to
-use. The email address used for that account will server as contact point for
+use. The email address used for that account will serve as contact point for
 renewal-due or similar notifications from the ACME endpoint.
 
 You can register or deactivate ACME accounts over the web interface
@@ -88,12 +87,12 @@ the {pmg} cluster under your operation, are the real owner of a domain. This is
 the basis building block for automatic certificate management.
 
 The ACME protocol specifies different types of challenges, for example the
-`http-01` where a webserver provides a file with a certain value to prove that
+`http-01` where a webserver provides a file with a certain content to prove that
 it controls a domain. Sometimes this isn't possible, either because of
 technical limitations or if the address a domain points to is not reachable
-from the public internet. For such cases, one could use the `dns-01` challenge.
-This challenge also provides a certain value, but through a DNS record on the
-authority name server of the domain, rather than over a text file.
+from the public internet. The `dns-01` challenge can be used in these cases.
+The challenge is fulfilled by creating a certain DNS record in the domain's
+zone.
 
 [thumbnail="pmg-gui-acme-create-challenge-plugin.png"]
 
@@ -211,8 +210,8 @@ next 30 days.
 Manually Change Certificate over Command-Line
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you want to get rid of these warnings, you have to generate a valid
-certificate for your server.
+If you want to get rid of certificate verification warnings, you have to
+generate a valid certificate for your server.
 
 Login to your {pmg} via ssh or use the console:
 
