@@ -288,6 +288,8 @@ using the following configuration keys:
 include::pmg.admin-conf-opts.adoc[]
 
 
+include::pmg-ssl-certificate.adoc[]
+
 Mail Proxy Configuration
 ------------------------
 

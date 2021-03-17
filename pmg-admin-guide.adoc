@@ -97,10 +97,6 @@ include::pmg-bibliography.adoc[]
 :leveloffset: 0
 
 [appendix]
-include::pmg-ssl-certificate.adoc[]
-
-
-[appendix]
 Command Line Interface
 ----------------------
 
