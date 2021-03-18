@@ -1,3 +1,11 @@
+pmg-docs (6.3-3) pmg; urgency=medium
+
+  * certificates: document new ACME implementation, move to configuration section
+
+  * asciidoc-pmg: scan extjs: also find onlineHelpTool references
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 18 Mar 2021 11:25:51 +0100
+
 pmg-docs (6.3-2) pmg; urgency=medium
 
   * backup: fix typos and shortly document #3146 and #3154
