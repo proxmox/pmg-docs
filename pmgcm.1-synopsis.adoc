@@ -36,10 +36,14 @@ IP address.
 
 SSL certificate fingerprint.
 
-*pmgcm join_cmd*
+*pmgcm join-cmd*
 
 Prints the command for joining an new node to the cluster. You need to
 execute the command on the new node.
+
+*pmgcm join_cmd*
+
+An alias for 'pmgcm join-cmd'.
 
 *pmgcm promote*
 
@@ -60,5 +64,9 @@ Synchronize cluster configuration.
 `--master_ip` `<string>` ::
 
 Optional IP address for master node.
+
+*pmgcm update-fingerprints*
+
+Notify master to refresh all certificate fingerprints
 
 

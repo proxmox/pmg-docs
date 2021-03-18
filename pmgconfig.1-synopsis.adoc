@@ -1,5 +1,182 @@
 *pmgconfig* `<COMMAND> [ARGS] [OPTIONS]`
 
+*pmgconfig acme account deactivate* `[<name>]` `[OPTIONS]`
+
+Deactivate existing ACME account at CA.
+
+`<name>`: `<name>` ('default =' `default`)::
+
+ACME account config file name.
+
+`--force` `<boolean>` ('default =' `0`)::
+
+Delete account data even if the server refuses to deactivate the account.
+
+*pmgconfig acme account info* `[<name>]` `[FORMAT_OPTIONS]`
+
+Return existing ACME account information.
+
+`<name>`: `<name>` ('default =' `default`)::
+
+ACME account config file name.
+
+*pmgconfig acme account list*
+
+ACME account index.
+
+*pmgconfig acme account register* `[<name>] {<contact>}` `[OPTIONS]`
+
+Register a new ACME account with a compatible CA.
+
+`<name>`: `<name>` ('default =' `default`)::
+
+ACME account config file name.
+
+`<contact>`: `<string>` ::
+
+Contact email addresses.
+
+`--directory` `^https?://.*` ::
+
+URL of ACME CA directory endpoint.
+
+*pmgconfig acme account update* `[<name>]` `[OPTIONS]`
+
+Update existing ACME account information with CA. Note: not specifying any
+new account information triggers a refresh.
+
+`<name>`: `<name>` ('default =' `default`)::
+
+ACME account config file name.
+
+`--contact` `<string>` ::
+
+Contact email addresses.
+
+*pmgconfig acme cert order* `<type>` `[OPTIONS]`
+
+Order a new certificate from ACME-compatible CA.
+
+`<type>`: `<api | smtp>` ::
+
+The TLS certificate type (API or SMTP certificate).
+
+`--force` `<boolean>` ('default =' `0`)::
+
+Overwrite existing custom certificate.
+
+*pmgconfig acme cert renew* `<type>` `[OPTIONS]`
+
+Renew existing certificate from CA.
+
+`<type>`: `<api | smtp>` ::
+
+The TLS certificate type (API or SMTP certificate).
+
+`--force` `<boolean>` ('default =' `0`)::
+
+Force renewal even if expiry is more than 30 days away.
+
+*pmgconfig acme cert revoke* `<type>`
+
+Revoke existing certificate from CA.
+
+`<type>`: `<api | smtp>` ::
+
+The TLS certificate type (API or SMTP certificate).
+
+*pmgconfig acme plugin add* `<type> <id>` `[OPTIONS]`
+
+Add ACME plugin configuration.
+
+`<type>`: `<dns | standalone>` ::
+
+ACME challenge type.
+
+`<id>`: `<string>` ::
+
+ACME Plugin ID name
+
+`--api` `<1984hosting | acmedns | acmeproxy | active24 | ad | ali | anx | arvan | autodns | aws | azure | cf | clouddns | cloudns | cn | conoha | constellix | cx | cyon | da | ddnss | desec | df | dgon | dnsimple | do | doapi | domeneshop | dp | dpi | dreamhost | duckdns | durabledns | dyn | dynu | dynv6 | easydns | edgedns | euserv | exoscale | freedns | gandi_livedns | gcloud | gd | gdnsdk | he | hetzner | hexonet | hostingde | huaweicloud | infoblox | infomaniak | internetbs | inwx | ionos | ispconfig | jd | joker | kappernet | kas | kinghost | knot | leaseweb | lexicon | linode | linode_v4 | loopia | lua | maradns | me | miab | misaka | myapi | mydevil | mydnsjp | namecheap | namecom | namesilo | nederhost | neodigit | netcup | netlify | nic | njalla | nm | nsd | nsone | nsupdate | nw | one | online | openprovider | openstack | opnsense | ovh | pdns | pleskxml | pointhq | rackcorp | rackspace | rcode0 | regru | scaleway | schlundtech | selectel | servercow | simply | tele3 | transip | ultra | unoeuro | variomedia | vscale | vultr | world4you | yandex | zilore | zone | zonomi>` ::
+
+API plugin name
+
+`--data` `File with one key-value pair per line, will be base64url encode for storage in plugin config.` ::
+
+DNS plugin data. (base64 encoded)
+
+`--disable` `<boolean>` ::
+
+Flag to disable the config.
+
+`--nodes` `<string>` ::
+
+List of cluster node names.
+
+`--validation-delay` `<integer> (0 - 172800)` ('default =' `30`)::
+
+Extra delay in seconds to wait before requesting validation. Allows to cope with a long TTL of DNS records.
+
+*pmgconfig acme plugin config* `<id>` `[FORMAT_OPTIONS]`
+
+Get ACME plugin configuration.
+
+`<id>`: `<string>` ::
+
+Unique identifier for ACME plugin instance.
+
+*pmgconfig acme plugin list* `[OPTIONS]` `[FORMAT_OPTIONS]`
+
+ACME plugin index.
+
+`--type` `<dns | standalone>` ::
+
+Only list ACME plugins of a specific type
+
+*pmgconfig acme plugin remove* `<id>`
+
+Delete ACME plugin configuration.
+
+`<id>`: `<string>` ::
+
+Unique identifier for ACME plugin instance.
+
+*pmgconfig acme plugin set* `<id>` `[OPTIONS]`
+
+Update ACME plugin configuration.
+
+`<id>`: `<string>` ::
+
+ACME Plugin ID name
+
+`--api` `<1984hosting | acmedns | acmeproxy | active24 | ad | ali | anx | arvan | autodns | aws | azure | cf | clouddns | cloudns | cn | conoha | constellix | cx | cyon | da | ddnss | desec | df | dgon | dnsimple | do | doapi | domeneshop | dp | dpi | dreamhost | duckdns | durabledns | dyn | dynu | dynv6 | easydns | edgedns | euserv | exoscale | freedns | gandi_livedns | gcloud | gd | gdnsdk | he | hetzner | hexonet | hostingde | huaweicloud | infoblox | infomaniak | internetbs | inwx | ionos | ispconfig | jd | joker | kappernet | kas | kinghost | knot | leaseweb | lexicon | linode | linode_v4 | loopia | lua | maradns | me | miab | misaka | myapi | mydevil | mydnsjp | namecheap | namecom | namesilo | nederhost | neodigit | netcup | netlify | nic | njalla | nm | nsd | nsone | nsupdate | nw | one | online | openprovider | openstack | opnsense | ovh | pdns | pleskxml | pointhq | rackcorp | rackspace | rcode0 | regru | scaleway | schlundtech | selectel | servercow | simply | tele3 | transip | ultra | unoeuro | variomedia | vscale | vultr | world4you | yandex | zilore | zone | zonomi>` ::
+
+API plugin name
+
+`--data` `File with one key-value pair per line, will be base64url encode for storage in plugin config.` ::
+
+DNS plugin data. (base64 encoded)
+
+`--delete` `<string>` ::
+
+A list of settings you want to delete.
+
+`--digest` `<string>` ::
+
+Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.
+
+`--disable` `<boolean>` ::
+
+Flag to disable the config.
+
+`--nodes` `<string>` ::
+
+List of cluster node names.
+
+`--validation-delay` `<integer> (0 - 172800)` ('default =' `30`)::
+
+Extra delay in seconds to wait before requesting validation. Allows to cope with a long TTL of DNS records.
+
 *pmgconfig apicert* `[OPTIONS]`
 
 Generate /etc/pmg/pmg-api.pem (self signed certificate for GUI and REST
@@ -8,6 +185,46 @@ API).
 `--force` `<boolean>` ('default =' `0`)::
 
 Overwrite existing certificate.
+
+*pmgconfig cert delete* `<type> [<restart>]`
+
+DELETE custom certificate chain and key.
+
+`<type>`: `<api | smtp>` ::
+
+The TLS certificate type (API or SMTP certificate).
+
+`<restart>`: `<boolean>` ('default =' `0`)::
+
+Restart pmgproxy.
+
+*pmgconfig cert info* `[FORMAT_OPTIONS]`
+
+Get information about the node's certificates.
+
+*pmgconfig cert set* `<type> <certificates> <key>` `[OPTIONS]` `[FORMAT_OPTIONS]`
+
+Upload or update custom certificate chain and key.
+
+`<type>`: `<api | smtp>` ::
+
+The TLS certificate type (API or SMTP certificate).
+
+`<certificates>`: `<string>` ::
+
+PEM encoded certificate (chain).
+
+`<key>`: `<string>` ::
+
+PEM encoded private key.
+
+`--force` `<boolean>` ('default =' `0`)::
+
+Overwrite existing custom or ACME certificate files.
+
+`--restart` `<boolean>` ('default =' `0`)::
+
+Restart services.
 
 *pmgconfig dkim_record*
 

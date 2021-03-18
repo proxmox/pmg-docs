@@ -30,7 +30,7 @@ Server address (IP or DNS name).
 
 Use SSL.
 
-`target`: `(?:[^\s\/\\@]+\@[^\s\/\\@]+)` ::
+`target`: `(?:[^\s\\@]+\@[^\s\/\\@]+)` ::
 
 The target email address (where to deliver fetched mails).
 

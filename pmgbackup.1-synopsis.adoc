@@ -4,6 +4,10 @@
 
 Backup the system configuration.
 
+`--notify` `<always | error | never>` ('default =' `never`)::
+
+Specify when to notify via e-mail
+
 `--statistic` `<boolean>` ('default =' `1`)::
 
 Backup statistic databases.
@@ -24,13 +28,21 @@ Verbose output format.
 
 List all stored backups (files named proxmox-backup_{DATE}.tgz).
 
-*pmgbackup proxmox-backup backup* `<remote>`
+*pmgbackup proxmox-backup backup* `<remote>` `[OPTIONS]`
 
 Create a new backup and prune the backup group afterwards, if configured.
 
 `<remote>`: `<string>` ::
 
 Proxmox Backup Server ID.
+
+`--notify` `<always | error | never>` ('default =' `never`)::
+
+Specify when to notify via e-mail
+
+`--statistic` `<boolean>` ('default =' `1`)::
+
+Backup statistic databases.
 
 *pmgbackup proxmox-backup forget* `<remote> <backup-id> <backup-time>`
 
@@ -108,6 +120,10 @@ Flag to disable (deactivate) the entry.
 
 Certificate SHA 256 fingerprint.
 
+`--include-statistics` `<boolean>` ::
+
+Include statistics in scheduled backups
+
 `--keep-daily` `<N>` ::
 
 Keep backups for the last <N> different days. If there is more than one backup for a single day, only the latest one is kept.
@@ -132,6 +148,10 @@ Keep backups for the last <N> different weeks. If there ismore than one backup f
 
 Keep backups for the last <N> different years. If there is more than one backup for a single year, only the latest one is kept.
 
+`--notify` `<always | error | never>` ::
+
+Specify when to notify via e-mail
+
 `--password` `<password>` ::
 
 Password or API token secret for the user on the Proxmox Backup Server.
@@ -140,7 +160,7 @@ Password or API token secret for the user on the Proxmox Backup Server.
 
 Proxmox Backup Server address.
 
-`--username` `(?:[^\s\/\\@]+\@[^\s\/\\@]+)` ::
+`--username` `(?:[^\s\\@]+\@[^\s\/\\@]+)` ::
 
 Username or API token ID on the Proxmox Backup Server
 
@@ -184,6 +204,10 @@ Flag to disable (deactivate) the entry.
 
 Certificate SHA 256 fingerprint.
 
+`--include-statistics` `<boolean>` ::
+
+Include statistics in scheduled backups
+
 `--keep-daily` `<N>` ::
 
 Keep backups for the last <N> different days. If there is more than one backup for a single day, only the latest one is kept.
@@ -208,6 +232,10 @@ Keep backups for the last <N> different weeks. If there ismore than one backup f
 
 Keep backups for the last <N> different years. If there is more than one backup for a single year, only the latest one is kept.
 
+`--notify` `<always | error | never>` ::
+
+Specify when to notify via e-mail
+
 `--password` `<password>` ::
 
 Password or API token secret for the user on the Proxmox Backup Server.
@@ -216,7 +244,7 @@ Password or API token secret for the user on the Proxmox Backup Server.
 
 Proxmox Backup Server address.
 
-`--username` `(?:[^\s\/\\@]+\@[^\s\/\\@]+)` ::
+`--username` `(?:[^\s\\@]+\@[^\s\/\\@]+)` ::
 
 Username or API token ID on the Proxmox Backup Server
 

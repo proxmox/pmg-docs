@@ -6619,7 +6619,7 @@ var pmgapi = [
                                  "maxLength" : 512,
                                  "minLength" : 3,
                                  "optional" : 1,
-                                 "pattern" : "(?:[^\\s\\/\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                                 "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
                                  "type" : "string"
                               },
                               "user" : {
@@ -6712,7 +6712,7 @@ var pmgapi = [
                                  "maxLength" : 512,
                                  "minLength" : 3,
                                  "optional" : 1,
-                                 "pattern" : "(?:[^\\s\\/\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                                 "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
                                  "type" : "string"
                               },
                               "user" : {
@@ -6826,7 +6826,7 @@ var pmgapi = [
                               "maxLength" : 512,
                               "minLength" : 3,
                               "optional" : 1,
-                              "pattern" : "(?:[^\\s\\/\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                              "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
                               "type" : "string"
                            },
                            "user" : {
@@ -6917,7 +6917,7 @@ var pmgapi = [
                            "description" : "The target email address (where to deliver fetched mails).",
                            "maxLength" : 512,
                            "minLength" : 3,
-                           "pattern" : "(?:[^\\s\\/\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                           "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
                            "type" : "string"
                         },
                         "user" : {
@@ -7634,6 +7634,27 @@ var pmgapi = [
                   "leaf" : 1,
                   "path" : "/config/cluster/join",
                   "text" : "join"
+               },
+               {
+                  "info" : {
+                     "POST" : {
+                        "allowtoken" : 1,
+                        "description" : "Update API certificate fingerprints (by fetching it via ssh).",
+                        "method" : "POST",
+                        "name" : "update_fingerprints",
+                        "parameters" : {
+                           "additionalProperties" : 0
+                        },
+                        "protected" : 1,
+                        "proxyto" : "master",
+                        "returns" : {
+                           "type" : "null"
+                        }
+                     }
+                  },
+                  "leaf" : 1,
+                  "path" : "/config/cluster/update-fingerprints",
+                  "text" : "update-fingerprints"
                }
             ],
             "info" : {
@@ -8596,6 +8617,12 @@ var pmgapi = [
                                  "pattern" : "([A-Fa-f0-9]{2}:){31}[A-Fa-f0-9]{2}",
                                  "type" : "string"
                               },
+                              "include-statistics" : {
+                                 "description" : "Include statistics in scheduled backups",
+                                 "optional" : 1,
+                                 "type" : "boolean",
+                                 "typetext" : "<boolean>"
+                              },
                               "keep-daily" : {
                                  "description" : "Keep backups for the last <N> different days. If there is more than one backup for a single day, only the latest one is kept.",
                                  "format_description" : "N",
@@ -8644,6 +8671,16 @@ var pmgapi = [
                                  "type" : "integer",
                                  "typetext" : "<N>"
                               },
+                              "notify" : {
+                                 "description" : "Specify when to notify via e-mail",
+                                 "enum" : [
+                                    "always",
+                                    "error",
+                                    "never"
+                                 ],
+                                 "optional" : 1,
+                                 "type" : "string"
+                              },
                               "password" : {
                                  "description" : "Password or API token secret for the user on the Proxmox Backup Server.",
                                  "optional" : 1,
@@ -8669,7 +8706,7 @@ var pmgapi = [
                                  "maxLength" : 512,
                                  "minLength" : 3,
                                  "optional" : 1,
-                                 "pattern" : "(?:[^\\s\\/\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                                 "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
                                  "type" : "string"
                               }
                            },
@@ -8729,6 +8766,11 @@ var pmgapi = [
                               "pattern" : "([A-Fa-f0-9]{2}:){31}[A-Fa-f0-9]{2}",
                               "type" : "string"
                            },
+                           "include-statistics" : {
+                              "description" : "Include statistics in scheduled backups",
+                              "optional" : 1,
+                              "type" : "boolean"
+                           },
                            "keep-daily" : {
                               "description" : "Keep backups for the last <N> different days. If there is more than one backup for a single day, only the latest one is kept.",
                               "format_description" : "N",
@@ -8771,6 +8813,16 @@ var pmgapi = [
                               "optional" : 1,
                               "type" : "integer"
                            },
+                           "notify" : {
+                              "description" : "Specify when to notify via e-mail",
+                              "enum" : [
+                                 "always",
+                                 "error",
+                                 "never"
+                              ],
+                              "optional" : 1,
+                              "type" : "string"
+                           },
                            "password" : {
                               "description" : "Password or API token secret for the user on the Proxmox Backup Server.",
                               "optional" : 1,
@@ -8793,7 +8845,7 @@ var pmgapi = [
                               "maxLength" : 512,
                               "minLength" : 3,
                               "optional" : 1,
-                              "pattern" : "(?:[^\\s\\/\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                              "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
                               "type" : "string"
                            }
                         },
@@ -8833,6 +8885,12 @@ var pmgapi = [
                            "optional" : 1,
                            "pattern" : "([A-Fa-f0-9]{2}:){31}[A-Fa-f0-9]{2}",
                            "type" : "string"
+                        },
+                        "include-statistics" : {
+                           "description" : "Include statistics in scheduled backups",
+                           "optional" : 1,
+                           "type" : "boolean",
+                           "typetext" : "<boolean>"
                         },
                         "keep-daily" : {
                            "description" : "Keep backups for the last <N> different days. If there is more than one backup for a single day, only the latest one is kept.",
@@ -8882,6 +8940,16 @@ var pmgapi = [
                            "type" : "integer",
                            "typetext" : "<N>"
                         },
+                        "notify" : {
+                           "description" : "Specify when to notify via e-mail",
+                           "enum" : [
+                              "always",
+                              "error",
+                              "never"
+                           ],
+                           "optional" : 1,
+                           "type" : "string"
+                        },
                         "password" : {
                            "description" : "Password or API token secret for the user on the Proxmox Backup Server.",
                            "optional" : 1,
@@ -8907,7 +8975,7 @@ var pmgapi = [
                            "maxLength" : 512,
                            "minLength" : 3,
                            "optional" : 1,
-                           "pattern" : "(?:[^\\s\\/\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                           "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
                            "type" : "string"
                         }
                      },
@@ -8928,6 +8996,863 @@ var pmgapi = [
             "leaf" : 0,
             "path" : "/config/pbs",
             "text" : "pbs"
+         },
+         {
+            "children" : [
+               {
+                  "children" : [
+                     {
+                        "info" : {
+                           "DELETE" : {
+                              "allowtoken" : 1,
+                              "description" : "Delete ACME plugin configuration.",
+                              "method" : "DELETE",
+                              "name" : "delete_plugin",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "id" : {
+                                       "description" : "Unique identifier for ACME plugin instance.",
+                                       "format" : "pve-configid",
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin"
+                                 ]
+                              },
+                              "protected" : 1,
+                              "returns" : {
+                                 "type" : "null"
+                              }
+                           },
+                           "GET" : {
+                              "allowtoken" : 1,
+                              "description" : "Get ACME plugin configuration.",
+                              "method" : "GET",
+                              "name" : "get_plugin_config",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "id" : {
+                                       "description" : "Unique identifier for ACME plugin instance.",
+                                       "format" : "pve-configid",
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin"
+                                 ]
+                              },
+                              "protected" : 1,
+                              "returns" : {
+                                 "type" : "object"
+                              }
+                           },
+                           "PUT" : {
+                              "allowtoken" : 1,
+                              "description" : "Update ACME plugin configuration.",
+                              "method" : "PUT",
+                              "name" : "update_plugin",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "api" : {
+                                       "description" : "API plugin name",
+                                       "enum" : [
+                                          "1984hosting",
+                                          "acmedns",
+                                          "acmeproxy",
+                                          "active24",
+                                          "ad",
+                                          "ali",
+                                          "anx",
+                                          "arvan",
+                                          "autodns",
+                                          "aws",
+                                          "azure",
+                                          "cf",
+                                          "clouddns",
+                                          "cloudns",
+                                          "cn",
+                                          "conoha",
+                                          "constellix",
+                                          "cx",
+                                          "cyon",
+                                          "da",
+                                          "ddnss",
+                                          "desec",
+                                          "df",
+                                          "dgon",
+                                          "dnsimple",
+                                          "do",
+                                          "doapi",
+                                          "domeneshop",
+                                          "dp",
+                                          "dpi",
+                                          "dreamhost",
+                                          "duckdns",
+                                          "durabledns",
+                                          "dyn",
+                                          "dynu",
+                                          "dynv6",
+                                          "easydns",
+                                          "edgedns",
+                                          "euserv",
+                                          "exoscale",
+                                          "freedns",
+                                          "gandi_livedns",
+                                          "gcloud",
+                                          "gd",
+                                          "gdnsdk",
+                                          "he",
+                                          "hetzner",
+                                          "hexonet",
+                                          "hostingde",
+                                          "huaweicloud",
+                                          "infoblox",
+                                          "infomaniak",
+                                          "internetbs",
+                                          "inwx",
+                                          "ionos",
+                                          "ispconfig",
+                                          "jd",
+                                          "joker",
+                                          "kappernet",
+                                          "kas",
+                                          "kinghost",
+                                          "knot",
+                                          "leaseweb",
+                                          "lexicon",
+                                          "linode",
+                                          "linode_v4",
+                                          "loopia",
+                                          "lua",
+                                          "maradns",
+                                          "me",
+                                          "miab",
+                                          "misaka",
+                                          "myapi",
+                                          "mydevil",
+                                          "mydnsjp",
+                                          "namecheap",
+                                          "namecom",
+                                          "namesilo",
+                                          "nederhost",
+                                          "neodigit",
+                                          "netcup",
+                                          "netlify",
+                                          "nic",
+                                          "njalla",
+                                          "nm",
+                                          "nsd",
+                                          "nsone",
+                                          "nsupdate",
+                                          "nw",
+                                          "one",
+                                          "online",
+                                          "openprovider",
+                                          "openstack",
+                                          "opnsense",
+                                          "ovh",
+                                          "pdns",
+                                          "pleskxml",
+                                          "pointhq",
+                                          "rackcorp",
+                                          "rackspace",
+                                          "rcode0",
+                                          "regru",
+                                          "scaleway",
+                                          "schlundtech",
+                                          "selectel",
+                                          "servercow",
+                                          "simply",
+                                          "tele3",
+                                          "transip",
+                                          "ultra",
+                                          "unoeuro",
+                                          "variomedia",
+                                          "vscale",
+                                          "vultr",
+                                          "world4you",
+                                          "yandex",
+                                          "zilore",
+                                          "zone",
+                                          "zonomi"
+                                       ],
+                                       "optional" : 1,
+                                       "type" : "string"
+                                    },
+                                    "data" : {
+                                       "description" : "DNS plugin data. (base64 encoded)",
+                                       "optional" : 1,
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    },
+                                    "delete" : {
+                                       "description" : "A list of settings you want to delete.",
+                                       "format" : "pve-configid-list",
+                                       "maxLength" : 4096,
+                                       "optional" : 1,
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    },
+                                    "digest" : {
+                                       "description" : "Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.",
+                                       "maxLength" : 40,
+                                       "optional" : 1,
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    },
+                                    "disable" : {
+                                       "description" : "Flag to disable the config.",
+                                       "optional" : 1,
+                                       "type" : "boolean",
+                                       "typetext" : "<boolean>"
+                                    },
+                                    "id" : {
+                                       "description" : "ACME Plugin ID name",
+                                       "format" : "pve-configid",
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    },
+                                    "nodes" : {
+                                       "description" : "List of cluster node names.",
+                                       "format" : "pve-node-list",
+                                       "optional" : 1,
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    },
+                                    "validation-delay" : {
+                                       "default" : 30,
+                                       "description" : "Extra delay in seconds to wait before requesting validation. Allows to cope with a long TTL of DNS records.",
+                                       "maximum" : 172800,
+                                       "minimum" : 0,
+                                       "optional" : 1,
+                                       "type" : "integer",
+                                       "typetext" : "<integer> (0 - 172800)"
+                                    }
+                                 },
+                                 "type" : "object"
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin"
+                                 ]
+                              },
+                              "protected" : 1,
+                              "returns" : {
+                                 "type" : "null"
+                              }
+                           }
+                        },
+                        "leaf" : 1,
+                        "path" : "/config/acme/plugins/{id}",
+                        "text" : "{id}"
+                     }
+                  ],
+                  "info" : {
+                     "GET" : {
+                        "allowtoken" : 1,
+                        "description" : "ACME plugin index.",
+                        "method" : "GET",
+                        "name" : "index",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "type" : {
+                                 "description" : "Only list ACME plugins of a specific type",
+                                 "enum" : [
+                                    "dns",
+                                    "standalone"
+                                 ],
+                                 "optional" : 1,
+                                 "type" : "string"
+                              }
+                           }
+                        },
+                        "permissions" : {
+                           "check" : [
+                              "admin"
+                           ]
+                        },
+                        "protected" : 1,
+                        "returns" : {
+                           "items" : {
+                              "properties" : {
+                                 "plugin" : {
+                                    "description" : "Unique identifier for ACME plugin instance.",
+                                    "format" : "pve-configid",
+                                    "type" : "string"
+                                 }
+                              },
+                              "type" : "object"
+                           },
+                           "links" : [
+                              {
+                                 "href" : "{plugin}",
+                                 "rel" : "child"
+                              }
+                           ],
+                           "type" : "array"
+                        }
+                     },
+                     "POST" : {
+                        "allowtoken" : 1,
+                        "description" : "Add ACME plugin configuration.",
+                        "method" : "POST",
+                        "name" : "add_plugin",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "api" : {
+                                 "description" : "API plugin name",
+                                 "enum" : [
+                                    "1984hosting",
+                                    "acmedns",
+                                    "acmeproxy",
+                                    "active24",
+                                    "ad",
+                                    "ali",
+                                    "anx",
+                                    "arvan",
+                                    "autodns",
+                                    "aws",
+                                    "azure",
+                                    "cf",
+                                    "clouddns",
+                                    "cloudns",
+                                    "cn",
+                                    "conoha",
+                                    "constellix",
+                                    "cx",
+                                    "cyon",
+                                    "da",
+                                    "ddnss",
+                                    "desec",
+                                    "df",
+                                    "dgon",
+                                    "dnsimple",
+                                    "do",
+                                    "doapi",
+                                    "domeneshop",
+                                    "dp",
+                                    "dpi",
+                                    "dreamhost",
+                                    "duckdns",
+                                    "durabledns",
+                                    "dyn",
+                                    "dynu",
+                                    "dynv6",
+                                    "easydns",
+                                    "edgedns",
+                                    "euserv",
+                                    "exoscale",
+                                    "freedns",
+                                    "gandi_livedns",
+                                    "gcloud",
+                                    "gd",
+                                    "gdnsdk",
+                                    "he",
+                                    "hetzner",
+                                    "hexonet",
+                                    "hostingde",
+                                    "huaweicloud",
+                                    "infoblox",
+                                    "infomaniak",
+                                    "internetbs",
+                                    "inwx",
+                                    "ionos",
+                                    "ispconfig",
+                                    "jd",
+                                    "joker",
+                                    "kappernet",
+                                    "kas",
+                                    "kinghost",
+                                    "knot",
+                                    "leaseweb",
+                                    "lexicon",
+                                    "linode",
+                                    "linode_v4",
+                                    "loopia",
+                                    "lua",
+                                    "maradns",
+                                    "me",
+                                    "miab",
+                                    "misaka",
+                                    "myapi",
+                                    "mydevil",
+                                    "mydnsjp",
+                                    "namecheap",
+                                    "namecom",
+                                    "namesilo",
+                                    "nederhost",
+                                    "neodigit",
+                                    "netcup",
+                                    "netlify",
+                                    "nic",
+                                    "njalla",
+                                    "nm",
+                                    "nsd",
+                                    "nsone",
+                                    "nsupdate",
+                                    "nw",
+                                    "one",
+                                    "online",
+                                    "openprovider",
+                                    "openstack",
+                                    "opnsense",
+                                    "ovh",
+                                    "pdns",
+                                    "pleskxml",
+                                    "pointhq",
+                                    "rackcorp",
+                                    "rackspace",
+                                    "rcode0",
+                                    "regru",
+                                    "scaleway",
+                                    "schlundtech",
+                                    "selectel",
+                                    "servercow",
+                                    "simply",
+                                    "tele3",
+                                    "transip",
+                                    "ultra",
+                                    "unoeuro",
+                                    "variomedia",
+                                    "vscale",
+                                    "vultr",
+                                    "world4you",
+                                    "yandex",
+                                    "zilore",
+                                    "zone",
+                                    "zonomi"
+                                 ],
+                                 "optional" : 1,
+                                 "type" : "string"
+                              },
+                              "data" : {
+                                 "description" : "DNS plugin data. (base64 encoded)",
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
+                              "disable" : {
+                                 "description" : "Flag to disable the config.",
+                                 "optional" : 1,
+                                 "type" : "boolean",
+                                 "typetext" : "<boolean>"
+                              },
+                              "id" : {
+                                 "description" : "ACME Plugin ID name",
+                                 "format" : "pve-configid",
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
+                              "nodes" : {
+                                 "description" : "List of cluster node names.",
+                                 "format" : "pve-node-list",
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
+                              "type" : {
+                                 "description" : "ACME challenge type.",
+                                 "enum" : [
+                                    "dns",
+                                    "standalone"
+                                 ],
+                                 "type" : "string"
+                              },
+                              "validation-delay" : {
+                                 "default" : 30,
+                                 "description" : "Extra delay in seconds to wait before requesting validation. Allows to cope with a long TTL of DNS records.",
+                                 "maximum" : 172800,
+                                 "minimum" : 0,
+                                 "optional" : 1,
+                                 "type" : "integer",
+                                 "typetext" : "<integer> (0 - 172800)"
+                              }
+                           },
+                           "type" : "object"
+                        },
+                        "permissions" : {
+                           "check" : [
+                              "admin"
+                           ]
+                        },
+                        "protected" : 1,
+                        "returns" : {
+                           "type" : "null"
+                        }
+                     }
+                  },
+                  "leaf" : 0,
+                  "path" : "/config/acme/plugins",
+                  "text" : "plugins"
+               },
+               {
+                  "children" : [
+                     {
+                        "info" : {
+                           "DELETE" : {
+                              "allowtoken" : 1,
+                              "description" : "Deactivate existing ACME account at CA.",
+                              "method" : "DELETE",
+                              "name" : "deactivate_account",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "force" : {
+                                       "default" : 0,
+                                       "description" : "Delete account data even if the server refuses to deactivate the account.",
+                                       "optional" : 1,
+                                       "type" : "boolean",
+                                       "typetext" : "<boolean>"
+                                    },
+                                    "name" : {
+                                       "default" : "default",
+                                       "description" : "ACME account config file name.",
+                                       "format" : "pve-configid",
+                                       "format_description" : "name",
+                                       "optional" : 1,
+                                       "type" : "string",
+                                       "typetext" : "<name>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin"
+                                 ]
+                              },
+                              "protected" : 1,
+                              "proxyto" : "master",
+                              "returns" : {
+                                 "type" : "string"
+                              }
+                           },
+                           "GET" : {
+                              "allowtoken" : 1,
+                              "description" : "Return existing ACME account information.",
+                              "method" : "GET",
+                              "name" : "get_account",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "name" : {
+                                       "default" : "default",
+                                       "description" : "ACME account config file name.",
+                                       "format" : "pve-configid",
+                                       "format_description" : "name",
+                                       "optional" : 1,
+                                       "type" : "string",
+                                       "typetext" : "<name>"
+                                    }
+                                 }
+                              },
+                              "protected" : 1,
+                              "proxyto" : "master",
+                              "returns" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "account" : {
+                                       "optional" : 1,
+                                       "renderer" : "yaml",
+                                       "type" : "object"
+                                    },
+                                    "directory" : {
+                                       "description" : "URL of ACME CA directory endpoint.",
+                                       "optional" : 1,
+                                       "pattern" : "^https?://.*",
+                                       "type" : "string"
+                                    },
+                                    "location" : {
+                                       "optional" : 1,
+                                       "type" : "string"
+                                    },
+                                    "tos" : {
+                                       "optional" : 1,
+                                       "type" : "string"
+                                    }
+                                 },
+                                 "type" : "object"
+                              }
+                           },
+                           "PUT" : {
+                              "allowtoken" : 1,
+                              "description" : "Update existing ACME account information with CA. Note: not specifying any new account information triggers a refresh.",
+                              "method" : "PUT",
+                              "name" : "update_account",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "contact" : {
+                                       "description" : "Contact email addresses.",
+                                       "format" : "email-list",
+                                       "optional" : 1,
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    },
+                                    "name" : {
+                                       "default" : "default",
+                                       "description" : "ACME account config file name.",
+                                       "format" : "pve-configid",
+                                       "format_description" : "name",
+                                       "optional" : 1,
+                                       "type" : "string",
+                                       "typetext" : "<name>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin"
+                                 ]
+                              },
+                              "protected" : 1,
+                              "proxyto" : "master",
+                              "returns" : {
+                                 "type" : "string"
+                              }
+                           }
+                        },
+                        "leaf" : 1,
+                        "path" : "/config/acme/account/{name}",
+                        "text" : "{name}"
+                     }
+                  ],
+                  "info" : {
+                     "GET" : {
+                        "allowtoken" : 1,
+                        "description" : "ACME account index.",
+                        "method" : "GET",
+                        "name" : "account_index",
+                        "parameters" : {
+                           "additionalProperties" : 0
+                        },
+                        "permissions" : {
+                           "check" : [
+                              "admin",
+                              "audit"
+                           ]
+                        },
+                        "protected" : 1,
+                        "returns" : {
+                           "items" : {
+                              "properties" : {},
+                              "type" : "object"
+                           },
+                           "links" : [
+                              {
+                                 "href" : "{name}",
+                                 "rel" : "child"
+                              }
+                           ],
+                           "type" : "array"
+                        }
+                     },
+                     "POST" : {
+                        "allowtoken" : 1,
+                        "description" : "Register a new ACME account with CA.",
+                        "method" : "POST",
+                        "name" : "register_account",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "contact" : {
+                                 "description" : "Contact email addresses.",
+                                 "format" : "email-list",
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
+                              "directory" : {
+                                 "default" : "https://acme-v02.api.letsencrypt.org/directory",
+                                 "description" : "URL of ACME CA directory endpoint.",
+                                 "optional" : 1,
+                                 "pattern" : "^https?://.*",
+                                 "type" : "string"
+                              },
+                              "name" : {
+                                 "default" : "default",
+                                 "description" : "ACME account config file name.",
+                                 "format" : "pve-configid",
+                                 "format_description" : "name",
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "<name>"
+                              },
+                              "tos_url" : {
+                                 "description" : "URL of CA TermsOfService - setting this indicates agreement.",
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              }
+                           }
+                        },
+                        "permissions" : {
+                           "check" : [
+                              "admin"
+                           ]
+                        },
+                        "protected" : 1,
+                        "proxyto" : "master",
+                        "returns" : {
+                           "type" : "string"
+                        }
+                     }
+                  },
+                  "leaf" : 0,
+                  "path" : "/config/acme/account",
+                  "text" : "account"
+               },
+               {
+                  "info" : {
+                     "GET" : {
+                        "allowtoken" : 1,
+                        "description" : "Retrieve ACME TermsOfService URL from CA.",
+                        "method" : "GET",
+                        "name" : "get_tos",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "directory" : {
+                                 "default" : "https://acme-v02.api.letsencrypt.org/directory",
+                                 "description" : "URL of ACME CA directory endpoint.",
+                                 "optional" : 1,
+                                 "pattern" : "^https?://.*",
+                                 "type" : "string"
+                              }
+                           }
+                        },
+                        "permissions" : {
+                           "user" : "all"
+                        },
+                        "returns" : {
+                           "description" : "ACME TermsOfService URL.",
+                           "optional" : 1,
+                           "type" : "string"
+                        }
+                     }
+                  },
+                  "leaf" : 1,
+                  "path" : "/config/acme/tos",
+                  "text" : "tos"
+               },
+               {
+                  "info" : {
+                     "GET" : {
+                        "allowtoken" : 1,
+                        "description" : "Get named known ACME directory endpoints.",
+                        "method" : "GET",
+                        "name" : "get_directories",
+                        "parameters" : {
+                           "additionalProperties" : 0
+                        },
+                        "permissions" : {
+                           "user" : "all"
+                        },
+                        "returns" : {
+                           "items" : {
+                              "additionalProperties" : 0,
+                              "properties" : {
+                                 "name" : {
+                                    "type" : "string"
+                                 },
+                                 "url" : {
+                                    "description" : "URL of ACME CA directory endpoint.",
+                                    "pattern" : "^https?://.*",
+                                    "type" : "string"
+                                 }
+                              },
+                              "type" : "object"
+                           },
+                           "type" : "array"
+                        }
+                     }
+                  },
+                  "leaf" : 1,
+                  "path" : "/config/acme/directories",
+                  "text" : "directories"
+               },
+               {
+                  "info" : {
+                     "GET" : {
+                        "allowtoken" : 1,
+                        "description" : "Get schema of ACME challenge types.",
+                        "method" : "GET",
+                        "name" : "challenge-schema",
+                        "parameters" : {
+                           "additionalProperties" : 0
+                        },
+                        "permissions" : {
+                           "user" : "all"
+                        },
+                        "returns" : {
+                           "items" : {
+                              "additionalProperties" : 0,
+                              "properties" : {
+                                 "id" : {
+                                    "type" : "string"
+                                 },
+                                 "name" : {
+                                    "description" : "Human readable name, falls back to id",
+                                    "type" : "string"
+                                 },
+                                 "schema" : {
+                                    "type" : "object"
+                                 },
+                                 "type" : {
+                                    "type" : "string"
+                                 }
+                              },
+                              "type" : "object"
+                           },
+                           "type" : "array"
+                        }
+                     }
+                  },
+                  "leaf" : 1,
+                  "path" : "/config/acme/challenge-schema",
+                  "text" : "challenge-schema"
+               }
+            ],
+            "info" : {
+               "GET" : {
+                  "allowtoken" : 1,
+                  "description" : "ACME index.",
+                  "method" : "GET",
+                  "name" : "index",
+                  "parameters" : {
+                     "additionalProperties" : 0
+                  },
+                  "permissions" : {
+                     "user" : "all"
+                  },
+                  "returns" : {
+                     "items" : {
+                        "properties" : {},
+                        "type" : "object"
+                     },
+                     "links" : [
+                        {
+                           "href" : "{name}",
+                           "rel" : "child"
+                        }
+                     ],
+                     "type" : "array"
+                  }
+               }
+            },
+            "leaf" : 0,
+            "path" : "/config/acme",
+            "text" : "acme"
          },
          {
             "info" : {
@@ -12896,6 +13821,17 @@ var pmgapi = [
                                  "type" : "string",
                                  "typetext" : "<string>"
                               },
+                              "notify" : {
+                                 "default" : "never",
+                                 "description" : "Specify when to notify via e-mail",
+                                 "enum" : [
+                                    "always",
+                                    "error",
+                                    "never"
+                                 ],
+                                 "optional" : 1,
+                                 "type" : "string"
+                              },
                               "statistic" : {
                                  "default" : 1,
                                  "description" : "Backup statistic databases.",
@@ -13186,11 +14122,29 @@ var pmgapi = [
                                              "type" : "string",
                                              "typetext" : "<string>"
                                           },
+                                          "notify" : {
+                                             "default" : "never",
+                                             "description" : "Specify when to notify via e-mail",
+                                             "enum" : [
+                                                "always",
+                                                "error",
+                                                "never"
+                                             ],
+                                             "optional" : 1,
+                                             "type" : "string"
+                                          },
                                           "remote" : {
                                              "description" : "Proxmox Backup Server ID.",
                                              "format" : "pve-configid",
                                              "type" : "string",
                                              "typetext" : "<string>"
+                                          },
+                                          "statistic" : {
+                                             "default" : 1,
+                                             "description" : "Backup statistic databases.",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
                                           }
                                        }
                                     },
@@ -13459,6 +14413,11 @@ var pmgapi = [
                                     "pattern" : "([A-Fa-f0-9]{2}:){31}[A-Fa-f0-9]{2}",
                                     "type" : "string"
                                  },
+                                 "include-statistics" : {
+                                    "description" : "Include statistics in scheduled backups",
+                                    "optional" : 1,
+                                    "type" : "boolean"
+                                 },
                                  "keep-daily" : {
                                     "description" : "Keep backups for the last <N> different days. If there is more than one backup for a single day, only the latest one is kept.",
                                     "format_description" : "N",
@@ -13501,6 +14460,16 @@ var pmgapi = [
                                     "optional" : 1,
                                     "type" : "integer"
                                  },
+                                 "notify" : {
+                                    "description" : "Specify when to notify via e-mail",
+                                    "enum" : [
+                                       "always",
+                                       "error",
+                                       "never"
+                                    ],
+                                    "optional" : 1,
+                                    "type" : "string"
+                                 },
                                  "password" : {
                                     "description" : "Password or API token secret for the user on the Proxmox Backup Server.",
                                     "optional" : 1,
@@ -13523,7 +14492,7 @@ var pmgapi = [
                                     "maxLength" : 512,
                                     "minLength" : 3,
                                     "optional" : 1,
-                                    "pattern" : "(?:[^\\s\\/\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                                    "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
                                     "type" : "string"
                                  }
                               },
@@ -13542,6 +14511,711 @@ var pmgapi = [
                   "leaf" : 0,
                   "path" : "/nodes/{node}/pbs",
                   "text" : "pbs"
+               },
+               {
+                  "children" : [
+                     {
+                        "info" : {
+                           "GET" : {
+                              "allowtoken" : 1,
+                              "description" : "Get information about the node's certificates.",
+                              "method" : "GET",
+                              "name" : "info",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "node" : {
+                                       "description" : "The cluster node name.",
+                                       "format" : "pve-node",
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "user" : "all"
+                              },
+                              "protected" : 1,
+                              "proxyto" : "node",
+                              "returns" : {
+                                 "items" : {
+                                    "properties" : {
+                                       "filename" : {
+                                          "optional" : 1,
+                                          "type" : "string"
+                                       },
+                                       "fingerprint" : {
+                                          "description" : "Certificate SHA 256 fingerprint.",
+                                          "optional" : 1,
+                                          "pattern" : "([A-Fa-f0-9]{2}:){31}[A-Fa-f0-9]{2}",
+                                          "type" : "string"
+                                       },
+                                       "issuer" : {
+                                          "description" : "Certificate issuer name.",
+                                          "optional" : 1,
+                                          "type" : "string"
+                                       },
+                                       "notafter" : {
+                                          "description" : "Certificate's notAfter timestamp (UNIX epoch).",
+                                          "optional" : 1,
+                                          "renderer" : "timestamp",
+                                          "type" : "integer"
+                                       },
+                                       "notbefore" : {
+                                          "description" : "Certificate's notBefore timestamp (UNIX epoch).",
+                                          "optional" : 1,
+                                          "renderer" : "timestamp",
+                                          "type" : "integer"
+                                       },
+                                       "pem" : {
+                                          "description" : "Certificate in PEM format",
+                                          "format" : "pem-certificate",
+                                          "optional" : 1,
+                                          "type" : "string"
+                                       },
+                                       "public-key-bits" : {
+                                          "description" : "Certificate's public key size",
+                                          "optional" : 1,
+                                          "type" : "integer"
+                                       },
+                                       "public-key-type" : {
+                                          "description" : "Certificate's public key algorithm",
+                                          "optional" : 1,
+                                          "type" : "string"
+                                       },
+                                       "san" : {
+                                          "description" : "List of Certificate's SubjectAlternativeName entries.",
+                                          "items" : {
+                                             "type" : "string"
+                                          },
+                                          "optional" : 1,
+                                          "renderer" : "yaml",
+                                          "type" : "array"
+                                       },
+                                       "subject" : {
+                                          "description" : "Certificate subject name.",
+                                          "optional" : 1,
+                                          "type" : "string"
+                                       }
+                                    },
+                                    "type" : "object"
+                                 },
+                                 "type" : "array"
+                              }
+                           }
+                        },
+                        "leaf" : 1,
+                        "path" : "/nodes/{node}/certificates/info",
+                        "text" : "info"
+                     },
+                     {
+                        "children" : [
+                           {
+                              "info" : {
+                                 "DELETE" : {
+                                    "allowtoken" : 1,
+                                    "description" : "DELETE custom certificate chain and key.",
+                                    "method" : "DELETE",
+                                    "name" : "remove_custom_cert",
+                                    "parameters" : {
+                                       "additionalProperties" : 0,
+                                       "properties" : {
+                                          "node" : {
+                                             "description" : "The cluster node name.",
+                                             "format" : "pve-node",
+                                             "type" : "string",
+                                             "typetext" : "<string>"
+                                          },
+                                          "restart" : {
+                                             "default" : 0,
+                                             "description" : "Restart pmgproxy.",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
+                                          },
+                                          "type" : {
+                                             "description" : "The TLS certificate type (API or SMTP certificate).",
+                                             "enum" : [
+                                                "api",
+                                                "smtp"
+                                             ],
+                                             "type" : "string"
+                                          }
+                                       }
+                                    },
+                                    "permissions" : {
+                                       "check" : [
+                                          "admin"
+                                       ]
+                                    },
+                                    "protected" : 1,
+                                    "proxyto" : "node",
+                                    "returns" : {
+                                       "type" : "null"
+                                    }
+                                 },
+                                 "POST" : {
+                                    "allowtoken" : 1,
+                                    "description" : "Upload or update custom certificate chain and key.",
+                                    "method" : "POST",
+                                    "name" : "upload_custom_cert",
+                                    "parameters" : {
+                                       "additionalProperties" : 0,
+                                       "properties" : {
+                                          "certificates" : {
+                                             "description" : "PEM encoded certificate (chain).",
+                                             "format" : "pem-certificate-chain",
+                                             "type" : "string",
+                                             "typetext" : "<string>"
+                                          },
+                                          "force" : {
+                                             "default" : 0,
+                                             "description" : "Overwrite existing custom or ACME certificate files.",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
+                                          },
+                                          "key" : {
+                                             "description" : "PEM encoded private key.",
+                                             "format" : "pem-string",
+                                             "optional" : 0,
+                                             "type" : "string",
+                                             "typetext" : "<string>"
+                                          },
+                                          "node" : {
+                                             "description" : "The cluster node name.",
+                                             "format" : "pve-node",
+                                             "type" : "string",
+                                             "typetext" : "<string>"
+                                          },
+                                          "restart" : {
+                                             "default" : 0,
+                                             "description" : "Restart services.",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
+                                          },
+                                          "type" : {
+                                             "description" : "The TLS certificate type (API or SMTP certificate).",
+                                             "enum" : [
+                                                "api",
+                                                "smtp"
+                                             ],
+                                             "type" : "string"
+                                          }
+                                       }
+                                    },
+                                    "permissions" : {
+                                       "check" : [
+                                          "admin"
+                                       ]
+                                    },
+                                    "protected" : 1,
+                                    "proxyto" : "node",
+                                    "returns" : {
+                                       "properties" : {
+                                          "filename" : {
+                                             "optional" : 1,
+                                             "type" : "string"
+                                          },
+                                          "fingerprint" : {
+                                             "description" : "Certificate SHA 256 fingerprint.",
+                                             "optional" : 1,
+                                             "pattern" : "([A-Fa-f0-9]{2}:){31}[A-Fa-f0-9]{2}",
+                                             "type" : "string"
+                                          },
+                                          "issuer" : {
+                                             "description" : "Certificate issuer name.",
+                                             "optional" : 1,
+                                             "type" : "string"
+                                          },
+                                          "notafter" : {
+                                             "description" : "Certificate's notAfter timestamp (UNIX epoch).",
+                                             "optional" : 1,
+                                             "renderer" : "timestamp",
+                                             "type" : "integer"
+                                          },
+                                          "notbefore" : {
+                                             "description" : "Certificate's notBefore timestamp (UNIX epoch).",
+                                             "optional" : 1,
+                                             "renderer" : "timestamp",
+                                             "type" : "integer"
+                                          },
+                                          "pem" : {
+                                             "description" : "Certificate in PEM format",
+                                             "format" : "pem-certificate",
+                                             "optional" : 1,
+                                             "type" : "string"
+                                          },
+                                          "public-key-bits" : {
+                                             "description" : "Certificate's public key size",
+                                             "optional" : 1,
+                                             "type" : "integer"
+                                          },
+                                          "public-key-type" : {
+                                             "description" : "Certificate's public key algorithm",
+                                             "optional" : 1,
+                                             "type" : "string"
+                                          },
+                                          "san" : {
+                                             "description" : "List of Certificate's SubjectAlternativeName entries.",
+                                             "items" : {
+                                                "type" : "string"
+                                             },
+                                             "optional" : 1,
+                                             "renderer" : "yaml",
+                                             "type" : "array"
+                                          },
+                                          "subject" : {
+                                             "description" : "Certificate subject name.",
+                                             "optional" : 1,
+                                             "type" : "string"
+                                          }
+                                       },
+                                       "type" : "object"
+                                    }
+                                 }
+                              },
+                              "leaf" : 1,
+                              "path" : "/nodes/{node}/certificates/custom/{type}",
+                              "text" : "{type}"
+                           }
+                        ],
+                        "info" : {
+                           "GET" : {
+                              "allowtoken" : 1,
+                              "description" : "Certificate index.",
+                              "method" : "GET",
+                              "name" : "custom_cert_index",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "node" : {
+                                       "description" : "The cluster node name.",
+                                       "format" : "pve-node",
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "user" : "all"
+                              },
+                              "returns" : {
+                                 "items" : {
+                                    "properties" : {},
+                                    "type" : "object"
+                                 },
+                                 "links" : [
+                                    {
+                                       "href" : "{type}",
+                                       "rel" : "child"
+                                    }
+                                 ],
+                                 "type" : "array"
+                              }
+                           }
+                        },
+                        "leaf" : 0,
+                        "path" : "/nodes/{node}/certificates/custom",
+                        "text" : "custom"
+                     },
+                     {
+                        "children" : [
+                           {
+                              "info" : {
+                                 "DELETE" : {
+                                    "allowtoken" : 1,
+                                    "description" : "Revoke existing certificate from CA.",
+                                    "method" : "DELETE",
+                                    "name" : "revoke_acme_cert",
+                                    "parameters" : {
+                                       "additionalProperties" : 0,
+                                       "properties" : {
+                                          "node" : {
+                                             "description" : "The cluster node name.",
+                                             "format" : "pve-node",
+                                             "type" : "string",
+                                             "typetext" : "<string>"
+                                          },
+                                          "type" : {
+                                             "description" : "The TLS certificate type (API or SMTP certificate).",
+                                             "enum" : [
+                                                "api",
+                                                "smtp"
+                                             ],
+                                             "type" : "string"
+                                          }
+                                       }
+                                    },
+                                    "permissions" : {
+                                       "check" : [
+                                          "admin"
+                                       ]
+                                    },
+                                    "protected" : 1,
+                                    "proxyto" : "node",
+                                    "returns" : {
+                                       "type" : "string"
+                                    }
+                                 },
+                                 "POST" : {
+                                    "allowtoken" : 1,
+                                    "description" : "Order a new certificate from ACME-compatible CA.",
+                                    "method" : "POST",
+                                    "name" : "new_acme_cert",
+                                    "parameters" : {
+                                       "additionalProperties" : 0,
+                                       "properties" : {
+                                          "force" : {
+                                             "default" : 0,
+                                             "description" : "Overwrite existing custom certificate.",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
+                                          },
+                                          "node" : {
+                                             "description" : "The cluster node name.",
+                                             "format" : "pve-node",
+                                             "type" : "string",
+                                             "typetext" : "<string>"
+                                          },
+                                          "type" : {
+                                             "description" : "The TLS certificate type (API or SMTP certificate).",
+                                             "enum" : [
+                                                "api",
+                                                "smtp"
+                                             ],
+                                             "type" : "string"
+                                          }
+                                       }
+                                    },
+                                    "permissions" : {
+                                       "check" : [
+                                          "admin"
+                                       ]
+                                    },
+                                    "protected" : 1,
+                                    "proxyto" : "node",
+                                    "returns" : {
+                                       "type" : "string"
+                                    }
+                                 },
+                                 "PUT" : {
+                                    "allowtoken" : 1,
+                                    "description" : "Renew existing certificate from CA.",
+                                    "method" : "PUT",
+                                    "name" : "renew_acme_cert",
+                                    "parameters" : {
+                                       "additionalProperties" : 0,
+                                       "properties" : {
+                                          "force" : {
+                                             "default" : 0,
+                                             "description" : "Force renewal even if expiry is more than 30 days away.",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
+                                          },
+                                          "node" : {
+                                             "description" : "The cluster node name.",
+                                             "format" : "pve-node",
+                                             "type" : "string",
+                                             "typetext" : "<string>"
+                                          },
+                                          "type" : {
+                                             "description" : "The TLS certificate type (API or SMTP certificate).",
+                                             "enum" : [
+                                                "api",
+                                                "smtp"
+                                             ],
+                                             "type" : "string"
+                                          }
+                                       }
+                                    },
+                                    "permissions" : {
+                                       "check" : [
+                                          "admin"
+                                       ]
+                                    },
+                                    "protected" : 1,
+                                    "proxyto" : "node",
+                                    "returns" : {
+                                       "type" : "string"
+                                    }
+                                 }
+                              },
+                              "leaf" : 1,
+                              "path" : "/nodes/{node}/certificates/acme/{type}",
+                              "text" : "{type}"
+                           }
+                        ],
+                        "info" : {
+                           "GET" : {
+                              "allowtoken" : 1,
+                              "description" : "ACME Certificate index.",
+                              "method" : "GET",
+                              "name" : "acme_cert_index",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "node" : {
+                                       "description" : "The cluster node name.",
+                                       "format" : "pve-node",
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "user" : "all"
+                              },
+                              "returns" : {
+                                 "items" : {
+                                    "properties" : {},
+                                    "type" : "object"
+                                 },
+                                 "links" : [
+                                    {
+                                       "href" : "{type}",
+                                       "rel" : "child"
+                                    }
+                                 ],
+                                 "type" : "array"
+                              }
+                           }
+                        },
+                        "leaf" : 0,
+                        "path" : "/nodes/{node}/certificates/acme",
+                        "text" : "acme"
+                     }
+                  ],
+                  "info" : {
+                     "GET" : {
+                        "allowtoken" : 1,
+                        "description" : "Node index.",
+                        "method" : "GET",
+                        "name" : "index",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "node" : {
+                                 "description" : "The cluster node name.",
+                                 "format" : "pve-node",
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              }
+                           }
+                        },
+                        "permissions" : {
+                           "user" : "all"
+                        },
+                        "returns" : {
+                           "items" : {
+                              "properties" : {},
+                              "type" : "object"
+                           },
+                           "links" : [
+                              {
+                                 "href" : "{name}",
+                                 "rel" : "child"
+                              }
+                           ],
+                           "type" : "array"
+                        }
+                     }
+                  },
+                  "leaf" : 0,
+                  "path" : "/nodes/{node}/certificates",
+                  "text" : "certificates"
+               },
+               {
+                  "info" : {
+                     "GET" : {
+                        "allowtoken" : 1,
+                        "description" : "Get node configuration options.",
+                        "method" : "GET",
+                        "name" : "get_config",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "node" : {
+                                 "description" : "The cluster node name.",
+                                 "format" : "pve-node",
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              }
+                           }
+                        },
+                        "permissions" : {
+                           "check" : [
+                              "admin",
+                              "audit"
+                           ]
+                        },
+                        "protected" : 1,
+                        "proxyto" : "node",
+                        "returns" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "acme" : {
+                                 "description" : "Node specific ACME settings.",
+                                 "format" : {
+                                    "account" : {
+                                       "default" : "default",
+                                       "description" : "ACME account config file name.",
+                                       "format" : "pve-configid",
+                                       "format_description" : "name",
+                                       "optional" : 1,
+                                       "type" : "string"
+                                    }
+                                 },
+                                 "optional" : 1,
+                                 "type" : "string"
+                              },
+                              "acmedomain[n]" : {
+                                 "description" : "ACME domain and validation plugin",
+                                 "format" : {
+                                    "alias" : {
+                                       "description" : "Alias for the Domain to verify ACME Challenge over DNS",
+                                       "format" : "pmg-acme-alias",
+                                       "format_description" : "domain",
+                                       "optional" : 1,
+                                       "type" : "string"
+                                    },
+                                    "domain" : {
+                                       "default_key" : 1,
+                                       "description" : "domain for this node's ACME certificate",
+                                       "format" : "pmg-acme-domain",
+                                       "format_description" : "domain",
+                                       "type" : "string"
+                                    },
+                                    "plugin" : {
+                                       "default" : "standalone",
+                                       "description" : "The ACME plugin ID",
+                                       "format" : "pve-configid",
+                                       "format_description" : "name of the plugin configuration",
+                                       "optional" : 1,
+                                       "type" : "string"
+                                    },
+                                    "usage" : {
+                                       "description" : "Whether this domain is used for the API, SMTP or both",
+                                       "format" : "pmg-certificate-type-list",
+                                       "format_description" : "usage list",
+                                       "type" : "string"
+                                    }
+                                 },
+                                 "optional" : 1,
+                                 "type" : "string"
+                              },
+                              "digest" : {
+                                 "description" : "Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.",
+                                 "maxLength" : 40,
+                                 "optional" : 1,
+                                 "type" : "string"
+                              }
+                           },
+                           "type" : "object"
+                        }
+                     },
+                     "PUT" : {
+                        "allowtoken" : 1,
+                        "description" : "Set node configuration options.",
+                        "method" : "PUT",
+                        "name" : "set_config",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "acme" : {
+                                 "description" : "Node specific ACME settings.",
+                                 "format" : {
+                                    "account" : {
+                                       "default" : "default",
+                                       "description" : "ACME account config file name.",
+                                       "format" : "pve-configid",
+                                       "format_description" : "name",
+                                       "optional" : 1,
+                                       "type" : "string"
+                                    }
+                                 },
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "[account=<name>]"
+                              },
+                              "acmedomain[n]" : {
+                                 "description" : "ACME domain and validation plugin",
+                                 "format" : {
+                                    "alias" : {
+                                       "description" : "Alias for the Domain to verify ACME Challenge over DNS",
+                                       "format" : "pmg-acme-alias",
+                                       "format_description" : "domain",
+                                       "optional" : 1,
+                                       "type" : "string"
+                                    },
+                                    "domain" : {
+                                       "default_key" : 1,
+                                       "description" : "domain for this node's ACME certificate",
+                                       "format" : "pmg-acme-domain",
+                                       "format_description" : "domain",
+                                       "type" : "string"
+                                    },
+                                    "plugin" : {
+                                       "default" : "standalone",
+                                       "description" : "The ACME plugin ID",
+                                       "format" : "pve-configid",
+                                       "format_description" : "name of the plugin configuration",
+                                       "optional" : 1,
+                                       "type" : "string"
+                                    },
+                                    "usage" : {
+                                       "description" : "Whether this domain is used for the API, SMTP or both",
+                                       "format" : "pmg-certificate-type-list",
+                                       "format_description" : "usage list",
+                                       "type" : "string"
+                                    }
+                                 },
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "[domain=]<domain> ,usage=<usage list> [,alias=<domain>] [,plugin=<name of the plugin configuration>]"
+                              },
+                              "delete" : {
+                                 "description" : "A list of settings you want to delete.",
+                                 "format" : "pve-configid-list",
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
+                              "digest" : {
+                                 "description" : "Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.",
+                                 "maxLength" : 40,
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
+                              "node" : {
+                                 "description" : "The cluster node name.",
+                                 "format" : "pve-node",
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              }
+                           },
+                           "type" : "object"
+                        },
+                        "permissions" : {
+                           "check" : [
+                              "admin",
+                              "audit"
+                           ]
+                        },
+                        "protected" : 1,
+                        "proxyto" : "node",
+                        "returns" : {
+                           "type" : "null"
+                        }
+                     }
+                  },
+                  "leaf" : 1,
+                  "path" : "/nodes/{node}/config",
+                  "text" : "config"
                },
                {
                   "info" : {
@@ -13797,6 +15471,24 @@ var pmgapi = [
                         "parameters" : {
                            "additionalProperties" : 0,
                            "properties" : {
+                              "cmd" : {
+                                 "default" : "login",
+                                 "description" : "Run specific command or default to login.",
+                                 "enum" : [
+                                    "upgrade",
+                                    "login"
+                                 ],
+                                 "optional" : 1,
+                                 "type" : "string"
+                              },
+                              "cmd-opts" : {
+                                 "default" : "",
+                                 "description" : "Add parameters to a command. Encoded as null terminated strings.",
+                                 "optional" : 1,
+                                 "requires" : "cmd",
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
                               "node" : {
                                  "description" : "The cluster node name.",
                                  "format" : "pve-node",
@@ -14752,7 +16444,7 @@ var pmgapi = [
                                  "maxLength" : 512,
                                  "minLength" : 3,
                                  "optional" : 1,
-                                 "pattern" : "(?:[^\\s\\/\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                                 "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
                                  "type" : "string"
                               }
                            }
@@ -14796,7 +16488,7 @@ var pmgapi = [
                            "maxLength" : 512,
                            "minLength" : 3,
                            "optional" : 1,
-                           "pattern" : "(?:[^\\s\\/\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                           "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
                            "type" : "string"
                         }
                      }
@@ -14827,7 +16519,7 @@ var pmgapi = [
                            "maxLength" : 512,
                            "minLength" : 3,
                            "optional" : 1,
-                           "pattern" : "(?:[^\\s\\/\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                           "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
                            "type" : "string"
                         }
                      }
@@ -14871,7 +16563,7 @@ var pmgapi = [
                            "maxLength" : 512,
                            "minLength" : 3,
                            "optional" : 1,
-                           "pattern" : "(?:[^\\s\\/\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                           "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
                            "type" : "string"
                         }
                      }
@@ -14917,7 +16609,7 @@ var pmgapi = [
                                  "maxLength" : 512,
                                  "minLength" : 3,
                                  "optional" : 1,
-                                 "pattern" : "(?:[^\\s\\/\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                                 "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
                                  "type" : "string"
                               }
                            }
@@ -14961,7 +16653,7 @@ var pmgapi = [
                            "maxLength" : 512,
                            "minLength" : 3,
                            "optional" : 1,
-                           "pattern" : "(?:[^\\s\\/\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                           "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
                            "type" : "string"
                         }
                      }
@@ -14992,7 +16684,7 @@ var pmgapi = [
                            "maxLength" : 512,
                            "minLength" : 3,
                            "optional" : 1,
-                           "pattern" : "(?:[^\\s\\/\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                           "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
                            "type" : "string"
                         }
                      }
@@ -15036,7 +16728,7 @@ var pmgapi = [
                            "maxLength" : 512,
                            "minLength" : 3,
                            "optional" : 1,
-                           "pattern" : "(?:[^\\s\\/\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                           "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
                            "type" : "string"
                         }
                      }
@@ -15222,7 +16914,7 @@ var pmgapi = [
                            "maxLength" : 512,
                            "minLength" : 3,
                            "optional" : 1,
-                           "pattern" : "(?:[^\\s\\/\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                           "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
                            "type" : "string"
                         },
                         "starttime" : {
@@ -15738,7 +17430,7 @@ var pmgapi = [
                            "description" : "Email Address (allow most characters).",
                            "maxLength" : 512,
                            "minLength" : 3,
-                           "pattern" : "(?:[^\\s\\/\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                           "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
                            "type" : "string"
                         }
                      }
@@ -15806,7 +17498,7 @@ var pmgapi = [
                                  "description" : "Contact email address.",
                                  "maxLength" : 512,
                                  "minLength" : 3,
-                                 "pattern" : "(?:[^\\s\\/\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                                 "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
                                  "type" : "string"
                               },
                               "day" : {
@@ -16019,6 +17711,138 @@ var pmgapi = [
             "text" : "contact"
          },
          {
+            "info" : {
+               "GET" : {
+                  "allowtoken" : 1,
+                  "description" : "Detailed Statistics.",
+                  "method" : "GET",
+                  "name" : "detailstats",
+                  "parameters" : {
+                     "additionalProperties" : 0,
+                     "properties" : {
+                        "address" : {
+                           "description" : "Email address.",
+                           "maxLength" : 512,
+                           "minLength" : 3,
+                           "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                           "type" : "string"
+                        },
+                        "day" : {
+                           "description" : "Day of month. Get statistics for a single day.",
+                           "maximum" : 31,
+                           "minimum" : 1,
+                           "optional" : 1,
+                           "type" : "integer",
+                           "typetext" : "<integer> (1 - 31)"
+                        },
+                        "endtime" : {
+                           "description" : "Only consider entries older than 'endtime' (unix epoch). This is set to '<start> + 1day' by default.",
+                           "minimum" : 1,
+                           "optional" : 1,
+                           "type" : "integer",
+                           "typetext" : "<integer> (1 - N)"
+                        },
+                        "filter" : {
+                           "description" : "Address filter.",
+                           "maxLength" : 512,
+                           "optional" : 1,
+                           "type" : "string",
+                           "typetext" : "<string>"
+                        },
+                        "month" : {
+                           "description" : "Month. You will get statistics for the whole month if you do not specify a day.",
+                           "maximum" : 12,
+                           "minimum" : 1,
+                           "optional" : 1,
+                           "type" : "integer",
+                           "typetext" : "<integer> (1 - 12)"
+                        },
+                        "orderby" : {
+                           "description" : "Remote sorting configuration(JSON, ExtJS compatible).",
+                           "maxLength" : 4096,
+                           "optional" : 1,
+                           "type" : "string",
+                           "typetext" : "<string>"
+                        },
+                        "starttime" : {
+                           "description" : "Only consider entries newer than 'starttime' (unix epoch). Default is 'now - 1day'.",
+                           "minimum" : 0,
+                           "optional" : 1,
+                           "type" : "integer",
+                           "typetext" : "<integer> (0 - N)"
+                        },
+                        "type" : {
+                           "description" : "Type of statistics",
+                           "enum" : [
+                              "contact",
+                              "sender",
+                              "receiver"
+                           ],
+                           "type" : "string"
+                        },
+                        "year" : {
+                           "description" : "Year. Defaults to current year. You will get statistics for the whole year if you do not specify a month or day.",
+                           "maximum" : 3000,
+                           "minimum" : 1900,
+                           "optional" : 1,
+                           "type" : "integer",
+                           "typetext" : "<integer> (1900 - 3000)"
+                        }
+                     }
+                  },
+                  "permissions" : {
+                     "check" : [
+                        "admin",
+                        "qmanager",
+                        "audit"
+                     ]
+                  },
+                  "returns" : {
+                     "items" : {
+                        "properties" : {
+                           "blocked" : {
+                              "description" : "Mail was blocked.",
+                              "type" : "boolean"
+                           },
+                           "bytes" : {
+                              "description" : "Mail traffic (Bytes).",
+                              "type" : "number"
+                           },
+                           "receiver" : {
+                              "description" : "Receiver email. (for sender statistics)",
+                              "optional" : 1,
+                              "type" : "string"
+                           },
+                           "sender" : {
+                              "description" : "Sender email. (for contact and receiver statistics)",
+                              "optional" : 1,
+                              "type" : "string"
+                           },
+                           "spamlevel" : {
+                              "description" : "Spam score.",
+                              "type" : "number"
+                           },
+                           "time" : {
+                              "description" : "Receive time stamp",
+                              "type" : "integer"
+                           },
+                           "virusinfo" : {
+                              "description" : "Virus name.",
+                              "optional" : 1,
+                              "type" : "string"
+                           }
+                        },
+                        "type" : "object"
+                     },
+                     "type" : "array"
+                  }
+               }
+            },
+            "leaf" : 1,
+            "path" : "/statistics/detail",
+            "text" : "detail"
+         },
+         {
             "children" : [
                {
                   "info" : {
@@ -16071,7 +17895,7 @@ var pmgapi = [
                                  "description" : "Sender email address.",
                                  "maxLength" : 512,
                                  "minLength" : 3,
-                                 "pattern" : "(?:[^\\s\\/\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                                 "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
                                  "type" : "string"
                               },
                               "starttime" : {
@@ -16299,7 +18123,7 @@ var pmgapi = [
                                  "description" : "Receiver email address.",
                                  "maxLength" : 512,
                                  "minLength" : 3,
-                                 "pattern" : "(?:[^\\s\\/\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                                 "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
                                  "type" : "string"
                               },
                               "starttime" : {
