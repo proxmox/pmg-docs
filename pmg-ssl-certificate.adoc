@@ -51,9 +51,9 @@ Trusted certificates via Let's Encrypt (ACME)
 
 {PMG} includes an implementation of the **A**utomatic **C**ertificate
 **M**anagement **E**nvironment **ACME** protocol, allowing {pmg} admins to
-use an ACME provider like Let's Encrypt for easy setup of trusted TLS
-certificates which are accepted and trusted from modern operating systems
-and web browsers out of the box.
+use an ACME provider like Let's Encrypt for easy setup of TLS certificates
+which are accepted and trusted from modern operating systems and web browsers
+out of the box.
 
 Currently, the two ACME endpoints implemented are the
 https://letsencrypt.org[Let's Encrypt (LE)] production and its staging
@@ -93,10 +93,9 @@ the basis building block for automatic certificate management.
 The ACME protocol specifies different types of challenges, for example the
 `http-01` where a web server provides a file with a certain content to prove
 that it controls a domain. Sometimes this isn't possible, either because of
-technical limitations or if the address of a domain points too is not reachable
-from the public internet. The `dns-01` challenge can be used in these cases.
-The challenge is fulfilled by creating a certain DNS record in the domain's
-zone.
+technical limitations or if the address of a record is not reachable from the
+public internet. The `dns-01` challenge can be used in these cases.  The
+challenge is fulfilled by creating a certain DNS record in the domain's zone.
 
 [thumbnail="pmg-gui-acme-create-challenge-plugin.png"]
 
