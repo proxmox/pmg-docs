@@ -3,11 +3,14 @@ Certificate Management
 ----------------------
 
 Access to the administration web-interface is always encrypted through `https`.
-Each {pmg} host creates by default its own (self-signed) certificate. This
-certificate is used for encrypted communication with the host's `pmgproxy`
+Each {pmg} host creates by default its own (self-signed) certificate.
+This certificate is used for encrypted communication with the host's `pmgproxy`
 service for any API call, between an user and the web-interface or between
-nodes in a cluster. Certificate verification in a {pmg} cluster is done based
-on pinning the certificate fingerprints in the cluster configuration.
+nodes in a cluster.
+
+Certificate verification in a {pmg} cluster is done based on pinning the
+certificate fingerprints in the cluster configuration and verifying that they
+match on connection.
 
 [[sysadmin_certs_api_gui]]
 Certificates for the API and SMTP
@@ -48,13 +51,14 @@ Trusted certificates via Let's Encrypt (ACME)
 
 {PMG} includes an implementation of the **A**utomatic **C**ertificate
 **M**anagement **E**nvironment **ACME** protocol, allowing {pmg} admins to
-interface with Let's Encrypt for easy setup of trusted TLS certificates which
-are accepted out of the box on most modern operating systems and browsers.
+use an ACME provider like Let's Encrypt for easy setup of trusted TLS
+certificates which are accepted and trusted from modern operating systems
+and web browsers out of the box.
 
-Currently the two ACME endpoints implemented are the
+Currently, the two ACME endpoints implemented are the
 https://letsencrypt.org[Let's Encrypt (LE)] production and its staging
 environment. Our ACME client supports validation of `http-01` challenges using
-a built-in webserver and validation of `dns-01` challenges using a DNS plugin
+a built-in web server and validation of `dns-01` challenges using a DNS plugin
 supporting all the DNS API endpoints https://acme.sh[acme.sh] does.
 
 [[sysadmin_certs_acme_account]]
@@ -87,20 +91,20 @@ the {pmg} cluster under your operation, are the real owner of a domain. This is
 the basis building block for automatic certificate management.
 
 The ACME protocol specifies different types of challenges, for example the
-`http-01` where a webserver provides a file with a certain content to prove that
-it controls a domain. Sometimes this isn't possible, either because of
-technical limitations or if the address a domain points to is not reachable
+`http-01` where a web server provides a file with a certain content to prove
+that it controls a domain. Sometimes this isn't possible, either because of
+technical limitations or if the address of a domain points too is not reachable
 from the public internet. The `dns-01` challenge can be used in these cases.
 The challenge is fulfilled by creating a certain DNS record in the domain's
 zone.
 
 [thumbnail="pmg-gui-acme-create-challenge-plugin.png"]
 
-{pve} supports both of those challenge types out of the box, you can configure
-plugins either over the web interface under `Datacenter -> ACME`, or using the
-`pvenode acme plugin add` command.
+{pmg} supports both of those challenge types out of the box, you can configure
+plugins either over the web interface under `Certificates -> ACME Challenges`,
+or using the `pmgconfig acme plugin add` command.
 
-ACME Plugin configurations are stored in `/etc/pve/priv/acme/plugins.cfg`.
+ACME Plugin configurations are stored in `/etc/pmg/acme/plugins.cfg`.
 A plugin is available for all nodes in the cluster.
 
 Domains
@@ -150,10 +154,9 @@ records via an API.
 Configuring ACME DNS APIs for validation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-{PVE} re-uses the DNS plugins developed for the `acme.sh`
-footnote:[acme.sh https://github.com/acmesh-official/acme.sh]
-project, please refer to its documentation for details on configuration of
-specific APIs.
+{pmg} re-uses the DNS plugins developed for the `acme.sh`
+footnote:[acme.sh https://github.com/acmesh-official/acme.sh] project, please
+refer to its documentation for details on configuration of specific APIs.
 
 The easiest way to configure a new plugin with the DNS API is using the web
 interface (`Certificates -> ACME Accounts/Challenges`).
@@ -169,10 +172,10 @@ wiki for more detailed information about getting API credentials for your
 provider. Configuration values do not need to be quoted with single or double
 quotes, for some plugins that is even an error.
 
-As there are many DNS providers and API endpoints {pmg} autogenerates the form
-for the credentials, but not all providers are annotated yet. For those you
-will see a bigger text area, simply copy all the credentials `KEY`=`VALUE`
-pairs in there.
+As there are many DNS providers and API endpoints {pmg} automatically generates
+the form for the credentials, but not all providers are annotated yet. For
+those you will see a bigger text area, simply copy all the credentials
+`KEY`=`VALUE` pairs in there.
 
 DNS Validation through CNAME Alias
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
