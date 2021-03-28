@@ -92,7 +92,7 @@ var pmgapi = [
                                              "typetext" : "<boolean>"
                                           },
                                           "direction" : {
-                                             "description" : "Rule direction. Value `0` matches incomming mails, value `1` matches outgoing mails, and value `2` matches both directions.",
+                                             "description" : "Rule direction. Value `0` matches incoming mails, value `1` matches outgoing mails, and value `2` matches both directions.",
                                              "maximum" : 2,
                                              "minimum" : 0,
                                              "optional" : 1,
@@ -818,7 +818,7 @@ var pmgapi = [
                                  "typetext" : "<boolean>"
                               },
                               "direction" : {
-                                 "description" : "Rule direction. Value `0` matches incomming mails, value `1` matches outgoing mails, and value `2` matches both directions.",
+                                 "description" : "Rule direction. Value `0` matches incoming mails, value `1` matches outgoing mails, and value `2` matches both directions.",
                                  "maximum" : 2,
                                  "minimum" : 0,
                                  "optional" : 1,
@@ -11833,7 +11833,7 @@ var pmgapi = [
                                        "type" : "string"
                                     },
                                     "bridge_ports" : {
-                                       "description" : "Specify the iterfaces you want to add to your bridge.",
+                                       "description" : "Specify the interfaces you want to add to your bridge.",
                                        "format" : "pve-iface-list",
                                        "optional" : 1,
                                        "type" : "string",
@@ -11953,7 +11953,7 @@ var pmgapi = [
                                        "typetext" : "<string>"
                                     },
                                     "ovs_ports" : {
-                                       "description" : "Specify the iterfaces you want to add to your bridge.",
+                                       "description" : "Specify the interfaces you want to add to your bridge.",
                                        "format" : "pve-iface-list",
                                        "optional" : 1,
                                        "type" : "string",
@@ -12161,7 +12161,7 @@ var pmgapi = [
                                  "type" : "string"
                               },
                               "bridge_ports" : {
-                                 "description" : "Specify the iterfaces you want to add to your bridge.",
+                                 "description" : "Specify the interfaces you want to add to your bridge.",
                                  "format" : "pve-iface-list",
                                  "optional" : 1,
                                  "type" : "string",
@@ -12274,7 +12274,7 @@ var pmgapi = [
                                  "typetext" : "<string>"
                               },
                               "ovs_ports" : {
-                                 "description" : "Specify the iterfaces you want to add to your bridge.",
+                                 "description" : "Specify the interfaces you want to add to your bridge.",
                                  "format" : "pve-iface-list",
                                  "optional" : 1,
                                  "type" : "string",
@@ -13366,7 +13366,7 @@ var pmgapi = [
                                        "typetext" : "<integer> (1 - N)"
                                     },
                                     "id" : {
-                                       "description" : "Mail ID (as returend by the list API).",
+                                       "description" : "Mail ID (as returned by the list API).",
                                        "maxLength" : 64,
                                        "minLength" : 3,
                                        "type" : "string",
@@ -16067,7 +16067,7 @@ var pmgapi = [
                                  "typetext" : "<string>"
                               },
                               "role" : {
-                                 "description" : "User role. Role 'root' is reseved for the Unix Superuser.",
+                                 "description" : "User role. Role 'root' is reserved for the Unix Superuser.",
                                  "enum" : [
                                     "root",
                                     "admin",
@@ -16218,7 +16218,7 @@ var pmgapi = [
                            "typetext" : "<string>"
                         },
                         "role" : {
-                           "description" : "User role. Role 'root' is reseved for the Unix Superuser.",
+                           "description" : "User role. Role 'root' is reserved for the Unix Superuser.",
                            "enum" : [
                               "root",
                               "admin",
@@ -16440,7 +16440,7 @@ var pmgapi = [
                                  "type" : "string"
                               },
                               "pmail" : {
-                                 "description" : "List entries for the user with this primary email address. Quarantine users cannot speficy this parameter, but it is required for all other roles.",
+                                 "description" : "List entries for the user with this primary email address. Quarantine users cannot specify this parameter, but it is required for all other roles.",
                                  "maxLength" : 512,
                                  "minLength" : 3,
                                  "optional" : 1,
@@ -16484,7 +16484,7 @@ var pmgapi = [
                            "type" : "string"
                         },
                         "pmail" : {
-                           "description" : "List entries for the user with this primary email address. Quarantine users cannot speficy this parameter, but it is required for all other roles.",
+                           "description" : "List entries for the user with this primary email address. Quarantine users cannot specify this parameter, but it is required for all other roles.",
                            "maxLength" : 512,
                            "minLength" : 3,
                            "optional" : 1,
@@ -16515,7 +16515,7 @@ var pmgapi = [
                      "additionalProperties" : 0,
                      "properties" : {
                         "pmail" : {
-                           "description" : "List entries for the user with this primary email address. Quarantine users cannot speficy this parameter, but it is required for all other roles.",
+                           "description" : "List entries for the user with this primary email address. Quarantine users cannot specify this parameter, but it is required for all other roles.",
                            "maxLength" : 512,
                            "minLength" : 3,
                            "optional" : 1,
@@ -16559,7 +16559,7 @@ var pmgapi = [
                            "type" : "string"
                         },
                         "pmail" : {
-                           "description" : "List entries for the user with this primary email address. Quarantine users cannot speficy this parameter, but it is required for all other roles.",
+                           "description" : "List entries for the user with this primary email address. Quarantine users cannot specify this parameter, but it is required for all other roles.",
                            "maxLength" : 512,
                            "minLength" : 3,
                            "optional" : 1,
@@ -16605,7 +16605,7 @@ var pmgapi = [
                                  "type" : "string"
                               },
                               "pmail" : {
-                                 "description" : "List entries for the user with this primary email address. Quarantine users cannot speficy this parameter, but it is required for all other roles.",
+                                 "description" : "List entries for the user with this primary email address. Quarantine users cannot specify this parameter, but it is required for all other roles.",
                                  "maxLength" : 512,
                                  "minLength" : 3,
                                  "optional" : 1,
@@ -16649,7 +16649,7 @@ var pmgapi = [
                            "type" : "string"
                         },
                         "pmail" : {
-                           "description" : "List entries for the user with this primary email address. Quarantine users cannot speficy this parameter, but it is required for all other roles.",
+                           "description" : "List entries for the user with this primary email address. Quarantine users cannot specify this parameter, but it is required for all other roles.",
                            "maxLength" : 512,
                            "minLength" : 3,
                            "optional" : 1,
@@ -16680,7 +16680,7 @@ var pmgapi = [
                      "additionalProperties" : 0,
                      "properties" : {
                         "pmail" : {
-                           "description" : "List entries for the user with this primary email address. Quarantine users cannot speficy this parameter, but it is required for all other roles.",
+                           "description" : "List entries for the user with this primary email address. Quarantine users cannot specify this parameter, but it is required for all other roles.",
                            "maxLength" : 512,
                            "minLength" : 3,
                            "optional" : 1,
@@ -16724,7 +16724,7 @@ var pmgapi = [
                            "type" : "string"
                         },
                         "pmail" : {
-                           "description" : "List entries for the user with this primary email address. Quarantine users cannot speficy this parameter, but it is required for all other roles.",
+                           "description" : "List entries for the user with this primary email address. Quarantine users cannot specify this parameter, but it is required for all other roles.",
                            "maxLength" : 512,
                            "minLength" : 3,
                            "optional" : 1,
@@ -16850,7 +16850,7 @@ var pmgapi = [
             "info" : {
                "GET" : {
                   "allowtoken" : 1,
-                  "description" : "Get a list of users with whitelist/blacklist setttings.",
+                  "description" : "Get a list of users with whitelist/blacklist settings.",
                   "method" : "GET",
                   "name" : "quarusers",
                   "parameters" : {
@@ -16910,7 +16910,7 @@ var pmgapi = [
                            "typetext" : "<integer> (1 - N)"
                         },
                         "pmail" : {
-                           "description" : "List entries for the user with this primary email address. Quarantine users cannot speficy this parameter, but it is required for all other roles.",
+                           "description" : "List entries for the user with this primary email address. Quarantine users cannot specify this parameter, but it is required for all other roles.",
                            "maxLength" : 512,
                            "minLength" : 3,
                            "optional" : 1,
@@ -17296,7 +17296,7 @@ var pmgapi = [
                            "type" : "string"
                         },
                         "id" : {
-                           "description" : "Unique IDs, seperate with ;",
+                           "description" : "Unique IDs, separate with ;",
                            "pattern" : "C\\d+R\\d+T\\d+(;C\\d+R\\d+T\\d+)*",
                            "type" : "string"
                         }

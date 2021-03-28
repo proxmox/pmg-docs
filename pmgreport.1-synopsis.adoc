@@ -6,7 +6,7 @@ Generate and send daily system report email.
 
 `--auto` `<boolean>` ('default =' `0`)::
 
-Auto mode. Use setting from system configuration (set when invoked fron cron).
+Auto mode. Use setting from system configuration (set when invoked from cron).
 
 `--debug` `<boolean>` ('default =' `0`)::
 

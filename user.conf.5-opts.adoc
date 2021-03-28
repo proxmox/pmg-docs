@@ -36,7 +36,7 @@ Password
 
 `role`: `<admin | audit | helpdesk | qmanager | root>` ::
 
-User role. Role 'root' is reseved for the Unix Superuser.
+User role. Role 'root' is reserved for the Unix Superuser.
 
 `userid`: `<string>` ::
 

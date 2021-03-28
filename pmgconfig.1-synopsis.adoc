@@ -269,11 +269,11 @@ Generate required files in /etc/pmg/
 
 *pmgconfig ldapsync*
 
-Syncronize the LDAP database.
+Synchronize the LDAP database.
 
 *pmgconfig sync* `[OPTIONS]`
 
-Syncronize Proxmox Mail Gateway configurations with system configuration.
+Synchronize Proxmox Mail Gateway configurations with system configuration.
 
 `--restart` `<boolean>` ('default =' `0`)::
 
