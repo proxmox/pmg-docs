@@ -1,10 +1,14 @@
-pmg-docs (6.3-3) pmg; urgency=medium
+pmg-docs (6.4-1) pmg; urgency=medium
 
-  * certificates: document new ACME implementation, move to configuration section
+  * certificates: document new ACME implementation and move its content to
+    configuration section
 
   * asciidoc-pmg: scan extjs: also find onlineHelpTool references
 
- -- Proxmox Support Team <support@proxmox.com>  Thu, 18 Mar 2021 11:25:51 +0100
+  * update static API schema definition and synopsis of command line tools and
+    configuration files
+
+ -- Proxmox Support Team <support@proxmox.com>  Sun, 28 Mar 2021 17:14:38 +0200
 
 pmg-docs (6.3-2) pmg; urgency=medium
 
