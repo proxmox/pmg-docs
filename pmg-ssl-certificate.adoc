@@ -187,6 +187,18 @@ and set the `alias` property in the {pmg} node configuration file
 `/etc/pmg/node.conf` to `domain2.example` to allow the DNS server of
 `domain2.example` to validate all challenges for `domain1.example`.
 
+[[sysadmin_certs_acme_dns_wildcard]]
+Wildcard Certificates
+^^^^^^^^^^^^^^^^^^^^^
+
+Wildcard DNS names start with a `*.` prefix and are considered valid for all
+(one-level) subdomain names of the verified domain. So a certificate for
+`*.domain.example` is valid for example for `foo.domain.example` and
+`bar.domain.example`, but not for `baz.foo.domain.example`.
+
+You can currently create wildcard certificates only with the
+https://letsencrypt.org/docs/challenge-types/#dns-01-challenge[DNS challenge type].
+
 
 Combination of Plugins
 ^^^^^^^^^^^^^^^^^^^^^^
