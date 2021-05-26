@@ -2,7 +2,7 @@
 Planning for Deployment
 =======================
 
-Easy integration into existing email server architecture
+Easy Integration into Existing Email Server Architecture
 ---------------------------------------------------------
 
 In this sample configuration, your email traffic (SMTP) arrives on
@@ -10,15 +10,15 @@ the firewall and will be directly forwarded to your email server.
 
 image::images/2018_IT_infrastructure_without_Proxmox_Mail_Gateway_final_1024.png[]
 
-By using the {pmg}, all your email traffic is forwarded to the
-Proxmox Mail Gateway, which filters the email traffic and
-removes unwanted emails. You can manage incoming and outgoing mail
+By using {pmg}, all your email traffic is forwarded to
+the {pmg} instance, which filters the email traffic and
+removes unwanted emails. This allows you to manage incoming and outgoing mail
 traffic.
 
 image::images/2018_IT_infrastructure_with_Proxmox_Mail_Gateway_final_1024.png[]
 
 
-Filtering outgoing emails
+Filtering Outgoing Emails
 --------------------------
 
 Many email filtering solutions do not scan outgoing mails. In contrast, {pmg} is
@@ -26,32 +26,31 @@ designed to scan both incoming and outgoing emails. This has two major
 advantages:
 
 . {pmg} is able to detect viruses sent from an internal host. In many
-countries you are liable for sending viruses to other
+countries, you are liable for sending viruses to other
 people. The outgoing email scanning feature is an additional
 protection to avoid that.
 
 . {pmg} can gather statistics about outgoing emails too. Statistics
-about incoming emails looks nice, but they are quite
-useless. Consider two users, user-1 receives 10 emails from news
-portals and wrote 1 email to a person you never heard from. While
-user-2 receives 5 emails from a customer and sent 5 emails
-back. Which user do you consider more active? I am sure it's user-2,
-because he communicates with your customers. {pmg} advanced address
-statistics can show you this important information. A solution which
-does not scan outgoing email cannot do that.
+about incoming emails may look nice, but they aren't necessarily helpful.
+Consider two users; user-1 receives 10 emails from news
+portals and writes 1 email to an unknown individual, while
+user-2 receives 5 emails from customers and sends 5 emails
+in return. With this information, user-2 can be considered as the more active
+user, because they communicate more with your customers. {pmg} advanced address
+statistics can show you this important information, whereas a solution which
+does not scan outgoing email cannot do this.
 
-To enable outgoing email filtering you just need to send all outgoing
-emails through your {pmg} (usually by specifying Proxmox as
+To enable outgoing email filtering, you simply need to send all outgoing
+emails through your {pmg} (usually by specifying {pmg} as
 "smarthost" on your email server).
 
 [[firewall_settings]]
-Firewall settings
+Firewall Settings
 -----------------
 
-In order to pass email traffic to the {pmg} you need to allow traffic on the
-SMTP port. Our software uses the Network Time Protocol (NTP) for time
-synchronization, RAZOR, DNS, SSH, HTTP and port 8006 for the web-based
-management interface.
+In order to pass email traffic to {pmg}, you need to allow traffic on the
+SMTP port. Our software uses the Network Time Protocol (NTP), RAZOR, DNS, SSH,
+and HTTP, as well as port 8006 for the web-based management interface.
 
 [options="header"]
 |======
@@ -81,7 +80,7 @@ section xref:nmap[port scans]).
 System Requirements
 -------------------
 
-The {pmg} can run on dedicated server hardware or inside a virtual machine on
+{pmg} can run on dedicated server hardware or inside a virtual machine on
 any of the following platforms:
 
 * Proxmox VE (KVM)
@@ -98,12 +97,11 @@ any of the following platforms:
 
 * LXC container
 
-* and others supporting Debian Linux as guest OS
+* and others that support Debian Linux as a guest OS
 
 Please see https://www.proxmox.com for details.
 
-In order to get a benchmark from your hardware, just run 'pmgperf'
-after installation.
+To benchmark your hardware, run 'pmgperf' after installation.
 
 
 Minimum System Requirements
@@ -113,39 +111,39 @@ Minimum System Requirements
 
 * 2 GB RAM
 
-* bootable CD-ROM-drive or USB boot support
+* Bootable CD-ROM-drive or USB boot support
 
-* Monitor with a resolution of 1024x768 for the installation
+* Monitor with a minimum resolution of 1024x768 for the installation
 
 * Hard disk with at least 8 GB of disk space
 
-* Ethernet network interface card
+* Ethernet network interface card (NIC)
 
 
 Recommended System Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* Multicore CPU: 64bit (Intel EMT64 or AMD64), +
-  for use as virtual machine activate Intel VT/AMD-V CPU flag
+* Multi-core CPU: 64bit (Intel EMT64 or AMD64), +
+** for use in a virtual machine, activate Intel VT/AMD-V CPU flag
 
 * 4 GB RAM
 
-* bootable CD-ROM-drive or USB boot support
+* Bootable CD-ROM-drive or USB boot support
 
-* Monitor with a resolution of 1024x768 for the installation
+* Monitor with a minimum resolution of 1024x768 for the installation
 
-* 1 Gbps Ethernet network interface card
+* 1 Gbps Ethernet network interface card (NIC)
 
-* Storage: at least 8 GB free disk space, best setup with redundancy,
-  use hardware RAID controller with battery backed write cache (``BBU'') or
-  ZFS. ZFS is not compatible with a hardware RAID controller. For best
-  performance use Enterprise class SSD with power loss protection.
+* Storage: at least 8 GB free disk space, best set up with redundancy,
+  using a hardware RAID controller with battery backed write cache (``BBU'') or
+  ZFS. ZFS is not compatible with hardware RAID controllers. For best
+  performance, use enterprise-class SSDs with power loss protection.
 
 
 Supported web browsers for accessing the web interface
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To use the web interface you need a modern browser, this includes:
+To use the web interface, you need a modern browser. This includes:
 
 * Firefox, a release from the current year, or the latest Extended
 Support Release
