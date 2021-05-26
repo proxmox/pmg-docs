@@ -4,11 +4,11 @@ Introduction
 What is {pmg}?
 --------------
 
-Email security begins at the gateway by controlling all incoming and
+Email security begins at the gateway, by controlling all incoming and
 outgoing email messages. {pmg} addresses the full spectrum of
-unwanted email traffic, focusing spam and virus detection. {pmg}
-provides a powerful and affordable server solution to eliminate spam,
-viruses and blocking undesirable content from your email system. All
+unwanted email traffic, focusing on spam and virus detection. {pmg}
+provides a powerful and affordable server solution to eliminate spam and
+viruses, and block undesirable content from your email system. All
 products are self-installing and can be used without deep knowledge of
 Linux.
 
@@ -27,24 +27,24 @@ mail. Here is a short list of used filtering methods:
 Receiver Verification::
 
 Many of the junk messages reaching your network are emails to
-non-existent users. {pmg} detects these emails on SMTP
-level, which means before they are transferred to your networks. This
-reduces the traffic to be analyzed for spam and viruses up to 90% and
+non-existent users. {pmg} detects these emails on the SMTP
+level, before they are transferred to your network. This
+reduces the traffic to be analyzed for spam and viruses by up to 90% and
 reduces the working load on your mail servers and scanners.
 
 Sender policy framework (SPF)::
 
 Sender Policy Framework (SPF) is an open standard for validating
-emails and to prevent sender IP address forgery. SPF allows the
-administrator of an Internet domain to specify which computers are
-authorized to send emails with a given domain by creating a specific
+emails and preventing sender IP address forgery. SPF allows the
+administrator of an internet domain to specify which computers are
+authorized to send emails with a given domain, by creating a specific
 SPF record in the Domain Name System (DNS).
 
 DNS-based Blackhole List::
 
-A DNS-based Blackhole List (DNSBL) is a means by which an Internet
+A DNS-based Blackhole List (DNSBL) is a means by which an internet
 site may publish a list of IP addresses, in a format which can be
-easily queried by computer programs on the internet. The technology is
+easily queried by computer programs on the Internet. The technology is
 built on top of the Domain Name System. DNSBLs are used to publish
 lists of addresses linked to spamming.
 
@@ -52,16 +52,16 @@ SMTP Whitelist::
 
 Exclude senders from SMTP blocking. To prevent all SMTP checks
 (Greylisting, Receiver Verification, SPF and DNSBL) and accept all
-emails for the analysis in the filter rule system, you can add the
+emails for analysis in the filter rule system, you can add the
 following to this list: Domains (Sender/Receiver), Mail address
 (Sender/Receiver), Regular Expression (Sender/Receiver), IP address
-(Sender), IP network (Sender)
+(Sender), IP network (Sender).
 
 Bayesian Filter - Automatically trained statistical filters::
 
-Some particular words have a higher probability of occurring in spam
-emails rather than in legitimate emails. By being trained to
-recognize those words, the Bayesian checks every email and adjusts the
+Certain words have a higher probability of occurring in spam
+emails than in legitimate emails. By being trained to
+recognize those words, the Bayesian filter checks every email and adjusts the
 probabilities of it being a spam word or not in its database. This is
 done automatically.
 
@@ -72,16 +72,16 @@ block, or quarantine emails to recipients. This allows you to tune the
 rule-system by applying different objects like domains, email address,
 regular expression, IP Network, LDAP Group, and others.
 
-Autolearning algorithm::
+Auto-learning algorithm::
 
 {pmg} gathers statistical information about spam
-emails. This information is used by an autolearning algorithm, so the
+emails. This information is used by an auto-learning algorithm, meaning the
 system becomes smarter over time.
 
-Spam Uri Realtime BlockList (SURBL)::
+Spam URI Real-time Block List (SURBL)::
 
-SURBLs are used to detect spam based on message body URIs (usually web
-sites). This makes them different from most other Real-time
+SURBLs are used to detect spam, based on the URIs in the message body (usually
+websites). This makes them different from most other Real-time
 Blocklists, because SURBLs are not used to block spam senders. SURBLs
 allow you to block messages that have spam hosts which are mentioned
 in message bodies.
@@ -90,10 +90,10 @@ Greylisting::
 
 Greylisting an email means that unknown senders are intentionally temporarily
 rejected. Since temporary failures are part of the specifications for mail
-delivery, a legitimate server will try to resend the email later on. Spammers
+delivery, a legitimate server will try to resend the email later on. Spammers,
 on the other hand, do not queue and reattempt mail delivery. A greylisted email
 never reaches your mail server and thus your mail server will not send useless
-"Non Delivery Reports" to spammers. Additionally greylisted mail is not
+"Non Delivery Reports" to spammers. Additionally, greylisted mail is not
 analyzed by the antivirus and spam-detector engines, which saves resources.
 +
 A mail is greylisted if it is the first mail from a sender to a receiver
@@ -106,7 +106,7 @@ SMTP Protocol Tests::
 `man postscreen`). Most spam is sent out by zombies (malware on
 compromised end-user computers), and those zombies often try to
 maximize the amount of mails delivered. In order to do that, many of
-them violate the SMTP protocol specification and thus can get detected
+them violate the SMTP protocol specification and thus can be detected
 by these tests.
 
 Before and After Queue Filtering::
@@ -120,7 +120,7 @@ xref:pmgconfig_mailproxy_before_after_queue[Before and After Queue Scanning]).
 
 Configurable NDR policy::
 
-In certain environments it can be unacceptable to discard an email, without
+In certain environments, it can be unacceptable to discard an email, without
 informing the sender about that decision. You can decide whether you want
 to inform the senders of blocked emails or not.
 
@@ -128,10 +128,10 @@ Virus detection
 ~~~~~~~~~~~~~~~
 
 {pmg} integrates {clamav}, which is an open-source (GPL) antivirus
-engine designed for detecting Trojans, viruses, malware and other
+engine, designed for detecting Trojans, viruses, malware, and other
 malicious threats.
 
-It provides a high performance mutli-threaded scanning daemon, command
+It provides a high performance, multi-threaded scanning daemon, command
 line utilities for on demand file scanning, and an intelligent tool
 for automatic signature updates.
 
@@ -154,37 +154,37 @@ What is in the email?
 
 WHEN - objects::
 
-When is the email received by {pmg}?
+When was the email received by {pmg}?
 
 ACTIONS - objects::
 
 Defines the final actions.
 
-Every rule has five categories FROM, TO, WHEN, WHAT and ACTION. Every
+Every rule has five categories FROM, TO, WHEN, WHAT and ACTION. Each
 of these categories can contain several objects and a direction (in,
 out or both).
 
 Options range from simple spam and virus filter setups to
-sophisticated, highly customized configurations blocking certain types
+sophisticated, highly customized configurations, blocking certain types
 of emails and generating notifications.
 
 Web-based Management Interface
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-{pmg} makes email security and filtering simple to manage. A web-based
-management interface allows you to setup and maintain even a complex mail
-setup with ease.
+{pmg} makes email security and filtering simple to manage. The web-based
+management interface allows you to set up and maintain even a complex mail
+system with ease.
 
 [thumbnail="pmg-gui-dashboard.png"]
 
-There is no need to install a separate management tool. Every modern internet
+There is no need to install a separate management tool. Any modern internet
 browser is sufficient.
 
 Spam Quarantine
 ~~~~~~~~~~~~~~~
 
-Identified Spam mails can be stored to the user-accessible Spam quarantine.
-Users can so view and manage their Spam mails by themselves.
+Identified spam mails can be stored in the user-accessible Spam Quarantine.
+Thus, users can view and manage their spam mails by themselves.
 
 
 Tracking and Logging
@@ -192,18 +192,18 @@ Tracking and Logging
 
 The innovative Proxmox Message Tracking Center tracks and summarizes
 all available logs. With the web-based and user-friendly management
-interface, IT admins can easily overview and control all
+interface, IT admins can easily view and control all
 functions from a single screen.
 
-The Message Tracking Center is very fast and powerful, tested on {pmg}
-sites processing over a million emails per day. All different log
-files from the last 7 days can be queried and the results are
+The Message Tracking Center is fast and powerful. It has been tested on
+{pmg} sites which process over a million emails per day. All log
+files from the last 7 days can be queried, and the results are
 summarized by an intelligent algorithm.
 
 The logged information includes:
 
 - Arrival of the email
-- Proxmox filtering processing with results
+- Proxmox filter processing with results
 - Internal queue to your email server
 - Status of final delivery
 
@@ -220,20 +220,20 @@ High Availability with Proxmox HA Cluster
 
 To provide a 100% secure email system for your business, we developed
 Proxmox High Availability (HA) Cluster. The Proxmox HA Cluster uses a
-unique application level clustering scheme, which provides extremely
-good performance. Fast set-up within minutes and a simple, intuitive
-management keep resource needs low. After temporary failures, nodes
-automatically reintegrate without any operator interaction.
+unique application-level clustering scheme, which provides extremely
+good performance. It is quick to set-up and the simple, intuitive
+management interface keeps resource requirements low. After temporary failures,
+nodes automatically reintegrate without any operator interaction.
 
-LDAP integration
+LDAP Integration
 ~~~~~~~~~~~~~~~~
 
 It is possible to query user and group data from LDAP servers. This may be
-used to build special filter rules, or just to provide authentication services
-for the Spam quarantine GUI.
+used to build special filter rules, or simply to provide authentication services
+for the Spam Quarantine GUI.
 
 
-Fetchmail integration
+Fetchmail Integration
 ~~~~~~~~~~~~~~~~~~~~~
 
 {pmg} allows you to fetch mail from other IMAP or POP3 servers.
@@ -251,7 +251,8 @@ This role is allowed to do everything (reserved for user 'root').
 
 Administrator::
 
-Full access to mail filter setup, but not allowed to change network setup.
+Full access to the mail filter setup, but not allowed to alter the network
+setup.
 
 Quarantine Manager::
 
@@ -270,13 +271,13 @@ Combines permissions of the 'Auditor' and the 'Quarantine Manager' role.
 Your benefit with {pmg}
 -----------------------
 
-* Open source software
+* Open-source software
 * No vendor lock-in
 * Linux kernel
 * Fast installation and easy-to-use
 * Web-based management interface
 * REST API
-* Huge active community
+* Huge, active community
 * Low administration costs and simple deployment
 
 
