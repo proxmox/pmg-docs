@@ -5,10 +5,10 @@ Installation
 which includes a complete Debian ("buster" for version 6.x) system as
 well as all necessary {pmg} packages.
 
-The installer asks you a few questions, then partitions the local
-disk(s), installs all required packages, and configures the system
-including a basic network setup. You can get a fully functional system
-within a few minutes. This is the preferred and recommended
+The installer asks some questions, then partitions the local
+disk(s), installs all required packages, and configures the system,
+including a basic network setup. This gives you a fully functional system
+within minutes. This is the preferred and recommended
 installation method.
 
 Alternatively, {pmg} can be installed on top of an existing Debian
@@ -26,7 +26,7 @@ The installer ISO image includes the following:
 * Complete operating system (Debian Linux, 64-bit)
 
 * The {pmg} installer, which partitions the hard drive(s) with ext4,
-  xfs or ZFS and installs the operating system.
+  xfs or ZFS and installs the operating system
 
 * Linux kernel
 
@@ -42,8 +42,8 @@ Please insert the xref:installation_prepare_media[prepared installation media]
 TIP: Make sure that booting from the installation medium (for example, USB) is
 enabled in your servers firmware settings.
 
-After choosing the correct entry (e.g. Boot from USB) the {pmg} menu will be
-displayed and one of the following options can be selected:
+After choosing the correct entry (for example, Boot from USB) the {pmg} menu
+will be displayed, and one of the following options can be selected:
 
 image::images/installer/pmg-grub-menu.png[]
 
@@ -53,11 +53,11 @@ Start normal installation.
 
 Install {pmg} (Debug mode)::
 
-Start installation in debug mode. It opens a shell console at several
-installation steps, so that you can debug things if something goes
-wrong. You can press `CTRL-D` to exit those debug consoles and continue
-installation. This option is mostly for developers and not meant for
-general use.
+Start installation in debug mode. This opens a shell console at various stages
+throughout the installation, so that you can debug issues, if something goes
+wrong. You can press `CTRL-D` to exit the debug console and continue the
+installation. This option is mostly for developers and not meant for general
+use.
 
 Rescue Boot::
 
@@ -76,8 +76,8 @@ You normally select *Install {pmg}* to start the installation.
 
 image::images/installer/pmg-select-target-disk.png[]
 
-First step ist to read our EULA (End User License Agreement). After
-that you get prompted to select the target hard disk(s).
+The first step is to read our EULA (End User License Agreement). Following
+this, you can select the target hard disk(s) for the installation.
 
 CAUTION: By default, the whole server is used and all existing data is removed.
 Make sure there is no important data on the server before proceeding with the
@@ -85,21 +85,21 @@ installation.
 
 The `Options` button lets you select the target file system, which
 defaults to `ext4`. The installer uses LVM if you select
-`ext4` or `xfs` as file system, and offers additional option to
+`ext4` or `xfs` as a file system, and offers additional options to
 restrict LVM space (see <<advanced_lvm_options,below>>)
 
-If you have more than one disk, you can also use ZFS as file system.
-ZFS supports several software RAID levels, so this is specially useful
+If you have more than one disk, you can also use ZFS as a file system.
+ZFS supports several software RAID levels, which is particularly useful
 if you do not have a hardware RAID controller. The `Options` button
-lets you select the ZFS RAID level, and you can choose disks there.
+lets you choose the ZFS RAID level and select which disks will be used.
 
 image::images/installer/pmg-select-location.png[]
 
 The next page asks for basic configuration options like your
-location, the timezone and keyboard layout. The location is used to
-select a download server near you to speed up updates. The installer is
-usually able to auto-detect those settings, so you only need to change
-them in rare situations when auto-detection fails, or when you want to
+location, timezone, and keyboard layout. The location is used to
+select a nearby download server, in order to increase the speed of updates.
+The installer is usually able to auto-detect these settings, so you only need to
+change them in rare situations when auto-detection fails, or when you want to
 use a keyboard layout not commonly used in your country.
 
 image::images/installer/pmg-set-password.png[]
@@ -122,7 +122,7 @@ example:
 
 - Information about available package updates.
 
-- Error messages from periodic CRON jobs.
+- Error messages from periodic cron jobs.
 
 All those notification mails will be sent to the specified email address.
 
@@ -130,7 +130,7 @@ image::images/installer/pmg-setup-network.png[]
 
 The next step is the network configuration. Please note that you can use either
 IPv4 or IPv6 here, but not both. If you want to configure a dual stack node,
-you can easily do that after installation.
+you can easily do that after the installation.
 
 image::images/installer/pmg-summary.png[]
 
@@ -138,33 +138,33 @@ When you press `Next`, you will see an overview of your entered configuration.
 Please re-check every setting, you can still use the `Previous` button to go
 back and edit any settings.
 
-After pressing `Install`, the installer starts to format disks, and copies
-packages to the target disk(s).
+After clicking `Install`, the installer will begin to format and copy packages
+to the target disk(s).
 
 image::images/installer/pmg-installation.png[]
 
-Copying the packages usually takes a few minutes. Please wait until that is
-finished, and reboot the server.
+Copying the packages usually takes several minutes. When this is
+finished, you can reboot the server.
 
-Further configuration is done via the Proxmox web interface.
+Further configuration is done via the {pmg} web interface:
 
 [thumbnail="pmg-gui-login-window.png"]
 
-Just point your browser to the IP address given during installation
+. Point your browser to the IP address given during the installation
 (https://youripaddress:8006).
 
-. Login and upload subscription key.
+. Log in and upload your subscription key.
 +
-NOTE: Default login is "root" and the password is chosen during the
+NOTE: The default login is "root", and the password is the one chosen during the
 installation.
 
 . Check the IP configuration and hostname.
 
-. Check and save the timezone.
+. Check the timezone.
 
 . Check your xref:firewall_settings[Firewall settings].
 
-. Configure {pmg} to forward the incoming SMTP traffic to your Mail
+. Configure {pmg} to forward the incoming SMTP traffic to your mail
 server ('Configuration/Mail Proxy/Default Relay') - 'Default
 Relay' is your email server.
 
@@ -174,8 +174,8 @@ your {pmg} ('Smart Host', port 26 by default).
 For detailed deployment scenarios see chapter
 xref:chapter_deployment[Planning for Deployment].
 
-After the installation you have to route all your incoming and
-outgoing email traffic to the {pmg}. For incoming traffic you
+After the installation, you have to route all your incoming and
+outgoing email traffic to {pmg}. For incoming traffic, you
 have to configure your firewall and/or DNS settings. For outgoing
 traffic you need to change the existing email server configuration.
 
@@ -197,14 +197,14 @@ and VG on the same disk that can be used for LVM storage).
 `swapsize`::
 
 Defines the size of the `swap` volume. The default is the size of the
-installed memory, minimum 4 GB and maximum 8 GB. The resulting value cannot
-be greater than `hdsize/8`.
+installed memory. The minimum is 4 GB and the maximum is 8 GB. The resulting
+value cannot be greater than `hdsize/8`.
 
 `minfree`::
 
-Defines the amount of free space left in LVM volume group `pmg`.
-With more than 128GB storage available the default is 16GB, else `hdsize/8`
-will be used.
+Defines the amount of free space that should be left in the LVM volume group
+`pmg`. With more than 128GB storage available, the default is 16GB, otherwise
+`hdsize/8` will be used.
 +
 NOTE: LVM requires free space in the VG for snapshot creation (not
 required for lvmthin snapshots).
@@ -217,7 +217,7 @@ ZFS uses a lot of memory, so it is best to add additional RAM if you
 want to use ZFS. A good calculation is 4GB plus 1GB RAM for each TB
 RAW disk space.
 
-ZFS also provides the feature to use a fast SSD drive as write cache. The
+ZFS also provides the ability to use a fast SSD drive as write cache. The
 write cache is called the ZFS Intent Log (ZIL). You can add that after
 the installation using the following command:
 
@@ -230,7 +230,7 @@ Install {pmg} on Debian
 
 {pmg} ships as a set of Debian packages, so you can install it
 on top of a normal Debian installation. After configuring the
-xref:pmg_package_repositories[Package repositories], you need to run:
+xref:pmg_package_repositories[package repositories], you need to run:
 
 [source,bash]
 ----
@@ -238,7 +238,7 @@ apt update
 apt install proxmox-mailgateway
 ----
 
-Installing on top of an existing Debian installation looks easy, but
+Installing on top of an existing Debian installation seems easy, but
 it assumes that you have correctly installed the base system, and you
 know how you want to configure and use the local storage. Network
 configuration is also completely up to you.
@@ -248,27 +248,26 @@ ZFS.
 
 
 [[pmg_install_on_debian_container]]
-Install {pmg} as Linux Container Appliance
+Install {pmg} as a Linux Container Appliance
 ------------------------------------------
 
-The full functionality of {pmg} can also run on top of a Debian-based LXC
+{pmg} can also run inside a Debian-based LXC
 instance. In order to keep the set of installed software, and thus the
 necessary updates minimal, you can use the `proxmox-mailgateway-container`
-meta-package. It does not depend on any Linux Kernel, firmware, or components
+meta-package. This does not depend on any Linux kernel, firmware, or components
 used for booting from bare-metal, like grub2.
 
-A ready-to-use appliance template is available through the
-https://www.proxmox.com/proxmox-ve[Proxmox VE] appliance manager in the `mail`
-section, so if you already use Proxmox VE you can setup a {pmg} instance in a
-minute.
+A ready-to-use appliance template is available through the `mail` section of the
+https://www.proxmox.com/proxmox-ve[Proxmox VE] appliance manager, so if you
+already use Proxmox VE, you can set up a {pmg} instance in minutes.
 
-NOTE: It's recommended to use a static network configuration. If DHCP should be
-used ensure that the container always leases the same IP, for example, by
-reserving one with the containers network MAC address.
+NOTE: It's recommended to use a static network configuration. If DHCP must be
+used, ensure that the container always leases the same IP, for example, by
+reserving one with the container's network MAC address.
 
-Additionally you can also install this on top of a container based Debian
+Additionally, you can install this on top of a container-based Debian
 installation. After configuring the
-xref:pmg_package_repositories[Package repositories], you need to run:
+xref:pmg_package_repositories[package repositories], you need to run:
 
 [source,bash]
 ----
@@ -281,7 +280,7 @@ Package Repositories
 --------------------
 
 All {debian} based systems use
-https://en.wikipedia.org/wiki/Advanced_Packaging_Tool[APT] as package
+https://en.wikipedia.org/wiki/Advanced_Packaging_Tool[APT] as a package
 management tool. The list of repositories is defined in
 `/etc/apt/sources.list` and `.list` files found inside
 `/etc/apt/sources.d/`. Updates can be installed directly using
@@ -321,18 +320,18 @@ deb https://enterprise.proxmox.com/debian/pmg buster pmg-enterprise
 ----
 
 As soon as updates are available, the `root@pam` user is notified via
-email about the available new packages. On the GUI, the change-log of
+email about the newly available packages. From the GUI, the change-log of
 each package can be viewed (if available), showing all details of the
-update. So you will never miss important security fixes.
+update. Thus, you will never miss important security fixes.
 
-Please note that and you need a valid subscription key to access this
-repository. We offer different support levels, and you can find further
-details at {pricing-url}.
+Please note that you need a valid subscription key to access this
+repository. We offer different support levels, which you can find further
+details about at {pricing-url}.
 
 NOTE: You can disable this repository by commenting out the above line
-using a `#` (at the start of the line). This prevents error messages
+using a `#` (at the start of the line). This prevents error messages,
 if you do not have a subscription key. Please configure the
-`pmg-no-subscription` repository in that case.
+`pmg-no-subscription` repository in this case.
 
 
 {pmg} No-Subscription Repository
@@ -340,10 +339,10 @@ if you do not have a subscription key. Please configure the
 
 As the name suggests, you do not need a subscription key to access
 this repository. It can be used for testing and non-production
-use. Its not recommended to run on production servers, as these
+use. It's not recommended to use this on production servers, as these
 packages are not always heavily tested and validated.
 
-We recommend to configure this repository in `/etc/apt/sources.list`.
+We recommend configuring this repository in `/etc/apt/sources.list`.
 
 .File `/etc/apt/sources.list`
 ----
@@ -361,9 +360,9 @@ deb http://security.debian.org/debian-security buster/updates main contrib
 {pmg} Test Repository
 ~~~~~~~~~~~~~~~~~~~~~
 
-Finally, there is a repository called `pmgtest`. This one contains the
-latest packages and is heavily used by developers to test new
-features. As usual, you can configure this using
+Finally, there is a repository called `pmgtest`. This contains the
+latest packages, and is heavily used by developers to test new
+features. As with before, you can configure this using
 `/etc/apt/sources.list` by adding the following line:
 
 .sources.list entry for `pmgtest`
@@ -378,12 +377,12 @@ for testing new features or bug fixes.
 SecureApt
 ~~~~~~~~~
 
-We use GnuPG to sign the `Release` files inside those repositories,
-and APT uses that signatures to verify that all packages are from a
+We use GnuPG to sign the `Release` files inside these repositories,
+and APT uses these signatures to verify that all packages are from a
 trusted source.
 
-The key used for verification is already installed if you install from
-our installation CD. If you install by other means, you can manually
+The key used for verification is already installed, if you install from
+our installation CD. If you install via another means, you can manually
 download the key with:
 
  # wget http://download.proxmox.com/debian/proxmox-ve-release-6.x.gpg -O /etc/apt/trusted.gpg.d/proxmox-ve-release-6.x.gpg
@@ -424,7 +423,7 @@ deb http://security.debian.org/debian-security buster/updates non-free
 deb http://deb.debian.org/debian/ buster-updates non-free
 ----
 
-Then you can install the required packages with:
+Following this, you can install the required packages with:
 
 ----
 apt update
