@@ -166,18 +166,18 @@ installation.
 
 . Configure {pmg} to forward the incoming SMTP traffic to your Mail
 server ('Configuration/Mail Proxy/Default Relay') - 'Default
-Relay' is your e-mail server.
+Relay' is your email server.
 
-. Configure your e-mail server to send all outgoing messages through
+. Configure your email server to send all outgoing messages through
 your {pmg} ('Smart Host', port 26 by default).
 
 For detailed deployment scenarios see chapter
 xref:chapter_deployment[Planning for Deployment].
 
 After the installation you have to route all your incoming and
-outgoing e-mail traffic to the {pmg}. For incoming traffic you
+outgoing email traffic to the {pmg}. For incoming traffic you
 have to configure your firewall and/or DNS settings. For outgoing
-traffic you need to change the existing e-mail server configuration.
+traffic you need to change the existing email server configuration.
 
 
 [[advanced_lvm_options]]

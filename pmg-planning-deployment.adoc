@@ -2,53 +2,53 @@
 Planning for Deployment
 =======================
 
-Easy integration into existing e-mail server architecture
+Easy integration into existing email server architecture
 ---------------------------------------------------------
 
-In this sample configuration, your e-mail traffic (SMTP) arrives on
-the firewall and will be directly forwarded to your e-mail server.
+In this sample configuration, your email traffic (SMTP) arrives on
+the firewall and will be directly forwarded to your email server.
 
 image::images/2018_IT_infrastructure_without_Proxmox_Mail_Gateway_final_1024.png[]
 
-By using the {pmg}, all your e-mail traffic is forwarded to the
-Proxmox Mail Gateway, which filters the e-mail traffic and
-removes unwanted e-mails. You can manage incoming and outgoing mail
+By using the {pmg}, all your email traffic is forwarded to the
+Proxmox Mail Gateway, which filters the email traffic and
+removes unwanted emails. You can manage incoming and outgoing mail
 traffic.
 
 image::images/2018_IT_infrastructure_with_Proxmox_Mail_Gateway_final_1024.png[]
 
 
-Filtering outgoing e-mails
+Filtering outgoing emails
 --------------------------
 
-Many e-mail filtering solutions do not scan outgoing mails. In contrast, {pmg} is
-designed to scan both incoming and outgoing e-mails. This has two major
+Many email filtering solutions do not scan outgoing mails. In contrast, {pmg} is
+designed to scan both incoming and outgoing emails. This has two major
 advantages:
 
 . {pmg} is able to detect viruses sent from an internal host. In many
 countries you are liable for sending viruses to other
-people. The outgoing e-mail scanning feature is an additional
+people. The outgoing email scanning feature is an additional
 protection to avoid that.
 
-. {pmg} can gather statistics about outgoing e-mails too. Statistics
-about incoming e-mails looks nice, but they are quite
-useless. Consider two users, user-1 receives 10 e-mails from news
-portals and wrote 1 e-mail to a person you never heard from. While
-user-2 receives 5 e-mails from a customer and sent 5 e-mails
+. {pmg} can gather statistics about outgoing emails too. Statistics
+about incoming emails looks nice, but they are quite
+useless. Consider two users, user-1 receives 10 emails from news
+portals and wrote 1 email to a person you never heard from. While
+user-2 receives 5 emails from a customer and sent 5 emails
 back. Which user do you consider more active? I am sure it's user-2,
 because he communicates with your customers. {pmg} advanced address
 statistics can show you this important information. A solution which
-does not scan outgoing e-mail cannot do that.
+does not scan outgoing email cannot do that.
 
-To enable outgoing e-mail filtering you just need to send all outgoing
-e-mails through your {pmg} (usually by specifying Proxmox as
-"smarthost" on your e-mail server).
+To enable outgoing email filtering you just need to send all outgoing
+emails through your {pmg} (usually by specifying Proxmox as
+"smarthost" on your email server).
 
 [[firewall_settings]]
 Firewall settings
 -----------------
 
-In order to pass e-mail traffic to the {pmg} you need to allow traffic on the
+In order to pass email traffic to the {pmg} you need to allow traffic on the
 SMTP port. Our software uses the Network Time Protocol (NTP) for time
 synchronization, RAZOR, DNS, SSH, HTTP and port 8006 for the web-based
 management interface.

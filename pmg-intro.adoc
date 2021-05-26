@@ -4,11 +4,11 @@ Introduction
 What is {pmg}?
 --------------
 
-E-mail security begins at the gateway by controlling all incoming and
-outgoing e-mail messages. {pmg} addresses the full spectrum of
-unwanted e-mail traffic, focusing spam and virus detection. {pmg}
+Email security begins at the gateway by controlling all incoming and
+outgoing email messages. {pmg} addresses the full spectrum of
+unwanted email traffic, focusing spam and virus detection. {pmg}
 provides a powerful and affordable server solution to eliminate spam,
-viruses and blocking undesirable content from your e-mail system. All
+viruses and blocking undesirable content from your email system. All
 products are self-installing and can be used without deep knowledge of
 Linux.
 
@@ -52,7 +52,7 @@ SMTP Whitelist::
 
 Exclude senders from SMTP blocking. To prevent all SMTP checks
 (Greylisting, Receiver Verification, SPF and DNSBL) and accept all
-e-mails for the analysis in the filter rule system, you can add the
+emails for the analysis in the filter rule system, you can add the
 following to this list: Domains (Sender/Receiver), Mail address
 (Sender/Receiver), Regular Expression (Sender/Receiver), IP address
 (Sender), IP network (Sender)
@@ -146,15 +146,15 @@ offers a lot of powerful objects to configure your own custom system.
 
 WHO - objects::
 
-Who is the sender or receiver of the e-mail?
+Who is the sender or receiver of the email?
 
 WHAT - objects::
 
-What is in the e-mail?
+What is in the email?
 
 WHEN - objects::
 
-When is the e-mail received by {pmg}?
+When is the email received by {pmg}?
 
 ACTIONS - objects::
 
@@ -166,7 +166,7 @@ out or both).
 
 Options range from simple spam and virus filter setups to
 sophisticated, highly customized configurations blocking certain types
-of e-mails and generating notifications.
+of emails and generating notifications.
 
 Web-based Management Interface
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
