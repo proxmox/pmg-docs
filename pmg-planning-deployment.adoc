@@ -3,7 +3,7 @@ Planning for Deployment
 =======================
 
 Easy Integration into Existing Email Server Architecture
----------------------------------------------------------
+--------------------------------------------------------
 
 In this sample configuration, your email traffic (SMTP) arrives on
 the firewall and will be directly forwarded to your email server.
@@ -19,7 +19,7 @@ image::images/2018_IT_infrastructure_with_Proxmox_Mail_Gateway_final_1024.png[]
 
 
 Filtering Outgoing Emails
---------------------------
+-------------------------
 
 Many email filtering solutions do not scan outgoing mails. In contrast, {pmg} is
 designed to scan both incoming and outgoing emails. This has two major

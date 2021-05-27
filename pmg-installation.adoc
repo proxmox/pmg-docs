@@ -249,7 +249,7 @@ ZFS.
 
 [[pmg_install_on_debian_container]]
 Install {pmg} as a Linux Container Appliance
-------------------------------------------
+--------------------------------------------
 
 {pmg} can also run inside a Debian-based LXC
 instance. In order to keep the set of installed software, and thus the
