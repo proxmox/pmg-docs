@@ -3,7 +3,7 @@ Section: perl
 Priority: optional
 Maintainer: Proxmox Support Team <support@proxmox.com>
 Build-Depends: asciidoc-dblatex,
-               debhelper (>= 10~),
+               debhelper (>= 12~),
                git,
                libjson-perl,
                imagemagick,
