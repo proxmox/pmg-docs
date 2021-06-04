@@ -9,6 +9,7 @@ Build-Depends: asciidoc-dblatex,
                imagemagick,
                librsvg2-bin,
                lintian,
+               proxmox-widget-toolkit-dev,
                source-highlight,
 Standards-Version: 3.8.4
 

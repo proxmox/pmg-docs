@@ -42,6 +42,6 @@ sub cleanup_tree {
 
 my $tree = cleanup_tree(PVE::RESTHandler::api_dump('PMG::API2'));
 
-print "var pmgapi = " . to_json($tree, {pretty => 1, canonical => 1}) . ";\n\n";
+print "var apiSchema = " . to_json($tree, {pretty => 1, canonical => 1}) . ";\n\n";
 
 exit(0);

@@ -53,6 +53,11 @@ GEN_SCRIPTS=					\
 	gen-pmg.conf.5-opts.pl			\
 	gen-user.conf.5-opts.pl
 
+API_VIEWER_FILES=							\
+	api-viewer/apidata.js						\
+	api-viewer/PMGAPI.js						\
+	/usr/share/javascript/proxmox-widget-toolkit-dev/APIViewer.js
+
 API_VIEWER_SOURCES=				\
 	api-viewer/index.html			\
 	api-viewer/apidoc.js
@@ -139,8 +144,9 @@ pmg-admin-guide.epub: ${PMG_ADMIN_GUIDE_ADOCDEPENDS}
 api-viewer/apidata.js: extractapi.pl
 	./extractapi.pl >$@
 
-api-viewer/apidoc.js: api-viewer/apidata.js api-viewer/PMGAPI.js
-	cat api-viewer/apidata.js api-viewer/PMGAPI.js >$@
+api-viewer/apidoc.js: ${API_VIEWER_FILES}
+	cat ${API_VIEWER_FILES} >$@.tmp
+	mv $@.tmp $@
 
 .PHONY: dinstall
 dinstall: ${GEN_DEB} ${DOC_DEB}
