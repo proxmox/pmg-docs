@@ -38,13 +38,13 @@ Alternative HTTPS certificate
 By default, pmgproxy uses the certificate `/etc/pmg/pmg-api.pem` for HTTPS
 connections.  This certificate is self signed, and therefore not trusted by
 browsers and operating systems by default. You can simply replace this
-certificate with your own (please include the key inside the '.pem' file).
-
+certificate with your own (include the key inside the '.pem' file) or obtain one
+from an ACME enabled CA (configurable in the  GUI).
 
 Host based Access Control
 -------------------------
 
-It is possible to configure Apache2-like access control
+It is possible to configure ``apache2''-like access control
 lists. Values are read from file `/etc/default/pmgproxy`. For example:
 
 ----
@@ -54,7 +54,8 @@ POLICY="allow"
 ----
 
 IP addresses can be specified using any syntax understood by `Net::IP`. The
-name `all` is an alias for `0/0`.
+name `all` is an alias for `0/0` and `::/0` (meaning all IPv4 and IPv6
+addresses).
 
 The default policy is `allow`.
 
@@ -66,6 +67,59 @@ The default policy is `allow`.
 | No match                   | deny        | allow
 | Match Both Allow & Deny    | deny        | allow
 |===========================================================
+
+
+Listening IP
+------------
+
+By default the `pmgproxy` daemon listens on the wildcard address and accepts
+connections from both IPv4 and IPv6 clients.
+
+
+By setting `LISTEN_IP` in `/etc/default/pmgproxy` you can control to which IP
+address the `pmgproxy` daemon binds. The IP-address needs to be configured on
+the system.
+
+Setting the `sysctl` `net.ipv6.bindv6only` to the non-default `1` will cause
+the daemons to only accept connection from IPv6 clients, while  usually also
+causing lots of other issues. If you set this configuration we recommend to
+either remove the `sysctl` setting, or set the `LISTEN_IP` to `0.0.0.0` (which
+will only allow IPv4 clients).
+
+`LISTEN_IP` can be used to only to restricting the socket to an internal
+interface and thus have less exposure to the public internet, for example:
+
+----
+LISTEN_IP="192.0.2.1"
+----
+
+Similarly, you can also set an IPv6 address:
+
+----
+LISTEN_IP="2001:db8:85a3::1"
+----
+
+Note that if you want to specify a link-local IPv6 address, you need to provide
+the interface name itself. For example:
+
+----
+LISTEN_IP="fe80::c463:8cff:feb9:6a4e%vmbr0"
+----
+
+WARNING: The nodes in a cluster need access to `pmgproxy` for communication,
+possibly on different sub-nets. It is **not recommended** to set `LISTEN_IP` on
+clustered systems.
+
+To apply the change you need to either reboot your node or fully restart the
+`pmgproxy` service:
+
+----
+systemctl restart pmgproxy.service
+----
+
+NOTE: Unlike `reload`, a `restart` of the pmgproxy service can interrupt some
+long-running worker processes, for example a running console.So, please use a
+maintenance window to bring this change in effect.
 
 
 SSL Cipher Suite
