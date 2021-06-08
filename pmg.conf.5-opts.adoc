@@ -82,9 +82,9 @@ This option sets the lowest number of Credit Card or Social Security numbers fou
 
 Sets the maximum amount of data (in bytes) to be scanned for each input file.
 
-`safebrowsing`: `<boolean>` ('default =' `1`)::
+`safebrowsing`: `<boolean>` ('default =' `0`)::
 
-Enables support for Google Safe Browsing.
+Enables support for Google Safe Browsing. (deprecated option, will be ignored)
 
 `scriptedupdates`: `<boolean>` ('default =' `0`)::
 
@@ -152,7 +152,7 @@ Hide received header in outgoing mails.
 
 SMTP port number for outgoing mail (trusted).
 
-`max_filters`: `<integer> (3 - 40)` ('default =' `35`)::
+`max_filters`: `<integer> (3 - 40)` ('default =' `38`)::
 
 Maximum number of pmg-smtp-filter processes.
 
@@ -240,7 +240,7 @@ Additional score for bounce mails.
 
 `clamav_heuristic_score`: `<integer> (0 - 1000)` ('default =' `3`)::
 
-Score for ClamAV heuristics (Encrypted Archives/Documents, Google Safe Browsing database, PhishingScanURLs, ...).
+Score for ClamAV heuristics (Encrypted Archives/Documents, PhishingScanURLs, ...).
 
 `languages`: `(all|([a-z][a-z])+( ([a-z][a-z])+)*)` ('default =' `all`)::
 

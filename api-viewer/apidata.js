@@ -7778,10 +7778,6 @@ var pmgapi = [
                                  "format" : "transport-domain-or-nexthop",
                                  "type" : "string"
                               },
-                              "domain" : {
-                                 "format" : "transport-domain-or-nexthop",
-                                 "type" : "string"
-                              },
                               "policy" : {
                                  "format" : "tls-policy",
                                  "type" : "string"
@@ -7852,10 +7848,6 @@ var pmgapi = [
                               "format" : "transport-domain-or-nexthop",
                               "type" : "string"
                            },
-                           "domain" : {
-                              "format" : "transport-domain-or-nexthop",
-                              "type" : "string"
-                           },
                            "policy" : {
                               "format" : "tls-policy",
                               "type" : "string"
@@ -7883,14 +7875,6 @@ var pmgapi = [
                         "destination" : {
                            "description" : "Destination (Domain or next-hop).",
                            "format" : "transport-domain-or-nexthop",
-                           "optional" : 1,
-                           "type" : "string",
-                           "typetext" : "<string>"
-                        },
-                        "domain" : {
-                           "description" : "Deprecated - use 'destination'.",
-                           "format" : "transport-domain-or-nexthop",
-                           "optional" : 1,
                            "type" : "string",
                            "typetext" : "<string>"
                         },
@@ -9074,6 +9058,7 @@ var pmgapi = [
                                           "ali",
                                           "anx",
                                           "arvan",
+                                          "aurora",
                                           "autodns",
                                           "aws",
                                           "azure",
@@ -9164,6 +9149,7 @@ var pmgapi = [
                                           "pdns",
                                           "pleskxml",
                                           "pointhq",
+                                          "porkbun",
                                           "rackcorp",
                                           "rackspace",
                                           "rcode0",
@@ -9180,6 +9166,7 @@ var pmgapi = [
                                           "variomedia",
                                           "vscale",
                                           "vultr",
+                                          "websupport",
                                           "world4you",
                                           "yandex",
                                           "zilore",
@@ -9322,6 +9309,7 @@ var pmgapi = [
                                     "ali",
                                     "anx",
                                     "arvan",
+                                    "aurora",
                                     "autodns",
                                     "aws",
                                     "azure",
@@ -9412,6 +9400,7 @@ var pmgapi = [
                                     "pdns",
                                     "pleskxml",
                                     "pointhq",
+                                    "porkbun",
                                     "rackcorp",
                                     "rackspace",
                                     "rcode0",
@@ -9428,6 +9417,7 @@ var pmgapi = [
                                     "variomedia",
                                     "vscale",
                                     "vultr",
+                                    "websupport",
                                     "world4you",
                                     "yandex",
                                     "zilore",
@@ -10108,8 +10098,8 @@ var pmgapi = [
                            "typetext" : "<integer> (1000000 - N)"
                         },
                         "safebrowsing" : {
-                           "default" : 1,
-                           "description" : "Enables support for Google Safe Browsing.",
+                           "default" : 0,
+                           "description" : "Enables support for Google Safe Browsing. (deprecated option, will be ignored)",
                            "optional" : 1,
                            "type" : "boolean",
                            "typetext" : "<boolean>"
@@ -10303,7 +10293,7 @@ var pmgapi = [
                            "typetext" : "<integer> (1 - 65535)"
                         },
                         "max_filters" : {
-                           "default" : 35,
+                           "default" : 38,
                            "description" : "Maximum number of pmg-smtp-filter processes.",
                            "maximum" : 40,
                            "minimum" : 3,
@@ -10520,7 +10510,7 @@ var pmgapi = [
                         },
                         "clamav_heuristic_score" : {
                            "default" : 3,
-                           "description" : "Score for ClamAV heuristics (Encrypted Archives/Documents, Google Safe Browsing database, PhishingScanURLs, ...).",
+                           "description" : "Score for ClamAV heuristics (Encrypted Archives/Documents, PhishingScanURLs, ...).",
                            "maximum" : 1000,
                            "minimum" : 0,
                            "optional" : 1,
@@ -15494,13 +15484,6 @@ var pmgapi = [
                                  "format" : "pve-node",
                                  "type" : "string",
                                  "typetext" : "<string>"
-                              },
-                              "upgrade" : {
-                                 "default" : 0,
-                                 "description" : "Run 'apt-get dist-upgrade' instead of normal shell.",
-                                 "optional" : 1,
-                                 "type" : "boolean",
-                                 "typetext" : "<boolean>"
                               }
                            }
                         },
