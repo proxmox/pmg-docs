@@ -1,3 +1,9 @@
+pmg-docs (7.0-1) bullseye; urgency=medium
+
+  * bump for Proxmox Mail Gateway 7 based on Debian 11 Bullseye
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 14 Jun 2021 09:39:35 +0200
+
 pmg-docs (6.4-1) pmg; urgency=medium
 
   * certificates: document new ACME implementation and move its content to
