@@ -11,7 +11,7 @@ Build-Depends: asciidoc-dblatex,
                lintian,
                proxmox-widget-toolkit-dev,
                source-highlight,
-Standards-Version: 3.8.4
+Standards-Version: 4.5.1
 
 Package: pmg-doc-generator
 Section: perl
