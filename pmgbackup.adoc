@@ -28,12 +28,13 @@ ifndef::manvolnum[]
 [thumbnail="pmg-gui-backup.png", big=1]
 endif::manvolnum[]
 
-{pmg} includes the ability to backup and restore the
+{pmg} includes the ability to back up and restore the
 configuration. This includes the complete config from `/etc/pmg/`, the
-mail filter rules and the statistic database.
+mail filter rules, and the statistic database.
 
-NOTE: The backup does not include the network setup, and also no mail
-data from the postfix queue or the spam or virus quarantine.
+NOTE: The backup does not include the network setup, nor does it
+contain mail data from the postfix queue or the spam and virus
+quarantines.
 
 Backups can be created locally or stored on a
 https://www.proxmox.com/en/proxmox-backup-server[Proxmox Backup Server]
@@ -66,7 +67,7 @@ pmg-backup_2018_01_04_5A4E0436.tgz      21514
 ----
 
 Restores are also possible using the GUI or command line, and you can
-select what parts you want to restore:
+select which parts you want to restore:
 
 System Configuration::
 
@@ -101,10 +102,10 @@ restore finished
 Proxmox Backup Server
 ---------------------
 
-In order to backup your {pmg} configuration on a Proxmox Backup Server you
-need configure the instance as backup 'remote'. You can then directly create
-and restore backups, as well as create a scheduled 'backup job' to run
-regular backups.
+In order to back up your {pmg} configuration on a Proxmox Backup
+Server, you first need to configure the instance as a backup 'remote'.
+You can then directly create and restore backups, as well as create a
+scheduled 'backup job' to run regular backups.
 
 [[pmgbackup_pbs_remotes]]
 Remotes
@@ -131,9 +132,9 @@ Retype new password: ******
 The fingerprint is optional, if the certificate of the Proxmox Backup Server
 remote is signed by a CA trusted by {pmg}.
 
-Additionally you can configure `prune-settings` for each remote, giving you
-flexible control about how many backups should be stored on the Proxmox Backup
-Server over a period of time.
+Additionally, you can configure `prune-settings` for each remote, giving you
+flexible control over how many backups should be stored on the Proxmox Backup
+Server over a specific period of time.
 
 .Setting the prune options for the Proxmox Backup Server remote with id 'archive'.
 ----
@@ -143,11 +144,11 @@ Server over a period of time.
 If prune settings are configured, the backup-group of {pmg} is pruned
 automatically after each successful backup.
 
-The `notify` and `include-statistics` setting of a remote define the defaults
+The `notify` and `include-statistics` settings of a remote define the defaults
 for notifications and whether to include the statistic database in backups.
 They are also used for xref:pmgbackup_pbs_schedule[scheduled backups].
 
-The public settings are stored in `/etc/pmg/pbs/pbs.conf`, sensitive settings,
+The public settings are stored in `/etc/pmg/pbs/pbs.conf`. Sensitive settings,
 like passwords are stored in individual files named after the remote inside
 `/etc/pmg/pbs/`:
 
@@ -172,7 +173,7 @@ ifndef::manvolnum[]
 [thumbnail="pmg-gui-pbs-backup.png", big=1]
 endif::manvolnum[]
 
-With a configured remote you can create backups using the GUI or the
+With a configured remote, you can create backups using the GUI or the
 `proxmox-backup backup` subcommand of the `pmgbackup` CLI tool.
 
 .Creating a new backup on the Proxmox Backup Server remote with id 'archive'.
@@ -192,10 +193,10 @@ starting prune of host/pmg
 prune finished
 ----
 
-For restoring you can optionally select a particular backup-snapshot to return
+For restoring, you can optionally select a particular backup-snapshot to return
 to the state of configuration and rules at that time.
 
-On the commandline you can get first a list of available backup snapshots using
+From the command line, you can get a list of available backup snapshots using
 the `proxmox-backup list` subcommand:
 
 .Listing available backups from the Proxmox Backup Server remote with id 'archive'.
@@ -218,15 +219,15 @@ starting restore of host/pmg/2020-11-16T14:03:04Z from backup
 restore finished
 ----
 
-You can remove a particular snapshot by using the `forget` sub command, this
-allows the Proxmox Backup Server to pick it up during garbage collection.
+You can remove a particular snapshot by using the `forget` subcommand. This
+allows the Proxmox Backup Server to remove it during garbage collection.
 
 ----
 # pmgbackup proxmox-backup forget archive pmg 2020-11-16T14:03:04Z
 ----
 
-TIP: You can configure and access all backup related functionality on both,
-the web interface and the command line interface.
+TIP: You can configure and access all backup-related functionality on
+both the web interface and the command line interface.
 
 [[pmgbackup_pbs_schedule]]
 Scheduled Backups
@@ -241,9 +242,9 @@ delay of 15 minutes each day:
 ----
 
 The randomized delay can help to prevent load-peaks on the backup server, if
-you have multiple backups, which all should start around the same time.
+you have multiple backups which should all start around the same time.
 
-The schedules are `systemd.timer` units.  See the `systemd.time(7)` man page for
+The schedules are `systemd.timer` units. See the `systemd.time(7)` man page for
 details on the time specification used.
 
 
