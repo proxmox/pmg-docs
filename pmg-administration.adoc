@@ -1,22 +1,22 @@
 Administration
 ==============
 
-The Administration GUI allows you to do common tasks
-such as updating software packages, managing quarantine, viewing service
-status, and managing mail queues. It also provides server statistics in
-order to verify server health.
+The Administration GUI allows you to carry out common tasks
+such as updating software packages, managing quarantines, viewing the
+status of services, and managing mail queues. It also provides server
+statistics, in order to verify server health.
 
 
 Server Administration
 ---------------------
 
-Server status
-~~~~~~~~~~~~~
+Status
+~~~~~~
 
 [thumbnail="pmg-gui-server-status.png", big=1]
 
-This page shows server statistics about CPU, memory, disk and network
-usage. You can select the displayed time span on the upper right.
+This page shows statistics about server CPU, memory, disk and network
+usage. You can select the displayed time span from the upper right.
 
 Administrators can open a terminal window using the 'Console'
 button. It is also possible to trigger a server 'Restart' or
@@ -28,9 +28,9 @@ Services
 
 [thumbnail="pmg-gui-service-status.png", big=1]
 
-This panel lists all major services used for mail processing and
+This panel lists all the major services used for mail processing and
 cluster synchronization. If necessary, you can start, stop or restart
-them. The 'Syslog' button shows the system log filtered for the
+them. The 'Syslog' button shows the system log, filtered for the
 selected service.
 
 Please note that {pmg} uses {systemd} to manage services, so you can
@@ -53,7 +53,7 @@ available updates, and administrators can run an upgrade by pressing
 the 'Upgrade' button.
 
 See section xref:pmg_package_repositories[Package Repositories] for
-details abaout available package repositories.
+details about the available package repositories.
 
 
 Syslog and Tasks
@@ -61,9 +61,13 @@ Syslog and Tasks
 
 [thumbnail="pmg-gui-syslog.png", big=1]
 
-The syslog page gives you a quick real-time log view. You can use the
+The Syslog page gives you a quick real-time log view. You can use the
 xref:pmg_tracking_center[Tracking Center] to search the logs.
 
+The Tasks page provides a history of the administration tasks that you
+carried out on the server, such as upgrading the system. Each task
+entry provides status information about the task, as well as the
+output.
 
 Quarantine
 ----------
@@ -76,16 +80,16 @@ Spam
 This panel lets you inspect the mail quarantine. Emails can be safely
 previewed and if desired, delivered to the original user.
 
-The email preview on the web interface is very secure as malicious
+The email preview on the web interface is very secure, as malicious
 code (attacking your operating system or email client) is removed by
 {pmg}.
 
 Users can get access to their personalized quarantine via the daily
-spam report, or by logging in with their LDAP credentials.
+spam report or by logging in with their LDAP credentials.
 
 You can additionally enable user self-service for sending an access link from
 the Quarantine Login page.
-To enable this on the Quarantine Login page, edit `/etc/pmg/pmg.conf`, see section
+To enable this on the Quarantine Login page, edit `/etc/pmg/pmg.conf`. See section
 xref:pmgconfig_spamdetector_quarantine[Spam Detector Configuration - Quarantine]
 for more details about the available settings.
 
@@ -136,19 +140,19 @@ The result is a list of received mails, including the following data:
 
 [cols="s,5d"]
 |====
-|Time | Timestamp of first found syslog entry.
-|From | Envelope 'From' address (the sender).
-|To   | The email receiver address.
-|Status | Delivery status.
-|Syslog | The corresponding syslog entries are shown if you double click such
-entry, or if you press the '+' button on the left.
+|Time | Timestamp of first syslog entry found
+|From | Envelope 'From' address (the sender)
+|To   | The email receiver address
+|Status | Delivery status
+|Syslog | The corresponding syslog entries are shown if you double
+click such an entry or if you press the '+' button on the left
 |====
 
-You can specify filters, and most importantly you can set
-a 'Start' and 'End' time. By default the start time is set to one hour
-ago. If you still get too many entries, you can try to restrict
+To narrow the search down further, you can specify filters and set
+a 'Start' and 'End' time. By default, the start time is set to the
+last hour. If you still get too many entries, you can try to restrict
 the search to a specific sender or receiver address, or search for a
-specific text in the logs ('Filter' entry).
+specific text string in the logs ('Filter' entry).
 
 NOTE: Search is faster if you use a shorter time interval.
 
@@ -157,25 +161,25 @@ mail proxy, meaning that the proxy receives mails from outside,
 processes them and finally sends the result to the receiver.
 
 The first phase is receiving the mail. The proxy may reject the mail
-early, or instead accepts the mail and feeds it into the filter. The filter
-rules can block or accept the mail.
+early or accept the mail and feed it into the filter. The filter
+rules can then block or accept the mail.
 
 In the second phase, accepted mails need to be delivered to the
 receiver. This action may also fail or succeed. 'Status'
-combines the result from the first and second phase.
+combines the results from the first and second phase.
 
 [options="header",cols="2s,1d,5d"]
 |====
 |Status |Phase |Description
-|rejected             |1 | Email rejected (e.g. sender IP is listed on a IP blacklist)
+|rejected             |1 | Email rejected (for example, the sender IP is listed on an IP blacklist)
 |greylisted           |1 | Email temporarily rejected by greylisting
-|queued/deferred      |1 | Internal Email was queued, still trying to deliver
-|queued/bounced       |1 | Internal Email was queued but not accepted by the target email server (for example user unknown)
-|queued/delivered     |1 | Internal Email was queued and delivered
+|queued/deferred      |1 | Internal email was queued, still trying to deliver
+|queued/bounced       |1 | Internal email was queued but not accepted by the target email server (for example, user unknown)
+|queued/delivered     |1 | Internal email was queued and delivered
 |quarantine           |1 | Email was moved to quarantine
 |blocked              |1 | Email was blocked by filter rules
 |accepted/deferred    |2 | Email accepted, still trying to deliver
-|accepted/bounced     |2 | Email accepted but not accepted by the target email server (for example user unknown)
+|accepted/bounced     |2 | Email accepted, but not accepted by the target email server (for example, user unknown)
 |accepted/delivered   |2 | Email accepted and delivered
 |====
 
@@ -186,17 +190,16 @@ Postfix Queue Administration
 [thumbnail="pmg-gui-queue-admin-summary.png", big=1]
 
 Mail-queues are one of the central concepts of the SMTP protocol. Once a
-mailserver accepts a mail for further processing it saves it to a queue.
+mail server accepts a mail for further processing it saves it to a queue.
 After the mail is either relayed to another system, stored locally
 or discarded, it is deleted from the local mail-queue.
 
 If immediate processing is not possible, for example because a downstream
-mailserver is not reachable, the mail remains on the queue for later
+mail server is not reachable, the mail remains on the queue for later
 processing.
 
 The 'Queue Administration' panel provides a summary about the current state
 of the postfix mail-queue, similar to the 'qshape (1)' command-line utility.
-
 It shows domains for which mails were not delivered, and how long they have
 been queued.
 
@@ -215,20 +218,20 @@ Delete all currently queued mail, for example if the queue contains only spam.
 
 Clear the recipient verification cache.
 
-A sudden increase of queued mails should be checked out closely. It can
-indicate issues connecting to downstream servers.
-This can also mean that one of the servers for which you relay emails sends
-spam itself.
+A sudden increase in queued mails should be closely inspected. This
+increase can indicate issues connecting to downstream servers or that
+one of the servers for which you relay emails sends spam itself.
 
 Deferred Mail
 ~~~~~~~~~~~~~
 [thumbnail="pmg-gui-queue-admin-deferred.png"]
 
-In the 'Deferred Mail' tab you can examine each deferred email separately.
-Besides providing the contact information about sender and receiver you can
-also check the reason for an email being still queued.
+In the 'Deferred Mail' tab, you can examine each deferred email
+separately. In addition to providing contact information about the
+sender and receiver, you can also check the reason for which an email
+remains queued.
 
-You can view the complete headers and filter by sender or receiver of queued up
-mails.
+You can view the complete headers and filter by sender or receiver of
+queued emails.
 
-Here you can also flush or delete each deferred email independently.
+Here, you can also flush or delete each deferred email independently.
