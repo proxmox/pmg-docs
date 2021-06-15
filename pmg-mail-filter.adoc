@@ -2,13 +2,13 @@
 Rule-Based Mail Filter
 ======================
 
-{pmg} ships with a highly configurable mail filter. It’s an easy but
-powerful way to define filter rules by user, domains, time frame,
-content type and resulting action.
+{pmg} ships with a highly configurable mail filter. This provides an
+easy but powerful way to define filter rules by user, domain, time
+frame, content type, and resulting action.
 
 [thumbnail="pmg-gui-mail-filter-rules.png", big=1]
 
-Every rule has 5 categories ('FROM', 'TO', 'WHEN', 'WHAT' and
+Every rule has 5 categories ('FROM', 'TO', 'WHEN', 'WHAT', and
 'ACTION'), and each category may contain several objects to match
 certain criteria:
 
@@ -48,14 +48,14 @@ Example: Mark email with “SPAM:” in the subject.
 Rules are ordered by priority, so rules with higher priority are
 executed first. It is also possible to set a processing direction:
 
-'In'::	Rule applies for all incoming emails
+'In'::	Rule applies to all incoming emails
 
-'Out'::	Rule applies for all outgoing emails
+'Out'::	Rule applies to all outgoing emails
 
-'In & Out':: Rule applies for both directions
+'In & Out':: Rule applies to both directions
 
-And you can also disable a rule completely, which is mostly useful for
-testing and debugging. The 'Factory Defaults' button alows you to
+You can also disable a rule completely, which is mostly useful for
+testing and debugging. The 'Factory Defaults' button allows you to
 reset the filter rules.
 
 
@@ -83,7 +83,7 @@ Block mail. This is a 'final' action.
 Quarantine
 ~~~~~~~~~~
 
-Move to quarantine (virus mails are moved to the “virus quarantine”,
+Move to quarantine (virus mails are moved to the “virus quarantine”;
 other mails are moved to “spam quarantine”). This is also a 'final' action.
 
 
@@ -118,14 +118,18 @@ Blind Carbon Copy (BCC)
 
 The BCC object simply sends a copy to another target. It is possible to
 send the original unmodified mail, or the processed result. Please
-note that this can be quite different, i.e. when a previous rule
+note that this can be quite different, for instance, when a previous rule
 removed attachments.
 
 
 Header Attributes
 ~~~~~~~~~~~~~~~~~
 
-This object is able to add or modify mail header attributes. As with notifications above, you can use xref:rule_system_macros[macros], making this a very powerful object. For example, the 'Modify Spam Level' actions adds detailed information about detected Spam characteristics to the `X-SPAM-LEVEL` header.
+This object is able to add or modify mail header attributes. As with
+Notifications above, you can use xref:rule_system_macros[macros],
+making this a very powerful object. For example, the 'Modify Spam
+Level' actions add detailed information about detected Spam
+characteristics to the `X-SPAM-LEVEL` header.
 
 .'Modify Spam Level' Header Attribute
 ----
@@ -147,14 +151,14 @@ Remove attachments
 ~~~~~~~~~~~~~~~~~~
 
 Remove attachments can either remove all attachments, or only those
-matched by the rules 'What' - object. You can also specify the
-replacement text if you want.
+matched by the rule's 'What' - object. You can also specify the
+replacement text, if you want.
 
-You can optionally move those mails into the attachment quarantine, where
+You can optionally move these mails into the attachment quarantine, where
 the original mail with all attachments will be stored. The mail with the
-attachments removed will continue in the rule system.
+attachments removed will continue through the rule system.
 
-NOTE: The Attachment Quarantine Lifetime is the same as for the Spam Quarantine.
+NOTE: The Attachment Quarantine lifetime is the same as for the Spam Quarantine.
 
 
 Disclaimer
@@ -168,12 +172,12 @@ its text can be encoded in the mail's character encoding.
 
 
 [[pmg_mailfilter_who]]
-'Who' - objects
----------------
+'Who' objects
+-------------
 
 [thumbnail="pmg-gui-mail-filter-who-objects.png", big=1]
 
-This type of objects can be used for the 'TO' and/or 'FROM' category,
+These types of objects can be used for the 'TO' and/or 'FROM' category,
 and match the sender or recipient of the email. A single object can
 combine multiple items, and the following item types are available:
 
@@ -197,24 +201,25 @@ LDAP User or Group::
 
 Test if the mail address belongs to a specific LDAP user or group.
 
-We have two important 'Who' - objects called 'Blacklist' and
+We have two important 'Who' objects called 'Blacklist' and
 'Whitelist'. These are used in the default ruleset to globally block
 or allow specific senders.
 
 
 [[pmg_mailfilter_what]]
-'What' - objects
-----------------
+'What' objects
+--------------
 
 [thumbnail="pmg-gui-mail-filter-what-objects.png", big=1]
 
-'What' - objects are used to classify the mail content. A single
+'What' objects are used to classify the mail's content. A single
 object can combine multiple items, and the following item types are
 available:
 
 Spam Filter::
 
-Matches if detected spam level is equal or greater than the configured value.
+Matches if the detected spam level is greater than or equal to the
+configured value.
 
 Virus Filter::
 
@@ -222,7 +227,7 @@ Matches on infected mails.
 
 Match Field::
 
-Match specified mail header fields (eg. `Subject:`, `From:`, ...)
+Match specified mail header fields (for example, `Subject:`, `From:`, ...)
 
 Content Type Filter::
 
@@ -244,13 +249,13 @@ This also matches the filenames for all regular (non-archived) attachments.
 
 
 [[pmg_mailfilter_when]]
-'When' - objects
-----------------
+'When' objects
+--------------
 
 [thumbnail="pmg-gui-mail-filter-when-objects.png", big=1]
 
-'When' - objects are use to activate rules at specific daytimes. You
-can compose them of one or more time frame items.
+'When' objects are used to activate rules at specific times of the
+day. You can compose them from one or more time frame items.
 
 The default ruleset defines 'Office Hours', but this is not used by
 the default rules.
@@ -260,10 +265,11 @@ the default rules.
 Using regular expressions
 -------------------------
 
-A regular expression is a string of characters which tells us which
-string you are looking for. The following is a short introduction in
-the syntax of regular expressions used by some objects. If you are
-familiar with Perl, you already know the syntax.
+A regular expression is a string of characters which represents a list
+of text patterns which you would like to match. The following is a
+short introduction to the syntax of regular expressions used by some
+objects. If you are familiar with Perl, you will already know the
+syntax.
 
 Simple regular expressions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -285,19 +291,20 @@ The question mark (`?`) indicates that the character immediately
 preceding it shows up either zero or one time. `e?mail` would match
 either "email" or "mail" but not "e-mail".
 
-Another metacharacter is the star (`*`). This indicates that the
+Another metacharacter is the asterisk (`*`). This indicates that the
 character immediately preceding it may be repeated any number of times,
-including zero. `e*mail` would match either "email" or "mail" or
+including zero. `e*mail` would match "email", "mail", and
 "eeemail".
 
-The plus (`+`) metacharacter does the same as the star (*) excluding
-zero. So `e+mail` does not match "mail".
+The plus (`+`) metacharacter indicates that the character immediately
+preceding it appears one or more times. So `e+mail` does not match
+"mail".
 
-Metacharacters may be combined. A common combination includes the
-period and star metacharacters (`.*`), with the star immediately following
-the period. This is used to match an arbitrary string of any length,
-including the null string. For example: `.*company.*` matches
-"company@domain.com" or "company@domain.co.uk" or
-"department.company@domain.com".
+Metacharacters can also be combined. A common combination includes the
+period and asterisk metacharacters (`.*`), with the asterisk
+immediately following the period. This is used to match an arbitrary
+string of any length, including the null string. For example:
+`.*company.*` matches "company@domain.com" or "company@domain.co.uk"
+or "department.company@domain.com".
 
 The book xref:Friedl97[] provides a more comprehensive introduction.
