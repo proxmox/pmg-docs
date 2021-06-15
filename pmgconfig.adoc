@@ -27,15 +27,15 @@ endif::manvolnum[]
 
 {pmg} is usually configured using the web-based Graphical User
 Interface (GUI), but it is also possible to directly edit the
-configuration files, use the REST API over 'https'
+configuration files, using the REST API over 'https'
 or the command line tool `pmgsh`.
 
 The command line tool `pmgconfig` is used to simplify some common
-configuration tasks, i.e. to generate cerificates and to rewrite
+configuration tasks, such as generating certificates and rewriting
 service configuration files.
 
 NOTE: We use a Postgres database to store mail filter rules and
-statistic data. See chapter xref:chapter_pmgdb[Database Management]
+statistical data. See chapter xref:chapter_pmgdb[Database Management]
 for more information.
 
 
@@ -45,9 +45,8 @@ Configuration files overview
 `/etc/network/interfaces`::
 
 Network setup. We never modify this file directly. Instead, we write
-changes to `/etc/network/interfaces.new`. When you reboot, we rename
-the file to `/etc/network/interfaces`, so the changes are applied
-on the next reboot.
+changes to `/etc/network/interfaces.new`. When you reboot, {pmg} renames
+the file to `/etc/network/interfaces`, thus applying the changes.
 
 `/etc/resolv.conf`::
 
@@ -56,7 +55,7 @@ to create the FQDN and domain name used in the postfix configuration.
 
 `/etc/hostname`::
 
-The system's host name. {pmg} uses the hostname to create the FQDN used
+The system's hostname. {pmg} uses the hostname to create the FQDN used
 in the postfix configuration.
 
 `/etc/hosts`::
@@ -65,7 +64,8 @@ Static table lookup for hostnames.
 
 `/etc/pmg/pmg.conf`::
 
-Stores common administration options, i.e. the spam and mail proxy setup.
+Stores common administration options, such as the spam and mail proxy
+configuration.
 
 `/etc/pmg/cluster.conf`::
 
@@ -120,15 +120,15 @@ Keys and Certificates
 
 `/etc/pmg/pmg-api.pem`::
 
-Key and certificate (combined) used be the HTTPs server (API).
+Key and certificate (combined) used by the HTTPS server (API).
 
 `/etc/pmg/pmg-authkey.key`::
 
-Privat key use to generate authentication tickets.
+Private key used to generate authentication tickets.
 
 `/etc/pmg/pmg-authkey.pub`::
 
-Public key use to verify authentication tickets.
+Public key used to verify authentication tickets.
 
 `/etc/pmg/pmg-csrf.key`::
 
@@ -147,20 +147,20 @@ Key for DKIM signing mails with selector '<selector>'.
 Service Configuration Templates
 -------------------------------
 
-{pmg} uses various services to implement mail filtering, for example
+{pmg} uses various services to implement mail filtering, for example,
 the {postfix} Mail Transport Agent (MTA), the {clamav} antivirus
-engine and the Apache {spamassassin} project. These services use
-separate configuration files, so we need to rewrite those files when
+engine, and the Apache {spamassassin} project. These services use
+separate configuration files, so we need to rewrite those files when the
 configuration is changed.
 
-We use a template based approach to generate those files. The {tts} is
+We use a template-based approach to generate these files. The {tts} is
 a well known, fast and flexible template processing system. You can
 find the default templates in `/var/lib/pmg/templates/`. Please do not
-modify them directly, because your modification would get lost on the
+modify these directly, otherwise your modifications will be lost on the
 next update. Instead, copy the template you wish to change to
 `/etc/pmg/templates/`, then apply your changes there.
 
-Templates can access any configuration setting, and you can use the
+Templates can access any configuration settings, and you can use the
 `pmgconfig dump` command to get a list of all variable names:
 
 ----
@@ -173,9 +173,9 @@ pmg.admin.advfilter = 1
 ...
 ----
 
-The same tool is used to force regeneration of all template based
-configuration files. You need to run that after modifying a template,
-or when you directly edit configuration files
+The same tool is used to force the regeneration of all template-based
+configuration files. You need to run the following after modifying a template,
+or when you directly edit configuration files:
 
 ----
 # pmgconfig sync --restart 1
@@ -192,28 +192,28 @@ synced from the master node to all cluster members.
 White- and Blacklists
 ---------------------
 
-{pmg} has multiple white- and blacklists. It differentiates between the 
-xref:pmgconfig_mailproxy_options[SMTP Whitelist]. The rule-based whitelist
+{pmg} has multiple white- and blacklists. It differentiates between the
+xref:pmgconfig_mailproxy_options[SMTP Whitelist], the rule-based whitelist
 and the user whitelist.
-In addition to the whitelists there are 2 separate blacklists. The rule-based
+In addition to the whitelists, there are two separate blacklists: the rule-based
 blacklist and the user blacklist.
 
 SMTP Whitelist
 ~~~~~~~~~~~~~~
 
 The xref:pmgconfig_mailproxy_options[SMTP Whitelist] is responsible for disabling
-greylisting as well as SPF and DNSBL checks. These are done during the SMTP
+greylisting, as well as SPF and DNSBL checks. These are done during the SMTP
 dialogue.
 
 Rule-based White-/Blacklist
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The xref:chapter_mailfilter[rule-based white- and blacklists] are predefined
-rules. They work by checking the attached 'Who' objects, containing e.g. a
-domain or a mail address, for a match. If it matches, the assigned action is
-used which by default is 'Accept' for the whitelist rule and 'Block' for the
-blacklist rule. In the default setup the blacklist rule has priority over the
-whitelist rule and spam checks.
+rules. They work by checking the attached 'Who' objects, containing, for
+example, a domain or a mail address for a match. If it matches, the assigned
+action is used, which by default is 'Accept' for the whitelist rule and 'Block'
+for the blacklist rule. In the default setup, the blacklist rule has priority
+over the whitelist rule and spam checks.
 
 User White-/Blacklist
 ~~~~~~~~~~~~~~~~~~~~~
@@ -221,13 +221,13 @@ User White-/Blacklist
 The user white- and blacklist are user specific. Every user can add mail addresses
 to their white- and blacklist. When a user adds a mail address to the whitelist,
 the result of the spam analysis will be discarded for that recipient. This can
-help the mail being accepted, but it still depends on the other rules what
-happens next. In the default setup this results in the mail being accepted for
+help in the mail being accepted, but what happens next still depends on the
+other rules. In the default setup, this results in the mail being accepted for
 this recipient.
 
-For mail addresses on a user's blacklist the spam score will be increased by 100.
-It still depends on the rule system what happens when a spam score that high is
-encountered. In the default setup it will be recognized as spam and quarantined
+For mail addresses on a user's blacklist, the spam score will be increased by
+100. What happens when a high spam score is encountered still depends on the
+rule system. In the default setup, it will be recognized as spam and quarantined
 (spam score of 3 or higher).
 
 [[pmgconfig_systemconfig]]
@@ -241,13 +241,12 @@ ifndef::manvolnum[]
 [thumbnail="pmg-gui-network-config.png", big=1]
 endif::manvolnum[]
 
-Normally the network and time is already configured when you visit the
-GUI. The installer asks for those settings and sets up the correct
-values.
+As network and time are configured in the installer, these generally do not
+need to be configured again in the GUI.
 
 The default setup uses a single Ethernet adapter and static IP
 assignment. The configuration is stored at '/etc/network/interfaces',
-and the actual network setup is done the standard Debian way using
+and the actual network setup is done the standard Debian way, using the
 package 'ifupdown'.
 
 .Example network setup '/etc/network/interfaces'
@@ -282,7 +281,7 @@ ifndef::manvolnum[]
 endif::manvolnum[]
 
 
-Those settings are saved to subsection 'admin' in `/etc/pmg/pmg.conf`,
+These settings are saved to the 'admin' subsection in `/etc/pmg/pmg.conf`,
 using the following configuration keys:
 
 include::pmg.admin-conf-opts.adoc[]
@@ -301,7 +300,7 @@ ifndef::manvolnum[]
 [thumbnail="pmg-gui-mailproxy-relaying.png", big=1]
 endif::manvolnum[]
 
-Those settings are saved to subsection 'mail' in `/etc/pmg/pmg.conf`,
+These settings are saved to the 'mail' subsection in `/etc/pmg/pmg.conf`,
 using the following configuration keys:
 
 include::pmg.mail-relaying-conf-opts.adoc[]
@@ -314,7 +313,7 @@ ifndef::manvolnum[]
 [thumbnail="pmg-gui-mailproxy-relaydomains.png", big=1]
 endif::manvolnum[]
 
-List of relayed mail domains, i.e. what destination domains this
+A list of relayed mail domains, that is, what destination domains this
 system will relay mail to. The system will reject incoming mails to
 other domains.
 
@@ -327,7 +326,7 @@ ifndef::manvolnum[]
 [thumbnail="pmg-gui-mailproxy-ports.png", big=1]
 endif::manvolnum[]
 
-Those settings are saved to subsection 'mail' in `/etc/pmg/pmg.conf`,
+These settings are saved to the 'mail' subsection in `/etc/pmg/pmg.conf`,
 using the following configuration keys:
 
 include::pmg.mail-ports-conf-opts.adoc[]
@@ -341,7 +340,7 @@ ifndef::manvolnum[]
 [thumbnail="pmg-gui-mailproxy-options.png", big=1]
 endif::manvolnum[]
 
-Those settings are saved to subsection 'mail' in `/etc/pmg/pmg.conf`,
+These settings are saved to the 'mail' subsection in `/etc/pmg/pmg.conf`,
 using the following configuration keys:
 
 include::pmg.mail-options-conf-opts.adoc[]
@@ -351,9 +350,9 @@ include::pmg.mail-options-conf-opts.adoc[]
 Before and After Queue scanning
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Scanning email can happen at two different stages of mail-processing:
+Email scanning can happen at two different stages of mail-processing:
 
-* Before-queue filtering: During the SMTP Session, after the complete message
+* Before-queue filtering: During the SMTP session, after the complete message
   has been received (after the 'DATA' command).
 
 * After-queue filtering: After initially accepting the mail and putting it on
@@ -361,37 +360,37 @@ Scanning email can happen at two different stages of mail-processing:
 
 Before-queue filtering has the advantage that the system can reject a mail (by
 sending a permanent reject code '554'), and leave the task of notifying the
-original sender to the other mailserver. This is of particular advantage if
+original sender to the other mail server. This is of particular advantage if
 the processed mail is a spam message or contains a virus and has a forged
-sender-address. Sending out a notification in this situation leads so-called
+sender address. Sending out a notification in this situation leads to so-called
 'backscatter' mail, which might cause your server to get listed as spamming on
 RBLs (Real-time Blackhole List).
 
 After-queue filtering has the advantage of providing faster delivery of
-mails for the sending servers, since queueing mails is much faster than
-analyzing it for spam and viruses.
+mails for the sending servers, since queuing emails is much faster than
+analyzing them for spam and viruses.
 
-If a mail is addressed to multiple recipients (e.g. when multiple addresses are
-subscribed to the same mailing list) the situation is more complicated: Your
-mailserver can only reject or accept the mail for all recipients, after having
-received the complete message, while your rule setup might accept the mail for
-part of the recipients and reject it for others. This can be due to a
-complicated rule setup, or if your users use the 'User White- and Blacklist'
-feature.
+If a mail is addressed to multiple recipients (for example, when multiple
+addresses are subscribed to the same mailing list), the situation is more
+complicated; your mail server can only reject or accept the mail for all
+recipients, after having received the complete message, while your rule setup
+might accept the mail for part of the recipients and reject it for others. This
+can be due to a complicated rule setup, or if your users use the 'User White-
+and Blacklist' feature.
 
-If the resulting action of the rule system is the same for all recipients {pmg}
-responds accordingly if configured for before queue filtering (sending '554'
+If the resulting action of the rule system is the same for all recipients, {pmg}
+responds accordingly, if configured for before-queue filtering (sending '554'
 for a blocked mail and '250' for an accepted or quarantined mail). If some
 mailboxes accept the mail and some reject it, the system has to accept the mail.
 
 Whether {pmg} notifies the sender that delivery failed for some recipients by
 sending a non-delivery report, depends on the 'ndr_on_block' setting in
-'/etc/pmg/pmg.conf'. If enabled an NDR is sent. Keeping it disabled prevents
+'/etc/pmg/pmg.conf'. If enabled, an NDR is sent. Keeping this disabled prevents
 NDRs being sent to the (possibly forged) sender and thus minimizes the chance
-of getting your IP listed on a RBL. However in certain environments it can be
+of getting your IP listed on an RBL. However in certain environments, it can be
 unacceptable not to inform the sender about a rejected mail.
 
-The setting has the same effect if after queue filtering is configured, with
+The setting has the same effect if after-queue filtering is configured, with
 the exception that an NDR is always sent out, even if all recipients block the
 mail, since the mail already got accepted before being analyzed.
 
@@ -405,10 +404,10 @@ Greylisting
 
 Greylisting is a technique for preventing unwanted messages from reaching the
 resource intensive stages of content analysis (virus detection and spam
-detection): By initially replying with a temporary failure code ('450') to
-each new email, the {pmg} tells the sending server that it should queue the
-mail and retry delivery at a later moment. Since certain kinds of spam get
-sent out by software, which has no provisioning for queueing, these mails are
+detection). By initially replying with a temporary failure code ('450') to
+each new email, {pmg} tells the sending server that it should queue the
+mail and retry delivery at a later point. Since certain kinds of spam get
+sent out by software which has no provisioning for queuing, these mails are
 dropped without reaching {pmg} or your mailbox.
 
 The downside of greylisting is the delay introduced by the initial deferral of
@@ -419,24 +418,24 @@ coming from a source for a recipient, which have passed greylisting in the
 past are directly passed on: For each email the triple '<sender network,
 sender email, recipient email>' is stored in a list, along with the time when
 delivery was attempted. If an email fits an already existing triple, the
-timestamp for that triple is updated and the email is accepted for further
+timestamp for that triple is updated, and the email is accepted for further
 processing.
 
-As long as a sender and recipient do communicate frequently there is no delay
+As long as a sender and recipient communicate frequently, there is no delay
 introduced by enabling greylisting. A triple is removed after a longer period
-of time, when no mail fitting that triple has been seen. The timeouts in {pmg}
+of time, if no mail fitting that triple has been seen. The timeouts in {pmg}
 are:
 
 * 2 days for the retry of the first delivery
 
-* 36 days for known triples
+* 36 days for a known triple
 
-Mails with an empty envelope-sender are always delayed.
+Mails with an empty envelope sender are always delayed.
 
 Some email service providers send out emails for one domain from multiple
-servers. To prevent delays due to an email coming in from 2 separate IPs of
-the same provider the triples store a network ('cidr') instead of a single IP.
-For certain large providers the default network size might be too small. You
+servers. To prevent delays due to an email coming in from two separate IPs of
+the same provider, the triples store a network ('cidr') instead of a single IP.
+For certain large providers, the default network size might be too small. You
 can configure the netmask applied to an IP for the greylist lookup in
 '/etc/pmg/pmg.conf' or in the GUI with the settings 'greylistmask' for IPv4
 and 'greylistmask6' for IPv6 respectively.
@@ -451,13 +450,13 @@ ifndef::manvolnum[]
 endif::manvolnum[]
 
 You can use {pmg} to send emails to different internal email servers. For
-example you can send emails addressed to domain.com to your first email server,
+example, you can send emails addressed to domain.com to your first email server
 and emails addressed to subdomain.domain.com to a second one.
 
 You can add the IP addresses, hostname, transport protocol (smtp/lmtp),
 transport ports and mail domains (or just single email addresses) of your
 additional email servers. When transport protocol is set to `lmtp`, the option
-'Use MX' is useless and will be automatically set to 'No'.
+'Use MX' is useless and will automatically be set to 'No'.
 
 
 [[pmgconfig_mailproxy_networks]]
@@ -471,8 +470,8 @@ endif::manvolnum[]
 You can add additional internal (trusted) IP networks or hosts.  All hosts in
 this list are allowed to relay.
 
-NOTE: Hosts in the same subnet with Proxmox can relay by default and it’s not
-needed to add them in this list.
+NOTE: Hosts in the same subnet as {pmg} can relay by default and don't need to
+be added to this list.
 
 
 [[pmgconfig_mailproxy_tls]]
@@ -490,24 +489,24 @@ generates a new self signed certificate for you (`/etc/pmg/pmg-tls.pem`).
 
 {pmg} uses opportunistic TLS encryption by default. The SMTP transaction is
 encrypted if the 'STARTTLS' ESMTP feature is supported by the remote
-server. Otherwise, messages are sent in the clear.
+server. Otherwise, messages are sent unencrypted.
 
 You can set a different TLS policy per destination. A destination is either a
-remote domain or a next-hop destination as specified in `/etc/pmg/transport`.
+remote domain or a next-hop destination, as specified in `/etc/pmg/transport`.
 This can be used if you need to prevent email delivery without
 encryption, or to work around a broken 'STARTTLS' ESMTP implementation. See
 {postfix_tls_readme} for details on the supported policies.
 
 Enable TLS logging::
 
-To get additional information about SMTP TLS activity you can enable
-TLS logging. That way information about TLS sessions and used
+To get additional information about SMTP TLS activity, you can enable
+TLS logging. In this case, information about TLS sessions and used
 certificates is logged via syslog.
 
 Add TLS received header::
 
 Set this option to include information about the protocol and cipher
-used as well as the client and issuer CommonName into the "Received:"
+used, as well as the client and issuer CommonName into the "Received:"
 message header.
 
 Those settings are saved to subsection 'mail' in `/etc/pmg/pmg.conf`,
@@ -526,13 +525,13 @@ endif::manvolnum[]
 
 DomainKeys Identified Mail (DKIM) Signatures (see {dkim_rfc}) is a method to
 cryptographically authenticate a mail as originating from a particular domain.
-Before sending the mail a hash over certain header fields and the body is
+Before sending the mail, a hash over certain header fields and the body is
 computed, signed with a private key and added in the `DKIM-Signature` header of
 the mail. The 'selector' (a short identifier chosen by you, used to identify
 which system and private key were used for signing) is also included in the
 `DKIM-Signature` header.
 
-The verification is done by the receiver: The public key is fetched
+The verification is done by the receiver. The public key is fetched
 via DNS TXT lookup for `yourselector._domainkey.yourdomain.example` and used
 for verifying the hash. You can publish multiple selectors for your domain,
 each used by a system which sends email from your domain, without the need to
@@ -540,10 +539,10 @@ share the private key.
 
 {pmg} verifies DKIM Signatures for inbound mail in the Spam Filter by default.
 
-Additionally it supports conditionally signing outbound mail if configured.
-It uses one private key and selector per PMG deployment (all nodes in a cluster
-use the same key). The key has a minimal size of 1024 bits and rsa-sha256 is
-used as signing algorithm.
+Additionally, it supports conditionally signing outbound mail, if configured.
+It uses one private key and selector per {pmg} deployment (all nodes in a
+cluster use the same key). The key has a minimal size of 1024 bits and
+rsa-sha256 is used as the signing algorithm.
 
 The headers included in the signature are taken from the list of
 `Mail::DKIM::Signer`. Additionally `Content-Type` (if present), `From`, `To`,
@@ -568,9 +567,10 @@ record which you need to add to all domains signed by {pmg} by clicking on the
 Sign all Outgoing Mail::
 
 Controls whether all outbound mail should get signed or only mails from domains
-listed in `/etc/pmg/dkim/domains` if it exists and `/etc/pmg/domains` otherwise.
+listed in `/etc/pmg/dkim/domains`, if it exists and `/etc/pmg/domains`
+otherwise.
 
-Those settings are saved to subsection 'admin' in `/etc/pmg/pmg.conf`,
+These settings are saved to the 'admin' subsection in `/etc/pmg/pmg.conf`,
 using the following configuration keys:
 
 include::pmg.admin-dkim-conf-opts.adoc[]
@@ -586,10 +586,10 @@ endif::manvolnum[]
 All SMTP checks are disabled for those entries (e.g. Greylisting,
 SPF, DNSBL, ...)
 
-DNSBL checks are done by `postscreen` which works on IP addresses and networks.
+DNSBL checks are done by `postscreen`, which works on IP addresses and networks.
 This means it can only make use of the `IP Address` and `IP Network` entries.
 
-NOTE: If you use a backup MX server (e.g. your ISP offers this service
+NOTE: If you use a backup MX server (for example, your ISP offers this service
 for you) you should always add those servers here.
 
 NOTE: To disable DNSBL checks entirely, remove any `DNSBL Sites` entries in
@@ -610,7 +610,7 @@ endif::manvolnum[]
 signatures. This makes it harder for spammers to identify one aspect
 which they can craft their messages to work around the spam filter.
 
-Every single email will be analyzed and gets a spam score
+Every single email will be analyzed and have a spam score
 assigned. The system attempts to optimize the efficiency of the rules
 that are run in terms of minimizing the number of false positives and
 false negatives.
@@ -631,7 +631,7 @@ email if it is ham or spam (or virus). Good emails are delivered to
 the inbox and spam messages are moved into the spam quarantine.
 
 The system can be configured to send daily reports to inform users
-about the personal spam messages received the last day. The report is
+about personal spam messages received in the last day. The report is
 only sent if there are new messages in the quarantine.
 
 Some options are only available in the config file `/etc/pmg/pmg.conf`,
@@ -661,7 +661,7 @@ slightly adjusting the score of a particular rule. Two examples:
 * Your system tags many legitimate mails from a partner organization as spam,
   because the organization has a policy that each mail has to start with
   'Dear madam or sir' (generating 1.9 points through the rule
-  'DEAR_SOMETHING'). By setting the score of this rule to 0 you can disable
+  'DEAR_SOMETHING'). By setting the score of this rule to 0, you can disable
   it completely.
 
 The system logs all the rules which a particular mail hits. Analyzing the logs can
@@ -670,7 +670,7 @@ lead to finding such a pattern in your environment.
 You can adjust the score of a rule by creating a new 'Custom Rule Score' entry
 in the GUI.
 
-NOTE: In general it is strongly recommended to not make large changes to the
+NOTE: In general, it is strongly recommended not to make large changes to the
 default scores.
 
 
@@ -701,7 +701,7 @@ endif::manvolnum[]
 
 Please note that the virus signature database is automatically
 updated. You can see the database status in the GUI, and also
-trigger manual updates there.
+trigger manual updates from there.
 
 
 [[pmgconfig_clamav_quarantine]]
@@ -712,9 +712,9 @@ ifndef::manvolnum[]
 [thumbnail="pmg-gui-virusquar-options.png", big=1]
 endif::manvolnum[]
 
-Indentified virus mails are automatically moved to the virus
-quarantine. The administrator can view these mails using the GUI, and
-choose to deliver them in case of false positives. {pmg} does not notify
+Identified virus mails are automatically moved to the virus
+quarantine. The administrator can view these mails from the GUI, and
+choose to deliver them, in case of false positives. {pmg} does not notify
 individual users about received virus mails.
 
 Virus quarantine related settings are saved to subsection 'virusquar'
@@ -728,14 +728,14 @@ Custom SpamAssassin configuration
 
 This is only for advanced users. {spamassassin}'s rules and their associated
 scores get updated regularly and are trained on a huge corpus, which gets
-classified by experts. In most cases adding a rule for matching a particular
+classified by experts. In most cases, adding a rule for matching a particular
 keyword is the wrong approach, leading to many false positives. Usually bad
 detection rates are better addressed by properly setting up DNS than by adding
 a custom rule - watch out for matches to 'URIBL_BLOCKED' in the logs or
 spam-headers - see the {spamassassin_dnsbl}.
 
-To add or change the Proxmox {spamassassin} configuration please login to the
-console via SSH. Change to the `/etc/mail/spamassassin/` directory. In this
+To add or change the Proxmox {spamassassin} configuration, log in to the
+console via SSH and change to the `/etc/mail/spamassassin/` directory. In this
 directory there are several files (`init.pre`, `local.cf`, ...) - do not change
 them, as `init.pre`, `v310.pre`, `v320.pre`, `local.cf` will be overwritten by
 the xref:pmgconfig_template_engine[template engine], while the others can
@@ -752,7 +752,7 @@ to use the correct {spamassassin} syntax, and test it with:
 If you run a cluster, the `custom.cf` file is synchronized from the
 master node to all cluster members automatically.
 
-To adjust the score assigned to a particular rule you
+To adjust the score assigned to a particular rule, you
 can also use the xref:pmgconfig_spamdetector_customscores[Custom Rule Score]
 settings in the GUI.
 
@@ -774,25 +774,25 @@ treatment of an email. Its input is passed via two CLI arguments:
 * the 'queue-file-name' - a filename, which contains the complete email as
   rfc822/eml file
 
-The expected output need to be printed on STDOUT and consists of two lines:
+The expected output needs to be printed to STDOUT and consists of two lines:
 
 * the 'api-version' (currently 'v1') - see above
 
 * one of the following 3 results:
-** 'OK' - email is ok
+** 'OK' - email is OK
 ** 'VIRUS: <virusdescription>' - email is treated as if it contained a virus
     (the virus description is logged and added to the email's headers)
 ** 'SCORE: <number>' - <number> is added (negative numbers are also possible)
     to the email's spamscore
 
-The check is run with a 5 minute timeout - if it is exceeded the check
+The check is run with a 5 minute timeout - if this is exceeded, the check
 executable is killed and the email is treated as OK.
 
 All output written to STDERR by the check is written with priority 'err' to the
 journal/mail.log.
 
-A simple sample script following the API (and yielding a random result) for
-reference:
+Below is a simple sample script following the API (and yielding a random result)
+for reference:
 
 ----
 #!/bin/sh
@@ -869,7 +869,7 @@ There are four roles:
 
 Administrator::
 
-Is allowed to manage settings of {pmg}, except some tasks like network
+Is allowed to manage settings of {pmg}, excluding some tasks like network
 configuration and upgrading.
 
 Quarantine manager::
@@ -886,17 +886,17 @@ Helpdesk::
 
 Combines permissions of the 'Auditor' and the 'Quarantine Manager' role.
 
-In addition there is always the 'root' user, which is used to perform special
+In addition, there is always the 'root' user, which is used to perform special
 system administrator tasks, such as upgrading a host or changing the network
 configuration.
 
-NOTE: Only pam users are able to login via the webconsole and ssh, which the
-users created with the web interface are not. Those users are created for {pmg}
-administration only.
+NOTE: Only PAM users are able to log in via the web interface and ssh, while the
+users created through the web interface are not. Those users are created for
+{pmg} administration only.
 
 Local user related settings are saved in `/etc/pmg/user.conf`.
 
-For details of the fields see xref:pmg_user_configuration_file[user.conf]
+For details on the fields, see xref:pmg_user_configuration_file[user.conf]
 
 [[pmgconfig_ldap]]
 LDAP/Active Directory
@@ -912,7 +912,7 @@ Creating a profile requires (at least) the following:
 * profile name
 * protocol (LDAP or LDAPS; LDAPS is recommended)
 * at least one server
-* a user and password (if your server does not support anonymous binds)
+* a username and password (if your server does not support anonymous binds)
 
 All other fields should work with the defaults for most setups, but can be
 used to customize the queries.
@@ -924,21 +924,21 @@ Bind user
 ^^^^^^^^^
 
 It is highly recommended that the user which you use for connecting to the
-LDAP server only has the permission to query the server. For LDAP servers
+LDAP server only has permission to query the server. For LDAP servers
 (for example OpenLDAP or FreeIPA), the username has to be of a format like
-'uid=username,cn=users,cn=accounts,dc=domain' , where the specific fields are
-depending on your setup. For Active Directory servers, the format should be
+'uid=username,cn=users,cn=accounts,dc=domain', where the specific fields
+depend on your setup. For Active Directory servers, the format should be
 like 'username@domain' or 'domain\username'.
 
 Sync
 ^^^^
 
-{pmg} synchronizes the relevant user and group info periodically, so that
-the information is available in a fast manner, even when the LDAP/AD server
-is temporarily not accessible.
+{pmg} synchronizes the relevant user and group information periodically, so that
+the information is quickly available, even when the LDAP/AD server is
+temporarily inaccessible.
 
 After a successful sync, the groups and users should be visible on the web
-interface. After that, you can create rules targeting LDAP users and groups.
+interface. Following this, you can create rules targeting LDAP users and groups.
 
 
 [[pmgconfig_fetchmail]]
@@ -947,15 +947,15 @@ Fetchmail
 
 [thumbnail="pmg-gui-fetchmail-config.png", big=1]
 
-Fetchmail is utility for polling and forwarding emails. You can define
+Fetchmail is a utility for polling and forwarding emails. You can define
 email accounts, which will then be fetched and forwarded to the email
 address you defined.
 
 You have to add an entry for each account/target combination you want to
-fetch and forward. Those will then be regularly polled and forwarded,
+fetch and forward. These will then be regularly polled and forwarded,
 according to your configuration.
 
-The API and web interface offer following configuration options:
+The API and web interface offer the following configuration options:
 
 include::fetchmail.conf.5-opts.adoc[]
 
