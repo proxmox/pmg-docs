@@ -25,13 +25,13 @@ Cluster Management
 :pmg-toplevel:
 endif::manvolnum[]
 
-We are living in a world where email becomes more and more important -
-failures in email systems are just not acceptable. To meet these
-requirements we developed the Proxmox HA (High Availability) Cluster.
+We are living in a world where email is becoming more and more important -
+failures in email systems are not acceptable. To meet these
+requirements, we developed the Proxmox HA (High Availability) Cluster.
 
-The {pmg} HA Cluster consists of a master and several slave nodes
-(minimum one slave node). Configuration is done on the master. Configuration
-and data is synchronized to all cluster nodes over a VPN tunnel. This
+The {pmg} HA Cluster consists of a master node and several slave nodes
+(minimum one slave node). Configuration is done on the master,
+and data is synchronized to all cluster nodes via a VPN tunnel. This
 provides the following advantages:
 
 * centralized configuration management
@@ -45,17 +45,17 @@ provides the following advantages:
 We use a unique application level clustering scheme, which provides
 extremely good performance. Special considerations were taken to make
 management as easy as possible. A complete cluster setup is done within
-minutes, and nodes automatically reintegrate after temporary failures
+minutes, and nodes automatically reintegrate after temporary failures,
 without any operator interaction.
 
 image::images/Proxmox_HA_cluster_final_1024.png[]
 
 
-Hardware requirements
+Hardware Requirements
 ---------------------
 
 There are no special hardware requirements, although it is highly
-recommended to use fast and reliable server with redundant disks on
+recommended to use fast and reliable server hardware, with redundant disks on
 all cluster nodes (Hardware RAID with BBU and write cache enabled).
 
 The HA Cluster can also run in virtualized environments.
@@ -69,20 +69,20 @@ for a cluster, each cluster node needs to have a valid
 subscription. All nodes must have the same subscription level.
 
 
-Load balancing
+Load Balancing
 --------------
 
 It is usually advisable to distribute mail traffic among all cluster
 nodes. Please note that this is not always required, because it is
 also reasonable to use only one node to handle SMTP traffic. The
-second node is used as quarantine host, and only provides the web
+second node can then be used as a quarantine host, that only provides the web
 interface to the user quarantine.
 
 The normal mail delivery process looks up DNS Mail Exchange (`MX`)
 records to determine the destination host. An `MX` record tells the
 sending system where to deliver mail for a certain domain. It is also
-possible to have several `MX` records for a single domain, they can have
-different priorities. For example, our `MX` record looks like that:
+possible to have several `MX` records for a single domain, each of which can
+have different priorities. For example, our `MX` record looks like this:
 
 ----
 # dig -t mx proxmox.com
@@ -96,7 +96,7 @@ mail.proxmox.com.       22879   IN      A       213.129.239.114
 
 Notice that there is a single `MX` record for the domain
 `proxmox.com`, pointing to `mail.proxmox.com`. The `dig` command
-automatically puts out the corresponding address record if it
+automatically outputs the corresponding address record, if it
 exists. In our case it points to `213.129.239.114`. The priority of
 our `MX` record is set to 10 (preferred default value).
 
@@ -104,10 +104,10 @@ our `MX` record is set to 10 (preferred default value).
 Hot standby with backup `MX` records
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Many people do not want to install two redundant mail proxies, instead
-they use the mail proxy of their ISP as fallback. This is simply done
-by adding an additional `MX` Record with a lower priority (higher
-number). With the example above this looks like that:
+Many people do not want to install two redundant mail proxies. Instead
+they use the mail proxy of their ISP as a fallback. This can be done
+by adding an additional `MX` record with a lower priority (higher
+number). Continuing from the example above, this would look like:
 
 ----
 proxmox.com.            22879   IN      MX      100 mail.provider.tld.
@@ -116,16 +116,16 @@ proxmox.com.            22879   IN      MX      100 mail.provider.tld.
 In such a setup, your provider must accept mails for your domain and
 forward them to you. Please note that this is not advisable, because
 spam detection needs to be done by the backup `MX` server as well, and
-external servers provided by ISPs usually don't.
+external servers provided by ISPs usually don't do this.
 
 However, you will never lose mails with such a setup, because the sending Mail
 Transport Agent (MTA) will simply deliver the mail to the backup
-server (mail.provider.tld) if the primary server (mail.proxmox.com) is
+server (mail.provider.tld), if the primary server (mail.proxmox.com) is
 not available.
 
 NOTE: Any reasonable mail server retries mail delivery if the target
-server is not available, and {pmg} stores mail and retries delivery
-for up to one week. So you will not lose mails if your mail server is
+server is not available. {pmg} stores mail and retries delivery
+for up to one week. Thus, you will not lose emails if your mail server is
 down, even if you run a single server setup.
 
 
@@ -137,15 +137,16 @@ ISPs do not use advanced spam prevention techniques, or do not filter
 spam at all. It is often better to run a second server yourself to
 avoid lower spam detection rates.
 
-It’s quite simple to set up a high performance load balanced
-mail cluster using `MX` records. You need to define two `MX` records
-with the same priority. Here is a complete example to make it clearer.
+It’s quite simple to set up a high-performance, load-balanced
+mail cluster using `MX` records. You just need to define two `MX`
+records with the same priority. The rest of this section will provide
+a complete example.
 
-First, you need to have at least 2 working {pmg} servers
-(mail1.example.com and mail2.example.com) configured as cluster (see
-section xref:pmg_cluster_administration[Cluster administration]
-below), each having its own IP address. Let us assume the following
-DNS address records:
+First, you need to have at least two working {pmg} servers
+(mail1.example.com and mail2.example.com), configured as a cluster (see
+section xref:pmg_cluster_administration[Cluster Administration]
+below), with each having its own IP address. Let us assume the
+following DNS address records:
 
 ----
 mail1.example.com.       22879   IN      A       1.2.3.4
@@ -153,7 +154,7 @@ mail2.example.com.       22879   IN      A       1.2.3.5
 ----
 
 It is always a good idea to add reverse lookup entries (PTR
-records) for those hosts. Many email systems nowadays reject mails
+records) for those hosts, as many email systems nowadays reject mails
 from hosts without valid PTR records. Then you need to define your `MX`
 records:
 
@@ -162,8 +163,9 @@ example.com.            22879   IN      MX      10 mail1.example.com.
 example.com.            22879   IN      MX      10 mail2.example.com.
 ----
 
-This is all you need. You will receive mails on both hosts, load-balanced using
-round-robin scheduling. If one host fails the other one is used.
+This is all you need. Following this, you will receive mail on both
+hosts, load-balanced using round-robin scheduling. If one host fails,
+the other one is used.
 
 
 Other ways
@@ -172,7 +174,7 @@ Other ways
 Multiple address records
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Using several DNS `MX` records is sometimes tedious if you have many
+Using several DNS `MX` records can be tedious, if you have many
 domains. It is also possible to use one `MX` record per domain, but
 multiple address records:
 
@@ -191,14 +193,14 @@ using DNAT. See your firewall manual for more details.
 
 
 [[pmg_cluster_administration]]
-Cluster administration
+Cluster Administration
 ----------------------
 
-Cluster administration can be done in the GUI or by using the command
+Cluster administration can be done from the GUI or by using the command
 line utility `pmgcm`. The CLI tool is a bit more verbose, so we suggest
 to use that if you run into any problems.
 
-NOTE: Always setup the IP configuration before adding a node to the
+NOTE: Always set up the IP configuration, before adding a node to the
 cluster. IP address, network mask, gateway address and hostname can’t
 be changed later.
 
@@ -226,8 +228,8 @@ NOTE: The node where you run the cluster create command will be the
 Show Cluster Status
 ~~~~~~~~~~~~~~~~~~~
 
-The GUI shows the status of all cluster nodes, and it is also possible
-to use the command line tool:
+The GUI shows the status of all cluster nodes. You can also view this
+using the command line tool:
 
 ----
 pmgcm status
@@ -254,28 +256,29 @@ the master.
 pmgcm join <master_ip>
 ----
 
-You need to enter the root password of the master host when asked for
+You need to enter the root password of the master host, when asked for
 a password. When joining a cluster using the GUI, you also need to
-enter the 'fingerprint' of the master node. You can get that information
+enter the 'fingerprint' of the master node. You can get this information
 by pressing the `Add` button on the master node.
 
-CAUTION: Node initialization deletes all existing databases, stops and
-then restarts all services accessing the database. So do not add nodes
-which are already active and receive mails.
+CAUTION: Node initialization deletes all existing databases, stops all
+services accessing the database and then restarts them. Therefore, do
+not add nodes which are already active and receive mail.
 
-Also, joining a cluster can take several minutes, because the new node
-needs to synchronize all data from the master (although this is done
-in the background).
+Also note that joining a cluster can take several minutes, because the
+new node needs to synchronize all data from the master (although this
+is done in the background).
 
-NOTE: If you join a new node, existing quarantined items from the other nodes are not synchronized to the new node.
+NOTE: If you join a new node, existing quarantined items from the
+other nodes are not synchronized to the new node.
 
 
 Deleting Nodes
 ~~~~~~~~~~~~~~
 
-Please detach nodes from the cluster network before removing them
-from the cluster configuration. Then run the following command on
-the master node:
+Please detach nodes from the cluster network, before removing them
+from the cluster configuration. Only then you should run the following
+command on the master node:
 
 ----
 pmgcm delete <cid>
@@ -288,7 +291,7 @@ Disaster Recovery
 ~~~~~~~~~~~~~~~~~
 
 It is highly recommended to use redundant disks on all cluster nodes
-(RAID). So in almost any circumstances you just need to replace the
+(RAID). So in almost any circumstance, you just need to replace the
 damaged hardware or disk. {pmg} uses an asynchronous
 clustering algorithm, so you just need to reboot the repaired node,
 and everything will work again transparently.
@@ -332,7 +335,7 @@ pmgcm sync --master_ip <master_ip>
 Total Cluster Failure
 ^^^^^^^^^^^^^^^^^^^^^
 
-* restore backup (Cluster and node information is not restored, you
+* restore backup (Cluster and node information is not restored; you
   have to recreate master and nodes)
 
 * tell it to become master
