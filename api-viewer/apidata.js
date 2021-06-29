@@ -1,4 +1,4 @@
-var pmgapi = [
+var apiSchema = [
    {
       "children" : [
          {
@@ -12553,11 +12553,36 @@ var pmgapi = [
                                  "type" : "string",
                                  "typetext" : "<string>"
                               },
+                              "since" : {
+                                 "description" : "Only list tasks since this UNIX epoch.",
+                                 "optional" : 1,
+                                 "type" : "integer",
+                                 "typetext" : "<integer>"
+                              },
                               "start" : {
                                  "minimum" : 0,
                                  "optional" : 1,
                                  "type" : "integer",
                                  "typetext" : "<integer> (0 - N)"
+                              },
+                              "statusfilter" : {
+                                 "description" : "List of Task States that should be returned.",
+                                 "format" : "pve-task-status-type-list",
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
+                              "typefilter" : {
+                                 "description" : "Only list tasks of this type (e.g., aptupdate, saupdate).",
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
+                              "until" : {
+                                 "description" : "Only list tasks until this UNIX epoch.",
+                                 "optional" : 1,
+                                 "type" : "integer",
+                                 "typetext" : "<integer>"
                               },
                               "userfilter" : {
                                  "optional" : 1,
@@ -15465,8 +15490,8 @@ var pmgapi = [
                                  "default" : "login",
                                  "description" : "Run specific command or default to login.",
                                  "enum" : [
-                                    "upgrade",
-                                    "login"
+                                    "login",
+                                    "upgrade"
                                  ],
                                  "optional" : 1,
                                  "type" : "string"
@@ -16405,52 +16430,6 @@ var pmgapi = [
    {
       "children" : [
          {
-            "children" : [
-               {
-                  "info" : {
-                     "DELETE" : {
-                        "allowtoken" : 1,
-                        "description" : "Delete user whitelist entries.",
-                        "method" : "DELETE",
-                        "name" : "whitelist_delete",
-                        "parameters" : {
-                           "additionalProperties" : 0,
-                           "properties" : {
-                              "address" : {
-                                 "description" : "The address you want to remove.",
-                                 "minLength" : 3,
-                                 "pattern" : "(?:[^\\s\\/\\\\;\\,]+)(?:\\,[^\\s\\/\\\\;\\,]+)*",
-                                 "type" : "string"
-                              },
-                              "pmail" : {
-                                 "description" : "List entries for the user with this primary email address. Quarantine users cannot specify this parameter, but it is required for all other roles.",
-                                 "maxLength" : 512,
-                                 "minLength" : 3,
-                                 "optional" : 1,
-                                 "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
-                                 "type" : "string"
-                              }
-                           }
-                        },
-                        "permissions" : {
-                           "check" : [
-                              "admin",
-                              "qmanager",
-                              "audit",
-                              "quser"
-                           ]
-                        },
-                        "protected" : 1,
-                        "returns" : {
-                           "type" : "null"
-                        }
-                     }
-                  },
-                  "leaf" : 1,
-                  "path" : "/quarantine/whitelist/{address}",
-                  "text" : "{address}"
-               }
-            ],
             "info" : {
                "DELETE" : {
                   "allowtoken" : 1,
@@ -16565,57 +16544,11 @@ var pmgapi = [
                   }
                }
             },
-            "leaf" : 0,
+            "leaf" : 1,
             "path" : "/quarantine/whitelist",
             "text" : "whitelist"
          },
          {
-            "children" : [
-               {
-                  "info" : {
-                     "DELETE" : {
-                        "allowtoken" : 1,
-                        "description" : "Delete user blacklist entries.",
-                        "method" : "DELETE",
-                        "name" : "blacklist_delete",
-                        "parameters" : {
-                           "additionalProperties" : 0,
-                           "properties" : {
-                              "address" : {
-                                 "description" : "The address you want to remove.",
-                                 "minLength" : 3,
-                                 "pattern" : "(?:[^\\s\\/\\\\;\\,]+)(?:\\,[^\\s\\/\\\\;\\,]+)*",
-                                 "type" : "string"
-                              },
-                              "pmail" : {
-                                 "description" : "List entries for the user with this primary email address. Quarantine users cannot specify this parameter, but it is required for all other roles.",
-                                 "maxLength" : 512,
-                                 "minLength" : 3,
-                                 "optional" : 1,
-                                 "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
-                                 "type" : "string"
-                              }
-                           }
-                        },
-                        "permissions" : {
-                           "check" : [
-                              "admin",
-                              "qmanager",
-                              "audit",
-                              "quser"
-                           ]
-                        },
-                        "protected" : 1,
-                        "returns" : {
-                           "type" : "null"
-                        }
-                     }
-                  },
-                  "leaf" : 1,
-                  "path" : "/quarantine/blacklist/{address}",
-                  "text" : "{address}"
-               }
-            ],
             "info" : {
                "DELETE" : {
                   "allowtoken" : 1,
@@ -16730,7 +16663,7 @@ var pmgapi = [
                   }
                }
             },
-            "leaf" : 0,
+            "leaf" : 1,
             "path" : "/quarantine/blacklist",
             "text" : "blacklist"
          },
@@ -17466,125 +17399,6 @@ var pmgapi = [
    {
       "children" : [
          {
-            "children" : [
-               {
-                  "info" : {
-                     "GET" : {
-                        "allowtoken" : 1,
-                        "description" : "Detailed Contact Statistics.",
-                        "method" : "GET",
-                        "name" : "contactdetails",
-                        "parameters" : {
-                           "additionalProperties" : 0,
-                           "properties" : {
-                              "contact" : {
-                                 "description" : "Contact email address.",
-                                 "maxLength" : 512,
-                                 "minLength" : 3,
-                                 "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
-                                 "type" : "string"
-                              },
-                              "day" : {
-                                 "description" : "Day of month. Get statistics for a single day.",
-                                 "maximum" : 31,
-                                 "minimum" : 1,
-                                 "optional" : 1,
-                                 "type" : "integer",
-                                 "typetext" : "<integer> (1 - 31)"
-                              },
-                              "endtime" : {
-                                 "description" : "Only consider entries older than 'endtime' (unix epoch). This is set to '<start> + 1day' by default.",
-                                 "minimum" : 1,
-                                 "optional" : 1,
-                                 "type" : "integer",
-                                 "typetext" : "<integer> (1 - N)"
-                              },
-                              "filter" : {
-                                 "description" : "Sender address filter.",
-                                 "maxLength" : 512,
-                                 "optional" : 1,
-                                 "type" : "string",
-                                 "typetext" : "<string>"
-                              },
-                              "month" : {
-                                 "description" : "Month. You will get statistics for the whole month if you do not specify a day.",
-                                 "maximum" : 12,
-                                 "minimum" : 1,
-                                 "optional" : 1,
-                                 "type" : "integer",
-                                 "typetext" : "<integer> (1 - 12)"
-                              },
-                              "orderby" : {
-                                 "description" : "Remote sorting configuration(JSON, ExtJS compatible).",
-                                 "maxLength" : 4096,
-                                 "optional" : 1,
-                                 "type" : "string",
-                                 "typetext" : "<string>"
-                              },
-                              "starttime" : {
-                                 "description" : "Only consider entries newer than 'starttime' (unix epoch). Default is 'now - 1day'.",
-                                 "minimum" : 0,
-                                 "optional" : 1,
-                                 "type" : "integer",
-                                 "typetext" : "<integer> (0 - N)"
-                              },
-                              "year" : {
-                                 "description" : "Year. Defaults to current year. You will get statistics for the whole year if you do not specify a month or day.",
-                                 "maximum" : 3000,
-                                 "minimum" : 1900,
-                                 "optional" : 1,
-                                 "type" : "integer",
-                                 "typetext" : "<integer> (1900 - 3000)"
-                              }
-                           }
-                        },
-                        "permissions" : {
-                           "check" : [
-                              "admin",
-                              "qmanager",
-                              "audit"
-                           ]
-                        },
-                        "returns" : {
-                           "items" : {
-                              "properties" : {
-                                 "blocked" : {
-                                    "description" : "Mail was blocked.",
-                                    "type" : "boolean"
-                                 },
-                                 "bytes" : {
-                                    "description" : "Mail traffic (Bytes).",
-                                    "type" : "number"
-                                 },
-                                 "sender" : {
-                                    "description" : "Sender email.",
-                                    "type" : "string"
-                                 },
-                                 "spamlevel" : {
-                                    "description" : "Spam score.",
-                                    "type" : "number"
-                                 },
-                                 "time" : {
-                                    "description" : "Receive time stamp",
-                                    "type" : "integer"
-                                 },
-                                 "virusinfo" : {
-                                    "description" : "Virus name.",
-                                    "optional" : 1,
-                                    "type" : "string"
-                                 }
-                              },
-                              "type" : "object"
-                           },
-                           "type" : "array"
-                        }
-                     }
-                  },
-                  "leaf" : 1,
-                  "path" : "/statistics/contact/{contact}",
-                  "text" : "{contact}"
-               }
-            ],
             "info" : {
                "GET" : {
                   "allowtoken" : 1,
@@ -17689,7 +17503,7 @@ var pmgapi = [
                   }
                }
             },
-            "leaf" : 0,
+            "leaf" : 1,
             "path" : "/statistics/contact",
             "text" : "contact"
          },
@@ -17826,125 +17640,6 @@ var pmgapi = [
             "text" : "detail"
          },
          {
-            "children" : [
-               {
-                  "info" : {
-                     "GET" : {
-                        "allowtoken" : 1,
-                        "description" : "Detailed Sender Statistics.",
-                        "method" : "GET",
-                        "name" : "senderdetails",
-                        "parameters" : {
-                           "additionalProperties" : 0,
-                           "properties" : {
-                              "day" : {
-                                 "description" : "Day of month. Get statistics for a single day.",
-                                 "maximum" : 31,
-                                 "minimum" : 1,
-                                 "optional" : 1,
-                                 "type" : "integer",
-                                 "typetext" : "<integer> (1 - 31)"
-                              },
-                              "endtime" : {
-                                 "description" : "Only consider entries older than 'endtime' (unix epoch). This is set to '<start> + 1day' by default.",
-                                 "minimum" : 1,
-                                 "optional" : 1,
-                                 "type" : "integer",
-                                 "typetext" : "<integer> (1 - N)"
-                              },
-                              "filter" : {
-                                 "description" : "Receiver address filter.",
-                                 "maxLength" : 512,
-                                 "optional" : 1,
-                                 "type" : "string",
-                                 "typetext" : "<string>"
-                              },
-                              "month" : {
-                                 "description" : "Month. You will get statistics for the whole month if you do not specify a day.",
-                                 "maximum" : 12,
-                                 "minimum" : 1,
-                                 "optional" : 1,
-                                 "type" : "integer",
-                                 "typetext" : "<integer> (1 - 12)"
-                              },
-                              "orderby" : {
-                                 "description" : "Remote sorting configuration(JSON, ExtJS compatible).",
-                                 "maxLength" : 4096,
-                                 "optional" : 1,
-                                 "type" : "string",
-                                 "typetext" : "<string>"
-                              },
-                              "sender" : {
-                                 "description" : "Sender email address.",
-                                 "maxLength" : 512,
-                                 "minLength" : 3,
-                                 "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
-                                 "type" : "string"
-                              },
-                              "starttime" : {
-                                 "description" : "Only consider entries newer than 'starttime' (unix epoch). Default is 'now - 1day'.",
-                                 "minimum" : 0,
-                                 "optional" : 1,
-                                 "type" : "integer",
-                                 "typetext" : "<integer> (0 - N)"
-                              },
-                              "year" : {
-                                 "description" : "Year. Defaults to current year. You will get statistics for the whole year if you do not specify a month or day.",
-                                 "maximum" : 3000,
-                                 "minimum" : 1900,
-                                 "optional" : 1,
-                                 "type" : "integer",
-                                 "typetext" : "<integer> (1900 - 3000)"
-                              }
-                           }
-                        },
-                        "permissions" : {
-                           "check" : [
-                              "admin",
-                              "qmanager",
-                              "audit"
-                           ]
-                        },
-                        "returns" : {
-                           "items" : {
-                              "properties" : {
-                                 "blocked" : {
-                                    "description" : "Mail was blocked.",
-                                    "type" : "boolean"
-                                 },
-                                 "bytes" : {
-                                    "description" : "Mail traffic (Bytes).",
-                                    "type" : "number"
-                                 },
-                                 "receiver" : {
-                                    "description" : "Receiver email.",
-                                    "type" : "string"
-                                 },
-                                 "spamlevel" : {
-                                    "description" : "Spam score.",
-                                    "type" : "number"
-                                 },
-                                 "time" : {
-                                    "description" : "Receive time stamp",
-                                    "type" : "integer"
-                                 },
-                                 "virusinfo" : {
-                                    "description" : "Virus name.",
-                                    "optional" : 1,
-                                    "type" : "string"
-                                 }
-                              },
-                              "type" : "object"
-                           },
-                           "type" : "array"
-                        }
-                     }
-                  },
-                  "leaf" : 1,
-                  "path" : "/statistics/sender/{sender}",
-                  "text" : "{sender}"
-               }
-            ],
             "info" : {
                "GET" : {
                   "allowtoken" : 1,
@@ -18049,130 +17744,11 @@ var pmgapi = [
                   }
                }
             },
-            "leaf" : 0,
+            "leaf" : 1,
             "path" : "/statistics/sender",
             "text" : "sender"
          },
          {
-            "children" : [
-               {
-                  "info" : {
-                     "GET" : {
-                        "allowtoken" : 1,
-                        "description" : "Detailed Receiver Statistics.",
-                        "method" : "GET",
-                        "name" : "receiverdetails",
-                        "parameters" : {
-                           "additionalProperties" : 0,
-                           "properties" : {
-                              "day" : {
-                                 "description" : "Day of month. Get statistics for a single day.",
-                                 "maximum" : 31,
-                                 "minimum" : 1,
-                                 "optional" : 1,
-                                 "type" : "integer",
-                                 "typetext" : "<integer> (1 - 31)"
-                              },
-                              "endtime" : {
-                                 "description" : "Only consider entries older than 'endtime' (unix epoch). This is set to '<start> + 1day' by default.",
-                                 "minimum" : 1,
-                                 "optional" : 1,
-                                 "type" : "integer",
-                                 "typetext" : "<integer> (1 - N)"
-                              },
-                              "filter" : {
-                                 "description" : "Sender address filter.",
-                                 "maxLength" : 512,
-                                 "optional" : 1,
-                                 "type" : "string",
-                                 "typetext" : "<string>"
-                              },
-                              "month" : {
-                                 "description" : "Month. You will get statistics for the whole month if you do not specify a day.",
-                                 "maximum" : 12,
-                                 "minimum" : 1,
-                                 "optional" : 1,
-                                 "type" : "integer",
-                                 "typetext" : "<integer> (1 - 12)"
-                              },
-                              "orderby" : {
-                                 "description" : "Remote sorting configuration(JSON, ExtJS compatible).",
-                                 "maxLength" : 4096,
-                                 "optional" : 1,
-                                 "type" : "string",
-                                 "typetext" : "<string>"
-                              },
-                              "receiver" : {
-                                 "description" : "Receiver email address.",
-                                 "maxLength" : 512,
-                                 "minLength" : 3,
-                                 "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
-                                 "type" : "string"
-                              },
-                              "starttime" : {
-                                 "description" : "Only consider entries newer than 'starttime' (unix epoch). Default is 'now - 1day'.",
-                                 "minimum" : 0,
-                                 "optional" : 1,
-                                 "type" : "integer",
-                                 "typetext" : "<integer> (0 - N)"
-                              },
-                              "year" : {
-                                 "description" : "Year. Defaults to current year. You will get statistics for the whole year if you do not specify a month or day.",
-                                 "maximum" : 3000,
-                                 "minimum" : 1900,
-                                 "optional" : 1,
-                                 "type" : "integer",
-                                 "typetext" : "<integer> (1900 - 3000)"
-                              }
-                           }
-                        },
-                        "permissions" : {
-                           "check" : [
-                              "admin",
-                              "qmanager",
-                              "audit"
-                           ]
-                        },
-                        "returns" : {
-                           "items" : {
-                              "properties" : {
-                                 "blocked" : {
-                                    "description" : "Mail was blocked.",
-                                    "type" : "boolean"
-                                 },
-                                 "bytes" : {
-                                    "description" : "Mail traffic (Bytes).",
-                                    "type" : "number"
-                                 },
-                                 "sender" : {
-                                    "description" : "Sender email.",
-                                    "type" : "string"
-                                 },
-                                 "spamlevel" : {
-                                    "description" : "Spam score.",
-                                    "type" : "number"
-                                 },
-                                 "time" : {
-                                    "description" : "Receive time stamp",
-                                    "type" : "integer"
-                                 },
-                                 "virusinfo" : {
-                                    "description" : "Virus name.",
-                                    "optional" : 1,
-                                    "type" : "string"
-                                 }
-                              },
-                              "type" : "object"
-                           },
-                           "type" : "array"
-                        }
-                     }
-                  },
-                  "leaf" : 1,
-                  "path" : "/statistics/receiver/{receiver}",
-                  "text" : "{receiver}"
-               }
-            ],
             "info" : {
                "GET" : {
                   "allowtoken" : 1,
@@ -18282,7 +17858,7 @@ var pmgapi = [
                   }
                }
             },
-            "leaf" : 0,
+            "leaf" : 1,
             "path" : "/statistics/receiver",
             "text" : "receiver"
          },
