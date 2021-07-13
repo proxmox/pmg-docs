@@ -294,14 +294,15 @@ acquired by `apt update`.
 
 .File `/etc/apt/sources.list`
 ----
-deb http://ftp.debian.org/debian buster main contrib
-
-deb http://ftp.debian.org/debian buster-updates main contrib
+# basic Debian repositories:
+deb http://ftp.debian.org/debian bullseye main contrib
+deb http://ftp.debian.org/debian bullseye-updates main contrib
 
 # security updates
-deb http://security.debian.org/debian-security buster/updates main contrib
+deb http://security.debian.org/debian-security bullseye-security main contrib
+
+# Proxmox Mail Gateway repo required too - see below!
 ----
-// FIXME for 7.0: change security update suite to bullseye-security
 
 In addition, {pmg} provides three different package repositories.
 
@@ -316,7 +317,7 @@ enabled by default:
 
 .File `/etc/apt/sources.list.d/pmg-enterprise.list`
 ----
-deb https://enterprise.proxmox.com/debian/pmg buster pmg-enterprise
+deb https://enterprise.proxmox.com/debian/pmg bullseye pmg-enterprise
 ----
 
 As soon as updates are available, the `root@pam` user is notified via
@@ -346,14 +347,15 @@ We recommend configuring this repository in `/etc/apt/sources.list`.
 
 .File `/etc/apt/sources.list`
 ----
-deb http://ftp.debian.org/debian buster main contrib
+deb http://ftp.debian.org/debian bullseye main contrib
+deb http://ftp.debian.org/debian bullseye-updates main contrib
+
+# security updates
+deb http://security.debian.org/debian-security bullseye-security main contrib
 
 # PMG pmg-no-subscription repository provided by proxmox.com,
 # NOT recommended for production use
-deb http://download.proxmox.com/debian/pmg buster pmg-no-subscription
-
-# security updates
-deb http://security.debian.org/debian-security buster/updates main contrib
+deb http://download.proxmox.com/debian/pmg bullseye pmg-no-subscription
 ----
 
 
@@ -367,7 +369,7 @@ features. As with before, you can configure this using
 
 .sources.list entry for `pmgtest`
 ----
-deb http://download.proxmox.com/debian/pmg buster pmgtest
+deb http://download.proxmox.com/debian/pmg bullseye pmgtest
 ----
 
 WARNING: the `pmgtest` repository should only be used
@@ -385,20 +387,22 @@ The key used for verification is already installed, if you install from
 our installation CD. If you install via another means, you can manually
 download the key with:
 
- # wget http://download.proxmox.com/debian/proxmox-ve-release-6.x.gpg -O /etc/apt/trusted.gpg.d/proxmox-ve-release-6.x.gpg
-
-Please verify the checksum afterwards:
-
 ----
-# sha512sum /etc/apt/trusted.gpg.d/proxmox-ve-release-6.x.gpg
-acca6f416917e8e11490a08a1e2842d500b3a5d9f322c6319db0927b2901c3eae23cfb5cd5df6facf2b57399d3cfa52ad7769ebdd75d9b204549ca147da52626  /etc/apt/trusted.gpg.d/proxmox-ve-release-6.x.gpg
+ # wget https://enterprise.proxmox.com/debian/proxmox-release-bullseye.gpg -O /etc/apt/trusted.gpg.d/proxmox-release-bullseye.gpg
 ----
 
-or
+Verify the checksum afterwards with the `sha512sum` CLI tool:
 
 ----
-# md5sum /etc/apt/trusted.gpg.d/proxmox-ve-release-6.x.gpg
-f3f6c5a3a67baf38ad178e5ff1ee270c  /etc/apt/trusted.gpg.d/proxmox-ve-release-6.x.gpg
+# sha512sum /etc/apt/trusted.gpg.d/proxmox-release-bullseye.gpg
+7fb03ec8a1675723d2853b84aa4fdb49a46a3bb72b9951361488bfd19b29aab0a789a4f8c7406e71a69aabbc727c936d3549731c4659ffa1a08f44db8fdcebfa /etc/apt/trusted.gpg.d/proxmox-release-bullseye.gpg
+----
+
+or the `md5sum` CLI tool:
+
+----
+# md5sum /etc/apt/trusted.gpg.d/proxmox-release-bullseye.gpg
+bcc35c7173e0845c0d6ad6470b70f50e /etc/apt/trusted.gpg.d/proxmox-release-bullseye.gpg
 ----
 
 
@@ -418,9 +422,9 @@ are needed in order to support the RAR archive format:
 
 .Additional sources.list entry for `non-free`
 ----
-deb http://deb.debian.org/debian/ buster non-free
-deb http://security.debian.org/debian-security buster/updates non-free
-deb http://deb.debian.org/debian/ buster-updates non-free
+deb http://deb.debian.org/debian/ bullseye non-free
+deb http://security.debian.org/debian-security bullseye-security non-free
+deb http://deb.debian.org/debian/ bullseye-updates non-free
 ----
 
 Following this, you can install the required packages with:
