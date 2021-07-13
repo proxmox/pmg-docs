@@ -23,7 +23,7 @@ pmgmirror - Database Mirror Daemon
 ==================================
 endif::manvolnum[]
 
-{pmg} uses an application specific asynchronous replication
+{pmg} uses an application-specific, asynchronous replication
 algorithm to replicate the database to all cluster nodes.
 
 The daemon uses the ssh tunnel provided by 'pmgtunnel' to access

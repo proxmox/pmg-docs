@@ -23,12 +23,12 @@ pmgproxy - Proxmox Mail Gateway API Proxy Daemon
 ================================================
 endif::manvolnum[]
 
-This daemon exposes the whole {pmg} API on TCP port 8006 using
+This daemon exposes the whole {pmg} API on TCP port 8006, using
 HTTPS. It runs as user `www-data` and has very limited permissions.
 Operations requiring more permissions are forwarded to the local
 `pmgdaemon`.
 
-Requests targeted for other nodes are automatically forwarded to those
+Requests targeted at other nodes are automatically forwarded to those
 nodes. This means that you can manage your whole cluster by connecting
 to a single {pmg} node.
 
@@ -76,18 +76,18 @@ By default the `pmgproxy` daemon listens on the wildcard address and accepts
 connections from both IPv4 and IPv6 clients.
 
 
-By setting `LISTEN_IP` in `/etc/default/pmgproxy` you can control to which IP
-address the `pmgproxy` daemon binds. The IP-address needs to be configured on
+By setting `LISTEN_IP` in `/etc/default/pmgproxy`, you can control which IP
+address the `pmgproxy` daemon binds to. The IP-address needs to be configured on
 the system.
 
 Setting the `sysctl` `net.ipv6.bindv6only` to the non-default `1` will cause
-the daemons to only accept connection from IPv6 clients, while  usually also
-causing lots of other issues. If you set this configuration we recommend to
-either remove the `sysctl` setting, or set the `LISTEN_IP` to `0.0.0.0` (which
-will only allow IPv4 clients).
+the daemons to only accept connections from IPv6 clients, while usually also
+causing lots of other issues. If you set this configuration, we recommend either
+removing the `sysctl` setting, or setting the `LISTEN_IP` to `0.0.0.0` (which
+will allow only IPv4 clients).
 
-`LISTEN_IP` can be used to only to restricting the socket to an internal
-interface and thus have less exposure to the public internet, for example:
+`LISTEN_IP` can be used to restrict the socket to an internal
+interface, thus leaving less exposure to the public internet, for example:
 
 ----
 LISTEN_IP="192.0.2.1"
@@ -107,8 +107,8 @@ LISTEN_IP="fe80::c463:8cff:feb9:6a4e%vmbr0"
 ----
 
 WARNING: The nodes in a cluster need access to `pmgproxy` for communication,
-possibly on different sub-nets. It is **not recommended** to set `LISTEN_IP` on
-clustered systems.
+possibly across different subnets. It is **not recommended** to set `LISTEN_IP`
+on clustered systems.
 
 To apply the change you need to either reboot your node or fully restart the
 `pmgproxy` service:
@@ -118,24 +118,24 @@ systemctl restart pmgproxy.service
 ----
 
 NOTE: Unlike `reload`, a `restart` of the pmgproxy service can interrupt some
-long-running worker processes, for example a running console.So, please use a
-maintenance window to bring this change in effect.
+long-running worker processes, for example, a running console. Therefore, you
+should set a maintenance window to bring this change into effect.
 
 
 SSL Cipher Suite
 ----------------
 
-You can define the cipher list in `/etc/default/pmgproxy`, for example
+You can define the cipher list in `/etc/default/pmgproxy`, for example:
 
  CIPHERS="ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256"
 
-Above is the default. See the `ciphers(1)` man page from the `openssl`
+The above is the default. See the `ciphers(1)` man page from the `openssl`
 package for a list of all available options.
 
-The first of these ciphers, available to both the client and the `pmgproxy`,
+The first of these ciphers that is available to both the client and `pmgproxy`
 will be used.
 
-Additionally you can allow the client to choose the cipher from the list above
+Additionally, you can allow the client to choose the cipher from the list above,
 by disabling the HONOR_CIPHER_ORDER option in `/etc/default/pmgproxy`:
 
  HONOR_CIPHER_ORDER=0
@@ -146,7 +146,7 @@ Diffie-Hellman Parameters
 
 You can define the used Diffie-Hellman parameters in
 `/etc/default/pmgproxy` by setting `DHPARAMS` to the path of a file
-containing DH parameters in PEM format, for example
+containing DH parameters in PEM format, for example:
 
  DHPARAMS="/path/to/dhparams.pem"
 
@@ -160,7 +160,8 @@ COMPRESSION
 -----------
 
 By default `pmgproxy` uses gzip HTTP-level compression for compressible
-content if the client supports it. This can be disabled in `/etc/default/pmgproxy`
+content, if the client supports it. This can be disabled in
+`/etc/default/pmgproxy`
 
  COMPRESSION=0
 

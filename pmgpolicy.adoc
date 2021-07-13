@@ -25,8 +25,8 @@ endif::manvolnum[]
 
 This daemon implements the Postfix SMTP access policy delegation
 protocol on `127.0.0.1:10022`. It listens to a local address
-only, so you cannot access it from outside. We configure Postfix to
-use this service for greylisting and as SPF policy server.
+only, so you cannot access it from the outside. We configure Postfix to
+use this service for greylisting and as an SPF policy server.
 
 
 ifdef::manvolnum[]

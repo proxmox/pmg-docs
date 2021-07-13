@@ -27,7 +27,7 @@ This daemon exposes the whole {pmg} API on `127.0.0.1:85`. It runs as
 `root` and has permission to do all privileged operations.
 
 NOTE: The daemon listens to a local address only, so you cannot access
-it from outside. The `pmgproxy` daemon exposes the API to the outside
+it from the outside. The `pmgproxy` daemon exposes the API to the outside
 world.
 
 

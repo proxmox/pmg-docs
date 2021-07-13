@@ -23,10 +23,10 @@ pmgtunnel - Cluster Tunnel Daemon
 =================================
 endif::manvolnum[]
 
-This daemon creates a ssh tunnel to the postgres database in other
+This daemon creates an ssh tunnel to the Postgres databases on other
 cluster nodes (port 5432). The tunnel is used to synchronize the
-database using an application specific asynchronous replication
-algorythm.
+database, using an application-specific, asynchronous replication
+algorithm.
 
 ifdef::manvolnum[]
 include::pmg-copyright.adoc[]
