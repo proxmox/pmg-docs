@@ -1,3 +1,18 @@
+pmg-docs (7.0-2) bullseye; urgency=medium
+
+  * update static schema information
+
+  * certs: document wildcard certificate support
+
+  * faq: update dates and releases in support table
+
+  * update repository documentation for Proxmox Mail Gateway 7 and Debian 11
+    Bullseye
+
+  * various grammar, typos and general language improvements
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 13 Jul 2021 19:15:27 +0200
+
 pmg-docs (7.0-1) bullseye; urgency=medium
 
   * bump for Proxmox Mail Gateway 7 based on Debian 11 Bullseye
