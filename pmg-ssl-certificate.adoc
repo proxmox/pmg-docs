@@ -2,11 +2,11 @@
 Certificate Management
 ----------------------
 
-Access to the administration web-interface is always encrypted through `https`.
-Each {pmg} host creates by default its own (self-signed) certificate.
+Access to the web-based administration interface is always encrypted through
+`https`.  Each {pmg} host creates by default its own (self-signed) certificate.
 This certificate is used for encrypted communication with the host's `pmgproxy`
-service for any API call, between an user and the web-interface or between
-nodes in a cluster.
+service, for any API call between a user and the web-interface or between nodes
+in a cluster.
 
 Certificate verification in a {pmg} cluster is done based on pinning the
 certificate fingerprints in the cluster configuration and verifying that they
@@ -16,20 +16,20 @@ match on connection.
 Certificates for the API and SMTP
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-{pmg} knows two different certificates:
+{pmg} uses two different certificates:
 
 * `/etc/pmg/pmg-api.pem`: the required certificate used for {pmg} API requests.
 * `/etc/pmg/pmg-tls.pem`: the optional certificate used for SMTP TLS
   connections, see xref:pmgconfig_mailproxy_tls[mailproxy TLS configuration]
   for details.
 
-You have the following options for those certificates:
+You have the following options for these certificates:
 
-1. keep using the default self-signed certificate in `/etc/pmg/pmg-api.pem`.
-2. use an externally provided certificate (for example, signed by a commercial
+1. Keep using the default self-signed certificate in `/etc/pmg/pmg-api.pem`.
+2. Use an externally provided certificate (for example, signed by a commercial
 Certificate Authority (CA)).
-3. use an ACME provider like Let's Encrypt to get a trusted certificate with
-automatic renewal, this is also integrated in the {pmg} API and Webinterface.
+3. Use an ACME provider like Let's Encrypt to get a trusted certificate with
+automatic renewal; this is also integrated in the {pmg} API and web interface.
 
 Certificates are managed through the {pmg} web-interface/API or using the
 the `pmgconfig` CLI tool.
@@ -39,7 +39,7 @@ Upload Custom Certificate
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you already have a certificate which you want to use for a {pmg} host, you
-can upload that certificate simply over the web interface.
+can simply upload that certificate over the web interface.
 
 [thumbnail="pmg-gui-certs-upload-custom.png"]
 
@@ -50,14 +50,14 @@ Trusted certificates via Let's Encrypt (ACME)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 {PMG} includes an implementation of the **A**utomatic **C**ertificate
-**M**anagement **E**nvironment **ACME** protocol, allowing {pmg} admins to
-use an ACME provider like Let's Encrypt for easy setup of TLS certificates
-which are accepted and trusted from modern operating systems and web browsers
+**M**anagement **E**nvironment (**ACME**) protocol, allowing {pmg} admins to
+use an ACME provider like Let's Encrypt for easy setup of TLS certificates,
+which are accepted and trusted by modern operating systems and web browsers
 out of the box.
 
 Currently, the two ACME endpoints implemented are the
-https://letsencrypt.org[Let's Encrypt (LE)] production and its staging
-environment. Our ACME client supports validation of `http-01` challenges using
+https://letsencrypt.org[Let's Encrypt (LE)] production and staging
+environments. Our ACME client supports validation of `http-01` challenges using
 a built-in web server and validation of `dns-01` challenges using a DNS plugin
 supporting all the DNS API endpoints https://acme.sh[acme.sh] does.
 
@@ -67,8 +67,8 @@ ACME Account
 
 [thumbnail="pmg-gui-acme-create-account.png"]
 
-You need to register an ACME account per cluster with the endpoint you want to
-use. The email address used for that account will serve as contact point for
+You need to register an ACME account per cluster, with the endpoint you want to
+use. The email address used for that account will serve as the contact point for
 renewal-due or similar notifications from the ACME endpoint.
 
 You can register or deactivate ACME accounts over the web interface
@@ -86,15 +86,15 @@ directory.
 ACME Plugins
 ^^^^^^^^^^^^
 
-The ACME plugins task is to provide automatic verification that you, and thus
+The ACME plugin's role is to provide automatic verification that you, and thus
 the {pmg} cluster under your operation, are the real owner of a domain. This is
-the basis building block for automatic certificate management.
+the basic building block of automatic certificate management.
 
 The ACME protocol specifies different types of challenges, for example the
-`http-01` where a web server provides a file with a certain content to prove
+`http-01`, where a web server provides a file with a specific token to prove
 that it controls a domain. Sometimes this isn't possible, either because of
 technical limitations or if the address of a record is not reachable from the
-public internet. The `dns-01` challenge can be used in these cases.  The
+public internet. The `dns-01` challenge can be used in such cases. This
 challenge is fulfilled by creating a certain DNS record in the domain's zone.
 
 [thumbnail="pmg-gui-acme-create-challenge-plugin.png"]
@@ -116,7 +116,7 @@ using the `pmgconfig` command.
 
 After configuring the desired domain(s) for a node and ensuring that the
 desired ACME account is selected, you can order your new certificate over the
-web-interface. On success the interface will reload after circa 10 seconds.
+web-interface. On success, the interface will reload after roughly 10 seconds.
 
 Renewal will happen xref:sysadmin_certs_acme_automatic_renewal[automatically].
 
@@ -125,13 +125,13 @@ ACME HTTP Challenge Plugin
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 There is always an implicitly configured `standalone` plugin for validating
-`http-01` challenges via the built-in webserver spawned on port 80.
+`http-01` challenges via the built-in web server spawned on port 80.
 
-NOTE: The name `standalone` means that it can provide the validation on it's
-own, without any third party service. So, this plugin works also for cluster
+NOTE: The name `standalone` means that it can provide the validation on its
+own, without any third party service. So this plugin also works for cluster
 nodes.
 
-There are a few prerequisites to use it for certificate management with Let's
+There are a few prerequisites to use this for certificate management with Let's
 Encrypts ACME.
 
 * You have to accept the ToS of Let's Encrypt to register an account.
@@ -154,7 +154,7 @@ Configuring ACME DNS APIs for validation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 {pmg} re-uses the DNS plugins developed for the `acme.sh`
-footnote:[acme.sh https://github.com/acmesh-official/acme.sh] project, please
+footnote:[acme.sh https://github.com/acmesh-official/acme.sh] project. Please
 refer to its documentation for details on configuration of specific APIs.
 
 The easiest way to configure a new plugin with the DNS API is using the web
@@ -162,27 +162,27 @@ interface (`Certificates -> ACME Accounts/Challenges`).
 
 [thumbnail="pmg-gui-acme-create-challenge-plugin.png"]
 
-Add a new challenge plugin, here you can select your API provider, enter the
-credential data to access your account over their API.
+Here you can add a new challenge plugin by selecting your API provider and
+entering the credential data to access your account over their API.
 
 TIP: See the acme.sh
 https://github.com/acmesh-official/acme.sh/wiki/dnsapi#how-to-use-dns-api[How to use DNS API]
 wiki for more detailed information about getting API credentials for your
 provider. Configuration values do not need to be quoted with single or double
-quotes, for some plugins that is even an error.
+quotes; for some plugins that is even an error.
 
-As there are many DNS providers and API endpoints {pmg} automatically generates
-the form for the credentials, but not all providers are annotated yet. For
-those you will see a bigger text area, simply copy all the credentials
-`KEY`=`VALUE` pairs in there.
+As there are many DNS providers and API endpoints, {pmg} automatically generates
+the form for the credentials, but not all providers are annotated yet. For those
+you will see a bigger text area, into which you simply need to copy all the
+credential's `KEY`=`VALUE` pairs.
 
 DNS Validation through CNAME Alias
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A special `alias` mode can be used to handle the validation on a different
+A special `alias` mode can be used to handle validation on a different
 domain/DNS server, in case your primary/real DNS does not support provisioning
 via an API. Manually set up a permanent `CNAME` record for
-`_acme-challenge.domain1.example` pointing to `_acme-challenge.domain2.example`
+`_acme-challenge.domain1.example` pointing to `_acme-challenge.domain2.example`,
 and set the `alias` property in the {pmg} node configuration file
 `/etc/pmg/node.conf` to `domain2.example` to allow the DNS server of
 `domain2.example` to validate all challenges for `domain1.example`.
@@ -193,10 +193,10 @@ Wildcard Certificates
 
 Wildcard DNS names start with a `*.` prefix and are considered valid for all
 (one-level) subdomain names of the verified domain. So a certificate for
-`*.domain.example` is valid for example for `foo.domain.example` and
+`*.domain.example` is valid for `foo.domain.example` and
 `bar.domain.example`, but not for `baz.foo.domain.example`.
 
-You can currently create wildcard certificates only with the
+Currently, you can only create wildcard certificates with the
 https://letsencrypt.org/docs/challenge-types/#dns-01-challenge[DNS challenge type].
 
 
@@ -217,9 +217,9 @@ Automatic renewal of ACME certificates
 
 If a node has been successfully configured with an ACME-provided certificate
 (either via pmgconfig or via the web-interface/API), the certificate will be
-automatically renewed by the `pmg-daily.service`. Currently, renewal is
-triggered if the certificate either already expired or if it will expire in the
-next 30 days.
+renewed automatically by the `pmg-daily.service`. Currently, renewal is
+triggered if the certificate either has already expired or if it will expire in
+the next 30 days.
 
 Manually Change Certificate over Command-Line
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -227,13 +227,13 @@ Manually Change Certificate over Command-Line
 If you want to get rid of certificate verification warnings, you have to
 generate a valid certificate for your server.
 
-Login to your {pmg} via ssh or use the console:
+Log in to your {pmg} via ssh or use the console:
 
 ----
 openssl req -newkey rsa:2048 -nodes -keyout key.pem -out req.pem
 ----
 
-Follow the instructions on the screen, see this example:
+Follow the instructions on the screen, for example:
 
 ----
 Country Name (2 letter code) [AU]: AT
@@ -249,9 +249,9 @@ A challenge password []: not necessary
 An optional company name []: not necessary
 ----
 
-After you finished this certificate request you have to send the file
+After you have finished the certificate request, you have to send the file
 `req.pem` to your Certification Authority (CA). The CA will issue the
-certificate (BASE64 encoded) based on your request – save this file as
+certificate (BASE64 encoded), based on your request – save this file as
 `cert.pem` to your {pmg}.
 
 To activate the new certificate, do the following on your {pmg}:
@@ -266,11 +266,11 @@ Then restart the API servers:
 systemctl restart pmgproxy
 ----
 
-Test your new certificate by using your browser.
+Test your new certificate, using your browser.
 
-NOTE: To transfer files from and to your {pmg}, you can use secure copy: If you
-desktop is Linux, you can use the `scp` command line tool. If your desktop PC
-is windows, please use a scp client like WinSCP (see https://winscp.net/).
+NOTE: To transfer files to and from your {pmg}, you can use secure copy: If your
+desktop runs Linux, you can use the `scp` command line tool. If your desktop PC
+runs windows, please use an scp client like WinSCP (see https://winscp.net/).
 
 Change Certificate for Cluster Setups
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
