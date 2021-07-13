@@ -41,7 +41,7 @@ List version details for important packages:
 # pmgversion -v
 ----
 
-Please use the Debian package management for details about other packages
+Please use the Debian package manager for details about other packages:
 
 ----
 # dpkg -l

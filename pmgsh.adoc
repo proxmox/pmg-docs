@@ -35,7 +35,7 @@ List entries:
 # pmgsh ls /
 ----
 
-Call method 'GET' on an specific API path:
+Call the 'GET' method on a specific API path:
 
 ----
 # pmgsh get /version

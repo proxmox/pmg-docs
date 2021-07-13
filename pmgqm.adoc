@@ -25,7 +25,7 @@ pmgqm - Quarantine Management Toolkit
 :pmg-toplevel:
 endif::manvolnum[]
 
-Toolkit to manage spam an virus quarantine, and send spam report mails.
+Toolkit to manage spam and virus quarantine, and send spam report mails.
 
 ifdef::manvolnum[]
 include::pmg-copyright.adoc[]

@@ -25,9 +25,9 @@ pmgupgrade - Upgrade Proxmox Mail Gateway
 endif::manvolnum[]
 
 This is a small wrapper around `apt full-upgrade`. We use this to print
-additional information, like when a node reboot due to a kernel update is
-required. Additionally, it can run an interactive shell after the update, this
-is used when starting an upgrade using the web GUI.
+additional information, like when a node reboot is required, due to a kernel
+update. Additionally, it can run an interactive shell after the update. This is
+used when starting an upgrade using the web GUI.
 
 If you are already logged in on the console, it is preferable to invoke
 `apt` directly.

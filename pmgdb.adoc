@@ -26,9 +26,9 @@ pmgdb - Database Management Toolkit
 endif::manvolnum[]
 
 The `pmgdb` toolkit is used to simplify common database management
-tasks. Most importantly, it is used internally to create and initialize
+tasks. It is primarily used internally to create and initialize
 the default database. You can also use it to reset the filter rules
-back to factory defaults:
+to factory defaults:
 
 ----
 pmgdb reset
