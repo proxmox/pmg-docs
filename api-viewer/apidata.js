@@ -10105,7 +10105,7 @@ var apiSchema = [
                            "typetext" : "<boolean>"
                         },
                         "scriptedupdates" : {
-                           "default" : 0,
+                           "default" : 1,
                            "description" : "Enables ScriptedUpdates (incremental download of signatures)",
                            "optional" : 1,
                            "type" : "boolean",
