@@ -281,18 +281,42 @@ apt install proxmox-mailgateway-container
 Package Repositories
 --------------------
 
-All {debian} based systems use
-https://en.wikipedia.org/wiki/Advanced_Packaging_Tool[APT] as a package
-management tool. The list of repositories is defined in
-`/etc/apt/sources.list` and `.list` files found inside
-`/etc/apt/sources.d/`. Updates can be installed directly using
-`apt`, or via the GUI.
+{pmg} uses http://en.wikipedia.org/wiki/Advanced_Packaging_Tool[APT] as its
+package management tool like any other Debian-based system.
 
-Apt `sources.list` files list one package repository per line, with
-the most preferred source listed first. Empty lines are ignored, and a
-`#` character anywhere on a line marks the remainder of that line as a
-comment. The information available from the configured sources is
-acquired by `apt update`.
+Repositories in {pmg}
+~~~~~~~~~~~~~~~~~~~~~
+
+Repositories are a collection of software packages. They can be used to install
+new software, but are also important to get new updates.
+
+NOTE: You need valid Debian and Proxmox repositories to get the latest
+security updates, bug fixes and new features.
+
+APT Repositories are defined in the file `/etc/apt/sources.list` and in `.list`
+files placed in `/etc/apt/sources.list.d/`.
+
+Repository Management
+^^^^^^^^^^^^^^^^^^^^^
+
+[thumbnail="pmg-gui-admin-repositories.png"]
+
+Since {pmg} 7.0 you can check the repository state in the web interface. The
+'Dashboard' shows a high level status overview, while the separate 'Repository'
+panel (accessible via 'Administration') shows in-depth status and list of all
+configured repositories.
+
+Basic repository management, for example, activating or deactivating a
+repository, is also supported.
+
+Sources.list
+^^^^^^^^^^^^
+
+In a `sources.list` file, each line defines a package repository. The preferred
+source must come first.  Empty lines are ignored. A `#` character anywhere on a
+line marks the remainder of that line as a comment. The available packages from
+a repository are acquired by running `apt update`. Updates can be installed
+directly using `apt`, or via the GUI (Administration -> Updates).
 
 .File `/etc/apt/sources.list`
 ----
@@ -306,7 +330,7 @@ deb http://security.debian.org/debian-security bullseye-security main contrib
 # Proxmox Mail Gateway repo required too - see below!
 ----
 
-In addition, {pmg} provides three different package repositories.
+{pmg} provides three different package repositories.
 
 
 {pmg} Enterprise Repository
