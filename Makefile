@@ -5,7 +5,6 @@ ASCIIDOC_PMG=./asciidoc-pmg
 
 GEN_PACKAGE=pmg-doc-generator
 DOC_PACKAGE=pmg-docs
-WEB_PACKAGE=pmg-docs-apache
 
 # also update debian/changelog
 PKGREL=1
@@ -16,7 +15,6 @@ ARCH:=$(shell dpkg-architecture -qDEB_BUILD_ARCH)
 
 GEN_DEB=${GEN_PACKAGE}_${DEB_VERSION_UPSTREAM_REVISION}_${ARCH}.deb
 DOC_DEB=${DOC_PACKAGE}_${DEB_VERSION_UPSTREAM_REVISION}_all.deb
-WEB_DEB=${WEB_PACKAGE}_${DEB_VERSION_UPSTREAM_REVISION}_all.deb
 
 export SOURCE_DATE_EPOCH ?= $(shell dpkg-parsechangelog -STimestamp)
 SOURCE_DATE_HUMAN := $(shell date -d "@${SOURCE_DATE_EPOCH}")
@@ -155,7 +153,7 @@ dinstall: ${GEN_DEB} ${DOC_DEB}
 .PHONY: deb
 deb: ${DOC_DEB}
 
-${WEB_DEB} ${GEN_DEB}: ${DOC_DEB}
+${GEN_DEB}: ${DOC_DEB}
 
 ${DOC_DEB}:
 	rm -f ${GEN_DEB} ${DOC_DEB}
@@ -163,7 +161,7 @@ ${DOC_DEB}:
 	rsync -a * build/
 	echo "git clone git://git.proxmox.com/git/pmg-docs.git\\ngit checkout ${GITVERSION}" > build/debian/SOURCE
 	cd build; dpkg-buildpackage -b -us -uc
-	lintian $(DOC_DEB) $(GEN_DEB) $(WEB_DEB)
+	lintian $(DOC_DEB) $(GEN_DEB)
 
 .PHONY: clean-build
 clean-build:
@@ -199,8 +197,8 @@ doc-install: index.html $(API_VIEWER_SOURCES) verify-images
 	install -m 0644 ${API_VIEWER_SOURCES} $(DESTDIR)/usr/share/${DOC_PACKAGE}/api-viewer
 
 .PHONY: upload
-upload: ${WEB_DEB} ${GEN_DEB} ${DOC_DEB}
-	tar cf - ${WEB_DEB} ${GEN_DEB} ${DOC_DEB} | ssh -X repoman@repo.proxmox.com -- upload --product pmg --dist stretch
+upload: ${GEN_DEB} ${DOC_DEB}
+	tar cf - ${GEN_DEB} ${DOC_DEB} | ssh -X repoman@repo.proxmox.com -- upload --product pmg --dist stretch
 
 .PHONY: update
 update: clean
