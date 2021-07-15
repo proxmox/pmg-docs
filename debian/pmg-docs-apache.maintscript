@@ -1,1 +1,0 @@
-mv_conffile /etc/apache2/conf-available/pmg-docs.conf /etc/apache2/conf-available/pmg-docs-apache.conf 6.0-3~
