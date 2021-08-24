@@ -27,6 +27,23 @@ endif::manvolnum[]
 
 Toolkit to manage spam and virus quarantine, and send spam report mails.
 
+The possible timespans are `week`, `yesterday`, and `today`. The default
+pmgspamreport.service is run at 00:05 every day and calls the `pmgqm` command
+with the `--timespan yesterday` parameter.
+This will send a spam report if at least one new spam mail was moved to the
+quarantine since the beginning of the previous day.
+
+The service can be edited, for example, to change the timespan to `today` or
+`week`, with the following command:
+----
+systemctl edit pmgspamreport.service
+----
+
+The timer can be edited with the command below:
+----
+systemctl edit pmgspamreport.timer
+----
+
 ifdef::manvolnum[]
 include::pmg-copyright.adoc[]
 endif::manvolnum[]
