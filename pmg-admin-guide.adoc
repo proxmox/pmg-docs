@@ -79,6 +79,8 @@ include::pmgreport.adoc[]
 
 include::pmgupgrade.adoc[]
 
+include::pmg-log-tracker.adoc[]
+
 :leveloffset: 1
 
 include::nmap.adoc[]

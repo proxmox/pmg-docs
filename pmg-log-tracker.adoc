@@ -1,0 +1,36 @@
+[[chapter_pmg-log-tracker]]
+ifndef::manvolnum[]
+pmg-log-tracker - Backend for the Tracking Center
+=================================================
+:pmg-toplevel:
+endif::manvolnum[]
+
+`pmg-log-tracker` is the backend for the Tracking Center. It parses the syslog
+files in `/var/log/` for mail information. You can specify a different file to
+parse, for example the mail log `/var/log/mail.log`, using the `-i` option.
+
+As an example, parsing the mail.log file for everything between the 1st and 15th
+of July would be possible with the following command:
+----
+pmg-log-tracker -i /var/log/mail.log -s "2021-07-01 00:00:00" -e "2021-07-15 23:59:59"
+----
+
+Start time `-s` and end time `-e` are optional. By default the end time will be
+the current time and the start time will be 0:00 of the current day.
+
+With the `--verbose` option, additional info will be printed, such as the
+complete log for every mail.
+
+It is also possible to filter the log entries based on hostname, from address,
+to address, and other parameters. For a complete overview of all available
+options, see `pmg-log-tracker --help`.
+
+As a side effect of parsing the syslog, which doesn't contain information about
+the year of the entries, the year passed to the `-s` and `-e` options has to
+be the current one, rather than the one in which the logs were actually created.
+
+
+ifdef::manvolnum[]
+include::pmg-copyright.adoc[]
+endif::manvolnum[]
+
