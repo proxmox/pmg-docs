@@ -25,18 +25,16 @@ Configuration Management
 :pmg-toplevel:
 endif::manvolnum[]
 
-{pmg} is usually configured using the web-based Graphical User
-Interface (GUI), but it is also possible to directly edit the
-configuration files, using the REST API over 'https'
-or the command line tool `pmgsh`.
+{pmg} is usually configured using the web-based Graphical User Interface (GUI),
+but it is also possible to directly edit the configuration files, using the
+REST API over 'https' or the command line tool `pmgsh`.
 
-The command line tool `pmgconfig` is used to simplify some common
-configuration tasks, such as generating certificates and rewriting
-service configuration files.
+The command line tool `pmgconfig` is used to simplify some common configuration
+tasks, such as generating certificates and rewriting service configuration
+files.
 
-NOTE: We use a Postgres database to store mail filter rules and
-statistical data. See chapter xref:chapter_pmgdb[Database Management]
-for more information.
+NOTE: We use a Postgres database to store mail filter rules and statistical
+data. See chapter xref:chapter_pmgdb[Database Management] for more information.
 
 
 Configuration files overview
@@ -959,8 +957,115 @@ The API and web interface offer the following configuration options:
 
 include::fetchmail.conf.5-opts.adoc[]
 
+[[user_tfa_auth]]
+Two-Factor Authentication
+-------------------------
+
+Users of the admin interface can configure two-factor authentication to
+increase protection of their accounts.
+
+Available Second Factors
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can set up multiple second factors, in order to avoid a situation in which
+losing your smartphone or security key locks you out of your account
+permanently.
+
+The following two-factor authentication methods are available in addition to
+realm-enforced TOTP and YubiKey OTP:
+
+* User configured TOTP
+  (https://en.wikipedia.org/wiki/Time-based_One-Time_Password[Time-based One-Time Password]).
+  A short code derived from a shared secret and the current time, it changes
+  every 30 seconds.
+* WebAuthn (https://en.wikipedia.org/wiki/WebAuthn[Web Authentication]).
+  A general standard for authentication. It is implemented by various security
+  devices, like hardware keys or trusted platform modules (TPM) from a computer
+  or smart phone.
+* Single use Recovery Keys. A list of keys which should either be
+  printed out and locked in a secure place or saved digitally in an electronic
+  vault. Each key can be used only once. These are perfect for ensuring that
+  you are not locked out, even if all of your other second factors are lost or
+  corrupt.
+
+Configuration of Two-Factor
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Users can choose to enable 'TOTP' or 'WebAuthn' as a second factor on login,
+via the 'TFA' button in the user list (unless the realm enforces 'YubiKey
+OTP').
+
+Users can always add and use one time 'Recovery Keys'.
+
+//[thumbnail="screenshot/gui-datacenter-two-factor.png"]//TODO
+
+[[user_tfa_setup_totp]]
+=== TOTP
+
+//[thumbnail="screenshot/pve-gui-tfa-add-totp.png"]//TODO
+
+There is no server setup required. Simply install a TOTP app on your
+smartphone (for example, https://github.com/andOTP/andOTP#downloads[andOTP])
+and use the Proxmox Backup Server web-interface to add a TOTP factor.
+
+After opening the 'TOTP' window, the user is presented with a dialog to set up
+'TOTP' authentication. The 'Secret' field contains the key, which can be
+randomly generated via the 'Randomize' button. An optional 'Issuer Name' can be
+added to provide information to the 'TOTP' app about what the key belongs to.
+Most 'TOTP' apps will show the issuer name together with the corresponding
+'OTP' values. The username is also included in the QR code for the 'TOTP' app.
+
+After generating a key, a QR code will be displayed, which can be used with most
+OTP apps such as FreeOTP. The user then needs to verify the current user
+password (unless logged in as 'root'), as well as the ability to correctly use
+the 'TOTP' key, by typing the current 'OTP' value into the 'Verification Code'
+field and pressing the 'Apply' button.
+
+
+[[user_tfa_setup_webauthn]]
+=== WebAuthn
+
+For WebAuthn to work, you need to have two things:
+
+* A trusted HTTPS certificate (for example, by using
+  https://pve.proxmox.com/wiki/Certificate_Management[Let's Encrypt]).
+  While it probably works with an untrusted certificate, some browsers may
+  warn or refuse WebAuthn operations if it is not trusted.
+* Setup the WebAuthn configuration (see *User Management -> Two Factor ->
+  WebAuthn* in the {pmg} web interface). This can be
+  auto-filled in most setups.
+
+Once you have fulfilled both of these requirements, you can add a WebAuthn
+configuration in the *Two Factor* panel under *Datacenter -> Permissions -> Two
+Factor*.
+
+[[user_tfa_setup_recovery_keys]]
+=== Recovery Keys
+
+//[thumbnail="screenshot/pve-gui-tfa-add-recovery-keys.png"]//TODO
+
+Recovery key codes do not need any preparation; you can simply create a
+set of recovery keys in the *Two Factor* panel under *Datacenter -> Permissions
+-> Two Factor*.
+
+NOTE: There can only be one set of single-use recovery keys per user at any
+time.
+
+WebAuthn Configuration
+~~~~~~~~~~~~~~~~~~~~~~
+
+//[thumbnail="screenshot/gui-datacenter-webauthn-edit.png"]//TODO
+
+To allow users to use 'WebAuthn' authentication, it is necessaary to use a valid
+domain with a valid SSL certificate, otherwise some browsers may warn or refuse
+to authenticate altogether.
+
+NOTE: Changing the 'WebAuthn' configuration may render all existing 'WebAuthn'
+registrations unusable!
+
+You can configure WebAuthn directly in the 'Two Factor' panel, there's an
+auto-fill button that will set the correct values for most setups.
 
 ifdef::manvolnum[]
 include::pmg-copyright.adoc[]
 endif::manvolnum[]
-
