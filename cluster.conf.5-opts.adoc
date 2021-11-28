@@ -6,7 +6,7 @@ Cluster Node ID.
 
 SSL certificate fingerprint.
 
-`hostrsapubkey`: `^[A-Za-z0-9\.\/\+]{200,}$` ::
+`hostrsapubkey`: `^[A-Za-z0-9\.\/\+=]{200,}$` ::
 
 Public SSH RSA key for the host.
 
@@ -22,7 +22,7 @@ Maximum used cluster node ID (used internally, do not modify).
 
 Node name.
 
-`rootrsapubkey`: `^[A-Za-z0-9\.\/\+]{200,}$` ::
+`rootrsapubkey`: `^[A-Za-z0-9\.\/\+=]{200,}$` ::
 
 Public SSH RSA key for the root user.
 

@@ -7456,7 +7456,7 @@ var apiSchema = [
                               "hostrsapubkey" : {
                                  "description" : "Public SSH RSA key for the host.",
                                  "optional" : 0,
-                                 "pattern" : "^[A-Za-z0-9\\.\\/\\+]{200,}$",
+                                 "pattern" : "^[A-Za-z0-9\\.\\/\\+=]{200,}$",
                                  "type" : "string"
                               },
                               "ip" : {
@@ -7483,7 +7483,7 @@ var apiSchema = [
                               "rootrsapubkey" : {
                                  "description" : "Public SSH RSA key for the root user.",
                                  "optional" : 0,
-                                 "pattern" : "^[A-Za-z0-9\\.\\/\\+]{200,}$",
+                                 "pattern" : "^[A-Za-z0-9\\.\\/\\+=]{200,}$",
                                  "type" : "string"
                               }
                            },
@@ -9061,6 +9061,7 @@ var apiSchema = [
                                           "aurora",
                                           "autodns",
                                           "aws",
+                                          "azion",
                                           "azure",
                                           "cf",
                                           "clouddns",
@@ -9140,6 +9141,7 @@ var apiSchema = [
                                           "nsone",
                                           "nsupdate",
                                           "nw",
+                                          "oci",
                                           "one",
                                           "online",
                                           "openprovider",
@@ -9164,6 +9166,7 @@ var apiSchema = [
                                           "ultra",
                                           "unoeuro",
                                           "variomedia",
+                                          "veesp",
                                           "vscale",
                                           "vultr",
                                           "websupport",
@@ -9312,6 +9315,7 @@ var apiSchema = [
                                     "aurora",
                                     "autodns",
                                     "aws",
+                                    "azion",
                                     "azure",
                                     "cf",
                                     "clouddns",
@@ -9391,6 +9395,7 @@ var apiSchema = [
                                     "nsone",
                                     "nsupdate",
                                     "nw",
+                                    "oci",
                                     "one",
                                     "online",
                                     "openprovider",
@@ -9415,6 +9420,7 @@ var apiSchema = [
                                     "ultra",
                                     "unoeuro",
                                     "variomedia",
+                                    "veesp",
                                     "vscale",
                                     "vultr",
                                     "websupport",
@@ -9843,6 +9849,138 @@ var apiSchema = [
             "leaf" : 0,
             "path" : "/config/acme",
             "text" : "acme"
+         },
+         {
+            "children" : [
+               {
+                  "info" : {
+                     "GET" : {
+                        "allowtoken" : 1,
+                        "description" : "Read the webauthn configuration.",
+                        "method" : "GET",
+                        "name" : "get_webauthn_config",
+                        "parameters" : {
+                           "additionalProperties" : 0
+                        },
+                        "permissions" : {
+                           "user" : "all"
+                        },
+                        "protected" : 1,
+                        "returns" : {
+                           "optional" : 1,
+                           "properties" : {
+                              "id" : {
+                                 "description" : "Relying part ID. Must be the domain name without protocol, port or location.\nChanging this *will* break existing credentials.",
+                                 "optional" : 1,
+                                 "type" : "string"
+                              },
+                              "origin" : {
+                                 "description" : "Site origin. Must be a `https://` URL (or `http://localhost`). Should contain the address users type in their browsers to access the web interface.\nChanging this *may* break existing credentials.",
+                                 "optional" : 1,
+                                 "type" : "string"
+                              },
+                              "rp" : {
+                                 "description" : "Relying party name. Any text identifier.\nChanging this *may* break existing credentials.",
+                                 "optional" : 1,
+                                 "type" : "string"
+                              }
+                           },
+                           "type" : "object"
+                        }
+                     },
+                     "PUT" : {
+                        "allowtoken" : 1,
+                        "description" : "Read the webauthn configuration.",
+                        "method" : "PUT",
+                        "name" : "update_webauthn_config",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "delete" : {
+                                 "description" : "A list of settings you want to delete.",
+                                 "enum" : [
+                                    "id",
+                                    "rp",
+                                    "origin"
+                                 ],
+                                 "optional" : 1,
+                                 "type" : "string"
+                              },
+                              "digest" : {
+                                 "description" : "Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.",
+                                 "maxLength" : 40,
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
+                              "id" : {
+                                 "description" : "Relying part ID. Must be the domain name without protocol, port or location.\nChanging this *will* break existing credentials.",
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
+                              "origin" : {
+                                 "description" : "Site origin. Must be a `https://` URL (or `http://localhost`). Should contain the address users type in their browsers to access the web interface.\nChanging this *may* break existing credentials.",
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
+                              "rp" : {
+                                 "description" : "Relying party name. Any text identifier.\nChanging this *may* break existing credentials.",
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              }
+                           }
+                        },
+                        "permissions" : {
+                           "check" : [
+                              "admin"
+                           ]
+                        },
+                        "protected" : 1,
+                        "proxyto" : "master",
+                        "returns" : {
+                           "type" : "null"
+                        }
+                     }
+                  },
+                  "leaf" : 1,
+                  "path" : "/config/tfa/webauthn",
+                  "text" : "webauthn"
+               }
+            ],
+            "info" : {
+               "GET" : {
+                  "allowtoken" : 1,
+                  "description" : "Directory index.",
+                  "method" : "GET",
+                  "name" : "index",
+                  "parameters" : {
+                     "additionalProperties" : 0
+                  },
+                  "returns" : {
+                     "items" : {
+                        "properties" : {
+                           "section" : {
+                              "type" : "string"
+                           }
+                        },
+                        "type" : "object"
+                     },
+                     "links" : [
+                        {
+                           "href" : "{section}",
+                           "rel" : "child"
+                        }
+                     ],
+                     "type" : "array"
+                  }
+               }
+            },
+            "leaf" : 0,
+            "path" : "/config/tfa",
+            "text" : "tfa"
          },
          {
             "info" : {
@@ -12323,6 +12461,28 @@ var apiSchema = [
                         "returns" : {
                            "type" : "null"
                         }
+                     },
+                     "PUT" : {
+                        "allowtoken" : 1,
+                        "description" : "Reload network configuration",
+                        "method" : "PUT",
+                        "name" : "reload_network_config",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "node" : {
+                                 "description" : "The cluster node name.",
+                                 "format" : "pve-node",
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              }
+                           }
+                        },
+                        "protected" : 1,
+                        "proxyto" : "node",
+                        "returns" : {
+                           "type" : "string"
+                        }
                      }
                   },
                   "leaf" : 0,
@@ -12661,7 +12821,8 @@ var apiSchema = [
                                                 "pmg-hourly",
                                                 "pmg-daily",
                                                 "pmgreport",
-                                                "pmgspamreport"
+                                                "pmgspamreport",
+                                                "chrony"
                                              ],
                                              "type" : "string"
                                           }
@@ -12720,7 +12881,8 @@ var apiSchema = [
                                                 "pmg-hourly",
                                                 "pmg-daily",
                                                 "pmgreport",
-                                                "pmgspamreport"
+                                                "pmgspamreport",
+                                                "chrony"
                                              ],
                                              "type" : "string"
                                           }
@@ -12778,7 +12940,8 @@ var apiSchema = [
                                                 "pmg-hourly",
                                                 "pmg-daily",
                                                 "pmgreport",
-                                                "pmgspamreport"
+                                                "pmgspamreport",
+                                                "chrony"
                                              ],
                                              "type" : "string"
                                           }
@@ -12836,7 +12999,8 @@ var apiSchema = [
                                                 "pmg-hourly",
                                                 "pmg-daily",
                                                 "pmgreport",
-                                                "pmgspamreport"
+                                                "pmgspamreport",
+                                                "chrony"
                                              ],
                                              "type" : "string"
                                           }
@@ -12894,7 +13058,8 @@ var apiSchema = [
                                                 "pmg-hourly",
                                                 "pmg-daily",
                                                 "pmgreport",
-                                                "pmgspamreport"
+                                                "pmgspamreport",
+                                                "chrony"
                                              ],
                                              "type" : "string"
                                           }
@@ -12952,7 +13117,8 @@ var apiSchema = [
                                           "pmg-hourly",
                                           "pmg-daily",
                                           "pmgreport",
-                                          "pmgspamreport"
+                                          "pmgspamreport",
+                                          "chrony"
                                        ],
                                        "type" : "string"
                                     }
@@ -13278,6 +13444,315 @@ var apiSchema = [
                         "leaf" : 1,
                         "path" : "/nodes/{node}/apt/changelog",
                         "text" : "changelog"
+                     },
+                     {
+                        "info" : {
+                           "GET" : {
+                              "allowtoken" : 1,
+                              "description" : "Get APT repository information.",
+                              "method" : "GET",
+                              "name" : "repositories",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "node" : {
+                                       "description" : "The cluster node name.",
+                                       "format" : "pve-node",
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin",
+                                    "audit"
+                                 ]
+                              },
+                              "proxyto" : "node",
+                              "returns" : {
+                                 "description" : "Result from parsing the APT repository files in /etc/apt/.",
+                                 "properties" : {
+                                    "digest" : {
+                                       "description" : "Common digest of all files.",
+                                       "type" : "string"
+                                    },
+                                    "errors" : {
+                                       "description" : "List of problematic repository files.",
+                                       "items" : {
+                                          "properties" : {
+                                             "error" : {
+                                                "description" : "The error message",
+                                                "type" : "string"
+                                             },
+                                             "path" : {
+                                                "description" : "Path to the problematic file.",
+                                                "type" : "string"
+                                             }
+                                          },
+                                          "type" : "object"
+                                       },
+                                       "type" : "array"
+                                    },
+                                    "files" : {
+                                       "description" : "List of parsed repository files.",
+                                       "items" : {
+                                          "properties" : {
+                                             "digest" : {
+                                                "description" : "Digest of the file as bytes.",
+                                                "items" : {
+                                                   "type" : "integer"
+                                                },
+                                                "type" : "array"
+                                             },
+                                             "file-type" : {
+                                                "description" : "Format of the file.",
+                                                "enum" : [
+                                                   "list",
+                                                   "sources"
+                                                ],
+                                                "type" : "string"
+                                             },
+                                             "path" : {
+                                                "description" : "Path to the problematic file.",
+                                                "type" : "string"
+                                             },
+                                             "repositories" : {
+                                                "description" : "The parsed repositories.",
+                                                "items" : {
+                                                   "properties" : {
+                                                      "Comment" : {
+                                                         "description" : "Associated comment",
+                                                         "optional" : 1,
+                                                         "type" : "string"
+                                                      },
+                                                      "Components" : {
+                                                         "description" : "List of repository components",
+                                                         "items" : {
+                                                            "type" : "string"
+                                                         },
+                                                         "optional" : 1,
+                                                         "type" : "array"
+                                                      },
+                                                      "Enabled" : {
+                                                         "description" : "Whether the repository is enabled or not",
+                                                         "type" : "boolean"
+                                                      },
+                                                      "FileType" : {
+                                                         "description" : "Format of the defining file.",
+                                                         "enum" : [
+                                                            "list",
+                                                            "sources"
+                                                         ],
+                                                         "type" : "string"
+                                                      },
+                                                      "Options" : {
+                                                         "description" : "Additional options",
+                                                         "items" : {
+                                                            "properties" : {
+                                                               "Key" : {
+                                                                  "type" : "string"
+                                                               },
+                                                               "Values" : {
+                                                                  "items" : {
+                                                                     "type" : "string"
+                                                                  },
+                                                                  "type" : "array"
+                                                               }
+                                                            },
+                                                            "type" : "object"
+                                                         },
+                                                         "optional" : 1,
+                                                         "type" : "array"
+                                                      },
+                                                      "Suites" : {
+                                                         "description" : "List of package distribuitions",
+                                                         "items" : {
+                                                            "type" : "string"
+                                                         },
+                                                         "type" : "array"
+                                                      },
+                                                      "Types" : {
+                                                         "description" : "List of package types.",
+                                                         "items" : {
+                                                            "enum" : [
+                                                               "deb",
+                                                               "deb-src"
+                                                            ],
+                                                            "type" : "string"
+                                                         },
+                                                         "type" : "array"
+                                                      },
+                                                      "URIs" : {
+                                                         "description" : "List of repository URIs.",
+                                                         "items" : {
+                                                            "type" : "string"
+                                                         },
+                                                         "type" : "array"
+                                                      }
+                                                   },
+                                                   "type" : "object"
+                                                },
+                                                "type" : "array"
+                                             }
+                                          },
+                                          "type" : "object"
+                                       },
+                                       "type" : "array"
+                                    },
+                                    "infos" : {
+                                       "description" : "Additional information/warnings for APT repositories.",
+                                       "items" : {
+                                          "properties" : {
+                                             "index" : {
+                                                "description" : "Index of the associated repository within the file.",
+                                                "type" : "string"
+                                             },
+                                             "kind" : {
+                                                "description" : "Kind of the information (e.g. warning).",
+                                                "type" : "string"
+                                             },
+                                             "message" : {
+                                                "description" : "Information message.",
+                                                "type" : "string"
+                                             },
+                                             "path" : {
+                                                "description" : "Path to the associated file.",
+                                                "type" : "string"
+                                             },
+                                             "property" : {
+                                                "description" : "Property from which the info originates.",
+                                                "optional" : 1,
+                                                "type" : "string"
+                                             }
+                                          },
+                                          "type" : "object"
+                                       },
+                                       "type" : "array"
+                                    },
+                                    "standard-repos" : {
+                                       "description" : "List of standard repositories and their configuration status",
+                                       "items" : {
+                                          "properties" : {
+                                             "description" : {
+                                                "description" : "Description of the repository.",
+                                                "type" : "string"
+                                             },
+                                             "handle" : {
+                                                "description" : "Handle to identify the repository.",
+                                                "type" : "string"
+                                             },
+                                             "name" : {
+                                                "description" : "Display name of the repository.",
+                                                "type" : "string"
+                                             },
+                                             "status" : {
+                                                "description" : "Indicating enabled/disabled status, if the repository is configured.",
+                                                "optional" : 1,
+                                                "type" : "boolean"
+                                             }
+                                          },
+                                          "type" : "object"
+                                       },
+                                       "type" : "array"
+                                    }
+                                 },
+                                 "type" : "object"
+                              }
+                           },
+                           "POST" : {
+                              "allowtoken" : 1,
+                              "description" : "Change the properties of a repository. Currently only allows enabling/disabling.",
+                              "method" : "POST",
+                              "name" : "change_repository",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "digest" : {
+                                       "description" : "Digest to detect modifications.",
+                                       "maxLength" : 80,
+                                       "optional" : 1,
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    },
+                                    "enabled" : {
+                                       "description" : "Whether the repository should be enabled or not.",
+                                       "optional" : 1,
+                                       "type" : "boolean",
+                                       "typetext" : "<boolean>"
+                                    },
+                                    "index" : {
+                                       "description" : "Index within the file (starting from 0).",
+                                       "type" : "integer",
+                                       "typetext" : "<integer>"
+                                    },
+                                    "node" : {
+                                       "description" : "The cluster node name.",
+                                       "format" : "pve-node",
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    },
+                                    "path" : {
+                                       "description" : "Path to the containing file.",
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin"
+                                 ]
+                              },
+                              "protected" : 1,
+                              "proxyto" : "node",
+                              "returns" : {
+                                 "type" : "null"
+                              }
+                           },
+                           "PUT" : {
+                              "allowtoken" : 1,
+                              "description" : "Add a standard repository to the configuration",
+                              "method" : "PUT",
+                              "name" : "add_repository",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "digest" : {
+                                       "description" : "Digest to detect modifications.",
+                                       "maxLength" : 80,
+                                       "optional" : 1,
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    },
+                                    "handle" : {
+                                       "description" : "Handle that identifies a repository.",
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    },
+                                    "node" : {
+                                       "description" : "The cluster node name.",
+                                       "format" : "pve-node",
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin"
+                                 ]
+                              },
+                              "protected" : 1,
+                              "proxyto" : "node",
+                              "returns" : {
+                                 "type" : "null"
+                              }
+                           }
+                        },
+                        "leaf" : 1,
+                        "path" : "/nodes/{node}/apt/repositories",
+                        "text" : "repositories"
                      },
                      {
                         "info" : {
@@ -16258,6 +16733,421 @@ var apiSchema = [
             "text" : "users"
          },
          {
+            "children" : [
+               {
+                  "children" : [
+                     {
+                        "info" : {
+                           "DELETE" : {
+                              "allowtoken" : 0,
+                              "description" : "Delete a TFA entry by ID.",
+                              "method" : "DELETE",
+                              "name" : "delete_tfa",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "id" : {
+                                       "description" : "A TFA entry id.",
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    },
+                                    "password" : {
+                                       "description" : "The current password.",
+                                       "maxLength" : 64,
+                                       "minLength" : 5,
+                                       "optional" : 1,
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    },
+                                    "userid" : {
+                                       "description" : "User ID",
+                                       "format" : "pmg-userid",
+                                       "maxLength" : 64,
+                                       "minLength" : 4,
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin",
+                                    "qmanager",
+                                    "audit"
+                                 ],
+                                 "description" : "Each user is allowed to modify their own TFA entries. Only root can modify entries of another user."
+                              },
+                              "protected" : 1,
+                              "proxyto" : "master",
+                              "returns" : {
+                                 "type" : "null"
+                              }
+                           },
+                           "GET" : {
+                              "allowtoken" : 0,
+                              "description" : "Fetch a requested TFA entry if present.",
+                              "method" : "GET",
+                              "name" : "get_tfa_entry",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "id" : {
+                                       "description" : "A TFA entry id.",
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    },
+                                    "userid" : {
+                                       "description" : "User ID",
+                                       "format" : "pmg-userid",
+                                       "maxLength" : 64,
+                                       "minLength" : 4,
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "description" : "Each user is allowed to view their own TFA entries. Only root can view entries of another user.",
+                                 "user" : "all"
+                              },
+                              "protected" : 1,
+                              "proxyto" : "master",
+                              "returns" : {
+                                 "description" : "TFA Entry.",
+                                 "properties" : {
+                                    "created" : {
+                                       "description" : "Creation time of this entry as unix epoch.",
+                                       "type" : "integer"
+                                    },
+                                    "description" : {
+                                       "description" : "User chosen description for this entry.",
+                                       "type" : "string"
+                                    },
+                                    "enable" : {
+                                       "default" : 1,
+                                       "description" : "Whether this TFA entry is currently enabled.",
+                                       "optional" : 1,
+                                       "type" : "boolean"
+                                    },
+                                    "id" : {
+                                       "description" : "The id used to reference this entry.",
+                                       "type" : "string"
+                                    },
+                                    "type" : {
+                                       "description" : "TFA Entry Type.",
+                                       "enum" : [
+                                          "totp",
+                                          "u2f",
+                                          "webauthn",
+                                          "recovery"
+                                       ],
+                                       "type" : "string"
+                                    }
+                                 },
+                                 "type" : "object"
+                              }
+                           },
+                           "PUT" : {
+                              "allowtoken" : 0,
+                              "description" : "Add a TFA entry for a user.",
+                              "method" : "PUT",
+                              "name" : "update_tfa_entry",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "description" : {
+                                       "description" : "A description to distinguish multiple entries from one another",
+                                       "maxLength" : 255,
+                                       "optional" : 1,
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    },
+                                    "enable" : {
+                                       "description" : "Whether the entry should be enabled for login.",
+                                       "optional" : 1,
+                                       "type" : "boolean",
+                                       "typetext" : "<boolean>"
+                                    },
+                                    "id" : {
+                                       "description" : "A TFA entry id.",
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    },
+                                    "password" : {
+                                       "description" : "The current password.",
+                                       "maxLength" : 64,
+                                       "minLength" : 5,
+                                       "optional" : 1,
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    },
+                                    "userid" : {
+                                       "description" : "User ID",
+                                       "format" : "pmg-userid",
+                                       "maxLength" : 64,
+                                       "minLength" : 4,
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin",
+                                    "qmanager",
+                                    "audit"
+                                 ],
+                                 "description" : "Each user is allowed to modify their own TFA entries. Only root can modify entries of another user."
+                              },
+                              "protected" : 1,
+                              "proxyto" : "master",
+                              "returns" : {
+                                 "type" : "null"
+                              }
+                           }
+                        },
+                        "leaf" : 1,
+                        "path" : "/access/tfa/{userid}/{id}",
+                        "text" : "{id}"
+                     }
+                  ],
+                  "info" : {
+                     "GET" : {
+                        "allowtoken" : 0,
+                        "description" : "List TFA configurations of users.",
+                        "method" : "GET",
+                        "name" : "list_user_tfa",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "userid" : {
+                                 "description" : "User ID",
+                                 "format" : "pmg-userid",
+                                 "maxLength" : 64,
+                                 "minLength" : 4,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              }
+                           }
+                        },
+                        "permissions" : {
+                           "description" : "Each user is allowed to view their own TFA entries. Only root can view entries of another user.",
+                           "user" : "all"
+                        },
+                        "protected" : 1,
+                        "proxyto" : "master",
+                        "returns" : {
+                           "description" : "A list of the user's TFA entries.",
+                           "items" : {
+                              "description" : "TFA Entry.",
+                              "properties" : {
+                                 "created" : {
+                                    "description" : "Creation time of this entry as unix epoch.",
+                                    "type" : "integer"
+                                 },
+                                 "description" : {
+                                    "description" : "User chosen description for this entry.",
+                                    "type" : "string"
+                                 },
+                                 "enable" : {
+                                    "default" : 1,
+                                    "description" : "Whether this TFA entry is currently enabled.",
+                                    "optional" : 1,
+                                    "type" : "boolean"
+                                 },
+                                 "id" : {
+                                    "description" : "The id used to reference this entry.",
+                                    "type" : "string"
+                                 },
+                                 "type" : {
+                                    "description" : "TFA Entry Type.",
+                                    "enum" : [
+                                       "totp",
+                                       "u2f",
+                                       "webauthn",
+                                       "recovery"
+                                    ],
+                                    "type" : "string"
+                                 }
+                              },
+                              "type" : "object"
+                           },
+                           "type" : "array"
+                        }
+                     },
+                     "POST" : {
+                        "allowtoken" : 0,
+                        "description" : "Add a TFA entry for a user.",
+                        "method" : "POST",
+                        "name" : "add_tfa_entry",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "challenge" : {
+                                 "description" : "When responding to a u2f challenge: the original challenge string",
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
+                              "description" : {
+                                 "description" : "A description to distinguish multiple entries from one another",
+                                 "maxLength" : 255,
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
+                              "password" : {
+                                 "description" : "The current password.",
+                                 "maxLength" : 64,
+                                 "minLength" : 5,
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
+                              "totp" : {
+                                 "description" : "A totp URI.",
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
+                              "type" : {
+                                 "description" : "TFA Entry Type.",
+                                 "enum" : [
+                                    "totp",
+                                    "u2f",
+                                    "webauthn",
+                                    "recovery"
+                                 ],
+                                 "type" : "string"
+                              },
+                              "userid" : {
+                                 "description" : "User ID",
+                                 "format" : "pmg-userid",
+                                 "maxLength" : 64,
+                                 "minLength" : 4,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
+                              "value" : {
+                                 "description" : "The current value for the provided totp URI, or a Webauthn/U2F challenge response",
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              }
+                           }
+                        },
+                        "permissions" : {
+                           "check" : [
+                              "admin",
+                              "qmanager",
+                              "audit"
+                           ],
+                           "description" : "Each user is allowed to modify their own TFA entries. Only root can modify entries of another user."
+                        },
+                        "protected" : 1,
+                        "proxyto" : "master",
+                        "returns" : {
+                           "properties" : {
+                              "challenge" : {
+                                 "description" : "When adding u2f entries, this contains a challenge the user must respond to in order to finish the registration.",
+                                 "optional" : 1,
+                                 "type" : "string"
+                              },
+                              "id" : {
+                                 "description" : "The id of a newly added TFA entry.",
+                                 "type" : "string"
+                              },
+                              "recovery" : {
+                                 "description" : "When adding recovery codes, this contains the list of codes to be displayed to the user",
+                                 "items" : {
+                                    "description" : "A recovery entry.",
+                                    "type" : "string"
+                                 },
+                                 "optional" : 1,
+                                 "type" : "array"
+                              }
+                           },
+                           "type" : "object"
+                        }
+                     }
+                  },
+                  "leaf" : 0,
+                  "path" : "/access/tfa/{userid}",
+                  "text" : "{userid}"
+               }
+            ],
+            "info" : {
+               "GET" : {
+                  "allowtoken" : 0,
+                  "description" : "List TFA configurations of users.",
+                  "method" : "GET",
+                  "name" : "list_tfa",
+                  "parameters" : {
+                     "additionalProperties" : 0
+                  },
+                  "permissions" : {
+                     "description" : "Returns all or just the logged-in user, depending on privileges.",
+                     "user" : "all"
+                  },
+                  "protected" : 1,
+                  "proxyto" : "master",
+                  "returns" : {
+                     "description" : "The list tuples of user and TFA entries.",
+                     "items" : {
+                        "properties" : {
+                           "entries" : {
+                              "items" : {
+                                 "description" : "TFA Entry.",
+                                 "properties" : {
+                                    "created" : {
+                                       "description" : "Creation time of this entry as unix epoch.",
+                                       "type" : "integer"
+                                    },
+                                    "description" : {
+                                       "description" : "User chosen description for this entry.",
+                                       "type" : "string"
+                                    },
+                                    "enable" : {
+                                       "default" : 1,
+                                       "description" : "Whether this TFA entry is currently enabled.",
+                                       "optional" : 1,
+                                       "type" : "boolean"
+                                    },
+                                    "id" : {
+                                       "description" : "The id used to reference this entry.",
+                                       "type" : "string"
+                                    },
+                                    "type" : {
+                                       "description" : "TFA Entry Type.",
+                                       "enum" : [
+                                          "totp",
+                                          "u2f",
+                                          "webauthn",
+                                          "recovery"
+                                       ],
+                                       "type" : "string"
+                                    }
+                                 },
+                                 "type" : "object"
+                              },
+                              "type" : "array"
+                           },
+                           "userid" : {
+                              "description" : "User this entry belongs to.",
+                              "type" : "string"
+                           }
+                        },
+                        "type" : "object"
+                     },
+                     "type" : "array"
+                  }
+               }
+            },
+            "leaf" : 0,
+            "path" : "/access/tfa",
+            "text" : "tfa"
+         },
+         {
             "info" : {
                "GET" : {
                   "allowtoken" : 1,
@@ -16310,6 +17200,12 @@ var apiSchema = [
                            "maxLength" : 32,
                            "optional" : 1,
                            "type" : "string"
+                        },
+                        "tfa-challenge" : {
+                           "description" : "The signed TFA challenge string the user wants to respond to.",
+                           "optional" : 1,
+                           "type" : "string",
+                           "typetext" : "<string>"
                         },
                         "username" : {
                            "description" : "User name",
