@@ -1,3 +1,15 @@
+pmg-docs (7.1-1) bullseye; urgency=medium
+
+  * documentat the pmg-log-tracker CLI tool
+
+  * package repositories: mention new apt repository
+
+  * update static schema information
+
+  * add basic section about the second favtor (TFA) implementation
+
+ -- Proxmox Support Team <support@proxmox.com>  Sun, 28 Nov 2021 22:18:45 +0100
+
 pmg-docs (7.0-2) bullseye; urgency=medium
 
   * update static schema information
