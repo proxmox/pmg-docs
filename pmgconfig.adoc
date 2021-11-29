@@ -974,8 +974,7 @@ You can set up multiple second factors, in order to avoid a situation in which
 losing your smartphone or security key locks you out of your account
 permanently.
 
-The following two-factor authentication methods are available in addition to
-realm-enforced TOTP and YubiKey OTP:
+The following two-factor authentication methods are available:
 
 * User configured TOTP
   (https://en.wikipedia.org/wiki/Time-based_One-Time_Password[Time-based One-Time Password]).
@@ -995,8 +994,7 @@ Configuration of Two-Factor
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Users can choose to enable 'TOTP' or 'WebAuthn' as a second factor on login,
-via the 'TFA' button in the user list (unless the realm enforces 'YubiKey
-OTP').
+via the 'TFA' button in the user list.
 
 Users can always add and use one time 'Recovery Keys'.
 
@@ -1031,7 +1029,7 @@ field and pressing the 'Apply' button.
 For WebAuthn to work, you need to have two things:
 
 * A trusted HTTPS certificate (for example, by using
-  https://pve.proxmox.com/wiki/Certificate_Management[Let's Encrypt]).
+  xref:sysadmin_certs_get_trusted_acme_cert[Let's Encrypt]).
   While it probably works with an untrusted certificate, some browsers may
   warn or refuse WebAuthn operations if it is not trusted.
 * Setup the WebAuthn configuration (see *User Management -> Two Factor ->
