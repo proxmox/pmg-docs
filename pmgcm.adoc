@@ -261,6 +261,10 @@ a password. When joining a cluster using the GUI, you also need to
 enter the 'fingerprint' of the master node. You can get this information
 by pressing the `Add` button on the master node.
 
+NOTE: Joining a cluster, with enabled two-factor authentication for the
+`root` user is not supported - remove the second factor while joining the
+cluster.
+
 CAUTION: Node initialization deletes all existing databases, stops all
 services accessing the database and then restarts them. Therefore, do
 not add nodes which are already active and receive mail.
