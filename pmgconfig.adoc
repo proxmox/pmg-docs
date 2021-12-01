@@ -964,9 +964,8 @@ Two-Factor Authentication
 Users of the admin interface can configure two-factor authentication to
 increase protection of their accounts.
 
-NOTE: Joining a cluster, with enabled two-factor authentication for the
-`root` user is not supported - remove the second factor while joining the
-cluster.
+NOTE: Joining a cluster with two-factor authentication enabled for the `root`
+user is not supported. Remove the second factor when joining the cluster.
 
 Available Second Factors
 ~~~~~~~~~~~~~~~~~~~~~~~~
