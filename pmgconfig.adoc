@@ -666,7 +666,7 @@ The system logs all the rules which a particular mail hits. Analyzing the logs c
 lead to finding such a pattern in your environment.
 
 You can adjust the score of a rule by creating a new 'Custom Rule Score' entry
-in the GUI.
+in the GUI and entering a {spamassassin} rule as the name.
 
 NOTE: In general, it is strongly recommended not to make large changes to the
 default scores.
@@ -739,9 +739,9 @@ them, as `init.pre`, `v310.pre`, `v320.pre`, `local.cf` will be overwritten by
 the xref:pmgconfig_template_engine[template engine], while the others can
 get updated by any {spamassassin} package upgrade.
 
-To add your custom configuration, you have to create a new file and name it
-`custom.cf` (in this directory), then add your configuration there. Make sure
-to use the correct {spamassassin} syntax, and test it with:
+To add your custom configuration, you have to create a new file named
+`custom.cf` (in `/etc/mail/spamassassin/`), then add your configuration there.
+Make sure to use the correct {spamassassin_rule_syntax} and test it with:
 
 ----
 # spamassassin -D --lint
