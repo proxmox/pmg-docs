@@ -1,3 +1,14 @@
+pmg-docs (7.1-2) bullseye; urgency=medium
+
+  * add notes regarding interworking between cluster creation and tfa
+
+  * pmgconfig: Link to spam assasin documentation regarding rule writing and
+    syntax
+
+  * pmgproxy: document recently added TLS & ciphersuite options
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 03 Feb 2022 11:33:57 +0100
+
 pmg-docs (7.1-1) bullseye; urgency=medium
 
   * documentat the pmg-log-tracker CLI tool
