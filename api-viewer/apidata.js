@@ -9899,9 +9899,9 @@ var apiSchema = [
                               "delete" : {
                                  "description" : "A list of settings you want to delete.",
                                  "enum" : [
+                                    "origin",
                                     "id",
-                                    "rp",
-                                    "origin"
+                                    "rp"
                                  ],
                                  "optional" : 1,
                                  "type" : "string"
@@ -11162,6 +11162,13 @@ var apiSchema = [
                                                 "body" : {
                                                    "default" : 0,
                                                    "description" : "Include body content.",
+                                                   "optional" : 1,
+                                                   "type" : "boolean",
+                                                   "typetext" : "<boolean>"
+                                                },
+                                                "decode-header" : {
+                                                   "default" : 0,
+                                                   "description" : "Decodes the header fields.",
                                                    "optional" : 1,
                                                    "type" : "boolean",
                                                    "typetext" : "<boolean>"
