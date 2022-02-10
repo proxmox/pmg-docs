@@ -34,7 +34,7 @@ The file has the following format for each user:
 
 ----
 # comment
-userid:enable:expire:crypt_pass:role:email:firstname:lastname:keys
+userid:enable:expire:crypt_pass:role:email:firstname:lastname:keys:
 ----
 
 Options
