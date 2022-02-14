@@ -62,6 +62,7 @@ and HTTP, as well as port 8006 for the web-based management interface.
 |RAZOR   |2703    |TCP      |Proxmox    |Internet
 |DNS     |53      |TCP/UDP  |Proxmox    |DNS Server
 |HTTP    |80      |TCP      |Proxmox    |Internet
+|HTTPS   |443     |TCP      |Proxmox    |Internet
 |GUI/API |8006    |TCP      |Intranet   |Proxmox
 |======
 
