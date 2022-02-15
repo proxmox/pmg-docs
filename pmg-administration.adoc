@@ -72,6 +72,7 @@ output.
 Quarantine
 ----------
 
+[[pmgadministration_spam_quarantine]]
 Spam
 ~~~~
 
@@ -84,8 +85,10 @@ The email preview on the web interface is very secure, as malicious
 code (attacking your operating system or email client) is removed by
 {pmg}.
 
-Users can get access to their personalized quarantine via the daily
-spam report or by logging in with their LDAP credentials.
+Users can access their personalized quarantine via the daily spam report or by
+navigating to the URL configured for the quarantine (defaults to
+`https://<pmg-host>:8006/quarantine`) and logging in with their LDAP credentials
+(email address and password).
 
 You can additionally enable user self-service for sending an access link from
 the Quarantine Login page.

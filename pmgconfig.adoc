@@ -902,20 +902,33 @@ LDAP/Active Directory
 
 [thumbnail="pmg-gui-ldap-user-config.png", big=1]
 
+With {pmg}, users can use LDAP and Active directory as authentication methods to
+access their individual xref:pmgadministration_spam_quarantine[Spam Quarantine].
+Additionally, if users have extra email aliases defined in the LDAP directory,
+they will have a single spam quarantine for all of these.
+
+NOTE: Authentication via LDAP must first be enabled using the `Authentication
+mode` (`authmode`) parameter in the
+xref:pmgconfig_spamdetector_quarantine[Spam Detector's Quarantine configuration settings].
+
 You can specify multiple LDAP/Active Directory profiles, so that you can
-create rules matching those users and groups.
+create rules matching particular users and groups.
 
 Creating a profile requires (at least) the following:
 
-* profile name
-* protocol (LDAP or LDAPS; LDAPS is recommended)
-* at least one server
-* a username and password (if your server does not support anonymous binds)
+* `Profile Name`:  The name assigned to the LDAP profile.
+* `Protocol`:  LDAP, LDAPS, or LDAP+STARTTLS (LDAP+STARTTLS is recommended).
+* `Server`: The domain name/IP address of the LDAP server. A fallback can also
+    be configured using the second field.
+* `User name`: The Bind DN for authentication on the LDAP server.
+    This is required if your server does not support anonymous binds.
+* `Password`: Password for the Bind DN user.
+* `Base DN`: The directory which users are searched under.
 
 All other fields should work with the defaults for most setups, but can be
 used to customize the queries.
 
-The settings are saved to `/etc/pmg/ldap.conf`. Details for the options
+The settings are saved to `/etc/pmg/ldap.conf`. Details about the options
 can be found here: xref:pmg_ldap_configuration_file[ldap.conf]
 
 Bind user
@@ -926,7 +939,7 @@ LDAP server only has permission to query the server. For LDAP servers
 (for example OpenLDAP or FreeIPA), the username has to be of a format like
 'uid=username,cn=users,cn=accounts,dc=domain', where the specific fields
 depend on your setup. For Active Directory servers, the format should be
-like 'username@domain' or 'domain\username'.
+'username@domain' or 'domain\username'.
 
 Sync
 ^^^^
