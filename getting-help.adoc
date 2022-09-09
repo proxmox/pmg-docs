@@ -23,7 +23,7 @@ Commercial Support
 Service Plans]. Users with a Basic subscription or above
 have access to a dedicated support portal with guaranteed response
 times, where {pmg} developers can help them, should an issue appear. Please
-contact the mailto:office@proxmox.com[Proxmox sales team] for more
+contact the mailto:sales@proxmox.com[Proxmox sales team] for more
 information or volume discounts.
 
 
