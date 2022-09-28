@@ -9,7 +9,7 @@ to see if the required ports are open.
 
 .Test Razor port (tcp port 2703):
 ----
-# nmap -P0 -sS -p 2703 c301.cloudmark.com
+# nmap -Pn -sS -p 2703 c301.cloudmark.com
 Starting Nmap 7.70 ( https://nmap.org ) at 2020-04-14 12:20 CEST
 Nmap scan report for c301.cloudmark.com (208.83.137.114)
 Host is up (0.13s latency).
