@@ -28,6 +28,14 @@ Set subscription key.
 
 Proxmox Mail Gateway subscription key
 
+*pmgsubscription set-offline-key* `<data>`
+
+(Internal use only!) Set a signed subscription info blob as offline key
+
+`<data>`: `<string>` ::
+
+no description available
+
 *pmgsubscription update* `[OPTIONS]`
 
 Update subscription info.

@@ -108,7 +108,7 @@ Add Proxmox Backup Server remote instance.
 
 Proxmox Backup Server ID.
 
-`--datastore` `<string>` ::
+`--datastore` `(?:[A-Za-z0-9_][A-Za-z0-9._\-]*)` ::
 
 Proxmox Backup Server datastore name.
 
@@ -148,6 +148,10 @@ Keep backups for the last <N> different weeks. If there ismore than one backup f
 
 Keep backups for the last <N> different years. If there is more than one backup for a single year, only the latest one is kept.
 
+`--namespace` `(?:(?:[A-Za-z0-9_][A-Za-z0-9._\-]*)/){0,7}(?:(?:[A-Za-z0-9_][A-Za-z0-9._\-]*))?` ::
+
+Proxmox Backup Server namespace in the datastore, defaults to the root NS.
+
 `--notify` `<always | error | never>` ::
 
 Specify when to notify via e-mail
@@ -184,7 +188,7 @@ Update PBS remote settings.
 
 Proxmox Backup Server ID.
 
-`--datastore` `<string>` ::
+`--datastore` `(?:[A-Za-z0-9_][A-Za-z0-9._\-]*)` ::
 
 Proxmox Backup Server datastore name.
 
@@ -231,6 +235,10 @@ Keep backups for the last <N> different weeks. If there ismore than one backup f
 `--keep-yearly` `<N>` ::
 
 Keep backups for the last <N> different years. If there is more than one backup for a single year, only the latest one is kept.
+
+`--namespace` `(?:(?:[A-Za-z0-9_][A-Za-z0-9._\-]*)/){0,7}(?:(?:[A-Za-z0-9_][A-Za-z0-9._\-]*))?` ::
+
+Proxmox Backup Server namespace in the datastore, defaults to the root NS.
 
 `--notify` `<always | error | never>` ::
 

@@ -5833,9 +5833,10 @@ var apiSchema = [
                                        "properties" : {
                                           "email" : {
                                              "description" : "Email address.",
-                                             "format" : "email",
-                                             "type" : "string",
-                                             "typetext" : "<string>"
+                                             "maxLength" : 512,
+                                             "minLength" : 3,
+                                             "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                                             "type" : "string"
                                           },
                                           "profile" : {
                                              "description" : "Profile ID.",
@@ -8571,8 +8572,8 @@ var apiSchema = [
                               "datastore" : {
                                  "description" : "Proxmox Backup Server datastore name.",
                                  "optional" : 1,
-                                 "type" : "string",
-                                 "typetext" : "<string>"
+                                 "pattern" : "(?:[A-Za-z0-9_][A-Za-z0-9._\\-]*)",
+                                 "type" : "string"
                               },
                               "delete" : {
                                  "description" : "A list of settings you want to delete.",
@@ -8654,6 +8655,13 @@ var apiSchema = [
                                  "optional" : 1,
                                  "type" : "integer",
                                  "typetext" : "<N>"
+                              },
+                              "namespace" : {
+                                 "description" : "Proxmox Backup Server namespace in the datastore, defaults to the root NS.",
+                                 "maxLength" : 256,
+                                 "optional" : 1,
+                                 "pattern" : "(?:(?:[A-Za-z0-9_][A-Za-z0-9._\\-]*)/){0,7}(?:(?:[A-Za-z0-9_][A-Za-z0-9._\\-]*))?",
+                                 "type" : "string"
                               },
                               "notify" : {
                                  "description" : "Specify when to notify via e-mail",
@@ -8737,6 +8745,7 @@ var apiSchema = [
                            "datastore" : {
                               "description" : "Proxmox Backup Server datastore name.",
                               "optional" : 0,
+                              "pattern" : "(?:[A-Za-z0-9_][A-Za-z0-9._\\-]*)",
                               "type" : "string"
                            },
                            "disable" : {
@@ -8797,6 +8806,13 @@ var apiSchema = [
                               "optional" : 1,
                               "type" : "integer"
                            },
+                           "namespace" : {
+                              "description" : "Proxmox Backup Server namespace in the datastore, defaults to the root NS.",
+                              "maxLength" : 256,
+                              "optional" : 1,
+                              "pattern" : "(?:(?:[A-Za-z0-9_][A-Za-z0-9._\\-]*)/){0,7}(?:(?:[A-Za-z0-9_][A-Za-z0-9._\\-]*))?",
+                              "type" : "string"
+                           },
                            "notify" : {
                               "description" : "Specify when to notify via e-mail",
                               "enum" : [
@@ -8855,8 +8871,8 @@ var apiSchema = [
                         "datastore" : {
                            "description" : "Proxmox Backup Server datastore name.",
                            "optional" : 0,
-                           "type" : "string",
-                           "typetext" : "<string>"
+                           "pattern" : "(?:[A-Za-z0-9_][A-Za-z0-9._\\-]*)",
+                           "type" : "string"
                         },
                         "disable" : {
                            "description" : "Flag to disable (deactivate) the entry.",
@@ -8923,6 +8939,13 @@ var apiSchema = [
                            "optional" : 1,
                            "type" : "integer",
                            "typetext" : "<N>"
+                        },
+                        "namespace" : {
+                           "description" : "Proxmox Backup Server namespace in the datastore, defaults to the root NS.",
+                           "maxLength" : 256,
+                           "optional" : 1,
+                           "pattern" : "(?:(?:[A-Za-z0-9_][A-Za-z0-9._\\-]*)/){0,7}(?:(?:[A-Za-z0-9_][A-Za-z0-9._\\-]*))?",
+                           "type" : "string"
                         },
                         "notify" : {
                            "description" : "Specify when to notify via e-mail",
@@ -9869,6 +9892,12 @@ var apiSchema = [
                         "returns" : {
                            "optional" : 1,
                            "properties" : {
+                              "allow-subdomains" : {
+                                 "default" : 1,
+                                 "description" : "Whether to allow the origin to be a subdomain, rather than the exact URL.",
+                                 "optional" : 1,
+                                 "type" : "boolean"
+                              },
                               "id" : {
                                  "description" : "Relying part ID. Must be the domain name without protocol, port or location.\nChanging this *will* break existing credentials.",
                                  "optional" : 1,
@@ -9896,11 +9925,19 @@ var apiSchema = [
                         "parameters" : {
                            "additionalProperties" : 0,
                            "properties" : {
+                              "allow-subdomains" : {
+                                 "default" : 1,
+                                 "description" : "Whether to allow the origin to be a subdomain, rather than the exact URL.",
+                                 "optional" : 1,
+                                 "type" : "boolean",
+                                 "typetext" : "<boolean>"
+                              },
                               "delete" : {
                                  "description" : "A list of settings you want to delete.",
                                  "enum" : [
-                                    "origin",
                                     "id",
+                                    "origin",
+                                    "allow-subdomains",
                                     "rp"
                                  ],
                                  "optional" : 1,
@@ -14897,6 +14934,7 @@ var apiSchema = [
                                  "datastore" : {
                                     "description" : "Proxmox Backup Server datastore name.",
                                     "optional" : 0,
+                                    "pattern" : "(?:[A-Za-z0-9_][A-Za-z0-9._\\-]*)",
                                     "type" : "string"
                                  },
                                  "disable" : {
@@ -14956,6 +14994,13 @@ var apiSchema = [
                                     "minimum" : "0",
                                     "optional" : 1,
                                     "type" : "integer"
+                                 },
+                                 "namespace" : {
+                                    "description" : "Proxmox Backup Server namespace in the datastore, defaults to the root NS.",
+                                    "maxLength" : 256,
+                                    "optional" : 1,
+                                    "pattern" : "(?:(?:[A-Za-z0-9_][A-Za-z0-9._\\-]*)/){0,7}(?:(?:[A-Za-z0-9_][A-Za-z0-9._\\-]*))?",
+                                    "type" : "string"
                                  },
                                  "notify" : {
                                     "description" : "Specify when to notify via e-mail",
