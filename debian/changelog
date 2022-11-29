@@ -1,3 +1,21 @@
+pmg-docs (7.2-1) bullseye; urgency=medium
+
+  * fix #3879: add colon at the end for user.conf
+
+  * fix 3619: Add HTTPS to list of network services
+
+  * fix #3645: improve LDAP docs
+
+  * docs: intro: avoid office@ mail address for sales related questions
+
+  * fix #4265: nmap: suggest usin -Pn over depreacated -P0
+
+  * fix capitalization of GmbH
+
+  * update static schema information
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 29 Nov 2022 16:06:19 +0100
+
 pmg-docs (7.1-2) bullseye; urgency=medium
 
   * add notes regarding interworking between cluster creation and tfa
