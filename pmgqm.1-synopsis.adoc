@@ -29,11 +29,11 @@ Generate and send spam report emails.
 
 Debug mode. Print raw email to stdout instead of sending them.
 
-`--receiver` `<string>` ::
+`--receiver` `(?:[^\s\\@]+\@[^\s\/\\@]+)` ::
 
 Generate report for a single email address. If not specified, generate reports for all users.
 
-`--redirect` `<string>` ::
+`--redirect` `(?:[^\s\\@]+\@[^\s\/\\@]+)` ::
 
 Redirect spam report email to this address.
 

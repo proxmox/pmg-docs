@@ -12547,7 +12547,14 @@ var apiSchema = [
                                     "parameters" : {
                                        "additionalProperties" : 0,
                                        "properties" : {
+                                          "download" : {
+                                             "description" : "Whether the tasklog file should be downloaded. This parameter can't be used in conjunction with other parameters",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
+                                          },
                                           "limit" : {
+                                             "description" : "The amount of lines to read from the tasklog.",
                                              "minimum" : 0,
                                              "optional" : 1,
                                              "type" : "integer",
@@ -12560,6 +12567,7 @@ var apiSchema = [
                                              "typetext" : "<string>"
                                           },
                                           "start" : {
+                                             "description" : "Start at this line when reading the tasklog",
                                              "minimum" : 0,
                                              "optional" : 1,
                                              "type" : "integer",
@@ -17632,6 +17640,17 @@ var apiSchema = [
                            "type" : "integer",
                            "typetext" : "<integer> (1 - N)"
                         },
+                        "quarantine-type" : {
+                           "default" : "spam",
+                           "description" : "Query this type of quarantine for users.",
+                           "enum" : [
+                              "attachment",
+                              "virus",
+                              "spam"
+                           ],
+                           "optional" : 1,
+                           "type" : "string"
+                        },
                         "starttime" : {
                            "description" : "Only consider entries newer than 'starttime' (unix epoch). Default is 'now - 1day'.",
                            "minimum" : 0,
@@ -17866,6 +17885,14 @@ var apiSchema = [
                            "type" : "integer",
                            "typetext" : "<integer> (1 - N)"
                         },
+                        "pmail" : {
+                           "description" : "List entries for the user with this primary email address. Quarantine users cannot specify this parameter, but it is required for all other roles.",
+                           "maxLength" : 512,
+                           "minLength" : 3,
+                           "optional" : 1,
+                           "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                           "type" : "string"
+                        },
                         "starttime" : {
                            "description" : "Only consider entries newer than 'starttime' (unix epoch). Default is 'now - 1day'.",
                            "minimum" : 0,
@@ -17949,6 +17976,14 @@ var apiSchema = [
                            "optional" : 1,
                            "type" : "integer",
                            "typetext" : "<integer> (1 - N)"
+                        },
+                        "pmail" : {
+                           "description" : "List entries for the user with this primary email address. Quarantine users cannot specify this parameter, but it is required for all other roles.",
+                           "maxLength" : 512,
+                           "minLength" : 3,
+                           "optional" : 1,
+                           "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                           "type" : "string"
                         },
                         "starttime" : {
                            "description" : "Only consider entries newer than 'starttime' (unix epoch). Default is 'now - 1day'.",
@@ -18205,7 +18240,8 @@ var apiSchema = [
                      "check" : [
                         "admin",
                         "qmanager",
-                        "audit"
+                        "audit",
+                        "quser"
                      ]
                   },
                   "returns" : {
