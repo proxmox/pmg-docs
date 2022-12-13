@@ -44,6 +44,18 @@ The timer can be edited with the command below:
 systemctl edit pmgspamreport.timer
 ----
 
+Keep in mind that just adding another `OnCalendar` event will cause the report
+to be sent out additionally at the specified time, if you want to prevent the
+default mail at 00:05, you need to reset the `OnCalendar` setting - for example
+to only send out the mails at 06:00:
+----
+[Timer]
+OnCalendar=
+OnCalendar=06:00
+----
+
+For details see the systemd man pages: `systemd.unit(5)`, `systemd.timer(5)`.
+
 ifdef::manvolnum[]
 include::pmg-copyright.adoc[]
 endif::manvolnum[]
