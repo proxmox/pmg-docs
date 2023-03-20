@@ -97,6 +97,10 @@ Stores your subscription key and status.
 
 TLS policy for outbound connections.
 
+`/etc/pmg/tls_inbound_domains`::
+
+Sender domains for which TLS is enforced on inbound connections.
+
 `/etc/pmg/transports`::
 
 Message delivery transport setup.
@@ -494,6 +498,13 @@ remote domain or a next-hop destination, as specified in `/etc/pmg/transport`.
 This can be used if you need to prevent email delivery without
 encryption, or to work around a broken 'STARTTLS' ESMTP implementation. See
 {postfix_tls_readme} for details on the supported policies.
+
+Additionally, TLS can also be enforced on incoming connections on the external
+port for specific sender domains by creating a TLS inbound domains entry. Mails
+with matching domains must use a encrypted SMTP session, otherwise they are
+rejected. All domains on this list have and entry of
+https://www.postfix.org/postconf.5.html#reject_plaintext_session[`reject_plaintext_session`]
+in a `check_sender_access` table.
 
 Enable TLS logging::
 
