@@ -7906,6 +7906,106 @@ var apiSchema = [
          {
             "children" : [
                {
+                  "info" : {
+                     "DELETE" : {
+                        "allowtoken" : 1,
+                        "description" : "Delete a tls_inbound_domains entry",
+                        "method" : "DELETE",
+                        "name" : "delete",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "domain" : {
+                                 "description" : "Domain which should be removed from tls_inbound_domains",
+                                 "format" : "transport-domain",
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              }
+                           }
+                        },
+                        "permissions" : {
+                           "check" : [
+                              "admin"
+                           ]
+                        },
+                        "protected" : 1,
+                        "proxyto" : "master",
+                        "returns" : {
+                           "type" : "null"
+                        }
+                     }
+                  },
+                  "leaf" : 1,
+                  "path" : "/config/tls-inbound-domains/{domain}",
+                  "text" : "{domain}"
+               }
+            ],
+            "info" : {
+               "GET" : {
+                  "allowtoken" : 1,
+                  "description" : "List tls_inbound_domains entries.",
+                  "method" : "GET",
+                  "name" : "index",
+                  "parameters" : {
+                     "additionalProperties" : 0
+                  },
+                  "permissions" : {
+                     "check" : [
+                        "admin",
+                        "audit"
+                     ]
+                  },
+                  "proxyto" : "master",
+                  "returns" : {
+                     "description" : "List of domains for which TLS will be enforced on incoming connections",
+                     "items" : {
+                        "format" : "transport-domain",
+                        "type" : "string"
+                     },
+                     "links" : [
+                        {
+                           "href" : "{domain}",
+                           "rel" : "child"
+                        }
+                     ],
+                     "type" : "array"
+                  }
+               },
+               "POST" : {
+                  "allowtoken" : 1,
+                  "description" : "Add new tls_inbound_domains entry.",
+                  "method" : "POST",
+                  "name" : "create",
+                  "parameters" : {
+                     "additionalProperties" : 0,
+                     "properties" : {
+                        "domain" : {
+                           "description" : "Domain for which TLS should be enforced on incoming connections",
+                           "format" : "transport-domain",
+                           "type" : "string",
+                           "typetext" : "<string>"
+                        }
+                     }
+                  },
+                  "permissions" : {
+                     "check" : [
+                        "admin"
+                     ]
+                  },
+                  "protected" : 1,
+                  "proxyto" : "master",
+                  "returns" : {
+                     "type" : "null"
+                  }
+               }
+            },
+            "leaf" : 0,
+            "path" : "/config/tls-inbound-domains",
+            "text" : "tls-inbound-domains"
+         },
+         {
+            "children" : [
+               {
                   "children" : [
                      {
                         "info" : {
@@ -9086,20 +9186,24 @@ var apiSchema = [
                                           "aws",
                                           "azion",
                                           "azure",
+                                          "bunny",
                                           "cf",
                                           "clouddns",
                                           "cloudns",
                                           "cn",
                                           "conoha",
                                           "constellix",
-                                          "cx",
+                                          "cpanel",
+                                          "curanet",
                                           "cyon",
                                           "da",
                                           "ddnss",
                                           "desec",
                                           "df",
                                           "dgon",
+                                          "dnshome",
                                           "dnsimple",
+                                          "dnsservices",
                                           "do",
                                           "doapi",
                                           "domeneshop",
@@ -9115,11 +9219,12 @@ var apiSchema = [
                                           "edgedns",
                                           "euserv",
                                           "exoscale",
+                                          "fornex",
                                           "freedns",
                                           "gandi_livedns",
                                           "gcloud",
                                           "gd",
-                                          "gdnsdk",
+                                          "geoscaling",
                                           "he",
                                           "hetzner",
                                           "hexonet",
@@ -9137,6 +9242,7 @@ var apiSchema = [
                                           "kas",
                                           "kinghost",
                                           "knot",
+                                          "la",
                                           "leaseweb",
                                           "lexicon",
                                           "linode",
@@ -9150,6 +9256,7 @@ var apiSchema = [
                                           "myapi",
                                           "mydevil",
                                           "mydnsjp",
+                                          "mythic_beasts",
                                           "namecheap",
                                           "namecom",
                                           "namesilo",
@@ -9177,24 +9284,29 @@ var apiSchema = [
                                           "porkbun",
                                           "rackcorp",
                                           "rackspace",
+                                          "rage4",
                                           "rcode0",
                                           "regru",
                                           "scaleway",
                                           "schlundtech",
                                           "selectel",
+                                          "selfhost",
                                           "servercow",
                                           "simply",
                                           "tele3",
                                           "transip",
+                                          "udr",
                                           "ultra",
                                           "unoeuro",
                                           "variomedia",
                                           "veesp",
+                                          "vercel",
                                           "vscale",
                                           "vultr",
                                           "websupport",
                                           "world4you",
                                           "yandex",
+                                          "yc",
                                           "zilore",
                                           "zone",
                                           "zonomi"
@@ -9340,20 +9452,24 @@ var apiSchema = [
                                     "aws",
                                     "azion",
                                     "azure",
+                                    "bunny",
                                     "cf",
                                     "clouddns",
                                     "cloudns",
                                     "cn",
                                     "conoha",
                                     "constellix",
-                                    "cx",
+                                    "cpanel",
+                                    "curanet",
                                     "cyon",
                                     "da",
                                     "ddnss",
                                     "desec",
                                     "df",
                                     "dgon",
+                                    "dnshome",
                                     "dnsimple",
+                                    "dnsservices",
                                     "do",
                                     "doapi",
                                     "domeneshop",
@@ -9369,11 +9485,12 @@ var apiSchema = [
                                     "edgedns",
                                     "euserv",
                                     "exoscale",
+                                    "fornex",
                                     "freedns",
                                     "gandi_livedns",
                                     "gcloud",
                                     "gd",
-                                    "gdnsdk",
+                                    "geoscaling",
                                     "he",
                                     "hetzner",
                                     "hexonet",
@@ -9391,6 +9508,7 @@ var apiSchema = [
                                     "kas",
                                     "kinghost",
                                     "knot",
+                                    "la",
                                     "leaseweb",
                                     "lexicon",
                                     "linode",
@@ -9404,6 +9522,7 @@ var apiSchema = [
                                     "myapi",
                                     "mydevil",
                                     "mydnsjp",
+                                    "mythic_beasts",
                                     "namecheap",
                                     "namecom",
                                     "namesilo",
@@ -9431,24 +9550,29 @@ var apiSchema = [
                                     "porkbun",
                                     "rackcorp",
                                     "rackspace",
+                                    "rage4",
                                     "rcode0",
                                     "regru",
                                     "scaleway",
                                     "schlundtech",
                                     "selectel",
+                                    "selfhost",
                                     "servercow",
                                     "simply",
                                     "tele3",
                                     "transip",
+                                    "udr",
                                     "ultra",
                                     "unoeuro",
                                     "variomedia",
                                     "veesp",
+                                    "vercel",
                                     "vscale",
                                     "vultr",
                                     "websupport",
                                     "world4you",
                                     "yandex",
+                                    "yc",
                                     "zilore",
                                     "zone",
                                     "zonomi"
@@ -9935,10 +10059,10 @@ var apiSchema = [
                               "delete" : {
                                  "description" : "A list of settings you want to delete.",
                                  "enum" : [
+                                    "rp",
                                     "id",
                                     "origin",
-                                    "allow-subdomains",
-                                    "rp"
+                                    "allow-subdomains"
                                  ],
                                  "optional" : 1,
                                  "type" : "string"
@@ -10589,6 +10713,13 @@ var apiSchema = [
                            "type" : "integer",
                            "typetext" : "<integer> (1 - 65535)"
                         },
+                        "smtputf8" : {
+                           "default" : 1,
+                           "description" : "Enable SMTPUTF8 support in Postfix and detection for locally generated mail",
+                           "optional" : 1,
+                           "type" : "boolean",
+                           "typetext" : "<boolean>"
+                        },
                         "spf" : {
                            "default" : 1,
                            "description" : "Use Sender Policy Framework.",
@@ -10706,6 +10837,13 @@ var apiSchema = [
                            "optional" : 1,
                            "type" : "string",
                            "typetext" : "<string>"
+                        },
+                        "extract_text" : {
+                           "default" : 0,
+                           "description" : "Extract text from attachments (doc, pdf, rtf, images) and scan for spam.",
+                           "optional" : 1,
+                           "type" : "boolean",
+                           "typetext" : "<boolean>"
                         },
                         "languages" : {
                            "default" : "all",
@@ -17644,9 +17782,9 @@ var apiSchema = [
                            "default" : "spam",
                            "description" : "Query this type of quarantine for users.",
                            "enum" : [
-                              "attachment",
                               "virus",
-                              "spam"
+                              "spam",
+                              "attachment"
                            ],
                            "optional" : 1,
                            "type" : "string"

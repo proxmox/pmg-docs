@@ -6,6 +6,10 @@ Additional score for bounce mails.
 
 Score for ClamAV heuristics (Encrypted Archives/Documents, PhishingScanURLs, ...).
 
+`extract_text`: `<boolean>` ('default =' `0`)::
+
+Extract text from attachments (doc, pdf, rtf, images) and scan for spam.
+
 `languages`: `(all|([a-z][a-z])+( ([a-z][a-z])+)*)` ('default =' `all`)::
 
 This option is used to specify which languages are considered OK for incoming mail.

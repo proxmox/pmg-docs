@@ -70,6 +70,10 @@ Reject unknown clients.
 
 Reject unknown senders.
 
+`smtputf8`: `<boolean>` ('default =' `1`)::
+
+Enable SMTPUTF8 support in Postfix and detection for locally generated mail
+
 `spf`: `<boolean>` ('default =' `1`)::
 
 Use Sender Policy Framework.

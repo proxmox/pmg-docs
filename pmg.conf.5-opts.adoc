@@ -212,6 +212,10 @@ When set, all outgoing mails are deliverd to the specified smarthost.
 
 SMTP port number for smarthost.
 
+`smtputf8`: `<boolean>` ('default =' `1`)::
+
+Enable SMTPUTF8 support in Postfix and detection for locally generated mail
+
 `spf`: `<boolean>` ('default =' `1`)::
 
 Use Sender Policy Framework.
@@ -241,6 +245,10 @@ Additional score for bounce mails.
 `clamav_heuristic_score`: `<integer> (0 - 1000)` ('default =' `3`)::
 
 Score for ClamAV heuristics (Encrypted Archives/Documents, PhishingScanURLs, ...).
+
+`extract_text`: `<boolean>` ('default =' `0`)::
+
+Extract text from attachments (doc, pdf, rtf, images) and scan for spam.
 
 `languages`: `(all|([a-z][a-z])+( ([a-z][a-z])+)*)` ('default =' `all`)::
 
