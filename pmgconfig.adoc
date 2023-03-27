@@ -302,8 +302,11 @@ ifndef::manvolnum[]
 [thumbnail="pmg-gui-mailproxy-relaying.png", big=1]
 endif::manvolnum[]
 
-These settings are saved to the 'mail' subsection in `/etc/pmg/pmg.conf`,
-using the following configuration keys:
+These settings are saved to the 'mail' subsection in `/etc/pmg/pmg.conf`. Some of these correspond
+to postfix options in the `main.cf` (see the
+https://www.postfix.org/postconf.5.html[postconf documentation]).
+
+They use the following configuration keys:
 
 include::pmg.mail-relaying-conf-opts.adoc[]
 
@@ -328,8 +331,11 @@ ifndef::manvolnum[]
 [thumbnail="pmg-gui-mailproxy-ports.png", big=1]
 endif::manvolnum[]
 
-These settings are saved to the 'mail' subsection in `/etc/pmg/pmg.conf`,
-using the following configuration keys:
+These settings are saved to the 'mail' subsection in `/etc/pmg/pmg.conf`. Many of these correspond
+to postfix options in the `main.cf` (see the
+https://www.postfix.org/postconf.5.html[postconf documentation]).
+
+They use the following configuration keys:
 
 include::pmg.mail-ports-conf-opts.adoc[]
 
