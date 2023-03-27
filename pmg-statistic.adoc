@@ -1,3 +1,4 @@
+[[chapter_stats]]
 Statistics
 ==========
 
@@ -45,6 +46,7 @@ including their percentage of the total outgoing mail volume:
 * Bounces (mails with an empty envelope-sender address)
 * Virus Mails
 
+[[pmgstats_spam_scores]]
 Spam Scores
 -----------
 
@@ -54,6 +56,7 @@ The `Spam Scores` panel shows the distribution of the different spam scores for
 the selected time period. Note that you can also select a whole month or even a
 whole year as period to display.
 
+[[pmgstats_viruses]]
 Virus Charts
 ------------
 
@@ -69,6 +72,7 @@ selected time period.
 See xref:pmgconfig_clamav[Virus Detector Configuration] for details about how
 {pmg} scans for virus files.
 
+[[pmgstats_hourly_distribution]]
 Hourly Distribution
 -------------------
 
@@ -78,6 +82,7 @@ The `Hourly Distribution` shows the amount of incoming and outgoing mail per
 hour for the selected time period. For periods spanning a whole month or a
 whole year the arithmetic average of mail volume in an hour will be shown.
 
+[[pmgstats_postscreen]]
 Postscreen
 ----------
 
@@ -98,6 +103,7 @@ ____
 For more info about postscreen and pregreet tests, see the
 https://www.postfix.org/POSTSCREEN_README.html[postscreen readme].
 
+[[pmgstats_domain]]
 Domain
 ------
 
@@ -115,6 +121,7 @@ with stats for:
 ** how many viruses were detected,
 ** and how many mails were classified as spam
 
+[[pmgstats_sender]]
 Sender
 ------
 
@@ -127,6 +134,7 @@ how big these mails were.
 If you click on one of these e-mail addresses, you see a detailed list of
 recipients, complete with size, date and time.
 
+[[pmgstats_receiver]]
 Receiver
 --------
 
@@ -143,6 +151,7 @@ If the `Use advanced statistics filters` option (`Configurations -> Options`)
 is enabled, only active accounts will be listed. Active accounts are those that
 sent mail during the selected time period or up to 90 days before.
 
+[[pmgstats_contact]]
 Contact
 -------
 
