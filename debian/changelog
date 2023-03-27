@@ -1,3 +1,16 @@
+pmg-docs (7.3-2) bullseye; urgency=medium
+
+  * config: add reference to postfix postconf
+
+  * stats: add screenshots and expand a bit
+
+  * administration: add section for statistics with screenshots of all
+    statistic panels
+
+  * update static schema info
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 27 Mar 2023 18:13:43 +0200
+
 pmg-docs (7.3-1) bullseye; urgency=medium
 
   * pmgqm: add example for systemd.timer edit
