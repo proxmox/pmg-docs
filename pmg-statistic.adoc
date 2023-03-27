@@ -9,6 +9,8 @@ The statistics are displayed for a selected period, which by default is the
 current day. This period can be changed to any other day, a whole month or even
 a whole year.
 
+[thumbnail="pmg-gui-statistics-general.png", big=1]
+
 On the main statistics page there are three graphs with additional data:
 
 'Total Mail Count'::
@@ -46,6 +48,8 @@ including their percentage of the total outgoing mail volume:
 Spam Scores
 -----------
 
+[thumbnail="pmg-gui-statistics-spam-scores.png", big=1]
+
 The `Spam Scores` panel shows the distribution of the different spam scores for
 the selected time period. Note that you can also select a whole month or even a
 whole year as period to display.
@@ -53,11 +57,22 @@ whole year as period to display.
 Virus Charts
 ------------
 
-The `Virus Charts` panel shows which and how many viruses were detected in the
+[thumbnail="pmg-gui-statistics-virus-charts.png"]
+
+The `Virus Charts` panel gives you an overview of how many virus files were
+tried to be transmitted through your mail infrastructure, but got caught early
+by the {pmg}.
+
+The list shows which and how often a certain viruses were detected in the
 selected time period.
+
+See xref:pmgconfig_clamav[Virus Detector Configuration] for details about how
+{pmg} scans for virus files.
 
 Hourly Distribution
 -------------------
+
+[thumbnail="pmg-gui-statistics-hourly-distribution.png", big=1]
 
 The `Hourly Distribution` shows the amount of incoming and outgoing mail per
 hour for the selected time period. For periods spanning a whole month or a
@@ -66,20 +81,44 @@ whole year the arithmetic average of mail volume in an hour will be shown.
 Postscreen
 ----------
 
-Contains a chart with the RBL and pregreet rejects for the selected time frame.
+[thumbnail="pmg-gui-statistics-postscreen.png"]
+
+Contains a chart with the RBL (Real-time Blackhole Lists) and `pregreet`
+rejects for the selected time frame.
+
+[quote, Postfix Postscreen Howto]
+____
+For each connection from an SMTP client, postscreen(8) performs a number of
+tests in the order as described below. Some tests introduce a delay of a few
+seconds. postscreen(8) maintains a temporary allowlist for clients that pass
+its tests; by allowing allowlisted clients to skip tests, postscreen(8)
+minimizes its impact on legitimate email traffic.
+____
+
 For more info about postscreen and pregreet tests, see the
 https://www.postfix.org/POSTSCREEN_README.html[postscreen readme].
 
 Domain
 ------
 
+[thumbnail="pmg-gui-statistics-domain.png"]
+
 The `Domain` view is split into two tabs, one for incoming and one for outgoing
-mails. Each shows a summary grouped by the recipient domain in a selected time
-frame, with stats for traffic, count, how many viruses were detected, and how
-much of the mail volume was classified as spam.
+mails.
+
+Each tab shows a list of domains that received mails in a selected time frame,
+with stats for:
+
+* traffic amount
+* counts for:
+** mail flow to a domain
+** how many viruses were detected,
+** and how many mails were classified as spam
 
 Sender
 ------
+
+[thumbnail="pmg-gui-statistics-sender.png", big=1]
 
 The `Sender` panel contains a list of e-mail addresses that sent mail out in
 the selected time frame, with a total count, how many viruses were detected and
@@ -90,6 +129,8 @@ recipients, complete with size, date and time.
 
 Receiver
 --------
+
+[thumbnail="pmg-gui-statistics-receiver.png"]
 
 Similar to the `Sender` panel, this contains a list of e-mail addresses that
 received e-mails from outside, with a total, spam and virus count, as well
@@ -104,6 +145,8 @@ sent mail during the selected time period or up to 90 days before.
 
 Contact
 -------
+
+[thumbnail="pmg-gui-statistics-contact.png"]
 
 This contains the list of external recipients that received mail from this
 {pmg}, coming in on the internal port, with total count, virus count and size.
