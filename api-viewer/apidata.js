@@ -10059,10 +10059,10 @@ var apiSchema = [
                               "delete" : {
                                  "description" : "A list of settings you want to delete.",
                                  "enum" : [
-                                    "rp",
                                     "id",
                                     "origin",
-                                    "allow-subdomains"
+                                    "allow-subdomains",
+                                    "rp"
                                  ],
                                  "optional" : 1,
                                  "type" : "string"
@@ -10174,10 +10174,11 @@ var apiSchema = [
                      "properties" : {
                         "advfilter" : {
                            "default" : 1,
-                           "description" : "Use advanced filters for statistic.",
+                           "description" : "Enable advanced filters for statistic.",
                            "optional" : 1,
                            "type" : "boolean",
-                           "typetext" : "<boolean>"
+                           "typetext" : "<boolean>",
+                           "verbose_description" : "Enable advanced filters for statistic.\n\nIf this is enabled, the receiver statistic are limited to active ones\n(receivers which also sent out mail in the 90 days before), and the contact\nstatistic will not contain these active receivers.\n"
                         },
                         "avast" : {
                            "default" : 0,
@@ -10505,7 +10506,7 @@ var apiSchema = [
                            "typetext" : "<string>"
                         },
                         "dnsbl_sites" : {
-                           "description" : "Optional list of DNS white/blacklist domains (see postscreen_dnsbl_sites parameter).",
+                           "description" : "Optional list of DNS white/blacklist domains (postfix option `postscreen_dnsbl_sites`).",
                            "format" : "dnsbl-entry-list",
                            "optional" : 1,
                            "type" : "string",
@@ -10513,7 +10514,7 @@ var apiSchema = [
                         },
                         "dnsbl_threshold" : {
                            "default" : 1,
-                           "description" : "The inclusive lower bound for blocking a remote SMTP client, based on its combined DNSBL score (see postscreen_dnsbl_threshold parameter).",
+                           "description" : "The inclusive lower bound for blocking a remote SMTP client, based on its combined DNSBL score (postfix option `postscreen_dnsbl_threshold`).",
                            "minimum" : 0,
                            "optional" : 1,
                            "type" : "integer",
@@ -10521,7 +10522,7 @@ var apiSchema = [
                         },
                         "dwarning" : {
                            "default" : 4,
-                           "description" : "SMTP delay warning time (in hours).",
+                           "description" : "SMTP delay warning time (in hours). (postfix option `delay_warning_time`)",
                            "minimum" : 0,
                            "optional" : 1,
                            "type" : "integer",
@@ -10570,7 +10571,7 @@ var apiSchema = [
                         },
                         "helotests" : {
                            "default" : 0,
-                           "description" : "Use SMTP HELO tests.",
+                           "description" : "Use SMTP HELO tests. (postfix option `smtpd_helo_restrictions`)",
                            "optional" : 1,
                            "type" : "boolean",
                            "typetext" : "<boolean>"
@@ -10592,7 +10593,7 @@ var apiSchema = [
                            "typetext" : "<integer> (1 - 65535)"
                         },
                         "max_filters" : {
-                           "default" : 38,
+                           "default" : 31,
                            "description" : "Maximum number of pmg-smtp-filter processes.",
                            "maximum" : 40,
                            "minimum" : 3,
@@ -10629,7 +10630,7 @@ var apiSchema = [
                         },
                         "maxsize" : {
                            "default" : 10485760,
-                           "description" : "Maximum email size. Larger mails are rejected.",
+                           "description" : "Maximum email size. Larger mails are rejected. (postfix option `message_size_limit`)",
                            "minimum" : 1024,
                            "optional" : 1,
                            "type" : "integer",
@@ -10652,14 +10653,14 @@ var apiSchema = [
                         },
                         "rejectunknown" : {
                            "default" : 0,
-                           "description" : "Reject unknown clients.",
+                           "description" : "Reject unknown clients. (postfix option `reject_unknown_client_hostname`)",
                            "optional" : 1,
                            "type" : "boolean",
                            "typetext" : "<boolean>"
                         },
                         "rejectunknownsender" : {
                            "default" : 0,
-                           "description" : "Reject unknown senders.",
+                           "description" : "Reject unknown senders. (postfix option `reject_unknown_sender_domain`)",
                            "optional" : 1,
                            "type" : "boolean",
                            "typetext" : "<boolean>"
@@ -10698,7 +10699,7 @@ var apiSchema = [
                            "type" : "string"
                         },
                         "smarthost" : {
-                           "description" : "When set, all outgoing mails are deliverd to the specified smarthost.",
+                           "description" : "When set, all outgoing mails are deliverd to the specified smarthost. (postfix option `default_transport`)",
                            "format" : "address",
                            "optional" : 1,
                            "type" : "string",
@@ -10706,7 +10707,7 @@ var apiSchema = [
                         },
                         "smarthostport" : {
                            "default" : 25,
-                           "description" : "SMTP port number for smarthost.",
+                           "description" : "SMTP port number for smarthost. (postfix option `default_transport`)",
                            "maximum" : 65535,
                            "minimum" : 1,
                            "optional" : 1,
@@ -10715,7 +10716,7 @@ var apiSchema = [
                         },
                         "smtputf8" : {
                            "default" : 1,
-                           "description" : "Enable SMTPUTF8 support in Postfix and detection for locally generated mail",
+                           "description" : "Enable SMTPUTF8 support in Postfix and detection for locally generated mail (postfix option `smtputf8_enable`)",
                            "optional" : 1,
                            "type" : "boolean",
                            "typetext" : "<boolean>"
@@ -10749,7 +10750,7 @@ var apiSchema = [
                            "typetext" : "<boolean>"
                         },
                         "verifyreceivers" : {
-                           "description" : "Enable receiver verification. The value spefifies the numerical reply code when the Postfix SMTP server rejects a recipient address.",
+                           "description" : "Enable receiver verification. The value spefifies the numerical reply code when the Postfix SMTP server rejects a recipient address. (postfix options `reject_unknown_recipient_domain`, `reject_unverified_recipient`, and `unverified_recipient_reject_code`)",
                            "enum" : [
                               "450",
                               "550"
@@ -17782,9 +17783,9 @@ var apiSchema = [
                            "default" : "spam",
                            "description" : "Query this type of quarantine for users.",
                            "enum" : [
-                              "virus",
+                              "attachment",
                               "spam",
-                              "attachment"
+                              "virus"
                            ],
                            "optional" : 1,
                            "type" : "string"

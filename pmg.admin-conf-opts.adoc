@@ -1,6 +1,10 @@
 `advfilter`: `<boolean>` ('default =' `1`)::
 
-Use advanced filters for statistic.
+Enable advanced filters for statistic.
++
+If this is enabled, the receiver statistic are limited to active ones
+(receivers which also sent out mail in the 90 days before), and the contact
+statistic will not contain these active receivers.
 
 `avast`: `<boolean>` ('default =' `0`)::
 

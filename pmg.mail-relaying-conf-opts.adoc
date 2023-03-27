@@ -16,9 +16,9 @@ Transport protocol for relay host.
 
 `smarthost`: `<string>` ::
 
-When set, all outgoing mails are deliverd to the specified smarthost.
+When set, all outgoing mails are deliverd to the specified smarthost. (postfix option `default_transport`)
 
 `smarthostport`: `<integer> (1 - 65535)` ('default =' `25`)::
 
-SMTP port number for smarthost.
+SMTP port number for smarthost. (postfix option `default_transport`)
 

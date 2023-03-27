@@ -16,15 +16,15 @@ The maximal number of connection attempts any client is allowed to make to this 
 
 `dnsbl_sites`: `<string>` ::
 
-Optional list of DNS white/blacklist domains (see postscreen_dnsbl_sites parameter).
+Optional list of DNS white/blacklist domains (postfix option `postscreen_dnsbl_sites`).
 
 `dnsbl_threshold`: `<integer> (0 - N)` ('default =' `1`)::
 
-The inclusive lower bound for blocking a remote SMTP client, based on its combined DNSBL score (see postscreen_dnsbl_threshold parameter).
+The inclusive lower bound for blocking a remote SMTP client, based on its combined DNSBL score (postfix option `postscreen_dnsbl_threshold`).
 
 `dwarning`: `<integer> (0 - N)` ('default =' `4`)::
 
-SMTP delay warning time (in hours).
+SMTP delay warning time (in hours). (postfix option `delay_warning_time`)
 
 `greylist`: `<boolean>` ('default =' `1`)::
 
@@ -44,7 +44,7 @@ Netmask to apply for greylisting IPv6 hosts
 
 `helotests`: `<boolean>` ('default =' `0`)::
 
-Use SMTP HELO tests.
+Use SMTP HELO tests. (postfix option `smtpd_helo_restrictions`)
 
 `hide_received`: `<boolean>` ('default =' `0`)::
 
@@ -52,7 +52,7 @@ Hide received header in outgoing mails.
 
 `maxsize`: `<integer> (1024 - N)` ('default =' `10485760`)::
 
-Maximum email size. Larger mails are rejected.
+Maximum email size. Larger mails are rejected. (postfix option `message_size_limit`)
 
 `message_rate_limit`: `<integer> (0 - N)` ('default =' `0`)::
 
@@ -64,15 +64,15 @@ Send out NDR when mail gets blocked
 
 `rejectunknown`: `<boolean>` ('default =' `0`)::
 
-Reject unknown clients.
+Reject unknown clients. (postfix option `reject_unknown_client_hostname`)
 
 `rejectunknownsender`: `<boolean>` ('default =' `0`)::
 
-Reject unknown senders.
+Reject unknown senders. (postfix option `reject_unknown_sender_domain`)
 
 `smtputf8`: `<boolean>` ('default =' `1`)::
 
-Enable SMTPUTF8 support in Postfix and detection for locally generated mail
+Enable SMTPUTF8 support in Postfix and detection for locally generated mail (postfix option `smtputf8_enable`)
 
 `spf`: `<boolean>` ('default =' `1`)::
 
@@ -80,5 +80,5 @@ Use Sender Policy Framework.
 
 `verifyreceivers`: `<450 | 550>` ::
 
-Enable receiver verification. The value spefifies the numerical reply code when the Postfix SMTP server rejects a recipient address.
+Enable receiver verification. The value spefifies the numerical reply code when the Postfix SMTP server rejects a recipient address. (postfix options `reject_unknown_recipient_domain`, `reject_unverified_recipient`, and `unverified_recipient_reject_code`)
 

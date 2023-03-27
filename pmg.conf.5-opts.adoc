@@ -2,7 +2,11 @@
 
 `advfilter`: `<boolean>` ('default =' `1`)::
 
-Use advanced filters for statistic.
+Enable advanced filters for statistic.
++
+If this is enabled, the receiver statistic are limited to active ones
+(receivers which also sent out mail in the 90 days before), and the contact
+statistic will not contain these active receivers.
 
 `avast`: `<boolean>` ('default =' `0`)::
 
@@ -110,15 +114,15 @@ The maximal number of connection attempts any client is allowed to make to this 
 
 `dnsbl_sites`: `<string>` ::
 
-Optional list of DNS white/blacklist domains (see postscreen_dnsbl_sites parameter).
+Optional list of DNS white/blacklist domains (postfix option `postscreen_dnsbl_sites`).
 
 `dnsbl_threshold`: `<integer> (0 - N)` ('default =' `1`)::
 
-The inclusive lower bound for blocking a remote SMTP client, based on its combined DNSBL score (see postscreen_dnsbl_threshold parameter).
+The inclusive lower bound for blocking a remote SMTP client, based on its combined DNSBL score (postfix option `postscreen_dnsbl_threshold`).
 
 `dwarning`: `<integer> (0 - N)` ('default =' `4`)::
 
-SMTP delay warning time (in hours).
+SMTP delay warning time (in hours). (postfix option `delay_warning_time`)
 
 `ext_port`: `<integer> (1 - 65535)` ('default =' `25`)::
 
@@ -142,7 +146,7 @@ Netmask to apply for greylisting IPv6 hosts
 
 `helotests`: `<boolean>` ('default =' `0`)::
 
-Use SMTP HELO tests.
+Use SMTP HELO tests. (postfix option `smtpd_helo_restrictions`)
 
 `hide_received`: `<boolean>` ('default =' `0`)::
 
@@ -152,7 +156,7 @@ Hide received header in outgoing mails.
 
 SMTP port number for outgoing mail (trusted).
 
-`max_filters`: `<integer> (3 - 40)` ('default =' `38`)::
+`max_filters`: `<integer> (3 - 40)` ('default =' `31`)::
 
 Maximum number of pmg-smtp-filter processes.
 
@@ -170,7 +174,7 @@ Maximum number of SMTP daemon processes (out).
 
 `maxsize`: `<integer> (1024 - N)` ('default =' `10485760`)::
 
-Maximum email size. Larger mails are rejected.
+Maximum email size. Larger mails are rejected. (postfix option `message_size_limit`)
 
 `message_rate_limit`: `<integer> (0 - N)` ('default =' `0`)::
 
@@ -182,11 +186,11 @@ Send out NDR when mail gets blocked
 
 `rejectunknown`: `<boolean>` ('default =' `0`)::
 
-Reject unknown clients.
+Reject unknown clients. (postfix option `reject_unknown_client_hostname`)
 
 `rejectunknownsender`: `<boolean>` ('default =' `0`)::
 
-Reject unknown senders.
+Reject unknown senders. (postfix option `reject_unknown_sender_domain`)
 
 `relay`: `<string>` ::
 
@@ -206,15 +210,15 @@ Transport protocol for relay host.
 
 `smarthost`: `<string>` ::
 
-When set, all outgoing mails are deliverd to the specified smarthost.
+When set, all outgoing mails are deliverd to the specified smarthost. (postfix option `default_transport`)
 
 `smarthostport`: `<integer> (1 - 65535)` ('default =' `25`)::
 
-SMTP port number for smarthost.
+SMTP port number for smarthost. (postfix option `default_transport`)
 
 `smtputf8`: `<boolean>` ('default =' `1`)::
 
-Enable SMTPUTF8 support in Postfix and detection for locally generated mail
+Enable SMTPUTF8 support in Postfix and detection for locally generated mail (postfix option `smtputf8_enable`)
 
 `spf`: `<boolean>` ('default =' `1`)::
 
@@ -234,7 +238,7 @@ Enable TLS Logging.
 
 `verifyreceivers`: `<450 | 550>` ::
 
-Enable receiver verification. The value spefifies the numerical reply code when the Postfix SMTP server rejects a recipient address.
+Enable receiver verification. The value spefifies the numerical reply code when the Postfix SMTP server rejects a recipient address. (postfix options `reject_unknown_recipient_domain`, `reject_unverified_recipient`, and `unverified_recipient_reject_code`)
 
 .Section 'spam'
 
