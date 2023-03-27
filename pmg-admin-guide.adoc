@@ -31,6 +31,8 @@ include::pmg-mail-filter.adoc[]
 
 include::pmg-administration.adoc[]
 
+include::pmg-statistic.adoc[]
+
 include::pmgbackup.adoc[]
 
 include::pmgcm.adoc[]

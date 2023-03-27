@@ -1,0 +1,113 @@
+Statistics
+==========
+
+{pmg} offers a useful and feature-rich statistics interface, which allows the
+administrators to quickly see the general workload and makes it easy to identify
+problems.
+
+The statistics are shown for the selected time range, which defaults to the
+current day, but can be changed to any other day, a whole month, or even a
+whole year.
+
+On the main statistics page there are three graphs with additional data:
+
+'Total Mail Count'::
+
+Shows the total mail flow as a graph and the following details:
+
+* Total Mails
+* Incoming/Outgoing Mails (as count and percentage)
+* Virus Outbreaks (the amount of outgoing virus mails)
+* Avg. Mail Processing Time
+* Incoming/Outgoing Mail Traffic
+
+'Incoming Mails'::
+
+Shows the incoming mail counts as a graph and the following details
+(as counts and percentages of the incoming mail volume):
+
+* Incoming Mails
+* Junk Mails (Virus + Spam + Greylisted + SPF rejects + RBL rejects)
+* Greylisted Mails
+* Spam Mails (Mails with Spamscore >= 3 and not containing a virus)
+* SPF rejects
+* Bounces (mails with an empty envelope-sender address)
+* Virus Mails
+
+'Outgoing Mails'::
+
+Shows the outgoing mail counts as a graph and the following details
+(as counts and percentages of the outgoing mail volume):
+
+* Outgoing Mails
+* Bounces (mails with an empty envelope-sender address)
+* Virus Mails
+
+Spam Scores
+-----------
+
+This panel shows the distribution of the different spam scores for the selected
+time frame.
+
+Virus Charts
+------------
+
+This panel shows which and how many viruses were detected in the selected
+time frame.
+
+Hourly Distribution
+-------------------
+
+Shows the amount of incoming and outgoing mail per hour for the selected
+time frame.
+
+Postscreen
+----------
+
+Contains a chart with the RBL and pregreet rejects for the selected time frame.
+For more info about postscreen and pregreet tests, see the
+https://www.postfix.org/POSTSCREEN_README.html[postscreen readme].
+
+Domain
+------
+
+Contains a summary for the recipient domain of the incoming and outgoing mails
+of the selected time frame, with traffic, count, how many viruses were detected,
+and how much of it was spam.
+
+Sender
+------
+
+This panel contains a list of e-mail addresses that sent mail out in the
+selected time frame, with a total count, how many viruses were detected and how
+big these mails were.
+
+If you click on one of these e-mail addresses, you see a detailed list of
+recipients, complete with size, date and time.
+
+Receiver
+--------
+
+Similar to the `Sender` panel, this contains a list of e-mail addresses that
+received e-mails from outside, with a total, spam and virus count, as well
+as the total mail size.
+
+If you click an entry, it shows a detailed list of mails with size, date,
+time, virus and spam score info.
+
+If the `advanced statistics filters` are active, only active accounts will be
+listed. Active accounts are those which sent mail in the selected time frame
+or up to 90 days before.
+
+Contact
+-------
+
+This contains the list of external recipients that received mail from this
+{pmg}, coming in on the internal port, with total count, virus count and size.
+
+If you click an entry, it shows a list of mails with size, date and time.
+
+If the `advanced statistics filters` are active, active accounts will be
+filtered out, since they can already be seen in the `Receiver` panel. Active
+accounts are those which sent mail in the selected time frame or up to 90 days
+before.
