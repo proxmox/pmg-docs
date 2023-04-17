@@ -203,7 +203,7 @@ blacklist and the user blacklist.
 SMTP Whitelist
 ~~~~~~~~~~~~~~
 
-The xref:pmgconfig_mailproxy_options[SMTP Whitelist] is responsible for disabling
+The xref:pmgconfig_mailproxy_whitelist[SMTP Whitelist] is responsible for disabling
 greylisting, as well as SPF and DNSBL checks. These are done during the SMTP
 dialogue.
 
@@ -591,6 +591,7 @@ using the following configuration keys:
 include::pmg.admin-dkim-conf-opts.adoc[]
 
 
+[[pmgconfig_mailproxy_whitelist]]
 Whitelist
 ~~~~~~~~~
 
