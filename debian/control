@@ -17,7 +17,7 @@ Standards-Version: 4.5.1
 Package: pmg-doc-generator
 Section: perl
 Architecture: any
-Depends: asciidoc-base, libpve-common-perl, xmlto, ${perl:Depends}
+Depends: asciidoc-base, libpve-common-perl, xmlto, ${misc:Depends}, ${perl:Depends}
 Description: Proxmox Mail Gateway Documentation helpers
  Tool to auto-generate various Proxmox Mail gateway Documentation files and
  manual pages. This package is required to build most other Proxmox Mail
@@ -25,7 +25,7 @@ Description: Proxmox Mail Gateway Documentation helpers
 
 Package: pmg-docs
 Section: doc
-Depends: libjs-extjs
+Depends: libjs-extjs, ${misc:Depends}
 Architecture: all
 Description: Proxmox Mail Gateway Documentation
  This package contains the Proxmox Mail Gateway documentation files.
