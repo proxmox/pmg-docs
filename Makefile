@@ -206,8 +206,9 @@ doc-install: index.html $(API_VIEWER_SOURCES) verify-images
 	install -m 0644 $(API_VIEWER_SOURCES) $(DESTDIR)/usr/share/$(DOC_PACKAGE)/api-viewer
 
 .PHONY: upload
+upload: UPLOAD_DIST ?= $(DEB_DISTRIBUTION)
 upload: $(GEN_DEB) $(DOC_DEB)
-	tar cf - $(GEN_DEB) $(DOC_DEB) | ssh -X repoman@repo.proxmox.com -- upload --product pmg --dist bullseye
+	tar cf - $(GEN_DEB) $(DOC_DEB) | ssh -X repoman@repo.proxmox.com -- upload --product pmg --dist $(UPLOAD_DIST)
 
 .PHONY: update
 update: clean
