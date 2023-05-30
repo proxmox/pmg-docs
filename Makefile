@@ -14,9 +14,7 @@ PKGREL=1
 
 GITVERSION:=$(shell git rev-parse HEAD)
 
-ARCH:=$(shell dpkg-architecture -qDEB_BUILD_ARCH)
-
-GEN_DEB=$(GEN_PACKAGE)_$(DEB_VERSION_UPSTREAM_REVISION)_$(ARCH).deb
+GEN_DEB=$(GEN_PACKAGE)_$(DEB_VERSION_UPSTREAM_REVISION)_all.deb
 DOC_DEB=$(DOC_PACKAGE)_$(DEB_VERSION_UPSTREAM_REVISION)_all.deb
 
 export SOURCE_DATE_EPOCH ?= $(shell dpkg-parsechangelog -STimestamp)
