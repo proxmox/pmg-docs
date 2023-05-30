@@ -3,6 +3,8 @@ include /usr/share/dpkg/pkg-info.mk
 DGDIR=.
 ASCIIDOC_PMG=./asciidoc-pmg
 
+BUILDDIR ?= $(DEB_SOURCE)-$(DEB_VERSION)
+
 GEN_PACKAGE=pmg-doc-generator
 DOC_PACKAGE=pmg-docs
 
@@ -146,26 +148,31 @@ api-viewer/apidoc.js: $(API_VIEWER_FILES)
 	cat $(API_VIEWER_FILES) >$@.tmp
 	mv $@.tmp $@
 
+$(BUILDDIR):
+	rm -rf $@ $@.tmp
+	rsync -a * $@.tmp
+	echo "git clone git://git.proxmox.com/git/pmg-docs.git\\ngit checkout $(GITVERSION)" > $@.tmp/debian/SOURCE
+	mv $@.tmp $@
+
 .PHONY: dinstall
 dinstall: $(GEN_DEB) $(DOC_DEB)
 	dpkg -i $(GEN_DEB) $(DOC_DEB)
 
 .PHONY: deb
 deb: $(DOC_DEB)
+	rm -f $(GEN_DEB) $(DOC_DEB)
+	rm -rf $(BUILDDIR)
+	$(MAKE) $(DOC_DEB)
 
 $(GEN_DEB): $(DOC_DEB)
 
-$(DOC_DEB):
-	rm -f $(GEN_DEB) $(DOC_DEB)
-	rm -rf build
-	rsync -a * build/
-	echo "git clone git://git.proxmox.com/git/pmg-docs.git\\ngit checkout $(GITVERSION)" > build/debian/SOURCE
-	cd build; dpkg-buildpackage -b -us -uc
+$(DOC_DEB): $(BUILDDIR)
+	cd $(BUILDDIR); dpkg-buildpackage -b -us -uc
 	lintian $(DOC_DEB) $(GEN_DEB)
 
 .PHONY: clean-build
 clean-build:
-	rm -rf build
+	rm -rf $(BUILDDIR)
 
 .PHONY: install
 install: gen-install doc-install
@@ -213,4 +220,4 @@ clean:
 	rm -f api-viewer/apidoc.js chapter-*.html *-plain.html chapter-*.html pmg-admin-guide.chunked asciidoc-pmg link-refs.json .asciidoc-pmg-tmp_* pmg-smtp-filter.8-synopsis.adoc pmgpolicy.8-synopsis.adoc pmgsh.1-synopsis.adoc
 	rm -rf .pmg-doc-depends 
 	rm -f pmg-doc-generator.mk chapter-index-table.adoc man1-index-table.adoc man5-index-table.adoc man8-index-table.adoc pmg-admin-guide-docinfo.xml pmg-copyright.adoc
-	rm -rf build*
+	rm -rf $(DEB_SOURCE)-[0-9]*
