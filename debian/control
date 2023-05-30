@@ -12,7 +12,7 @@ Build-Depends: asciidoc-dblatex,
                proxmox-widget-toolkit-dev,
                rsync,
                source-highlight,
-Standards-Version: 4.5.1
+Standards-Version: 4.6.2
 
 Package: pmg-doc-generator
 Section: perl
