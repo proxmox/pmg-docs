@@ -4,6 +4,7 @@ DGDIR=.
 ASCIIDOC_PMG=./asciidoc-pmg
 
 BUILDDIR ?= $(DEB_SOURCE)-$(DEB_VERSION)
+DSC=$(DEB_SOURCE)_$(DEB_VERSION).dsc
 
 GEN_PACKAGE=pmg-doc-generator
 DOC_PACKAGE=pmg-docs
@@ -158,7 +159,15 @@ $(BUILDDIR):
 dinstall: $(GEN_DEB) $(DOC_DEB)
 	dpkg -i $(GEN_DEB) $(DOC_DEB)
 
-.PHONY: deb
+.PHONY: dsc deb
+dsc: $(DSC)
+$(DSC): $(BUILDDIR)
+	cd $(BUILDDIR); dpkg-buildpackage -S -us -uc -d
+	lintian $(DSC)
+
+sbuild: $(DSC)
+	sbuild $(DSC)
+
 deb: $(DOC_DEB)
 	rm -f $(GEN_DEB) $(DOC_DEB)
 	rm -rf $(BUILDDIR)
@@ -216,7 +225,7 @@ update: clean
 clean:
 	find . -name '*~' -exec rm {} ';'
 	rm -rf *.html *.pdf *.epub *.tmp *.1 *.5 *.8
-	rm -f *.deb *.changes *.buildinfo
+	rm -f *.deb *dsc *.tar.* *.changes *.buildinfo *.build
 	rm -f api-viewer/apidoc.js chapter-*.html *-plain.html chapter-*.html pmg-admin-guide.chunked asciidoc-pmg link-refs.json .asciidoc-pmg-tmp_* pmg-smtp-filter.8-synopsis.adoc pmgpolicy.8-synopsis.adoc pmgsh.1-synopsis.adoc
 	rm -rf .pmg-doc-depends 
 	rm -f pmg-doc-generator.mk chapter-index-table.adoc man1-index-table.adoc man5-index-table.adoc man8-index-table.adoc pmg-admin-guide-docinfo.xml pmg-copyright.adoc
