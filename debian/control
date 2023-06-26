@@ -7,6 +7,8 @@ Build-Depends: asciidoc-dblatex,
                debhelper-compat (= 13),
                git,
                libjson-perl,
+# do not add libpve-common or pmg-api as dependencies, as that's a good sign
+# that somebody missed checking in a generated .adoc file
                imagemagick,
                librsvg2-bin,
                proxmox-widget-toolkit-dev,
