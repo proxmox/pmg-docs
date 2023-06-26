@@ -9,8 +9,6 @@ DSC=$(DEB_SOURCE)_$(DEB_VERSION).dsc
 GEN_PACKAGE=pmg-doc-generator
 DOC_PACKAGE=pmg-docs
 
-GITVERSION:=$(shell git rev-parse HEAD)
-
 GEN_DEB=$(GEN_PACKAGE)_$(DEB_VERSION_UPSTREAM_REVISION)_all.deb
 DOC_DEB=$(DOC_PACKAGE)_$(DEB_VERSION_UPSTREAM_REVISION)_all.deb
 
@@ -147,7 +145,7 @@ api-viewer/apidoc.js: $(API_VIEWER_FILES)
 $(BUILDDIR):
 	rm -rf $@ $@.tmp
 	rsync -a * $@.tmp
-	echo "git clone git://git.proxmox.com/git/pmg-docs.git\\ngit checkout $(GITVERSION)" > $@.tmp/debian/SOURCE
+	echo "git clone git://git.proxmox.com/git/pmg-docs.git\\ngit checkout $(shell git rev-parse HEAD)" > $@.tmp/debian/SOURCE
 	mv $@.tmp $@
 
 .PHONY: dinstall
