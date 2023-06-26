@@ -1,0 +1,12 @@
+`dkim_selector`: `<string>` ::
+
+Default DKIM selector
+
+`dkim_sign`: `<boolean>` ('default =' `0`)::
+
+DKIM sign outbound mails with the configured Selector.
+
+`dkim_sign_all_mail`: `<boolean>` ('default =' `0`)::
+
+DKIM sign all outgoing mails irrespective of the Envelope From domain.
+
