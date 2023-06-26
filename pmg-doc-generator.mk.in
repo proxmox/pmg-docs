@@ -74,21 +74,18 @@ chapter-%.html: %.adoc ${PMG_COMMON_DOC_SOURCES}
 
 %.1: %.adoc %.1-synopsis.adoc ${PMG_COMMON_DOC_SOURCES}
 	${ASCIIDOC_PMG} compile-man -o $@ $*.adoc
-	test -n "$${NOVIEW}" || man -l $@
 
 %.1.html: %.adoc %.1-synopsis.adoc ${PMG_COMMON_DOC_SOURCES}
 	${ASCIIDOC_PMG} compile-man-html -o $@ $*.adoc
 
 %.8: %.adoc %.8-synopsis.adoc ${PMG_COMMON_DOC_SOURCES}
 	${ASCIIDOC_PMG} compile-man -o $@ $*.adoc
-	test -n "$${NOVIEW}" || man -l $@
 
 %.8.html: %.adoc %.8-synopsis.adoc ${PMG_COMMON_DOC_SOURCES}
 	${ASCIIDOC_PMG} compile-man-html -o $@ $*.adoc
 
 %.5: %.adoc %.5-opts.adoc ${PMG_COMMON_DOC_SOURCES}
 	${ASCIIDOC_PMG} compile-man -o $@ $*.adoc
-	test -n "$${NOVIEW}" || man -l $@
 
 %.5.html: %.adoc %.5-opts.adoc ${PMG_COMMON_DOC_SOURCES}
 	${ASCIIDOC_PMG} compile-man-html -o $@ $*.adoc
