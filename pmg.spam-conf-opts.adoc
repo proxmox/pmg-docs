@@ -22,11 +22,11 @@ Maximum size of spam messages in bytes.
 
 Enable real time blacklists (RBL) checks.
 
-`use_awl`: `<boolean>` ('default =' `1`)::
+`use_awl`: `<boolean>` ('default =' `0`)::
 
 Use the Auto-Whitelist plugin.
 
-`use_bayes`: `<boolean>` ('default =' `1`)::
+`use_bayes`: `<boolean>` ('default =' `0`)::
 
 Whether to use the naive-Bayesian-style classifier.
 

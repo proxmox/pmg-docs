@@ -1,4 +1,4 @@
-`advfilter`: `<boolean>` ('default =' `1`)::
+`advfilter`: `<boolean>` ('default =' `0`)::
 
 Enable advanced filters for statistic.
 +

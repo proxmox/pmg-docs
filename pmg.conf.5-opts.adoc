@@ -1,6 +1,6 @@
 .Section 'admin'
 
-`advfilter`: `<boolean>` ('default =' `1`)::
+`advfilter`: `<boolean>` ('default =' `0`)::
 
 Enable advanced filters for statistic.
 +
@@ -156,7 +156,7 @@ Hide received header in outgoing mails.
 
 SMTP port number for outgoing mail (trusted).
 
-`max_filters`: `<integer> (3 - 40)` ('default =' `31`)::
+`max_filters`: `<integer> (3 - 40)` ('default =' `15`)::
 
 Maximum number of pmg-smtp-filter processes.
 
@@ -164,11 +164,11 @@ Maximum number of pmg-smtp-filter processes.
 
 Maximum number of pmgpolicy processes.
 
-`max_smtpd_in`: `<integer> (3 - 100)` ('default =' `100`)::
+`max_smtpd_in`: `<integer> (3 - 100)` ('default =' `97`)::
 
 Maximum number of SMTP daemon processes (in).
 
-`max_smtpd_out`: `<integer> (3 - 100)` ('default =' `100`)::
+`max_smtpd_out`: `<integer> (3 - 100)` ('default =' `97`)::
 
 Maximum number of SMTP daemon processes (out).
 
@@ -266,11 +266,11 @@ Maximum size of spam messages in bytes.
 
 Enable real time blacklists (RBL) checks.
 
-`use_awl`: `<boolean>` ('default =' `1`)::
+`use_awl`: `<boolean>` ('default =' `0`)::
 
 Use the Auto-Whitelist plugin.
 
-`use_bayes`: `<boolean>` ('default =' `1`)::
+`use_bayes`: `<boolean>` ('default =' `0`)::
 
 Whether to use the naive-Bayesian-style classifier.
 

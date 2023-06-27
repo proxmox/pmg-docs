@@ -9223,8 +9223,10 @@ var apiSchema = [
                                           "freedns",
                                           "gandi_livedns",
                                           "gcloud",
+                                          "gcore",
                                           "gd",
                                           "geoscaling",
+                                          "googledomains",
                                           "he",
                                           "hetzner",
                                           "hexonet",
@@ -9235,6 +9237,7 @@ var apiSchema = [
                                           "internetbs",
                                           "inwx",
                                           "ionos",
+                                          "ipv64",
                                           "ispconfig",
                                           "jd",
                                           "joker",
@@ -9260,6 +9263,7 @@ var apiSchema = [
                                           "namecheap",
                                           "namecom",
                                           "namesilo",
+                                          "nanelo",
                                           "nederhost",
                                           "neodigit",
                                           "netcup",
@@ -9489,8 +9493,10 @@ var apiSchema = [
                                     "freedns",
                                     "gandi_livedns",
                                     "gcloud",
+                                    "gcore",
                                     "gd",
                                     "geoscaling",
+                                    "googledomains",
                                     "he",
                                     "hetzner",
                                     "hexonet",
@@ -9501,6 +9507,7 @@ var apiSchema = [
                                     "internetbs",
                                     "inwx",
                                     "ionos",
+                                    "ipv64",
                                     "ispconfig",
                                     "jd",
                                     "joker",
@@ -9526,6 +9533,7 @@ var apiSchema = [
                                     "namecheap",
                                     "namecom",
                                     "namesilo",
+                                    "nanelo",
                                     "nederhost",
                                     "neodigit",
                                     "netcup",
@@ -10059,10 +10067,10 @@ var apiSchema = [
                               "delete" : {
                                  "description" : "A list of settings you want to delete.",
                                  "enum" : [
-                                    "id",
                                     "origin",
                                     "allow-subdomains",
-                                    "rp"
+                                    "rp",
+                                    "id"
                                  ],
                                  "optional" : 1,
                                  "type" : "string"
@@ -10173,7 +10181,7 @@ var apiSchema = [
                      "additionalProperties" : 0,
                      "properties" : {
                         "advfilter" : {
-                           "default" : 1,
+                           "default" : 0,
                            "description" : "Enable advanced filters for statistic.",
                            "optional" : 1,
                            "type" : "boolean",
@@ -10593,7 +10601,7 @@ var apiSchema = [
                            "typetext" : "<integer> (1 - 65535)"
                         },
                         "max_filters" : {
-                           "default" : 31,
+                           "default" : 15,
                            "description" : "Maximum number of pmg-smtp-filter processes.",
                            "maximum" : 40,
                            "minimum" : 3,
@@ -10611,7 +10619,7 @@ var apiSchema = [
                            "typetext" : "<integer> (2 - 10)"
                         },
                         "max_smtpd_in" : {
-                           "default" : 100,
+                           "default" : 97,
                            "description" : "Maximum number of SMTP daemon processes (in).",
                            "maximum" : 100,
                            "minimum" : 3,
@@ -10620,7 +10628,7 @@ var apiSchema = [
                            "typetext" : "<integer> (3 - 100)"
                         },
                         "max_smtpd_out" : {
-                           "default" : 100,
+                           "default" : 97,
                            "description" : "Maximum number of SMTP daemon processes (out).",
                            "maximum" : 100,
                            "minimum" : 3,
@@ -10869,14 +10877,14 @@ var apiSchema = [
                            "typetext" : "<boolean>"
                         },
                         "use_awl" : {
-                           "default" : 1,
+                           "default" : 0,
                            "description" : "Use the Auto-Whitelist plugin.",
                            "optional" : 1,
                            "type" : "boolean",
                            "typetext" : "<boolean>"
                         },
                         "use_bayes" : {
-                           "default" : 1,
+                           "default" : 0,
                            "description" : "Whether to use the naive-Bayesian-style classifier.",
                            "optional" : 1,
                            "type" : "boolean",
