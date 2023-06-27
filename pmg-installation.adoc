@@ -321,11 +321,11 @@ directly using `apt`, or via the GUI (Administration -> Updates).
 .File `/etc/apt/sources.list`
 ----
 # basic Debian repositories:
-deb http://ftp.debian.org/debian bullseye main contrib
-deb http://ftp.debian.org/debian bullseye-updates main contrib
+deb http://deb.debian.org/debian bookworm main contrib
+deb http://deb.debian.org/debian bookworm-updates main contrib
 
 # security updates
-deb http://security.debian.org/debian-security bullseye-security main contrib
+deb http://security.debian.org/debian-security bookworm-security main contrib
 
 # Proxmox Mail Gateway repo required too - see below!
 ----
@@ -343,7 +343,7 @@ enabled by default:
 
 .File `/etc/apt/sources.list.d/pmg-enterprise.list`
 ----
-deb https://enterprise.proxmox.com/debian/pmg bullseye pmg-enterprise
+deb https://enterprise.proxmox.com/debian/pmg bookworm pmg-enterprise
 ----
 
 As soon as updates are available, the `root@pam` user is notified via
@@ -373,15 +373,15 @@ We recommend configuring this repository in `/etc/apt/sources.list`.
 
 .File `/etc/apt/sources.list`
 ----
-deb http://ftp.debian.org/debian bullseye main contrib
-deb http://ftp.debian.org/debian bullseye-updates main contrib
+deb http://ftp.debian.org/debian bookworm main contrib
+deb http://ftp.debian.org/debian bookworm-updates main contrib
 
 # security updates
-deb http://security.debian.org/debian-security bullseye-security main contrib
+deb http://security.debian.org/debian-security bookworm-security main contrib
 
 # PMG pmg-no-subscription repository provided by proxmox.com,
 # NOT recommended for production use
-deb http://download.proxmox.com/debian/pmg bullseye pmg-no-subscription
+deb http://download.proxmox.com/debian/pmg bookworm pmg-no-subscription
 ----
 
 
@@ -395,7 +395,7 @@ features. As with before, you can configure this using
 
 .sources.list entry for `pmgtest`
 ----
-deb http://download.proxmox.com/debian/pmg bullseye pmgtest
+deb http://download.proxmox.com/debian/pmg bookworm pmgtest
 ----
 
 WARNING: the `pmgtest` repository should only be used
@@ -411,24 +411,24 @@ trusted source.
 
 The key used for verification is already installed, if you install from
 our installation CD. If you install via another means, you can manually
-download the key with:
+download the key by executing the following command as root user:
 
 ----
- # wget https://enterprise.proxmox.com/debian/proxmox-release-bullseye.gpg -O /etc/apt/trusted.gpg.d/proxmox-release-bullseye.gpg
+ # wget https://enterprise.proxmox.com/debian/proxmox-release-bookworm.gpg -O /etc/apt/trusted.gpg.d/proxmox-release-bookworm.gpg
 ----
 
 Verify the checksum afterwards with the `sha512sum` CLI tool:
 
 ----
-# sha512sum /etc/apt/trusted.gpg.d/proxmox-release-bullseye.gpg
-7fb03ec8a1675723d2853b84aa4fdb49a46a3bb72b9951361488bfd19b29aab0a789a4f8c7406e71a69aabbc727c936d3549731c4659ffa1a08f44db8fdcebfa /etc/apt/trusted.gpg.d/proxmox-release-bullseye.gpg
+# sha512sum /etc/apt/trusted.gpg.d/proxmox-release-bookworm.gpg
+7da6fe34168adc6e479327ba517796d4702fa2f8b4f0a9833f5ea6e6b48f6507a6da403a274fe201595edc86a84463d50383d07f64bdde2e3658108db7d6dc87 /etc/apt/trusted.gpg.d/proxmox-release-bookworm.gpg
 ----
 
 or the `md5sum` CLI tool:
 
 ----
-# md5sum /etc/apt/trusted.gpg.d/proxmox-release-bullseye.gpg
-bcc35c7173e0845c0d6ad6470b70f50e /etc/apt/trusted.gpg.d/proxmox-release-bullseye.gpg
+# md5sum /etc/apt/trusted.gpg.d/proxmox-release-bookworm.gpg
+41558dc019ef90bd0f6067644a51cf5b /etc/apt/trusted.gpg.d/proxmox-release-bookworm.gpg
 ----
 
 
@@ -448,9 +448,9 @@ are needed in order to support the RAR archive format:
 
 .Additional sources.list entry for `non-free`
 ----
-deb http://deb.debian.org/debian/ bullseye non-free
-deb http://security.debian.org/debian-security bullseye-security non-free
-deb http://deb.debian.org/debian/ bullseye-updates non-free
+deb http://deb.debian.org/debian/ bookworm non-free
+deb http://security.debian.org/debian-security bookworm-security non-free
+deb http://deb.debian.org/debian/ bookworm-updates non-free
 ----
 
 Following this, you can install the required packages with:
