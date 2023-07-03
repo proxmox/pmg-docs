@@ -25,7 +25,7 @@ pmgperf - Proxmox Simple Performance Benchmark
 :pmg-toplevel:
 endif::manvolnum[]
 
-The command line tool `pmgperf` gathers some general
+The command-line tool `pmgperf` gathers some general
 performance data. This is mostly useful for debugging and identifying
 performance bottlenecks. It computes the following metrics:
 

@@ -196,8 +196,8 @@ using DNAT. See your firewall manual for more details.
 Cluster Administration
 ----------------------
 
-Cluster administration can be done from the GUI or by using the command
-line utility `pmgcm`. The CLI tool is a bit more verbose, so we suggest
+Cluster administration can be done from the GUI or by using the command-line
+utility `pmgcm`. The CLI tool is a bit more verbose, so we suggest
 to use that if you run into any problems.
 
 NOTE: Always set up the IP configuration, before adding a node to the
@@ -229,7 +229,7 @@ Show Cluster Status
 ~~~~~~~~~~~~~~~~~~~
 
 The GUI shows the status of all cluster nodes. You can also view this
-using the command line tool:
+using the command-line tool:
 
 ----
 pmgcm status

@@ -131,8 +131,8 @@ Virus detection
 engine, designed for detecting Trojans, viruses, malware, and other
 malicious threats.
 
-It provides a high performance, multi-threaded scanning daemon, command
-line utilities for on demand file scanning, and an intelligent tool
+It provides a high performance, multi-threaded scanning daemon, command-line
+utilities for on demand file scanning, and an intelligent tool
 for automatic signature updates.
 
 

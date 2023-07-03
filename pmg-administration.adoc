@@ -34,7 +34,7 @@ them. The 'Syslog' button shows the system log, filtered for the
 selected service.
 
 Please note that {pmg} uses {systemd} to manage services, so you can
-also use the standard `systemctl` command line tool to manage or view
+also use the standard `systemctl` command-line tool to manage or view
 service status, for example:
 
 -----

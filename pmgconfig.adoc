@@ -27,9 +27,9 @@ endif::manvolnum[]
 
 {pmg} is usually configured using the web-based Graphical User Interface (GUI),
 but it is also possible to directly edit the configuration files, using the
-REST API over 'https' or the command line tool `pmgsh`.
+REST API over 'https' or the command-line tool `pmgsh`.
 
-The command line tool `pmgconfig` is used to simplify some common configuration
+The command-line tool `pmgconfig` is used to simplify some common configuration
 tasks, such as generating certificates and rewriting service configuration
 files.
 

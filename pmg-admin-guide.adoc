@@ -61,7 +61,7 @@ include::pmgmirror.adoc[]
 :leveloffset: 0
 
 
-Useful Command Line Tools
+Useful Command-line Tools
 -------------------------
 
 :leveloffset: 2
@@ -101,7 +101,7 @@ include::pmg-bibliography.adoc[]
 :leveloffset: 0
 
 [appendix]
-Command Line Interface
+Command-line Interface
 ----------------------
 
 *pmgbackup* - Proxmox Mail Gateway Backup and Restore Utility

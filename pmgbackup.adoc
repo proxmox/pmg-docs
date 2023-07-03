@@ -44,7 +44,7 @@ Local Backups
 -------------
 
 You can create a backup by simply pressing the 'Backup' button in the 'Local
-Backup/Restore' tab on the GUI, or by using the command line interface:
+Backup/Restore' tab on the GUI, or by using the command-line interface:
 
 ----
 # pmgbackup backup
@@ -227,7 +227,7 @@ allows the Proxmox Backup Server to remove it during garbage collection.
 ----
 
 TIP: You can configure and access all backup-related functionality on
-both the web interface and the command line interface.
+both the web interface and the command-line interface.
 
 [[pmgbackup_pbs_schedule]]
 Scheduled Backups
