@@ -1,3 +1,11 @@
+pmg-docs (7.3-3) bullseye; urgency=medium
+
+  * config: fix link to whitelist configuration
+
+  * fix build of packages that have pmg-doc-generator as build-dependency
+
+ -- Proxmox Support Team <support@proxmox.com>  Fri, 07 Jul 2023 16:28:51 +0200
+
 pmg-docs (7.3-2) bullseye; urgency=medium
 
   * config: add reference to postfix postconf
