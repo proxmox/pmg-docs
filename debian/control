@@ -4,6 +4,7 @@ Priority: optional
 Maintainer: Proxmox Support Team <support@proxmox.com>
 Build-Depends: asciidoc-dblatex,
                debhelper (>= 12~),
+               docbook-xsl,
                git,
                libjson-perl,
                imagemagick,
