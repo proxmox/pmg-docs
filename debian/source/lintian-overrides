@@ -1,2 +1,3 @@
 pmg-docs source: license-problem-gfdl-invariants invariant part is: with no invariant sections, no front-cover texts, and no back-cover texts. </simpara> <simpara> [pmg-admin-guide-docinfo.xml.in]
+pmg-docs source: malformed-debian-changelog-version
 
