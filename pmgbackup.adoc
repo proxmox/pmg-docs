@@ -37,7 +37,7 @@ contain mail data from the postfix queue or the spam and virus
 quarantines.
 
 Backups can be created locally or stored on a
-https://www.proxmox.com/en/proxmox-backup-server[Proxmox Backup Server]
+https://www.proxmox.com/en/proxmox-backup-server/overview[Proxmox Backup Server]
 instance.
 
 Local Backups

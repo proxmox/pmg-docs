@@ -260,8 +260,9 @@ meta-package. This does not depend on any Linux kernel, firmware, or components
 used for booting from bare-metal, like grub2.
 
 A ready-to-use appliance template is available through the `mail` section of the
-https://www.proxmox.com/proxmox-ve[Proxmox VE] appliance manager, so if you
-already use Proxmox VE, you can set up a {pmg} instance in minutes.
+https://www.proxmox.com/proxmox-virtual-environment/overview[Proxmox VE]
+appliance manager, so if you already use Proxmox VE, you can set up a {pmg}
+instance in minutes.
 
 NOTE: It's recommended to use a static network configuration. If DHCP must be
 used, ensure that the container always leases the same IP, for example, by
