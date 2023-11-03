@@ -433,8 +433,8 @@ or the `md5sum` CLI tool:
 ----
 
 
-Other Repository Sources
-~~~~~~~~~~~~~~~~~~~~~~~~
+Debian Non-Free Repository
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Certain software cannot be made available in the `main` and `contrib`
 areas of the {debian} archives, since it does not adhere to the Debian
@@ -447,12 +447,8 @@ are needed in order to support the RAR archive format:
 
 * `libclamunrar` for detecting viruses in RAR archives.
 
-.Additional sources.list entry for `non-free`
-----
-deb http://deb.debian.org/debian/ bookworm non-free
-deb http://security.debian.org/debian-security bookworm-security non-free
-deb http://deb.debian.org/debian/ bookworm-updates non-free
-----
+To enable the `non-free` component, run `editor /etc/apt/sources.list` and
+append `non-free` to the end of each `.debian.org` repository line.
 
 Following this, you can install the required packages with:
 
