@@ -43,6 +43,7 @@ my $key_groups = {
 	    before_queue_filtering => 1,
 	    ndr_on_block => 1,
 	    smtputf8 => 1,
+	    'filter-timeout' => 1,
 	}],
     'mail-tls' => [
 	'mail' , {
