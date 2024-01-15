@@ -225,6 +225,11 @@ The disclaimer can contain HTML markup. It will be added to the first
 `text/html` and `text/plain` part of an email. A disclaimer only gets added if
 its text can be encoded in the mail's character encoding.
 
+By default it will be appended at the end of the selected part of the mail with
+`--` as a separator. The position (start or end of the selected part) and the
+existence of the separator can be configured with the `position` and
+`add-separator` options respectively.
+
 
 [[pmg_mailfilter_who]]
 'Who' objects
