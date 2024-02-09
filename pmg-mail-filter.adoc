@@ -58,6 +58,23 @@ You can also disable a rule completely, which is mostly useful for
 testing and debugging. The 'Factory Defaults' button allows you to
 reset the filter rules.
 
+Application of Rules
+--------------------
+
+When there is more than one object category or multiple objects configured
+within a single rule, the following logic is used to determine if the rule
+should be applied:
+
+* Within one category (WHAT/FROM/TO/WHEN), all objects are logical-or linked,
+  meaning that only one object of any one object group from the same category
+  has to match for the whole category to match.
+
+* FROM/TO/WHAT/WHEN category match results are logical-and linked, so all
+  categories that have at least one object in them must match for the rule to
+  match.
+
+When these conditions are met, all configured actions are executed.
+
 
 [[pmg_mailfilter_action]]
 'Action' - objects
