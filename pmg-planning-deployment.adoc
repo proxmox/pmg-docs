@@ -116,7 +116,7 @@ Minimum System Requirements
 
 * Monitor with a minimum resolution of 1024x768 for the installation
 
-* Hard disk with at least 8 GiB of disk space
+* Hard disk with at least 8 GB of disk space
 
 * Ethernet network interface card (NIC)
 
@@ -135,7 +135,7 @@ Recommended System Requirements
 
 * 1 Gbps Ethernet network interface card (NIC)
 
-* Storage: at least 8 GiB free disk space, best set up with redundancy,
+* Storage: at least 8 GB free disk space, best set up with redundancy,
   using a hardware RAID controller with battery backed write cache (``BBU'') or
   ZFS. ZFS is not compatible with hardware RAID controllers. For best
   performance, use enterprise-class SSDs with power loss protection.
