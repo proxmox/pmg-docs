@@ -63,7 +63,7 @@ Application of Rules
 
 When there is more than one object category or multiple objects configured
 within a single rule, the following logic is used to determine if the rule
-should be applied:
+should be applied by default:
 
 * Within one category (WHAT/FROM/TO/WHEN), all objects are logical-or linked,
   meaning that only one object of any one object group from the same category
@@ -75,6 +75,44 @@ should be applied:
 
 When these conditions are met, all configured actions are executed.
 
+Alternatively, one can configure the 'mode' to 'any' (the default) or 'all' and
+set 'invert' (default off) per object group and per object category for each
+rule.
+
+When the mode is 'all' for a group, all objects within must match for the
+object group to count as a match. This can be helpful when one wants to match
+multiple conditions at the same time (e.g. file content-type and filename).
+
+When 'all' is set for a category of a rule, all object groups for that
+type must match for the type to match.
+
+When 'invert' is active on a group, the original result of the group will
+simply be inverted, so a match becomes a non-match and vice versa.
+
+The same is true for the object group types for rules.
+
+Special handling is done for WHAT matches that mark mail parts (e.g. filename)
+since that is not a simple yes/no match for the complete mail, but could be a
+match for each part of the e-mail (e.g. attachments, or parts of a multi-part
+e-mail).
+
+So for WHAT match object groups, the 'mode' and 'invert' is applied to
+the single parts of the e-mail, not the message as a whole.
+
+This means one has to be very careful with the 'invert' option, as previously
+not matching parts, will match when using 'invert' (e.g. an inverted filename
+matching will also mark non attachment parts of the mail).
+
+On the rule level, these marks of the parts will always be logical-or linked,
+this way even more scenarios can be represented.
+
+To make it a bit easier to understand, the options are combined to a single
+selection in the web ui:
+
+* Any must match => mode: 'any', invert: 'off'
+* All must match => mode: 'all', invert: 'off'
+* At least one must not match => mode: 'all', invert: 'on'
+* None must match => mode: 'any', invert: 'on'
 
 [[pmg_mailfilter_action]]
 'Action' - objects
