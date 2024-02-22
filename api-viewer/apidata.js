@@ -1555,6 +1555,13 @@ var apiSchema = [
                                     "parameters" : {
                                        "additionalProperties" : 0,
                                        "properties" : {
+                                          "add-separator" : {
+                                             "default" : 1,
+                                             "description" : "If set to 1, adds a '--' separator between the disclaimer and the content. Set to 0 to prevent that.",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
+                                          },
                                           "disclaimer" : {
                                              "description" : "The Disclaimer",
                                              "maxLength" : 2048,
@@ -1579,6 +1586,16 @@ var apiSchema = [
                                              "optional" : 1,
                                              "type" : "string",
                                              "typetext" : "<string>"
+                                          },
+                                          "position" : {
+                                             "default" : "end",
+                                             "description" : "Put the disclaimer at the specified position.",
+                                             "enum" : [
+                                                "start",
+                                                "end"
+                                             ],
+                                             "optional" : 1,
+                                             "type" : "string"
                                           }
                                        }
                                     },
@@ -1608,6 +1625,13 @@ var apiSchema = [
                               "parameters" : {
                                  "additionalProperties" : 0,
                                  "properties" : {
+                                    "add-separator" : {
+                                       "default" : 1,
+                                       "description" : "If set to 1, adds a '--' separator between the disclaimer and the content. Set to 0 to prevent that.",
+                                       "optional" : 1,
+                                       "type" : "boolean",
+                                       "typetext" : "<boolean>"
+                                    },
                                     "disclaimer" : {
                                        "description" : "The Disclaimer",
                                        "maxLength" : 2048,
@@ -1626,6 +1650,16 @@ var apiSchema = [
                                        "maxLength" : 255,
                                        "type" : "string",
                                        "typetext" : "<string>"
+                                    },
+                                    "position" : {
+                                       "default" : "end",
+                                       "description" : "Put the disclaimer at the specified position.",
+                                       "enum" : [
+                                          "start",
+                                          "end"
+                                       ],
+                                       "optional" : 1,
+                                       "type" : "string"
                                     }
                                  }
                               },
@@ -10370,8 +10404,8 @@ var apiSchema = [
                                  "enum" : [
                                     "id",
                                     "allow-subdomains",
-                                    "rp",
-                                    "origin"
+                                    "origin",
+                                    "rp"
                                  ],
                                  "optional" : 1,
                                  "type" : "string"
@@ -18166,9 +18200,9 @@ var apiSchema = [
                            "default" : "spam",
                            "description" : "Query this type of quarantine for users.",
                            "enum" : [
-                              "virus",
+                              "spam",
                               "attachment",
-                              "spam"
+                              "virus"
                            ],
                            "optional" : 1,
                            "type" : "string"
