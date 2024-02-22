@@ -26,6 +26,10 @@ The inclusive lower bound for blocking a remote SMTP client, based on its combin
 
 SMTP delay warning time (in hours). (postfix option `delay_warning_time`)
 
+`filter-timeout`: `<integer> (2 - 86400)` ('default =' `600`)::
+
+Timeout for the processing of one mail (in seconds)  (postfix option `smtpd_proxy_timeout` and `lmtp_data_done_timeout`)
+
 `greylist`: `<boolean>` ('default =' `1`)::
 
 Use Greylisting for IPv4.
@@ -80,5 +84,5 @@ Use Sender Policy Framework.
 
 `verifyreceivers`: `<450 | 550>` ::
 
-Enable receiver verification. The value spefifies the numerical reply code when the Postfix SMTP server rejects a recipient address. (postfix options `reject_unknown_recipient_domain`, `reject_unverified_recipient`, and `unverified_recipient_reject_code`)
+Enable receiver verification. The value specifies the numerical reply code when the Postfix SMTP server rejects a recipient address. (postfix options `reject_unknown_recipient_domain`, `reject_unverified_recipient`, and `unverified_recipient_reject_code`)
 

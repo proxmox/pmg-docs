@@ -160,6 +160,10 @@ Specify when to notify via e-mail
 
 Password or API token secret for the user on the Proxmox Backup Server.
 
+`--port` `<integer> (1 - 65535)` ('default =' `8007`)::
+
+Non-default port for Proxmox Backup Server.
+
 `--server` `<string>` ::
 
 Proxmox Backup Server address.
@@ -198,7 +202,7 @@ A list of settings you want to delete.
 
 `--digest` `<string>` ::
 
-Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.
+Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications.
 
 `--disable` `<boolean>` ::
 
@@ -247,6 +251,10 @@ Specify when to notify via e-mail
 `--password` `<password>` ::
 
 Password or API token secret for the user on the Proxmox Backup Server.
+
+`--port` `<integer> (1 - 65535)` ('default =' `8007`)::
+
+Non-default port for Proxmox Backup Server.
 
 `--server` `<string>` ::
 

@@ -99,6 +99,20 @@ var apiSchema = [
                                              "type" : "integer",
                                              "typetext" : "<integer> (0 - 2)"
                                           },
+                                          "from-and" : {
+                                             "default" : 0,
+                                             "description" : "Flag to 'and' combine FROM group matches.",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
+                                          },
+                                          "from-invert" : {
+                                             "default" : 0,
+                                             "description" : "Flag to invert FROM group matches.",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
+                                          },
                                           "id" : {
                                              "description" : "Rule ID.",
                                              "type" : "integer",
@@ -111,12 +125,54 @@ var apiSchema = [
                                              "typetext" : "<string>"
                                           },
                                           "priority" : {
-                                             "description" : "Rule priotity.",
+                                             "description" : "Rule priority.",
                                              "maximum" : 100,
                                              "minimum" : 0,
                                              "optional" : 1,
                                              "type" : "integer",
                                              "typetext" : "<integer> (0 - 100)"
+                                          },
+                                          "to-and" : {
+                                             "default" : 0,
+                                             "description" : "Flag to 'and' combine TO group matches.",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
+                                          },
+                                          "to-invert" : {
+                                             "default" : 0,
+                                             "description" : "Flag to invert TO group matches.",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
+                                          },
+                                          "what-and" : {
+                                             "default" : 0,
+                                             "description" : "Flag to 'and' combine WHAT group matches.",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
+                                          },
+                                          "what-invert" : {
+                                             "default" : 0,
+                                             "description" : "Flag to invert WHAT group matches.",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
+                                          },
+                                          "when-and" : {
+                                             "default" : 0,
+                                             "description" : "Flag to 'and' combine WHEN group matches.",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
+                                          },
+                                          "when-invert" : {
+                                             "default" : 0,
+                                             "description" : "Flag to invert WHEN group matches.",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
                                           }
                                        }
                                     },
@@ -825,17 +881,73 @@ var apiSchema = [
                                  "type" : "integer",
                                  "typetext" : "<integer> (0 - 2)"
                               },
+                              "from-and" : {
+                                 "default" : 0,
+                                 "description" : "Flag to 'and' combine FROM group matches.",
+                                 "optional" : 1,
+                                 "type" : "boolean",
+                                 "typetext" : "<boolean>"
+                              },
+                              "from-invert" : {
+                                 "default" : 0,
+                                 "description" : "Flag to invert FROM group matches.",
+                                 "optional" : 1,
+                                 "type" : "boolean",
+                                 "typetext" : "<boolean>"
+                              },
                               "name" : {
                                  "description" : "Rule name",
                                  "type" : "string",
                                  "typetext" : "<string>"
                               },
                               "priority" : {
-                                 "description" : "Rule priotity.",
+                                 "description" : "Rule priority.",
                                  "maximum" : 100,
                                  "minimum" : 0,
                                  "type" : "integer",
                                  "typetext" : "<integer> (0 - 100)"
+                              },
+                              "to-and" : {
+                                 "default" : 0,
+                                 "description" : "Flag to 'and' combine TO group matches.",
+                                 "optional" : 1,
+                                 "type" : "boolean",
+                                 "typetext" : "<boolean>"
+                              },
+                              "to-invert" : {
+                                 "default" : 0,
+                                 "description" : "Flag to invert TO group matches.",
+                                 "optional" : 1,
+                                 "type" : "boolean",
+                                 "typetext" : "<boolean>"
+                              },
+                              "what-and" : {
+                                 "default" : 0,
+                                 "description" : "Flag to 'and' combine WHAT group matches.",
+                                 "optional" : 1,
+                                 "type" : "boolean",
+                                 "typetext" : "<boolean>"
+                              },
+                              "what-invert" : {
+                                 "default" : 0,
+                                 "description" : "Flag to invert WHAT group matches.",
+                                 "optional" : 1,
+                                 "type" : "boolean",
+                                 "typetext" : "<boolean>"
+                              },
+                              "when-and" : {
+                                 "default" : 0,
+                                 "description" : "Flag to 'and' combine WHEN group matches.",
+                                 "optional" : 1,
+                                 "type" : "boolean",
+                                 "typetext" : "<boolean>"
+                              },
+                              "when-invert" : {
+                                 "default" : 0,
+                                 "description" : "Flag to invert WHEN group matches.",
+                                 "optional" : 1,
+                                 "type" : "boolean",
+                                 "typetext" : "<boolean>"
                               }
                            }
                         },
@@ -1784,12 +1896,26 @@ var apiSchema = [
                                     "parameters" : {
                                        "additionalProperties" : 0,
                                        "properties" : {
+                                          "and" : {
+                                             "default" : 0,
+                                             "description" : "If set to 1, objects in this group are 'and' combined.",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
+                                          },
                                           "info" : {
                                              "description" : "Informational comment.",
                                              "maxLength" : 255,
                                              "optional" : 1,
                                              "type" : "string",
                                              "typetext" : "<string>"
+                                          },
+                                          "invert" : {
+                                             "default" : 0,
+                                             "description" : "If set to 1, the resulting match is inverted.",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
                                           },
                                           "name" : {
                                              "description" : "Group name.",
@@ -2871,12 +2997,26 @@ var apiSchema = [
                         "parameters" : {
                            "additionalProperties" : 0,
                            "properties" : {
+                              "and" : {
+                                 "default" : 0,
+                                 "description" : "If set to 1, objects in this group are 'and' combined.",
+                                 "optional" : 1,
+                                 "type" : "boolean",
+                                 "typetext" : "<boolean>"
+                              },
                               "info" : {
                                  "description" : "Informational comment.",
                                  "maxLength" : 255,
                                  "optional" : 1,
                                  "type" : "string",
                                  "typetext" : "<string>"
+                              },
+                              "invert" : {
+                                 "default" : 0,
+                                 "description" : "If set to 1, the resulting match is inverted.",
+                                 "optional" : 1,
+                                 "type" : "boolean",
+                                 "typetext" : "<boolean>"
                               },
                               "name" : {
                                  "description" : "Group name.",
@@ -2953,12 +3093,26 @@ var apiSchema = [
                                     "parameters" : {
                                        "additionalProperties" : 0,
                                        "properties" : {
+                                          "and" : {
+                                             "default" : 0,
+                                             "description" : "If set to 1, objects in this group are 'and' combined.",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
+                                          },
                                           "info" : {
                                              "description" : "Informational comment.",
                                              "maxLength" : 255,
                                              "optional" : 1,
                                              "type" : "string",
                                              "typetext" : "<string>"
+                                          },
+                                          "invert" : {
+                                             "default" : 0,
+                                             "description" : "If set to 1, the resulting match is inverted.",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
                                           },
                                           "name" : {
                                              "description" : "Group name.",
@@ -3316,12 +3470,26 @@ var apiSchema = [
                         "parameters" : {
                            "additionalProperties" : 0,
                            "properties" : {
+                              "and" : {
+                                 "default" : 0,
+                                 "description" : "If set to 1, objects in this group are 'and' combined.",
+                                 "optional" : 1,
+                                 "type" : "boolean",
+                                 "typetext" : "<boolean>"
+                              },
                               "info" : {
                                  "description" : "Informational comment.",
                                  "maxLength" : 255,
                                  "optional" : 1,
                                  "type" : "string",
                                  "typetext" : "<string>"
+                              },
+                              "invert" : {
+                                 "default" : 0,
+                                 "description" : "If set to 1, the resulting match is inverted.",
+                                 "optional" : 1,
+                                 "type" : "boolean",
+                                 "typetext" : "<boolean>"
                               },
                               "name" : {
                                  "description" : "Group name.",
@@ -3398,12 +3566,26 @@ var apiSchema = [
                                     "parameters" : {
                                        "additionalProperties" : 0,
                                        "properties" : {
+                                          "and" : {
+                                             "default" : 0,
+                                             "description" : "If set to 1, objects in this group are 'and' combined.",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
+                                          },
                                           "info" : {
                                              "description" : "Informational comment.",
                                              "maxLength" : 255,
                                              "optional" : 1,
                                              "type" : "string",
                                              "typetext" : "<string>"
+                                          },
+                                          "invert" : {
+                                             "default" : 0,
+                                             "description" : "If set to 1, the resulting match is inverted.",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
                                           },
                                           "name" : {
                                              "description" : "Group name.",
@@ -4535,12 +4717,26 @@ var apiSchema = [
                         "parameters" : {
                            "additionalProperties" : 0,
                            "properties" : {
+                              "and" : {
+                                 "default" : 0,
+                                 "description" : "If set to 1, objects in this group are 'and' combined.",
+                                 "optional" : 1,
+                                 "type" : "boolean",
+                                 "typetext" : "<boolean>"
+                              },
                               "info" : {
                                  "description" : "Informational comment.",
                                  "maxLength" : 255,
                                  "optional" : 1,
                                  "type" : "string",
                                  "typetext" : "<string>"
+                              },
+                              "invert" : {
+                                 "default" : 0,
+                                 "description" : "If set to 1, the resulting match is inverted.",
+                                 "optional" : 1,
+                                 "type" : "boolean",
+                                 "typetext" : "<boolean>"
                               },
                               "name" : {
                                  "description" : "Group name.",
@@ -5678,8 +5874,8 @@ var apiSchema = [
                                        "typetext" : "<string>"
                                     },
                                     "digest" : {
-                                       "description" : "Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.",
-                                       "maxLength" : 40,
+                                       "description" : "Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications.",
+                                       "maxLength" : 64,
                                        "optional" : 1,
                                        "type" : "string",
                                        "typetext" : "<string>"
@@ -8353,8 +8549,8 @@ var apiSchema = [
                            "additionalProperties" : 0,
                            "properties" : {
                               "digest" : {
-                                 "description" : "Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.",
-                                 "maxLength" : 40,
+                                 "description" : "Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications.",
+                                 "maxLength" : 64,
                                  "optional" : 1,
                                  "type" : "string",
                                  "typetext" : "<string>"
@@ -8424,8 +8620,8 @@ var apiSchema = [
                                  "typetext" : "<string>"
                               },
                               "digest" : {
-                                 "description" : "Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.",
-                                 "maxLength" : 40,
+                                 "description" : "Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications.",
+                                 "maxLength" : 64,
                                  "optional" : 1,
                                  "type" : "string",
                                  "typetext" : "<string>"
@@ -8498,8 +8694,8 @@ var apiSchema = [
                               "type" : "string"
                            },
                            "digest" : {
-                              "description" : "Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.",
-                              "maxLength" : 40,
+                              "description" : "Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications.",
+                              "maxLength" : 64,
                               "optional" : 1,
                               "type" : "string"
                            },
@@ -8541,8 +8737,8 @@ var apiSchema = [
                            "typetext" : "<string>"
                         },
                         "digest" : {
-                           "description" : "Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.",
-                           "maxLength" : 40,
+                           "description" : "Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications.",
+                           "maxLength" : 64,
                            "optional" : 1,
                            "type" : "string",
                            "typetext" : "<string>"
@@ -8574,8 +8770,8 @@ var apiSchema = [
                      "additionalProperties" : 0,
                      "properties" : {
                         "digest" : {
-                           "description" : "Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.",
-                           "maxLength" : 40,
+                           "description" : "Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications.",
+                           "maxLength" : 64,
                            "optional" : 1,
                            "type" : "string",
                            "typetext" : "<string>"
@@ -8684,8 +8880,8 @@ var apiSchema = [
                                  "typetext" : "<string>"
                               },
                               "digest" : {
-                                 "description" : "Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.",
-                                 "maxLength" : 40,
+                                 "description" : "Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications.",
+                                 "maxLength" : 64,
                                  "optional" : 1,
                                  "type" : "string",
                                  "typetext" : "<string>"
@@ -8778,6 +8974,15 @@ var apiSchema = [
                                  "optional" : 1,
                                  "type" : "string",
                                  "typetext" : "<string>"
+                              },
+                              "port" : {
+                                 "default" : 8007,
+                                 "description" : "Non-default port for Proxmox Backup Server.",
+                                 "maximum" : 65535,
+                                 "minimum" : 1,
+                                 "optional" : 1,
+                                 "type" : "integer",
+                                 "typetext" : "<integer> (1 - 65535)"
                               },
                               "remote" : {
                                  "description" : "Proxmox Backup Server ID.",
@@ -8928,6 +9133,14 @@ var apiSchema = [
                               "optional" : 1,
                               "type" : "string"
                            },
+                           "port" : {
+                              "default" : 8007,
+                              "description" : "Non-default port for Proxmox Backup Server.",
+                              "maximum" : 65535,
+                              "minimum" : 1,
+                              "optional" : 1,
+                              "type" : "integer"
+                           },
                            "remote" : {
                               "description" : "Proxmox Backup Server ID.",
                               "format" : "pve-configid",
@@ -9063,6 +9276,15 @@ var apiSchema = [
                            "type" : "string",
                            "typetext" : "<string>"
                         },
+                        "port" : {
+                           "default" : 8007,
+                           "description" : "Non-default port for Proxmox Backup Server.",
+                           "maximum" : 65535,
+                           "minimum" : 1,
+                           "optional" : 1,
+                           "type" : "integer",
+                           "typetext" : "<integer> (1 - 65535)"
+                        },
                         "remote" : {
                            "description" : "Proxmox Backup Server ID.",
                            "format" : "pve-configid",
@@ -9180,12 +9402,14 @@ var apiSchema = [
                                           "ad",
                                           "ali",
                                           "anx",
+                                          "artfiles",
                                           "arvan",
                                           "aurora",
                                           "autodns",
                                           "aws",
                                           "azion",
                                           "azure",
+                                          "bookmyname",
                                           "bunny",
                                           "cf",
                                           "clouddns",
@@ -9201,6 +9425,7 @@ var apiSchema = [
                                           "desec",
                                           "df",
                                           "dgon",
+                                          "dnsexit",
                                           "dnshome",
                                           "dnsimple",
                                           "dnsservices",
@@ -9298,6 +9523,7 @@ var apiSchema = [
                                           "servercow",
                                           "simply",
                                           "tele3",
+                                          "tencent",
                                           "transip",
                                           "udr",
                                           "ultra",
@@ -9333,8 +9559,8 @@ var apiSchema = [
                                        "typetext" : "<string>"
                                     },
                                     "digest" : {
-                                       "description" : "Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.",
-                                       "maxLength" : 40,
+                                       "description" : "Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications.",
+                                       "maxLength" : 64,
                                        "optional" : 1,
                                        "type" : "string",
                                        "typetext" : "<string>"
@@ -9450,12 +9676,14 @@ var apiSchema = [
                                     "ad",
                                     "ali",
                                     "anx",
+                                    "artfiles",
                                     "arvan",
                                     "aurora",
                                     "autodns",
                                     "aws",
                                     "azion",
                                     "azure",
+                                    "bookmyname",
                                     "bunny",
                                     "cf",
                                     "clouddns",
@@ -9471,6 +9699,7 @@ var apiSchema = [
                                     "desec",
                                     "df",
                                     "dgon",
+                                    "dnsexit",
                                     "dnshome",
                                     "dnsimple",
                                     "dnsservices",
@@ -9568,6 +9797,7 @@ var apiSchema = [
                                     "servercow",
                                     "simply",
                                     "tele3",
+                                    "tencent",
                                     "transip",
                                     "udr",
                                     "ultra",
@@ -9830,6 +10060,20 @@ var apiSchema = [
                                  "pattern" : "^https?://.*",
                                  "type" : "string"
                               },
+                              "eab-hmac-key" : {
+                                 "description" : "HMAC key for External Account Binding.",
+                                 "optional" : 1,
+                                 "requires" : "eab-kid",
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
+                              "eab-kid" : {
+                                 "description" : "Key Identifier for External Account Binding.",
+                                 "optional" : 1,
+                                 "requires" : "eab-hmac-key",
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
                               "name" : {
                                  "default" : "default",
                                  "description" : "ACME account config file name.",
@@ -9867,7 +10111,7 @@ var apiSchema = [
                   "info" : {
                      "GET" : {
                         "allowtoken" : 1,
-                        "description" : "Retrieve ACME TermsOfService URL from CA.",
+                        "description" : "Retrieve ACME TermsOfService URL from CA. Deprecated, please use /config/acme/meta.",
                         "method" : "GET",
                         "name" : "get_tos",
                         "parameters" : {
@@ -9895,6 +10139,63 @@ var apiSchema = [
                   "leaf" : 1,
                   "path" : "/config/acme/tos",
                   "text" : "tos"
+               },
+               {
+                  "info" : {
+                     "GET" : {
+                        "allowtoken" : 1,
+                        "description" : "Retrieve ACME Directory Meta Information",
+                        "method" : "GET",
+                        "name" : "get_meta",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "directory" : {
+                                 "default" : "https://acme-v02.api.letsencrypt.org/directory",
+                                 "description" : "URL of ACME CA directory endpoint.",
+                                 "optional" : 1,
+                                 "pattern" : "^https?://.*",
+                                 "type" : "string"
+                              }
+                           }
+                        },
+                        "permissions" : {
+                           "user" : "all"
+                        },
+                        "returns" : {
+                           "additionalProperties" : 1,
+                           "properties" : {
+                              "caaIdentities" : {
+                                 "description" : "Hostnames referring to the ACME servers.",
+                                 "items" : {
+                                    "type" : "string"
+                                 },
+                                 "optional" : 1,
+                                 "type" : "array"
+                              },
+                              "externalAccountRequired" : {
+                                 "description" : "EAB Required",
+                                 "optional" : 1,
+                                 "type" : "boolean"
+                              },
+                              "termsOfService" : {
+                                 "description" : "ACME TermsOfService URL.",
+                                 "optional" : 1,
+                                 "type" : "string"
+                              },
+                              "website" : {
+                                 "description" : "URL to more information about the ACME server.",
+                                 "optional" : 1,
+                                 "type" : "string"
+                              }
+                           },
+                           "type" : "object"
+                        }
+                     }
+                  },
+                  "leaf" : 1,
+                  "path" : "/config/acme/meta",
+                  "text" : "meta"
                },
                {
                   "info" : {
@@ -10067,10 +10368,10 @@ var apiSchema = [
                               "delete" : {
                                  "description" : "A list of settings you want to delete.",
                                  "enum" : [
-                                    "origin",
+                                    "id",
                                     "allow-subdomains",
                                     "rp",
-                                    "id"
+                                    "origin"
                                  ],
                                  "optional" : 1,
                                  "type" : "string"
@@ -10239,8 +10540,8 @@ var apiSchema = [
                            "typetext" : "<boolean>"
                         },
                         "digest" : {
-                           "description" : "Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.",
-                           "maxLength" : 40,
+                           "description" : "Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications.",
+                           "maxLength" : 64,
                            "optional" : 1,
                            "type" : "string",
                            "typetext" : "<string>"
@@ -10383,8 +10684,8 @@ var apiSchema = [
                            "typetext" : "<string>"
                         },
                         "digest" : {
-                           "description" : "Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.",
-                           "maxLength" : 40,
+                           "description" : "Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications.",
+                           "maxLength" : 64,
                            "optional" : 1,
                            "type" : "string",
                            "typetext" : "<string>"
@@ -10507,8 +10808,8 @@ var apiSchema = [
                            "typetext" : "<string>"
                         },
                         "digest" : {
-                           "description" : "Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.",
-                           "maxLength" : 40,
+                           "description" : "Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications.",
+                           "maxLength" : 64,
                            "optional" : 1,
                            "type" : "string",
                            "typetext" : "<string>"
@@ -10544,6 +10845,15 @@ var apiSchema = [
                            "optional" : 1,
                            "type" : "integer",
                            "typetext" : "<integer> (1 - 65535)"
+                        },
+                        "filter-timeout" : {
+                           "default" : 600,
+                           "description" : "Timeout for the processing of one mail (in seconds)  (postfix option `smtpd_proxy_timeout` and `lmtp_data_done_timeout`)",
+                           "maximum" : 86400,
+                           "minimum" : 2,
+                           "optional" : 1,
+                           "type" : "integer",
+                           "typetext" : "<integer> (2 - 86400)"
                         },
                         "greylist" : {
                            "default" : 1,
@@ -10601,7 +10911,7 @@ var apiSchema = [
                            "typetext" : "<integer> (1 - 65535)"
                         },
                         "max_filters" : {
-                           "default" : 15,
+                           "default" : 25,
                            "description" : "Maximum number of pmg-smtp-filter processes.",
                            "maximum" : 40,
                            "minimum" : 3,
@@ -10619,7 +10929,7 @@ var apiSchema = [
                            "typetext" : "<integer> (2 - 10)"
                         },
                         "max_smtpd_in" : {
-                           "default" : 97,
+                           "default" : 100,
                            "description" : "Maximum number of SMTP daemon processes (in).",
                            "maximum" : 100,
                            "minimum" : 3,
@@ -10628,7 +10938,7 @@ var apiSchema = [
                            "typetext" : "<integer> (3 - 100)"
                         },
                         "max_smtpd_out" : {
-                           "default" : 97,
+                           "default" : 100,
                            "description" : "Maximum number of SMTP daemon processes (out).",
                            "maximum" : 100,
                            "minimum" : 3,
@@ -10758,7 +11068,7 @@ var apiSchema = [
                            "typetext" : "<boolean>"
                         },
                         "verifyreceivers" : {
-                           "description" : "Enable receiver verification. The value spefifies the numerical reply code when the Postfix SMTP server rejects a recipient address. (postfix options `reject_unknown_recipient_domain`, `reject_unverified_recipient`, and `unverified_recipient_reject_code`)",
+                           "description" : "Enable receiver verification. The value specifies the numerical reply code when the Postfix SMTP server rejects a recipient address. (postfix options `reject_unknown_recipient_domain`, `reject_unverified_recipient`, and `unverified_recipient_reject_code`)",
                            "enum" : [
                               "450",
                               "550"
@@ -10841,8 +11151,8 @@ var apiSchema = [
                            "typetext" : "<string>"
                         },
                         "digest" : {
-                           "description" : "Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.",
-                           "maxLength" : 40,
+                           "description" : "Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications.",
+                           "maxLength" : 64,
                            "optional" : 1,
                            "type" : "string",
                            "typetext" : "<string>"
@@ -10978,8 +11288,8 @@ var apiSchema = [
                            "typetext" : "<string>"
                         },
                         "digest" : {
-                           "description" : "Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.",
-                           "maxLength" : 40,
+                           "description" : "Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications.",
+                           "maxLength" : 64,
                            "optional" : 1,
                            "type" : "string",
                            "typetext" : "<string>"
@@ -11114,8 +11424,8 @@ var apiSchema = [
                            "typetext" : "<string>"
                         },
                         "digest" : {
-                           "description" : "Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.",
-                           "maxLength" : 40,
+                           "description" : "Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications.",
+                           "maxLength" : 64,
                            "optional" : 1,
                            "type" : "string",
                            "typetext" : "<string>"
@@ -15172,6 +15482,14 @@ var apiSchema = [
                                     "optional" : 1,
                                     "type" : "string"
                                  },
+                                 "port" : {
+                                    "default" : 8007,
+                                    "description" : "Non-default port for Proxmox Backup Server.",
+                                    "maximum" : 65535,
+                                    "minimum" : 1,
+                                    "optional" : 1,
+                                    "type" : "integer"
+                                 },
                                  "remote" : {
                                     "description" : "Proxmox Backup Server ID.",
                                     "format" : "pve-configid",
@@ -16621,6 +16939,43 @@ var apiSchema = [
          {
             "children" : [
                {
+                  "children" : [
+                     {
+                        "info" : {
+                           "PUT" : {
+                              "allowtoken" : 1,
+                              "description" : "Unlock a user's TFA authentication.",
+                              "method" : "PUT",
+                              "name" : "unlock_tfa",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "userid" : {
+                                       "description" : "User ID",
+                                       "format" : "pmg-userid",
+                                       "maxLength" : 64,
+                                       "minLength" : 4,
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin"
+                                 ]
+                              },
+                              "protected" : 1,
+                              "returns" : {
+                                 "type" : "boolean"
+                              }
+                           }
+                        },
+                        "leaf" : 1,
+                        "path" : "/access/users/{userid}/unlock-tfa",
+                        "text" : "unlock-tfa"
+                     }
+                  ],
                   "info" : {
                      "DELETE" : {
                         "allowtoken" : 1,
@@ -16785,7 +17140,7 @@ var apiSchema = [
                         }
                      }
                   },
-                  "leaf" : 1,
+                  "leaf" : 0,
                   "path" : "/access/users/{userid}",
                   "text" : "{userid}"
                }
@@ -16820,6 +17175,16 @@ var apiSchema = [
                            },
                            "role" : {
                               "type" : "string"
+                           },
+                           "tfa-locked-until" : {
+                              "description" : "Contains a timestamp until when a user is locked out of 2nd factors.",
+                              "optional" : 1,
+                              "type" : "integer"
+                           },
+                           "totp-locked" : {
+                              "description" : "True if the user is currently locked out of TOTP factors.",
+                              "optional" : 1,
+                              "type" : "boolean"
                            },
                            "userid" : {
                               "type" : "string"
@@ -17339,6 +17704,16 @@ var apiSchema = [
                               },
                               "type" : "array"
                            },
+                           "tfa-locked-until" : {
+                              "description" : "Contains a timestamp until when a user is locked out of 2nd factors.",
+                              "optional" : 1,
+                              "type" : "integer"
+                           },
+                           "totp-locked" : {
+                              "description" : "True if the user is currently locked out of TOTP factors.",
+                              "optional" : 1,
+                              "type" : "boolean"
+                           },
                            "userid" : {
                               "description" : "User this entry belongs to.",
                               "type" : "string"
@@ -17358,7 +17733,7 @@ var apiSchema = [
             "info" : {
                "GET" : {
                   "allowtoken" : 1,
-                  "description" : "Dummy. Useful for formaters which want to priovde a login page.",
+                  "description" : "Dummy. Useful for formatters which want to priovde a login page.",
                   "method" : "GET",
                   "name" : "get_ticket",
                   "parameters" : {
@@ -17791,9 +18166,9 @@ var apiSchema = [
                            "default" : "spam",
                            "description" : "Query this type of quarantine for users.",
                            "enum" : [
+                              "virus",
                               "attachment",
-                              "spam",
-                              "virus"
+                              "spam"
                            ],
                            "optional" : 1,
                            "type" : "string"

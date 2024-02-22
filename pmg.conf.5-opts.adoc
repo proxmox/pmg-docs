@@ -128,6 +128,10 @@ SMTP delay warning time (in hours). (postfix option `delay_warning_time`)
 
 SMTP port number for incoming mail (untrusted). This must be a different number than 'int_port'.
 
+`filter-timeout`: `<integer> (2 - 86400)` ('default =' `600`)::
+
+Timeout for the processing of one mail (in seconds)  (postfix option `smtpd_proxy_timeout` and `lmtp_data_done_timeout`)
+
 `greylist`: `<boolean>` ('default =' `1`)::
 
 Use Greylisting for IPv4.
@@ -156,7 +160,7 @@ Hide received header in outgoing mails.
 
 SMTP port number for outgoing mail (trusted).
 
-`max_filters`: `<integer> (3 - 40)` ('default =' `15`)::
+`max_filters`: `<integer> (3 - 40)` ('default =' `25`)::
 
 Maximum number of pmg-smtp-filter processes.
 
@@ -164,11 +168,11 @@ Maximum number of pmg-smtp-filter processes.
 
 Maximum number of pmgpolicy processes.
 
-`max_smtpd_in`: `<integer> (3 - 100)` ('default =' `97`)::
+`max_smtpd_in`: `<integer> (3 - 100)` ('default =' `100`)::
 
 Maximum number of SMTP daemon processes (in).
 
-`max_smtpd_out`: `<integer> (3 - 100)` ('default =' `97`)::
+`max_smtpd_out`: `<integer> (3 - 100)` ('default =' `100`)::
 
 Maximum number of SMTP daemon processes (out).
 
@@ -238,7 +242,7 @@ Enable TLS Logging.
 
 `verifyreceivers`: `<450 | 550>` ::
 
-Enable receiver verification. The value spefifies the numerical reply code when the Postfix SMTP server rejects a recipient address. (postfix options `reject_unknown_recipient_domain`, `reject_unverified_recipient`, and `unverified_recipient_reject_code`)
+Enable receiver verification. The value specifies the numerical reply code when the Postfix SMTP server rejects a recipient address. (postfix options `reject_unknown_recipient_domain`, `reject_unverified_recipient`, and `unverified_recipient_reject_code`)
 
 .Section 'spam'
 
