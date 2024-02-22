@@ -1,3 +1,19 @@
+pmg-docs (8.0.2) bookworm; urgency=medium
+
+  * faq: update support table
+
+  * various fixes for consistent spelling
+
+  * administration, installation: add chapter for firmware updates
+
+  * rule system: add a small section about match-modes for rules
+
+  * add disclaimer position/separator docs
+
+  * update static schema info
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 22 Feb 2024 17:14:21 +0100
+
 pmg-docs (8.0.1) bookworm; urgency=medium
 
   * installation: update repo suites and APT key checksums for bookworm
