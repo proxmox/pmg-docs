@@ -4,9 +4,13 @@
 
 Delete PMG rule database.
 
-*pmgdb dump*
+*pmgdb dump* `[OPTIONS]`
 
 Print the PMG rule database.
+
+`--active` `<boolean>` ('default =' `0`)::
+
+Print only active rules
 
 *pmgdb help* `[OPTIONS]`
 
