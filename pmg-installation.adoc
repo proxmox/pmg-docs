@@ -37,45 +37,82 @@ The installer ISO image includes the following:
 
 * Web-based management interface for using the toolset
 
+NOTE: All existing data on the for installation selected drives will be removed
+during the installation process. The installer does not add boot menu entries
+for other operating systems.
 
 Please insert the xref:installation_prepare_media[prepared installation media]
 (for example, USB flash drive or CD-ROM) and boot from it.
 
 TIP: Make sure that booting from the installation medium (for example, USB) is
-enabled in your servers firmware settings.
+enabled in your server's firmware settings. Secure boot needs to be disabled
+when booting an installer prior to {pmg} version 8.1.
 
 After choosing the correct entry (for example, Boot from USB) the {pmg} menu
 will be displayed, and one of the following options can be selected:
 
 image::images/installer/pmg-grub-menu.png[]
 
-Install {pmg}::
+Install {pmg} (Graphical)::
 
 Start normal installation.
 
-Install {pmg} (Debug mode)::
+TIP: It's possible to use the installation wizard with a keyboard only. Buttons
+can be clicked by pressing the `ALT` key combined with the underlined character
+from the respective button. For example, `ALT + N` to press a `Next` button.
 
-Start installation in debug mode. This opens a shell console at various stages
-throughout the installation, so that you can debug issues, if something goes
-wrong. You can press `CTRL-D` to exit the debug console and continue the
-installation. This option is mostly for developers and not meant for general
-use.
+Install {pmg} (Terminal UI)::
 
-Rescue Boot::
+Starts the terminal-mode installation wizard. It provides the same overall
+installation experience as the graphical installer, but has generally better
+compatibility with very old and very new hardware.
 
-This option allows you to boot an existing installation. It searches
-all attached hard disks and, if it finds an existing installation,
-boots directly into that disk using the existing Linux kernel. This
-can be useful if there are problems with the boot block (grub), or the
-BIOS is unable to read the boot block from the disk.
+Install {pmg} (Terminal UI, Serial Console)::
 
-Test Memory::
+Starts the terminal-mode installation wizard, additionally setting up the Linux
+kernel to use the (first) serial port of the machine for in- and output. This
+can be used if the machine is completely headless and only has a serial console
+available.
 
-Runs `memtest86+`. This is useful to check if your memory is
-functional and error free.
+Both modes use the same code base for the actual installation process to
+benefit from more than a decade of bug fixes and ensure feature parity.
 
-You normally select *Install {pmg}* to start the installation.
+TIP: The 'Terminal UI' option can be used in case the graphical installer does
+not work correctly, due to e.g. driver issues.
 
+Advanced Options: Install {pmg} (Graphical, Debug Mode)::
+
+Starts the installation in debug mode. A console will be opened at several
+installation steps. This helps to debug the situation if something goes wrong.
+To exit a debug console, press `CTRL-D`. This option can be used to boot a live
+system with all basic tools available. You can use it, for example, to repair a
+degraded ZFS 'rpool' or fix the bootloader for an existing {pmg} setup.
+
+Advanced Options: Install {pmg} (Terminal UI, Debug Mode)::
+
+Same as the graphical debug mode, but preparing the system to run the
+terminal-based installer instead.
+
+Advanced Options: Install {pmg} (Serial Console Debug Mode)::
+
+Same the terminal-based debug mode, but additionally sets up the Linux kernel to
+use the (first) serial port of the machine for in- and output.
+
+Advanced Options: Rescue Boot::
+
+With this option you can boot an existing installation. It searches all attached
+hard disks. If it finds an existing installation, it boots directly into that
+disk using the Linux kernel from the ISO. This can be useful if there are
+problems with the bootloader (GRUB/`systemd-boot`) or the BIOS/UEFI is unable to
+read the boot block from the disk.
+
+Advanced Options: Test Memory (memtest86+)::
+
+Runs `memtest86+`. This is useful to check if the memory is functional and free
+of errors. Secure Boot must be turned off in the UEFI firmware setup utility to
+run this option.
+
+You normally select *Install {pmg} (Graphical)* to start the installation.
 image::images/installer/pmg-select-target-disk.png[]
 
 The first step is to read our EULA (End User License Agreement). Following
@@ -94,6 +131,9 @@ If you have more than one disk, you can also use ZFS as a file system.
 ZFS supports several software RAID levels, which is particularly useful
 if you do not have a hardware RAID controller. The `Options` button
 lets you choose the ZFS RAID level and select which disks will be used.
+
+WARNING: ZFS on top of any hardware RAID is not supported and can result in data
+loss.
 
 image::images/installer/pmg-select-location.png[]
 
@@ -147,6 +187,11 @@ image::images/installer/pmg-installation.png[]
 
 Copying the packages usually takes several minutes. When this is
 finished, you can reboot the server.
+
+If the installation failed, check out specific errors on the second TTY
+(`CTRL + ALT + F2') and ensure that the systems meets the
+xref:install_minimal_requirements[minimum requirements]. If the installation
+is still not working, look at the xref:getting_help[how to get help chapter].
 
 Further configuration is done via the {pmg} web interface:
 
@@ -257,7 +302,7 @@ Install {pmg} as a Linux Container Appliance
 instance. In order to keep the set of installed software, and thus the
 necessary updates minimal, you can use the `proxmox-mailgateway-container`
 meta-package. This does not depend on any Linux kernel, firmware, or components
-used for booting from bare-metal, like grub2.
+used for booting from bare-metal, like GRUB.
 
 A ready-to-use appliance template is available through the `mail` section of the
 https://www.proxmox.com/proxmox-virtual-environment/overview[Proxmox VE]

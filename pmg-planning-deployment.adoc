@@ -105,6 +105,7 @@ Please see https://www.proxmox.com for details.
 To benchmark your hardware, run 'pmgperf' after installation.
 
 
+[[install_minimal_requirements]]
 Minimum System Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
