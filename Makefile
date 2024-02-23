@@ -21,6 +21,7 @@ all: index.html
 .PHONY: verify-images
 verify-images: png-verify.pl
 	for i in ./images/screenshot/*.png; do ./png-verify.pl $$i; done
+	for i in ./images/installer/*.png; do ./png-verify.pl $$i; done
 
 ADOC_SOURCES_GUESS=$(filter-out %-synopsis.adoc %-opts.adoc %-table.adoc, $(wildcard *.adoc))
 .pmg-doc-depends link-refs.json: $(ADOC_SOURCES_GUESS) scan-adoc-refs
@@ -199,8 +200,10 @@ doc-install: index.html $(API_VIEWER_SOURCES) verify-images
 	install -dm755 $(DESTDIR)/usr/share/doc/$(DOC_PACKAGE)
 	install -m 0644 index.html $(INDEX_INCLUDES) $(DESTDIR)/usr/share/$(DOC_PACKAGE)
 	# install screenshot images
-	install -dm755 $(DESTDIR)/usr/share/$(DOC_PACKAGE)/images/screenshot
-	install -m 0644 images/screenshot/*.png $(DESTDIR)/usr/share/$(DOC_PACKAGE)/images/screenshot
+	for d in screenshot installer; do \
+	    install -dm755 $(DESTDIR)/usr/share/$(DOC_PACKAGE)/images/$$d; \
+	    install -m 0644 images/$$d/*.png $(DESTDIR)/usr/share/$(DOC_PACKAGE)/images/$$d; \
+	done
 	# install api doc viewer
 	install -dm755 $(DESTDIR)/usr/share/$(DOC_PACKAGE)/api-viewer
 	install -m 0644 $(API_VIEWER_SOURCES) $(DESTDIR)/usr/share/$(DOC_PACKAGE)/api-viewer
