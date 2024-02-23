@@ -260,16 +260,17 @@ required for lvmthin snapshots).
 ZFS Performance Tips
 ~~~~~~~~~~~~~~~~~~~~
 
-ZFS uses a lot of memory, so it is best to add additional RAM if you
-want to use ZFS. A good calculation is 4GB plus 1GB RAM for each TB
+ZFS works best with a lot of memory. If you intend to use ZFS make sure to have
+enough RAM available for it. A good calculation is 4GB plus 1GB RAM for each TB
 RAW disk space.
 
-ZFS also provides the ability to use a fast SSD drive as write cache. The
-write cache is called the ZFS Intent Log (ZIL). You can add that after
-the installation using the following command:
+ZFS can use a dedicated drive as write cache, called the ZFS Intent Log (ZIL).
+Use a fast drive (SSD) for it. It can be added after installation with the
+following command:
 
- zpool add <pool-name> log </dev/path_to_fast_ssd>
-
+---
+# zpool add <pool-name> log </dev/path_to_fast_ssd>
+---
 
 [[pmg_install_on_debian]]
 Install {pmg} on Debian
