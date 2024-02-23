@@ -6,7 +6,8 @@ pmg-select-location	\
 pmg-select-target-disk	\
 pmg-set-password	\
 pmg-setup-network	\
-pmg-summary
+pmg-summary             \
+pmg-tui-installer
 
 all: $(addsuffix .png, ${PPMS})
 

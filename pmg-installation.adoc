@@ -74,6 +74,8 @@ kernel to use the (first) serial port of the machine for in- and output. This
 can be used if the machine is completely headless and only has a serial console
 available.
 
+[thumbnail="../installer/pmg-tui-installer.png"]
+
 Both modes use the same code base for the actual installation process to
 benefit from more than a decade of bug fixes and ensure feature parity.
 
