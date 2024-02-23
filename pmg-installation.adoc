@@ -48,10 +48,10 @@ TIP: Make sure that booting from the installation medium (for example, USB) is
 enabled in your server's firmware settings. Secure boot needs to be disabled
 when booting an installer prior to {pmg} version 8.1.
 
+[thumbnail="../installer/pmg-grub-menu.png"]
+
 After choosing the correct entry (for example, Boot from USB) the {pmg} menu
 will be displayed, and one of the following options can be selected:
-
-image::images/installer/pmg-grub-menu.png[]
 
 Install {pmg} (Graphical)::
 
@@ -113,7 +113,8 @@ of errors. Secure Boot must be turned off in the UEFI firmware setup utility to
 run this option.
 
 You normally select *Install {pmg} (Graphical)* to start the installation.
-image::images/installer/pmg-select-target-disk.png[]
+
+[thumbnail="../installer/pmg-select-target-disk.png"]
 
 The first step is to read our EULA (End User License Agreement). Following
 this, you can select the target hard disk(s) for the installation.
@@ -135,7 +136,7 @@ lets you choose the ZFS RAID level and select which disks will be used.
 WARNING: ZFS on top of any hardware RAID is not supported and can result in data
 loss.
 
-image::images/installer/pmg-select-location.png[]
+[thumbnail="../installer/pmg-select-location.png", float="left"]
 
 The next page asks for basic configuration options like your
 location, timezone, and keyboard layout. The location is used to
@@ -144,7 +145,7 @@ The installer is usually able to auto-detect these settings, so you only need to
 change them in rare situations when auto-detection fails, or when you want to
 use a keyboard layout not commonly used in your country.
 
-image::images/installer/pmg-set-password.png[]
+[thumbnail="../installer/pmg-set-password.png"]
 
 You then need to specify an email address and the superuser (root)
 password. The password must have at least 5 characters, but we highly
@@ -168,13 +169,13 @@ example:
 
 All those notification mails will be sent to the specified email address.
 
-image::images/installer/pmg-setup-network.png[]
+[thumbnail="../installer/pmg-setup-network.png"]
 
 The next step is the network configuration. Please note that you can use either
 IPv4 or IPv6 here, but not both. If you want to configure a dual stack node,
 you can easily do that after the installation.
 
-image::images/installer/pmg-summary.png[]
+[thumbnail="../installer/pmg-installation.png", float="left"]
 
 When you press `Next`, you will see an overview of your entered configuration.
 Please re-check every setting, you can still use the `Previous` button to go
@@ -183,7 +184,7 @@ back and edit any settings.
 After clicking `Install`, the installer will begin to format and copy packages
 to the target disk(s).
 
-image::images/installer/pmg-installation.png[]
+[thumbnail="../installer/pmg-summary.png"]
 
 Copying the packages usually takes several minutes. When this is
 finished, you can reboot the server.
