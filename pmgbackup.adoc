@@ -25,7 +25,7 @@ Backup and Restore
 endif::manvolnum[]
 
 ifndef::manvolnum[]
-[thumbnail="pmg-gui-backup.png", big=1]
+[thumbnail="screenshot/pmg-gui-backup.png", big=1]
 endif::manvolnum[]
 
 {pmg} includes the ability to back up and restore the
@@ -112,7 +112,7 @@ Remotes
 ~~~~~~~
 
 ifndef::manvolnum[]
-[thumbnail="pmg-gui-pbs-remote.png"]
+[thumbnail="screenshot/pmg-gui-pbs-remote.png"]
 endif::manvolnum[]
 
 
@@ -170,7 +170,7 @@ Backup Jobs
 ~~~~~~~~~~~
 
 ifndef::manvolnum[]
-[thumbnail="pmg-gui-pbs-backup.png", big=1]
+[thumbnail="screenshot/pmg-gui-pbs-backup.png", big=1]
 endif::manvolnum[]
 
 With a configured remote, you can create backups using the GUI or the

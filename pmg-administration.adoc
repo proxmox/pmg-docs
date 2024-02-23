@@ -13,7 +13,7 @@ Server Administration
 Status
 ~~~~~~
 
-[thumbnail="pmg-gui-server-status.png", big=1]
+[thumbnail="screenshot/pmg-gui-server-status.png", big=1]
 
 This page shows statistics about server CPU, memory, disk and network
 usage. You can select the displayed time span from the upper right.
@@ -26,7 +26,7 @@ button. It is also possible to trigger a server 'Restart' or
 Services
 ~~~~~~~~
 
-[thumbnail="pmg-gui-service-status.png", big=1]
+[thumbnail="screenshot/pmg-gui-service-status.png", big=1]
 
 This panel lists all the major services used for mail processing and
 cluster synchronization. If necessary, you can start, stop or restart
@@ -46,7 +46,7 @@ systemctl status postfix
 Updates
 ~~~~~~~
 
-[thumbnail="pmg-gui-updates.png", big=1]
+[thumbnail="screenshot/pmg-gui-updates.png", big=1]
 
 We release software updates on a regular basis, and it is recommended
 to always run the latest available version. This page shows the
@@ -60,7 +60,7 @@ details about the available package repositories.
 Syslog and Tasks
 ~~~~~~~~~~~~~~~~
 
-[thumbnail="pmg-gui-syslog.png", big=1]
+[thumbnail="screenshot/pmg-gui-syslog.png", big=1]
 
 The Syslog page gives you a quick real-time log view. You can use the
 xref:pmg_tracking_center[Tracking Center] to search the logs.
@@ -77,7 +77,7 @@ Quarantine
 Spam
 ~~~~
 
-[thumbnail="pmg-gui-spam-quarantine.png", big=1]
+[thumbnail="screenshot/pmg-gui-spam-quarantine.png", big=1]
 
 This panel lets you inspect the mail quarantine. Emails can be safely
 previewed and if desired, delivered to the original user.
@@ -126,7 +126,7 @@ users can manage this themselves.
 Tracking Center
 ---------------
 
-[thumbnail="pmg-gui-tracking-center.png", big=1]
+[thumbnail="screenshot/pmg-gui-tracking-center.png", big=1]
 
 Email processing is a complex task and involves several service
 daemons. Each daemon logs information to the syslog service. The
@@ -191,7 +191,7 @@ combines the results from the first and second phase.
 Postfix Queue Administration
 ----------------------------
 
-[thumbnail="pmg-gui-queue-admin-summary.png", big=1]
+[thumbnail="screenshot/pmg-gui-queue-admin-summary.png", big=1]
 
 Mail-queues are one of the central concepts of the SMTP protocol. Once a
 mail server accepts a mail for further processing it saves it to a queue.
@@ -228,7 +228,7 @@ one of the servers for which you relay emails sends spam itself.
 
 Deferred Mail
 ~~~~~~~~~~~~~
-[thumbnail="pmg-gui-queue-admin-deferred.png"]
+[thumbnail="screenshot/pmg-gui-queue-admin-deferred.png"]
 
 In the 'Deferred Mail' tab, you can examine each deferred email
 separately. In addition to providing contact information about the

@@ -175,7 +175,7 @@ Web-based Management Interface
 management interface allows you to set up and maintain even a complex mail
 system with ease.
 
-[thumbnail="pmg-gui-dashboard.png"]
+[thumbnail="screenshot/pmg-gui-dashboard.png"]
 
 There is no need to install a separate management tool. Any modern internet
 browser is sufficient.

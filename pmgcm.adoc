@@ -207,7 +207,7 @@ be changed later.
 Creating a Cluster
 ~~~~~~~~~~~~~~~~~~
 
-[thumbnail="pmg-gui-cluster-panel.png", big=1]
+[thumbnail="screenshot/pmg-gui-cluster-panel.png", big=1]
 
 You can create a cluster from any existing {pmg} host. All data is
 preserved.
@@ -242,7 +242,7 @@ pmg5(1)              192.168.2.127   master A       1 day 21:18   0.30    80%   
 Adding Cluster Nodes
 ~~~~~~~~~~~~~~~~~~~~
 
-[thumbnail="pmg-gui-cluster-join.png", big=1]
+[thumbnail="screenshot/pmg-gui-cluster-join.png", big=1]
 
 When you add a new node to a cluster (using `join`), all data on that node is
 destroyed. The whole database is initialized with the cluster data from

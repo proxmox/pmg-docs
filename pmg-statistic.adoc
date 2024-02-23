@@ -10,7 +10,7 @@ The statistics are displayed for a selected period, which by default is the
 current day. This period can be changed to any other day, a whole month or even
 a whole year.
 
-[thumbnail="pmg-gui-statistics-general.png", big=1]
+[thumbnail="screenshot/pmg-gui-statistics-general.png", big=1]
 
 On the main statistics page there are three graphs with additional data:
 
@@ -50,7 +50,7 @@ including their percentage of the total outgoing mail volume:
 Spam Scores
 -----------
 
-[thumbnail="pmg-gui-statistics-spam-scores.png", big=1]
+[thumbnail="screenshot/pmg-gui-statistics-spam-scores.png", big=1]
 
 The `Spam Scores` panel shows the distribution of the different spam scores for
 the selected time period. Note that you can also select a whole month or even a
@@ -60,7 +60,7 @@ whole year as period to display.
 Virus Charts
 ------------
 
-[thumbnail="pmg-gui-statistics-virus-charts.png"]
+[thumbnail="screenshot/pmg-gui-statistics-virus-charts.png"]
 
 The `Virus Charts` panel gives you an overview of how many virus files were
 tried to be transmitted through your mail infrastructure, but got caught early
@@ -76,7 +76,7 @@ See xref:pmgconfig_clamav[Virus Detector Configuration] for details about how
 Hourly Distribution
 -------------------
 
-[thumbnail="pmg-gui-statistics-hourly-distribution.png", big=1]
+[thumbnail="screenshot/pmg-gui-statistics-hourly-distribution.png", big=1]
 
 The `Hourly Distribution` shows the amount of incoming and outgoing mail per
 hour for the selected time period. For periods spanning a whole month or a
@@ -86,7 +86,7 @@ whole year the arithmetic average of mail volume in an hour will be shown.
 Postscreen
 ----------
 
-[thumbnail="pmg-gui-statistics-postscreen.png"]
+[thumbnail="screenshot/pmg-gui-statistics-postscreen.png"]
 
 Contains a chart with the RBL (Real-time Blackhole Lists) and `pregreet`
 rejects for the selected time frame.
@@ -107,7 +107,7 @@ https://www.postfix.org/POSTSCREEN_README.html[postscreen readme].
 Domain
 ------
 
-[thumbnail="pmg-gui-statistics-domain.png"]
+[thumbnail="screenshot/pmg-gui-statistics-domain.png"]
 
 The `Domain` view is split into two tabs, one for incoming and one for outgoing
 mails.
@@ -125,7 +125,7 @@ with stats for:
 Sender
 ------
 
-[thumbnail="pmg-gui-statistics-sender.png", big=1]
+[thumbnail="screenshot/pmg-gui-statistics-sender.png", big=1]
 
 The `Sender` panel contains a list of e-mail addresses that sent mail out in
 the selected time frame, with a total count, how many viruses were detected and
@@ -138,7 +138,7 @@ recipients, complete with size, date and time.
 Receiver
 --------
 
-[thumbnail="pmg-gui-statistics-receiver.png"]
+[thumbnail="screenshot/pmg-gui-statistics-receiver.png"]
 
 Similar to the `Sender` panel, this contains a list of e-mail addresses that
 received e-mails from outside, with a total, spam and virus count, as well
@@ -155,7 +155,7 @@ sent mail during the selected time period or up to 90 days before.
 Contact
 -------
 
-[thumbnail="pmg-gui-statistics-contact.png"]
+[thumbnail="screenshot/pmg-gui-statistics-contact.png"]
 
 This contains the list of external recipients that received mail from this
 {pmg}, coming in on the internal port, with total count, virus count and size.

@@ -41,7 +41,7 @@ Upload Custom Certificate
 If you already have a certificate which you want to use for a {pmg} host, you
 can simply upload that certificate over the web interface.
 
-[thumbnail="pmg-gui-certs-upload-custom.png"]
+[thumbnail="screenshot/pmg-gui-certs-upload-custom.png"]
 
 Note that any certificate key files must not be password protected.
 
@@ -65,7 +65,7 @@ supporting all the DNS API endpoints https://acme.sh[acme.sh] does.
 ACME Account
 ^^^^^^^^^^^^
 
-[thumbnail="pmg-gui-acme-create-account.png"]
+[thumbnail="screenshot/pmg-gui-acme-create-account.png"]
 
 You need to register an ACME account per cluster, with the endpoint you want to
 use. The email address used for that account will serve as the contact point for
@@ -97,7 +97,7 @@ technical limitations or if the address of a record is not reachable from the
 public internet. The `dns-01` challenge can be used in such cases. This
 challenge is fulfilled by creating a certain DNS record in the domain's zone.
 
-[thumbnail="pmg-gui-acme-create-challenge-plugin.png"]
+[thumbnail="screenshot/pmg-gui-acme-create-challenge-plugin.png"]
 
 {pmg} supports both of those challenge types out of the box, you can configure
 plugins either over the web interface under `Certificates -> ACME Challenges`,
@@ -112,7 +112,7 @@ Domains
 You can add new or manage existing domain entries under `Certificates`, or
 using the `pmgconfig` command.
 
-[thumbnail="pmg-gui-acme-add-domain.png"]
+[thumbnail="screenshot/pmg-gui-acme-add-domain.png"]
 
 After configuring the desired domain(s) for a node and ensuring that the
 desired ACME account is selected, you can order your new certificate over the
@@ -160,7 +160,7 @@ refer to its documentation for details on configuration of specific APIs.
 The easiest way to configure a new plugin with the DNS API is using the web
 interface (`Certificates -> ACME Accounts/Challenges`).
 
-[thumbnail="pmg-gui-acme-create-challenge-plugin.png"]
+[thumbnail="screenshot/pmg-gui-acme-create-challenge-plugin.png"]
 
 Here you can add a new challenge plugin by selecting your API provider and
 entering the credential data to access your account over their API.

@@ -48,7 +48,7 @@ TIP: Make sure that booting from the installation medium (for example, USB) is
 enabled in your server's firmware settings. Secure boot needs to be disabled
 when booting an installer prior to {pmg} version 8.1.
 
-[thumbnail="../installer/pmg-grub-menu.png"]
+[thumbnail="installer/pmg-grub-menu.png"]
 
 After choosing the correct entry (for example, Boot from USB) the {pmg} menu
 will be displayed, and one of the following options can be selected:
@@ -74,7 +74,7 @@ kernel to use the (first) serial port of the machine for in- and output. This
 can be used if the machine is completely headless and only has a serial console
 available.
 
-[thumbnail="../installer/pmg-tui-installer.png"]
+[thumbnail="installer/pmg-tui-installer.png"]
 
 Both modes use the same code base for the actual installation process to
 benefit from more than a decade of bug fixes and ensure feature parity.
@@ -116,7 +116,7 @@ run this option.
 
 You normally select *Install {pmg} (Graphical)* to start the installation.
 
-[thumbnail="../installer/pmg-select-target-disk.png"]
+[thumbnail="installer/pmg-select-target-disk.png"]
 
 The first step is to read our EULA (End User License Agreement). Following
 this, you can select the target hard disk(s) for the installation.
@@ -138,7 +138,7 @@ lets you choose the ZFS RAID level and select which disks will be used.
 WARNING: ZFS on top of any hardware RAID is not supported and can result in data
 loss.
 
-[thumbnail="../installer/pmg-select-location.png", float="left"]
+[thumbnail="installer/pmg-select-location.png", float="left"]
 
 The next page asks for basic configuration options like your
 location, timezone, and keyboard layout. The location is used to
@@ -147,7 +147,7 @@ The installer is usually able to auto-detect these settings, so you only need to
 change them in rare situations when auto-detection fails, or when you want to
 use a keyboard layout not commonly used in your country.
 
-[thumbnail="../installer/pmg-set-password.png"]
+[thumbnail="installer/pmg-set-password.png"]
 
 You then need to specify an email address and the superuser (root)
 password. The password must have at least 5 characters, but we highly
@@ -171,13 +171,13 @@ example:
 
 All those notification mails will be sent to the specified email address.
 
-[thumbnail="../installer/pmg-setup-network.png"]
+[thumbnail="installer/pmg-setup-network.png"]
 
 The next step is the network configuration. Please note that you can use either
 IPv4 or IPv6 here, but not both. If you want to configure a dual stack node,
 you can easily do that after the installation.
 
-[thumbnail="../installer/pmg-installation.png", float="left"]
+[thumbnail="installer/pmg-installation.png", float="left"]
 
 When you press `Next`, you will see an overview of your entered configuration.
 Please re-check every setting, you can still use the `Previous` button to go
@@ -186,7 +186,7 @@ back and edit any settings.
 After clicking `Install`, the installer will begin to format and copy packages
 to the target disk(s).
 
-[thumbnail="../installer/pmg-summary.png"]
+[thumbnail="installer/pmg-summary.png"]
 
 Copying the packages usually takes several minutes. When this is
 finished, you can reboot the server.
@@ -198,7 +198,7 @@ is still not working, look at the xref:getting_help[how to get help chapter].
 
 Further configuration is done via the {pmg} web interface:
 
-[thumbnail="pmg-gui-login-window.png"]
+[thumbnail="screenshot/pmg-gui-login-window.png"]
 
 . Point your browser to the IP address given during the installation
 (https://youripaddress:8006).
@@ -366,7 +366,7 @@ files placed in `/etc/apt/sources.list.d/`.
 Repository Management
 ^^^^^^^^^^^^^^^^^^^^^
 
-[thumbnail="pmg-gui-admin-repositories.png"]
+[thumbnail="screenshot/pmg-gui-admin-repositories.png"]
 
 Since {pmg} 7.0 you can check the repository state in the web interface. The
 'Dashboard' shows a high level status overview, while the separate 'Repository'
