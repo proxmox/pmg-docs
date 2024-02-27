@@ -1,11 +1,8 @@
 [[sysboot]]
 Host Bootloader
 ---------------
-ifdef::wiki[]
-:pve-toplevel:
-endif::wiki[]
 
-{pve} currently uses one of two bootloaders depending on the disk setup
+{pmg} currently uses one of two bootloaders depending on the disk setup
 selected in the installer.
 
 For EFI Systems installed with ZFS as the root filesystem `systemd-boot` is
@@ -18,7 +15,7 @@ top of Debian).
 Partitioning Scheme Used by the Installer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The {pve} installer creates 3 partitions on all disks selected for
+The {pmg} installer creates 3 partitions on all disks selected for
 installation.
 
 The created partitions are:
@@ -96,7 +93,7 @@ For example, to format an empty partition `/dev/sda2` as ESP, run the following:
 ----
 
 To setup an existing, unmounted ESP located on `/dev/sda2` for inclusion in
-{pve}'s kernel update synchronization mechanism, use the following:
+{pmg}'s kernel update synchronization mechanism, use the following:
 
 ----
 # proxmox-boot-tool init /dev/sda2
@@ -184,7 +181,7 @@ Determine which Bootloader is Used
 [thumbnail="screenshot/boot-grub.png", float="left"]
 
 The simplest and most reliable way to determine which bootloader is used, is to
-watch the boot process of the {pve} node.
+watch the boot process of the {pmg} node.
 
 You will either see the blue box of GRUB or the simple black on white
 `systemd-boot`.
@@ -253,7 +250,7 @@ Systemd-boot
 `systemd-boot` is a lightweight EFI bootloader. It reads the kernel and initrd
 images directly from the EFI Service Partition (ESP) where it is installed.
 The main advantage of directly loading the kernel from the ESP is that it does
-not need to reimplement the drivers for accessing the storage. In {pve}
+not need to reimplement the drivers for accessing the storage. In {pmg}
 xref:sysboot_proxmox_boot_tool[`proxmox-boot-tool`] is used to keep the
 configuration on the ESPs synchronized.
 
@@ -273,7 +270,7 @@ An example entry.conf looks like this (`/` refers to the root of the ESP):
 ----
 title    Proxmox
 version  5.0.15-1-pve
-options   root=ZFS=rpool/ROOT/pve-1 boot=zfs
+options   root=ZFS=rpool/ROOT/pmg-1 boot=zfs
 linux    /EFI/proxmox/5.0.15-1-pve/vmlinuz-5.0.15-1-pve
 initrd   /EFI/proxmox/5.0.15-1-pve/initrd.img-5.0.15-1-pve
 ----
@@ -338,7 +335,7 @@ would run:
 # proxmox-boot-tool kernel pin 5.15.30-1-pve
 ----
 
-TIP: The pinning functionality works for all {pve} systems, not only those using
+TIP: The pinning functionality works for all {pmg} systems, not only those using
 `proxmox-boot-tool` to synchronize the contents of the ESPs, if your system
 does not use `proxmox-boot-tool` for synchronizing you can also skip the
 `proxmox-boot-tool refresh` call in the end.
@@ -375,7 +372,7 @@ systems if you call the tool interactively.
 Secure Boot
 ~~~~~~~~~~~
 
-Since {pve} 8.1, Secure Boot is supported out of the box via signed packages
+Since {pmg} 8.1, Secure Boot is supported out of the box via signed packages
 and integration in `proxmox-boot-tool`.
 
 The following packages need to be installed for Secure Boot to be enabled:
@@ -387,7 +384,7 @@ The following packages need to be installed for Secure Boot to be enabled:
 - `proxmox-kernel-6.X.Y-Z-pve-signed` (Kernel image, signed by Proxmox)
 
 Only GRUB as bootloader is supported out of the box, since there are no other
-pre-signed bootloader packages available. Any new installation of {pve} will
+pre-signed bootloader packages available. Any new installation of {pmg} will
 automatically have all of the above packages included.
 
 More details about how Secure Boot works, and how to customize the setup, are
@@ -399,10 +396,10 @@ Switching an Existing Installation to Secure Boot
 WARNING: This can lead to an unbootable installation in some cases if not done
 correctly. Reinstalling the host will setup Secure Boot automatically if
 available, without any extra interactions. **Make sure you have a working and
-well-tested backup of your {pve} host!**
+well-tested backup of your {pmg} host!**
 
 An existing UEFI installation can be switched over to Secure Boot if desired,
-without having to reinstall {pve} from scratch.
+without having to reinstall {pmg} from scratch.
 
 First, ensure all your system is up-to-date. Next, install all the required
 pre-signed packages as listed above. GRUB automatically creates the needed EFI
@@ -412,7 +409,7 @@ boot entry for booting via the default shim.
 
 If `systemd-boot` is used as a bootloader (see
 xref:sysboot_determine_bootloader_used[Determine which Bootloader is used]),
-some additional setup is needed. This is only the case if {pve} was installed
+some additional setup is needed. This is only the case if {pmg} was installed
 with ZFS-on-root.
 
 To check the latter, run:
@@ -424,7 +421,7 @@ If the host is indeed using ZFS as root filesystem, the `FSTYPE` column
 should contain `zfs`:
 ----
 TARGET SOURCE           FSTYPE OPTIONS
-/      rpool/ROOT/pve-1 zfs    rw,relatime,xattr,noacl,casesensitive
+/      rpool/ROOT/pmg-1 zfs    rw,relatime,xattr,noacl,casesensitive
 ----
 
 Next, a suitable potential ESP (EFI system partition) must be found. This can be
