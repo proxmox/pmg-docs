@@ -585,6 +585,18 @@ Controls whether all outbound mail should get signed or only mails from domains
 listed in `/etc/pmg/dkim/domains`, if it exists and `/etc/pmg/domains`
 otherwise.
 
+Select Signing Domain::
+
+Determines whether to DKIM sign emails using the domain found in the envelope
+from or the from header in the body of the email. The envelope from is also
+known as reverse-path, see {smtp_rfc} section 3.3 and {rfc_5322} section 3.6.2.
++
+The envelop from of certain emails, bounces for example, can be empty. In these
+cases it is desirable to sign them using the domain found in the from header.
++
+Additionally, DMARC (see {dmarc_rfc} section 3.1.1) needs the domain found in
+the from header in certain situations.
+
 These settings are saved to the 'admin' subsection in `/etc/pmg/pmg.conf`,
 using the following configuration keys:
 
