@@ -1,3 +1,22 @@
+pmg-docs (8.1.0) bookworm; urgency=medium
+
+  * add chapter about system boot loader and configurations
+
+  * update GRUB menu screenshot to latest release
+
+  * installation: align zfs performance tip with PVE documentation
+
+  * installation: add `nomodeset` kernel parameter tip for bogus graphics
+
+  * installation: convert installer screenshots to thumbnails for better
+    reading flow
+
+  * installation: add a TUI installer screenshot
+
+  * update static schema info
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 27 Feb 2024 16:57:15 +0100
+
 pmg-docs (8.0.2) bookworm; urgency=medium
 
   * faq: update support table
