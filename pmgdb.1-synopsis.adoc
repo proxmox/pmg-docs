@@ -8,9 +8,9 @@ Delete PMG rule database.
 
 Print the PMG rule database.
 
-`--active` `<boolean>` ('default =' `0`)::
+`--rules` `<active | all | inactive>` ('default =' `all`)::
 
-Print only active rules
+Which rules should be printed
 
 *pmgdb help* `[OPTIONS]`
 

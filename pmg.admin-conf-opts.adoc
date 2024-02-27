@@ -30,6 +30,10 @@ Send daily reports.
 
 Demo mode - do not start SMTP filter.
 
+`dkim-use-domain`: `<envelope | header>` ('default =' `envelope`)::
+
+Whether to sign using the address from the header or the envelope.
+
 `dkim_selector`: `<string>` ::
 
 Default DKIM selector

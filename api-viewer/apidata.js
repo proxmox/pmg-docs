@@ -10402,10 +10402,10 @@ var apiSchema = [
                               "delete" : {
                                  "description" : "A list of settings you want to delete.",
                                  "enum" : [
-                                    "id",
-                                    "allow-subdomains",
                                     "origin",
-                                    "rp"
+                                    "allow-subdomains",
+                                    "rp",
+                                    "id"
                                  ],
                                  "optional" : 1,
                                  "type" : "string"
@@ -10579,6 +10579,16 @@ var apiSchema = [
                            "optional" : 1,
                            "type" : "string",
                            "typetext" : "<string>"
+                        },
+                        "dkim-use-domain" : {
+                           "default" : "envelope",
+                           "description" : "Whether to sign using the address from the header or the envelope.",
+                           "enum" : [
+                              "header",
+                              "envelope"
+                           ],
+                           "optional" : 1,
+                           "type" : "string"
                         },
                         "dkim_selector" : {
                            "description" : "Default DKIM selector",
@@ -16838,6 +16848,47 @@ var apiSchema = [
                         "returns" : {
                            "additionalProperties" : 1,
                            "properties" : {
+                              "boot-info" : {
+                                 "description" : "Meta-information about the boot mode.",
+                                 "properties" : {
+                                    "mode" : {
+                                       "description" : "Through which firmware the system got booted.",
+                                       "enum" : [
+                                          "efi",
+                                          "legacy-bios"
+                                       ],
+                                       "type" : "string"
+                                    },
+                                    "secureboot" : {
+                                       "description" : "System is booted in secure mode, only applicable for the \"efi\" mode.",
+                                       "optional" : 1,
+                                       "type" : "boolean"
+                                    }
+                                 },
+                                 "type" : "object"
+                              },
+                              "current-kernel" : {
+                                 "description" : "Meta-information about the currently booted kernel.",
+                                 "properties" : {
+                                    "machine" : {
+                                       "description" : "Hardware (architecture) type",
+                                       "type" : "string"
+                                    },
+                                    "release" : {
+                                       "description" : "OS kernel release (e.g., \"6.8.0\")",
+                                       "type" : "string"
+                                    },
+                                    "sysname" : {
+                                       "description" : "OS kernel name (e.g., \"Linux\")",
+                                       "type" : "string"
+                                    },
+                                    "version" : {
+                                       "description" : "OS kernel version with build info",
+                                       "type" : "string"
+                                    }
+                                 },
+                                 "type" : "object"
+                              },
                               "insync" : {
                                  "description" : "Database is synced with other nodes.",
                                  "type" : "boolean"
@@ -18201,8 +18252,8 @@ var apiSchema = [
                            "description" : "Query this type of quarantine for users.",
                            "enum" : [
                               "spam",
-                              "attachment",
-                              "virus"
+                              "virus",
+                              "attachment"
                            ],
                            "optional" : 1,
                            "type" : "string"
