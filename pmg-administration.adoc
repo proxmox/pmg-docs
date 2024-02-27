@@ -438,3 +438,6 @@ intel-microcode set on hold.
 # apt upgrade
 ----
 ====
+
+
+include::system-booting.adoc[]
