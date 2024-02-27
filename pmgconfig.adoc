@@ -101,7 +101,7 @@ TLS policy for outbound connections.
 
 Sender domains for which TLS is enforced on inbound connections.
 
-`/etc/pmg/transports`::
+`/etc/pmg/transport`::
 
 Message delivery transport setup.
 
