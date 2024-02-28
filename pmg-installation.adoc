@@ -138,7 +138,7 @@ lets you choose the ZFS RAID level and select which disks will be used.
 WARNING: ZFS on top of any hardware RAID is not supported and can result in data
 loss.
 
-[thumbnail="installer/pmg-select-location.png", float="left"]
+[thumbnail="installer/pmg-select-location.png"]
 
 The next page asks for basic configuration options like your
 location, timezone, and keyboard layout. The location is used to
@@ -147,13 +147,13 @@ The installer is usually able to auto-detect these settings, so you only need to
 change them in rare situations when auto-detection fails, or when you want to
 use a keyboard layout not commonly used in your country.
 
-[thumbnail="installer/pmg-set-password.png"]
+[thumbnail="installer/pmg-set-password.png", float="left"]
 
 You then need to specify an email address and the superuser (root)
 password. The password must have at least 5 characters, but we highly
 recommend to use stronger passwords - here are some guidelines:
 
-- Use a minimum password length of 12 to 14 characters.
+- Use a minimum password length of at least 12 characters.
 
 - Include lowercase and uppercase alphabetic characters, numbers and symbols.
 
@@ -169,9 +169,9 @@ example:
 
 - Error messages from periodic cron jobs.
 
-All those notification mails will be sent to the specified email address.
-
 [thumbnail="installer/pmg-setup-network.png"]
+
+All those notification mails will be sent to the specified email address.
 
 The next step is the network configuration. Please note that you can use either
 IPv4 or IPv6 here, but not both. If you want to configure a dual stack node,
@@ -188,25 +188,38 @@ to the target disk(s).
 
 [thumbnail="installer/pmg-summary.png"]
 
-Copying the packages usually takes several minutes. When this is
-finished, you can reboot the server.
+Copying the packages usually takes several minutes, mostly depending on the
+speed of the installation medium and the target disk performance.
+
+When copying and setting up the packages has finished, you can reboot the
+server. This will be done automatically after a few seconds by default.
+
+.Installation Failure
 
 If the installation failed, check out specific errors on the second TTY
 (`CTRL + ALT + F2') and ensure that the systems meets the
-xref:install_minimal_requirements[minimum requirements]. If the installation
-is still not working, look at the xref:getting_help[how to get help chapter].
+xref:install_minimal_requirements[minimum requirements].
 
-Further configuration is done via the {pmg} web interface:
+If the installation is still not working, look at the xref:getting_help[how to
+get help chapter].
+
+
+Accessing the Management Interface Post-Installation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 [thumbnail="screenshot/pmg-gui-login-window.png"]
 
-. Point your browser to the IP address given during the installation
-(https://youripaddress:8006).
+After a succesful installation and reboot of the system you can use the {pmg}
+web interface for further configuration.
 
-. Log in and upload your subscription key.
-+
-NOTE: The default login is "root", and the password is the one chosen during the
-installation.
+. Point your browser to the IP address given during the installation and port
+  8006, for example: https://youripaddress:8006
+
+. Log in using the `root` username and the password chosen during installation.
+
+. Upload your subscription key to gain access to the Enterprise repository.
+  Otherwise, you will need to set up one of the public, less tested package
+  repositories to get updates for security fixes, bug fixes, and new features.
 
 . Check the IP configuration and hostname.
 
