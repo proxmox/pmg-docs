@@ -10,7 +10,7 @@ my $dpcm = 58; # expected
 
 my $tmp = `identify -units PixelsPerCentimeter -format '%x x %y' $infile`;
 
-die "got unexpected density '$tmp' (fix with png-cleanup.pl)\n"
+die "got unexpected density '$tmp' for file '$infile' (fix with png-cleanup.pl)\n"
     if $tmp ne "$dpcm x $dpcm";
 
 exit 0;
