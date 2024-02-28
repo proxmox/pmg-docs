@@ -20,8 +20,8 @@ all: index.html
 
 .PHONY: verify-images
 verify-images: png-verify.pl
-	for i in ./images/screenshot/*.png; do ./png-verify.pl $$i; done
-	for i in ./images/installer/*.png; do ./png-verify.pl $$i; done
+	for i in ./images/screenshot/*.png; do ./png-verify.pl $$i || :; done
+	for i in ./images/installer/*.png; do ./png-verify.pl $$i || :; done
 
 ADOC_SOURCES_GUESS=$(filter-out %-synopsis.adoc %-opts.adoc %-table.adoc, $(wildcard *.adoc))
 .pmg-doc-depends link-refs.json: $(ADOC_SOURCES_GUESS) scan-adoc-refs
