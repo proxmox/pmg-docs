@@ -284,9 +284,9 @@ ZFS can use a dedicated drive as write cache, called the ZFS Intent Log (ZIL).
 Use a fast drive (SSD) for it. It can be added after installation with the
 following command:
 
----
+----
 # zpool add <pool-name> log </dev/path_to_fast_ssd>
----
+----
 
 Adding the `nomodeset` Kernel Parameter
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
