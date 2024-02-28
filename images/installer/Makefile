@@ -12,7 +12,7 @@ pmg-tui-installer
 all: $(addsuffix .png, ${PPMS})
 
 %.png: %.ppm
-	convert $< -bordercolor black -border 10x10 $@
+	convert $< -bordercolor black -border 3x3 $@
 
 dist-clean:
 	rm -f $(addsuffix .png, ${PPMS})
