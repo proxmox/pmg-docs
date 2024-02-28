@@ -70,6 +70,7 @@ my $key_groups = {
 	    dkim_selector => 1,
 	    dkim_sign => 1,
 	    dkim_sign_all_mail => 1,
+	    'dkim-use-domain' => 1,
 	}],
 };
 
