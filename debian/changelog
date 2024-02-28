@@ -1,3 +1,16 @@
+pmg-docs (8.1.1) bookworm; urgency=medium
+
+  * dkim: document new 'dkim-use-domain' option for selecting the source of
+    the domain value used for DKIM signing
+
+  * screenshots: regenerate installer screenshots with smaller border
+
+  * update various screenshots
+
+  * installation: reword/expand/reflow and fix login thumbnail
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 28 Feb 2024 15:16:08 +0100
+
 pmg-docs (8.1.0) bookworm; urgency=medium
 
   * add chapter about system boot loader and configurations
