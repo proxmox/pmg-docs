@@ -5,6 +5,9 @@
 *.tmp
 *.epub
 *.swp
+/*.deb
+/*.changes
+/*.buildinfo
 /#*#
 /.pmg-doc-depends
 /api-viewer/apidoc.js
@@ -16,3 +19,5 @@
 /man8-index-table.adoc
 /pmg-doc-generator.mk
 /pmg-copyright.adoc
+/pmg-docs-[0-9]*/
+/pmg-docs_[0-9]*
