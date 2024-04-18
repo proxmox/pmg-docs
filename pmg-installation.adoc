@@ -345,6 +345,26 @@ parameter.
 
 Then press `Ctrl-X` or `F10` to boot the configuration.
 
+
+[[pmg_install_unattended]]
+Unattended Installation
+-----------------------
+
+It is possible to install {pmg} automatically in an unattended manner. This
+enables you to fully automate the setup process with the ISO. Once the
+installation is complete and the host has booted up, automation tools like
+Ansible can be used to further configure the installation.
+
+The necessary options for the installer must be provided in an answer file. This
+file allows the use of filter rules to determine which disks and network cards
+should be used.
+
+To use the automated installation, it is first necessary to prepare an
+installation ISO.
+https://pve.proxmox.com/wiki/Automated_Installation[Visit our wiki] for more
+details and information on the unattended installation.
+
+
 [[pmg_install_on_debian]]
 Install {pmg} on Debian
 -----------------------
