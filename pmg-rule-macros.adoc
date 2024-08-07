@@ -25,5 +25,5 @@ following macros are defined:
 |__SENDER_IP__       |IP address of sending host
 |__VERSION__         |The current software version (proxmox mail gateway)
 |__FILENAME__        |Attachment file name
-|__SPAMSTARS__       |A series of "*" charactes where each one represents a full score (__SPAMLEVEL__) point
+|__SPAMSTARS__       |A series of "*" characters where each one represents a full score (__SPAMLEVEL__) point
 |======
