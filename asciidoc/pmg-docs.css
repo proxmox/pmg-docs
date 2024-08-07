@@ -139,7 +139,7 @@ h6:hover > a.headerlink {
         color: var(--pdt-text);
     }
 
-    /* reduce the brigthness of images a bit and make it reversable
+    /* reduce the brightness of images a bit and make it reversable
      * through hovering over them.
      */
     .image > img {
@@ -194,7 +194,7 @@ h6:hover > a.headerlink {
         filter: invert(100%) hue-rotate(180deg) brightness(90%);
     }
 
-    /* fixes the black text on unorderd lists */
+    /* fixes the black text on unordered lists */
     ul > li > * {
         color: var(--pdt-text);
     }

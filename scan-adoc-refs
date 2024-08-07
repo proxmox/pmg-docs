@@ -70,7 +70,7 @@ sub pop_environment {
     pop @$env_stack;
     my $res = pop @$env_name_stack;
 
-    die "environment missmatch ($res != $env)\n" if $res ne $env;
+    die "environment mismatch ($res != $env)\n" if $res ne $env;
 }
 
 sub register_include {
@@ -146,12 +146,12 @@ sub scan_adoc_file {
     while (defined (my $line = <$fh>)) {
 	if ($line =~ m/^if(n?)def::(\S+)\[(.*)\]\s*$/) {
 	    my ($not, $env, $text) = ($1, $2, $3);
-	    die "unsuported ifdef usage - implement me" if $text;
+	    die "unsupported ifdef usage - implement me" if $text;
 	    push_environment($env, $not);
 	    next;
 	} elsif ($line =~ m/^endif::(\S+)\[(.*)\]\s*$/) {
 	    my ($env, $text) = ($1, $2);
-	    die "unsuported ifdef usage - implement me" if $text;
+	    die "unsupported ifdef usage - implement me" if $text;
 	    pop_environment($env);
 	    next;
 	} elsif ($line =~ m/^include::(\S+)\[.*\]\s*$/) {
