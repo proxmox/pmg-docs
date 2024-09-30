@@ -109,7 +109,7 @@ To benchmark your hardware, run 'pmgperf' after installation.
 Minimum System Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* CPU: 64bit (Intel EMT64 or AMD64)
+* CPU: 64bit (Intel 64 or AMD64)
 
 * 2 GiB RAM
 
@@ -125,7 +125,7 @@ Minimum System Requirements
 Recommended System Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* Multi-core CPU: 64bit (Intel EMT64 or AMD64), +
+* Multi-core CPU: 64bit (Intel 64 or AMD64), +
 ** for use in a virtual machine, activate Intel VT/AMD-V CPU flag
 
 * 4 GiB RAM
