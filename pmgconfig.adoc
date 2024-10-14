@@ -155,6 +155,14 @@ engine, and the Apache {spamassassin} project. These services use
 separate configuration files, so we need to rewrite those files when the
 configuration is changed.
 
+{pmg} also features support for customizing the email-based reports and
+notifications it can send to administrators and users. These can be adjusted in
+the same way as configuration files. For some reports and notifications, both
+HTML and plain-text variants exist, which will be send together as multi-part
+mail. These can be recognized by being suffixed using `.html.tt` or `.plain.tt`,
+respectively, and should be modified together if available to present a
+consistent experience to users.
+
 We use a template-based approach to generate these files. The {tts} is
 a well known, fast and flexible template processing system. You can
 find the default templates in `/var/lib/pmg/templates/`. Please do not
