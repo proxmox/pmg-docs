@@ -778,8 +778,17 @@ Make sure to use the correct {spamassassin_rule_syntax} and test it with:
 # spamassassin -D --lint
 ----
 
-If you run a cluster, the `custom.cf` file is synchronized from the
-master node to all cluster members automatically.
+The change to the configuration will be picked up when `pmg-smtp-filter` gets
+restarted. To directly have it enabled you need to restart manually, after
+editing the custom configuration:
+
+----
+# systemctl restart pmg-smtp-filter.service
+----
+
+If you run a cluster, the `custom.cf` file is synchronized from the master node
+to all cluster members and the relevant services are restarted automatically on
+the cluster members.
 
 To adjust the score assigned to a particular rule, you
 can also use the xref:pmgconfig_spamdetector_customscores[Custom Rule Score]
