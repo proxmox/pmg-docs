@@ -1118,7 +1118,7 @@ WebAuthn Configuration
 
 //[thumbnail="screenshot/gui-datacenter-webauthn-edit.png"]//TODO
 
-To allow users to use 'WebAuthn' authentication, it is necessaary to use a valid
+To allow users to use 'WebAuthn' authentication, it is necessary to use a valid
 domain with a valid SSL certificate, otherwise some browsers may warn or refuse
 to authenticate altogether.
 
