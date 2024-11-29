@@ -11,27 +11,30 @@ Community Support Forum
 
 {pmg} itself is fully open source, so we always encourage our users to
 discuss and share their knowledge using the {forum}. The forum is
-moderated by the Proxmox support team, and has a large user base
-around the world. Needless to say, such a large forum is a
-great place to get information.
+moderated by the Proxmox support team, and has a large user base from all
+around the world. Needless to say, such a large forum is a great place to
+get information.
 
 
 Commercial Support
 ~~~~~~~~~~~~~~~~~~
 
-{proxmoxGmbh} also offers commercial {pricing-url}[{pmg} Subscription
-Service Plans]. Users with a Basic subscription or above
-have access to a dedicated support portal with guaranteed response
-times, where {pmg} developers can help them, should an issue appear. Please
-contact the mailto:sales@proxmox.com[Proxmox sales team] for more
-information or volume discounts.
+{proxmoxGmbh} also offers enterprise support available as
+{pricing-url}[{pmg} Subscription Service Plans].
+All users with a subscription get access to the {pmg}
+xref:pmg_enterprise_repository[Enterprise Repository], and--with a Basic,
+Standard or Premium subscription--also to the Proxmox Customer Portal. The
+customer portal provides help and support with guaranteed response times from
+the {pmg} developers.
+
+For volume discounts, or more information in general, please contact
+mailto:sales@proxmox.com[sales@proxmox.com].
 
 
 Bug Tracker
 ~~~~~~~~~~~
 
-We also run a public bug tracker at
-https://bugzilla.proxmox.com. If you ever detect a bug, you can file
-a bug entry there. This makes it easy to track the bug's status and
-get notified as soon as the bug is fixed.
-
+Proxmox runs a public bug tracker at https://bugzilla.proxmox.com. If an issue
+appears, file your report there. An issue can be a bug as well as a request for
+a new feature or enhancement. The bug tracker helps to keep track of the issue
+and will send a notification once it has been solved.
