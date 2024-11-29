@@ -315,24 +315,22 @@ Then press `Ctrl-X` or `F10` to boot the configuration.
 Install {pmg} on Debian
 -----------------------
 
-{pmg} ships as a set of Debian packages, so you can install it
-on top of a normal Debian installation. After configuring the
-xref:pmg_package_repositories[package repositories], you need to run:
+{pmg} ships as a set of Debian packages and can be installed on top of a
+standard Debian installation.
+xref:pmg_package_repositories[After configuring the repositories], you need
+to run the following commands:
 
-[source,bash]
 ----
 apt update
 apt install proxmox-mailgateway
 ----
 
-Installing on top of an existing Debian installation seems easy, but
-it assumes that you have correctly installed the base system, and you
-know how you want to configure and use the local storage. Network
-configuration is also completely up to you.
+Installing on top of an existing Debian installation looks easy, but it presumes
+that the base system has been installed correctly and that you know how you want
+to configure and use the local storage. You also need to configure the network
+manually.
 
-NOTE: In general, this is not trivial, especially when you use LVM or
-ZFS.
-
+NOTE: In general, this is not trivial, especially when LVM or ZFS is used.
 
 [[pmg_install_on_debian_container]]
 Install {pmg} as a Linux Container Appliance
