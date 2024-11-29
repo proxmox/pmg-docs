@@ -133,7 +133,7 @@ restrict LVM space (see xref:advanced_lvm_options[below]).
 {pmg} can also be installed on ZFS. As ZFS offers several software RAID levels,
 this is an option for systems that don't have a hardware RAID controller. The
 target disks must be selected in the `Options` dialog. More ZFS specific
-settings can be changed under `Advanced Options`.
+settings can be changed under xref:advanced_zfs_options[`Advanced Options`].
 
 WARNING: ZFS on top of any hardware RAID is not supported and can result in data
 loss.
@@ -278,6 +278,40 @@ Defines the amount of free space that should be left in the LVM volume group
 NOTE: LVM requires free space in the VG for snapshot creation (not
 required for lvmthin snapshots).
 
+[[advanced_zfs_options]]
+Advanced ZFS Configuration Options
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The installer creates the ZFS pool `rpool`, if ZFS is used. No swap space is
+created but you can reserve some unpartitioned space on the install disks for
+swap. You can also create a swap zvol after the installation, although this can
+lead to problems.
+
+`ashift`::
+
+Defines the `ashift` value for the created pool. The `ashift` needs to be set at
+least to the sector-size of the underlying disks (2 to the power of `ashift` is
+the sector-size), or any disk which might be put in the pool (for example the
+replacement of a defective disk).
+
+`compress`::
+
+Defines whether compression is enabled for `rpool`.
+
+`checksum`::
+
+Defines which checksumming algorithm should be used for `rpool`.
+
+`copies`::
+
+Defines the `copies` parameter for `rpool`. Check the `zfs(8)` manpage for the
+semantics, and why this does not replace redundancy on disk-level.
+
+`hdsize`::
+
+Defines the total hard disk size to be used. This is useful to save free space
+on the hard disk(s) for further partitioning (for example to create a
+swap-partition). `hdsize` is only honored for bootable disks, that is only the
+first disk or mirror for RAID0, RAID1 or RAID10, and all disks in RAID-Z[123].
 
 ZFS Performance Tips
 ~~~~~~~~~~~~~~~~~~~~
