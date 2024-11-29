@@ -15,6 +15,14 @@ moderated by the Proxmox support team, and has a large user base from all
 around the world. Needless to say, such a large forum is a great place to
 get information.
 
+Mailing Lists
+~~~~~~~~~~~~~
+
+{pmg} is fully open source and contributions are welcome! The primary
+communication channel for developers is the:
+
+* Mailing list for developers:
+  https://lore.proxmox.com/pmg-devel[{PMG} development discussion]
 
 Commercial Support
 ~~~~~~~~~~~~~~~~~~
