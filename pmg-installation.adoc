@@ -1,5 +1,5 @@
-Installation
-============
+Installing {pmg}
+================
 
 {pmg} is based on Debian. This is why the install disk images (ISO files)
 provided by Proxmox include a complete Debian system as well as all necessary
@@ -8,11 +8,11 @@ provided by Proxmox include a complete Debian system as well as all necessary
 TIP: See the xref:faq-support-table[support table in the FAQ] for the
 relationship between {pmg} releases and Debian releases.
 
-The installer will guide you through the setup, allowing you to partition the local
-disk(s), apply basic system configurations (for example, timezone, language,
-network) and install all required packages. This process should not take more
-than a few minutes. Installing with the provided ISO is the recommended method
-for new and existing users.
+The installer will guide you through the setup, allowing you to partition the
+local disk(s), apply basic system configurations (for example, time zone,
+language, network) and install all required packages. This process should not
+take more than a few minutes. Installing with the provided ISO is the
+recommended method for new and existing users.
 
 Alternatively, {pmg} can be installed on top of an existing Debian system. This
 option is only recommended for advanced users because detailed knowledge about
@@ -21,8 +21,8 @@ option is only recommended for advanced users because detailed knowledge about
 include::pmg-installation-media.adoc[]
 
 [[pmg_install_iso]]
-Using the {pmg} Installation CD-ROM
------------------------------------
+Using the {pmg} Installer
+-------------------------
 
 The installer ISO image includes the following:
 
@@ -31,15 +31,15 @@ The installer ISO image includes the following:
 * The {pmg} installer, which partitions the hard drive(s) with ext4,
   XFS or ZFS and installs the operating system
 
-* Linux kernel
+* {pmg} Linux kernel
 
 * Postfix MTA, ClamAV, Spamassassin and the {pmg} toolset
 
 * Web-based management interface for using the toolset
 
-NOTE: All existing data on the for installation selected drives will be removed
-during the installation process. The installer does not add boot menu entries
-for other operating systems.
+NOTE: All existing data on the selected drives will be removed during the
+installation process. The installer does not add boot menu entries for other
+operating systems.
 
 Please insert the xref:installation_prepare_media[prepared installation media]
 (for example, USB flash drive or CD-ROM) and boot from it.
@@ -50,12 +50,12 @@ when booting an installer prior to {pmg} version 8.1.
 
 [thumbnail="installer/pmg-grub-menu.png"]
 
-After choosing the correct entry (for example, Boot from USB) the {pmg} menu
+After choosing the correct entry (for example, 'Boot from USB') the {pmg} menu
 will be displayed, and one of the following options can be selected:
 
 Install {pmg} (Graphical)::
 
-Start normal installation.
+Starts the normal installation.
 
 TIP: It's possible to use the installation wizard with a keyboard only. Buttons
 can be clicked by pressing the `ALT` key combined with the underlined character
@@ -67,13 +67,6 @@ Starts the terminal-mode installation wizard. It provides the same overall
 installation experience as the graphical installer, but has generally better
 compatibility with very old and very new hardware.
 
-Install {pmg} (Terminal UI, Serial Console)::
-
-Starts the terminal-mode installation wizard, additionally setting up the Linux
-kernel to use the (first) serial port of the machine for in- and output. This
-can be used if the machine is completely headless and only has a serial console
-available.
-
 [thumbnail="installer/pmg-tui-installer.png"]
 
 Both modes use the same code base for the actual installation process to
@@ -81,6 +74,13 @@ benefit from more than a decade of bug fixes and ensure feature parity.
 
 TIP: The 'Terminal UI' option can be used in case the graphical installer does
 not work correctly, due to e.g. driver issues.
+
+Install {pmg} (Terminal UI, Serial Console)::
+
+Starts the terminal-mode installation wizard, additionally setting up the Linux
+kernel to use the (first) serial port of the machine for in- and output. This
+can be used if the machine is completely headless and only has a serial console
+available.
 
 Advanced Options: Install {pmg} (Graphical, Debug Mode)::
 
@@ -128,63 +128,66 @@ installation.
 The `Options` button lets you select the target file system, which
 defaults to `ext4`. The installer uses LVM if you select
 `ext4` or `xfs` as a file system, and offers additional options to
-restrict LVM space (see <<advanced_lvm_options,below>>)
+restrict LVM space (see xref:advanced_lvm_options[below]).
 
-If you have more than one disk, you can also use ZFS as a file system.
-ZFS supports several software RAID levels, which is particularly useful
-if you do not have a hardware RAID controller. The `Options` button
-lets you choose the ZFS RAID level and select which disks will be used.
+{pmg} can also be installed on ZFS. As ZFS offers several software RAID levels,
+this is an option for systems that don't have a hardware RAID controller. The
+target disks must be selected in the `Options` dialog. More ZFS specific
+settings can be changed under `Advanced Options`.
 
 WARNING: ZFS on top of any hardware RAID is not supported and can result in data
 loss.
 
 [thumbnail="installer/pmg-select-location.png"]
 
-The next page asks for basic configuration options like your
-location, timezone, and keyboard layout. The location is used to
-select a nearby download server, in order to increase the speed of updates.
-The installer is usually able to auto-detect these settings, so you only need to
-change them in rare situations when auto-detection fails, or when you want to
-use a keyboard layout not commonly used in your country.
+The next page asks for basic configuration options like your location, time
+zone, and keyboard layout. The location is used to select a nearby download
+server, in order to increase the speed of updates. The installer is usually able
+to auto-detect these settings, so you only need to change them in rare
+situations when auto-detection fails, or when you want to use a keyboard layout
+not commonly used in your country.
 
 [thumbnail="installer/pmg-set-password.png", float="left"]
 
-You then need to specify an email address and the superuser (root)
-password. The password must have at least 5 characters, but we highly
-recommend to use stronger passwords - here are some guidelines:
+Next the password of the superuser (`root`) and an email address needs to be
+specified. The password must consist of at least 5 characters. It's highly
+recommended to use a stronger password. Some guidelines are:
 
 - Use a minimum password length of at least 12 characters.
 
 - Include lowercase and uppercase alphabetic characters, numbers and symbols.
 
-- Avoid character repetition, keyboard patterns, dictionary words, letter or
-  number sequences, usernames, relative or pet names, romantic links (current
-  or past) and biographical information (e.g., ID numbers, ancestors' names or
-  dates).
+- Avoid character repetition, keyboard patterns, common dictionary words,
+  letter or number sequences, usernames, relative or pet names, romantic links
+  (current or past), and biographical information (for example ID numbers,
+  ancestors' names or dates).
 
-It is sometimes necessary to send notification to the system administrator, for
-example:
+The email address is used to send notifications to the system administrator.
+For example:
 
 - Information about available package updates.
 
-- Error messages from periodic cron jobs.
+- Error messages from periodic 'cron' jobs.
 
 [thumbnail="installer/pmg-setup-network.png"]
 
 All those notification mails will be sent to the specified email address.
 
-The next step is the network configuration. Please note that you can use either
-IPv4 or IPv6 here, but not both. If you want to configure a dual stack node,
-you can easily do that after the installation.
+The last step is the network configuration. Network interfaces that are 'UP'
+show a filled circle in front of their name in the drop down menu. Please note
+that during installation you can either specify an IPv4 or IPv6 address, but not
+both. To configure a dual stack node, add additional IP addresses after the
+installation.
 
 [thumbnail="installer/pmg-installation.png", float="left"]
 
-When you press `Next`, you will see an overview of your entered configuration.
-Please re-check every setting, you can still use the `Previous` button to go
-back and edit any settings.
+The next step shows a summary of the previously selected options. Please
+re-check every setting and use the `Previous` button if a setting needs to be
+changed.
 
-After clicking `Install`, the installer will begin to format and copy packages
-to the target disk(s).
+After clicking `Install`, the installer will begin to format the disks and copy
+packages to the target disk(s). Please wait until this step has finished; then
+remove the installation medium and restart your system.
 
 [thumbnail="installer/pmg-summary.png"]
 
@@ -197,7 +200,7 @@ server. This will be done automatically after a few seconds by default.
 .Installation Failure
 
 If the installation failed, check out specific errors on the second TTY
-(`CTRL + ALT + F2') and ensure that the systems meets the
+('CTRL + ALT + F2') and ensure that the systems meets the
 xref:install_minimal_requirements[minimum requirements].
 
 If the installation is still not working, look at the xref:getting_help[how to
@@ -215,7 +218,8 @@ web interface for further configuration.
 . Point your browser to the IP address given during the installation and port
   8006, for example: https://youripaddress:8006
 
-. Log in using the `root` username and the password chosen during installation.
+. Log in using the `root` (realm 'PAM') username and the password chosen during
+installation.
 
 . Upload your subscription key to gain access to the Enterprise repository.
   Otherwise, you will need to set up one of the public, less tested package
