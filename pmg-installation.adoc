@@ -348,10 +348,10 @@ used, ensure that the container always leases the same IP, for example, by
 reserving one with the container's network MAC address.
 
 Additionally, you can install this on top of a container-based Debian
-installation. After configuring the
-xref:pmg_package_repositories[package repositories], you need to run:
+installation.
+xref:pmg_package_repositories[After configuring the repositories], you need to
+run:
 
-[source,bash]
 ----
 apt update
 apt install proxmox-mailgateway-container
@@ -427,19 +427,19 @@ enabled by default:
 deb https://enterprise.proxmox.com/debian/pmg bookworm pmg-enterprise
 ----
 
-As soon as updates are available, the `root@pam` user is notified via
-email about the newly available packages. From the GUI, the change-log of
-each package can be viewed (if available), showing all details of the
-update. Thus, you will never miss important security fixes.
+As soon as updates are available, the `root@pam` user is notified via email
+about the newly available packages. From the GUI, the 'Changelog' button in the
+GUI can be used to see more details about the selected update.
+Thus, you will never miss important security fixes.
 
-Please note that you need a valid subscription key to access this
-repository. We offer different support levels, which you can find further
-details about at {pricing-url}.
+Please note that you need a valid subscription key to access the
+`pmg-enterprise` repository. We offer different support levels, which you can
+find further details about at {pricing-url}.
 
-NOTE: You can disable this repository by commenting out the above line
-using a `#` (at the start of the line). This prevents error messages,
-if you do not have a subscription key. Please configure the
-`pmg-no-subscription` repository in this case.
+NOTE: You can disable this repository by commenting out the above line using a
+`#` (at the start of the line). This prevents error messages if your host does
+not have a subscription key. Please configure the `pmg-no-subscription`
+repository in that case.
 
 
 {pmg} No-Subscription Repository
@@ -469,30 +469,29 @@ deb http://download.proxmox.com/debian/pmg bookworm pmg-no-subscription
 {pmg} Test Repository
 ~~~~~~~~~~~~~~~~~~~~~
 
-Finally, there is a repository called `pmgtest`. This contains the
-latest packages, and is heavily used by developers to test new
-features. As with before, you can configure this using
-`/etc/apt/sources.list` by adding the following line:
+This repository contains the latest packages and is primarily used by developers
+to test new features. To configure it, add the following line to
+`/etc/apt/sources.list`:
 
 .sources.list entry for `pmgtest`
 ----
 deb http://download.proxmox.com/debian/pmg bookworm pmgtest
 ----
 
-WARNING: the `pmgtest` repository should only be used
-for testing new features or bug fixes.
-
+WARNING: The `pmgtest` repository should (as the name implies) only be used for
+testing new features or bug fixes.
 
 SecureApt
 ~~~~~~~~~
 
-We use GnuPG to sign the `Release` files inside these repositories,
-and APT uses these signatures to verify that all packages are from a
-trusted source.
+The 'Release' files in the repositories are signed with GnuPG. APT is using
+these signatures to verify that all packages are from a trusted source.
 
-The key used for verification is already installed, if you install from
-our installation CD. If you install via another means, you can manually
-download the key by executing the following command as root user:
+If you install {pmg} from an official ISO image, the key for verification is
+already installed.
+
+If you install {pmg} on top of Debian, download and install
+the key by executing the following commands as `root` user:
 
 ----
  # wget https://enterprise.proxmox.com/debian/proxmox-release-bookworm.gpg -O /etc/apt/trusted.gpg.d/proxmox-release-bookworm.gpg
