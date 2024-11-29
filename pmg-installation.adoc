@@ -251,21 +251,23 @@ traffic you need to change the existing email server configuration.
 Advanced LVM Configuration Options
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The installer creates a Volume Group (VG) called `pmg`, and additional
-Logical Volumes (LVs) called `root` and `swap`. The size of
-those volumes can be controlled with:
+The installer creates a Volume Group (VG) called `pmg`, and additional Logical
+Volumes (LVs) called `root`, `data`, and `swap`, if `ext4` or `xfs` is used. To
+control the size of these volumes use:
 
 `hdsize`::
 
-Defines the total disk size to be used. This way you can save free
-space on the disk for further partitioning (i.e. for an additional PV
-and VG on the same disk that can be used for LVM storage).
+Defines the total hard disk size to be used. This way you can reserve free space
+on the hard disk for further partitioning (for example for an additional PV and
+VG on the same hard disk that can be used for LVM storage).
 
 `swapsize`::
 
 Defines the size of the `swap` volume. The default is the size of the
 installed memory. The minimum is 4 GB and the maximum is 8 GB. The resulting
 value cannot be greater than `hdsize/8`.
++
+NOTE: If set to `0`, no `swap` volume will be created.
 
 `minfree`::
 
