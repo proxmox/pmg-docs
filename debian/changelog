@@ -1,3 +1,25 @@
+pmg-docs (8.1.2) bookworm; urgency=medium
+
+  * installation: fix codeblock rendering in zfs performance tips
+    section
+
+  * html output: add clickable anchor link to all headings
+
+  * fix various typos
+
+  * system requirements: use correct and modern acronym for Intel 64-bit
+
+  * getting-help: add mailing lists link
+
+  * integrate improvements and wording made in the Proxmox VE documentation
+    for the installation and getting-help chapters.
+
+  * partially fix #3979: config: custom.cf: document service restart
+
+  * pmgconfig: document support for html and plain-text email templates
+
+ -- Proxmox Support Team <support@proxmox.com>  Sat, 14 Dec 2024 14:51:25 +0100
+
 pmg-docs (8.1.1) bookworm; urgency=medium
 
   * dkim: document new 'dkim-use-domain' option for selecting the source of
