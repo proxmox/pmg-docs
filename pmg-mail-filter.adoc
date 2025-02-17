@@ -265,6 +265,19 @@ We have two important 'Who' objects called 'Blacklist' and
 'Whitelist'. These are used in the default ruleset to globally block
 or allow specific senders.
 
+Note that 'Who' objects match against the mail addresses given during the SMTP
+dialog:
+
+* 'Who' objects in the 'FROM' category match against the sender's mail address
+  given in the `MAIL` command (the Envelope From).
+* 'Who' objects in the 'TO' category match against the recipient's mail address
+  given in the `RCPT` command (the Envelope To).
+
+These addresses are also visible in the logs and the
+xref:pmg_tracking_center[Tracking Center].
+
+If you want to match against the `From:` or `To:` header fields of the mail,
+use a 'What' object with type 'Match Field' instead.
 
 [[pmg_mailfilter_what]]
 'What' objects
