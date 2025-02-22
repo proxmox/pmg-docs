@@ -2131,6 +2131,13 @@ var apiSchema = [
                                                    "description" : "Object Groups ID.",
                                                    "type" : "integer",
                                                    "typetext" : "<integer>"
+                                                },
+                                                "only-content" : {
+                                                   "default" : 0,
+                                                   "description" : "use content-type from scanning only (ignore filename and header)",
+                                                   "optional" : 1,
+                                                   "type" : "boolean",
+                                                   "typetext" : "<boolean>"
                                                 }
                                              }
                                           },
@@ -2170,6 +2177,13 @@ var apiSchema = [
                                              "description" : "Object Groups ID.",
                                              "type" : "integer",
                                              "typetext" : "<integer>"
+                                          },
+                                          "only-content" : {
+                                             "default" : 0,
+                                             "description" : "use content-type from scanning only (ignore filename and header)",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
                                           }
                                        }
                                     },
@@ -2254,6 +2268,13 @@ var apiSchema = [
                                                    "type" : "integer",
                                                    "typetext" : "<integer>"
                                                 },
+                                                "top-part-only" : {
+                                                   "default" : 0,
+                                                   "description" : "only match the headers in the first MIME-Part",
+                                                   "optional" : 1,
+                                                   "type" : "boolean",
+                                                   "typetext" : "<boolean>"
+                                                },
                                                 "value" : {
                                                    "description" : "The Value",
                                                    "maxLength" : 1024,
@@ -2298,6 +2319,13 @@ var apiSchema = [
                                              "description" : "Object Groups ID.",
                                              "type" : "integer",
                                              "typetext" : "<integer>"
+                                          },
+                                          "top-part-only" : {
+                                             "default" : 0,
+                                             "description" : "only match the headers in the first MIME-Part",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
                                           },
                                           "value" : {
                                              "description" : "The Value",
@@ -2509,6 +2537,13 @@ var apiSchema = [
                                                    "description" : "Object Groups ID.",
                                                    "type" : "integer",
                                                    "typetext" : "<integer>"
+                                                },
+                                                "only-content" : {
+                                                   "default" : 0,
+                                                   "description" : "use content-type from scanning only (ignore filename and header)",
+                                                   "optional" : 1,
+                                                   "type" : "boolean",
+                                                   "typetext" : "<boolean>"
                                                 }
                                              }
                                           },
@@ -2548,6 +2583,13 @@ var apiSchema = [
                                              "description" : "Object Groups ID.",
                                              "type" : "integer",
                                              "typetext" : "<integer>"
+                                          },
+                                          "only-content" : {
+                                             "default" : 0,
+                                             "description" : "use content-type from scanning only (ignore filename and header)",
+                                             "optional" : 1,
+                                             "type" : "boolean",
+                                             "typetext" : "<boolean>"
                                           }
                                        }
                                     },
@@ -9435,6 +9477,7 @@ var apiSchema = [
                                           "active24",
                                           "ad",
                                           "ali",
+                                          "alviy",
                                           "anx",
                                           "artfiles",
                                           "arvan",
@@ -9463,7 +9506,6 @@ var apiSchema = [
                                           "dnshome",
                                           "dnsimple",
                                           "dnsservices",
-                                          "do",
                                           "doapi",
                                           "domeneshop",
                                           "dp",
@@ -9496,6 +9538,7 @@ var apiSchema = [
                                           "internetbs",
                                           "inwx",
                                           "ionos",
+                                          "ionos_cloud",
                                           "ipv64",
                                           "ispconfig",
                                           "jd",
@@ -9507,6 +9550,7 @@ var apiSchema = [
                                           "la",
                                           "leaseweb",
                                           "lexicon",
+                                          "limacity",
                                           "linode",
                                           "linode_v4",
                                           "loopia",
@@ -9535,6 +9579,7 @@ var apiSchema = [
                                           "nsupdate",
                                           "nw",
                                           "oci",
+                                          "omglol",
                                           "one",
                                           "online",
                                           "openprovider",
@@ -9556,8 +9601,10 @@ var apiSchema = [
                                           "selfhost",
                                           "servercow",
                                           "simply",
+                                          "technitium",
                                           "tele3",
                                           "tencent",
+                                          "timeweb",
                                           "transip",
                                           "udr",
                                           "ultra",
@@ -9568,11 +9615,13 @@ var apiSchema = [
                                           "vscale",
                                           "vultr",
                                           "websupport",
+                                          "west_cn",
                                           "world4you",
-                                          "yandex",
+                                          "yandex360",
                                           "yc",
                                           "zilore",
                                           "zone",
+                                          "zoneedit",
                                           "zonomi"
                                        ],
                                        "optional" : 1,
@@ -9709,6 +9758,7 @@ var apiSchema = [
                                     "active24",
                                     "ad",
                                     "ali",
+                                    "alviy",
                                     "anx",
                                     "artfiles",
                                     "arvan",
@@ -9737,7 +9787,6 @@ var apiSchema = [
                                     "dnshome",
                                     "dnsimple",
                                     "dnsservices",
-                                    "do",
                                     "doapi",
                                     "domeneshop",
                                     "dp",
@@ -9770,6 +9819,7 @@ var apiSchema = [
                                     "internetbs",
                                     "inwx",
                                     "ionos",
+                                    "ionos_cloud",
                                     "ipv64",
                                     "ispconfig",
                                     "jd",
@@ -9781,6 +9831,7 @@ var apiSchema = [
                                     "la",
                                     "leaseweb",
                                     "lexicon",
+                                    "limacity",
                                     "linode",
                                     "linode_v4",
                                     "loopia",
@@ -9809,6 +9860,7 @@ var apiSchema = [
                                     "nsupdate",
                                     "nw",
                                     "oci",
+                                    "omglol",
                                     "one",
                                     "online",
                                     "openprovider",
@@ -9830,8 +9882,10 @@ var apiSchema = [
                                     "selfhost",
                                     "servercow",
                                     "simply",
+                                    "technitium",
                                     "tele3",
                                     "tencent",
+                                    "timeweb",
                                     "transip",
                                     "udr",
                                     "ultra",
@@ -9842,11 +9896,13 @@ var apiSchema = [
                                     "vscale",
                                     "vultr",
                                     "websupport",
+                                    "west_cn",
                                     "world4you",
-                                    "yandex",
+                                    "yandex360",
                                     "yc",
                                     "zilore",
                                     "zone",
+                                    "zoneedit",
                                     "zonomi"
                                  ],
                                  "optional" : 1,
@@ -10582,7 +10638,7 @@ var apiSchema = [
                         },
                         "dkim-use-domain" : {
                            "default" : "envelope",
-                           "description" : "Whether to sign using the address from the header or the envelope.",
+                           "description" : "Whether to sign using the domain found in the header or the envelope.",
                            "enum" : [
                               "header",
                               "envelope"
@@ -11061,7 +11117,7 @@ var apiSchema = [
                            "type" : "string"
                         },
                         "smarthost" : {
-                           "description" : "When set, all outgoing mails are deliverd to the specified smarthost. (postfix option `default_transport`)",
+                           "description" : "When set, all outgoing mails are delivered to the specified smarthost. (postfix option `default_transport`)",
                            "format" : "address",
                            "optional" : 1,
                            "type" : "string",
@@ -11307,7 +11363,7 @@ var apiSchema = [
                      "properties" : {
                         "allowhrefs" : {
                            "default" : 1,
-                           "description" : "Allow to view hyperlinks.",
+                           "description" : "Allow to view hyperlinks. When disabled hyperlinks will be displayed as plain-text.",
                            "optional" : 1,
                            "type" : "boolean",
                            "typetext" : "<boolean>"
@@ -11454,7 +11510,7 @@ var apiSchema = [
                      "properties" : {
                         "allowhrefs" : {
                            "default" : 1,
-                           "description" : "Allow to view hyperlinks.",
+                           "description" : "Allow to view hyperlinks. When disabled hyperlinks will be displayed as plain-text.",
                            "optional" : 1,
                            "type" : "boolean",
                            "typetext" : "<boolean>"
@@ -13043,6 +13099,7 @@ var apiSchema = [
                                  "GET" : {
                                     "allowtoken" : 1,
                                     "description" : "Read task log.",
+                                    "download_allowed" : 1,
                                     "method" : "GET",
                                     "name" : "read_task_log",
                                     "parameters" : {
@@ -14702,7 +14759,7 @@ var apiSchema = [
                            "GET" : {
                               "allowtoken" : 1,
                               "description" : "Download a backup file.",
-                              "download" : 1,
+                              "download_allowed" : 1,
                               "method" : "GET",
                               "name" : "download",
                               "parameters" : {
@@ -14731,7 +14788,7 @@ var apiSchema = [
                               "protected" : 1,
                               "proxyto" : "node",
                               "returns" : {
-                                 "type" : "string"
+                                 "type" : "object"
                               }
                            },
                            "POST" : {
@@ -16454,6 +16511,7 @@ var apiSchema = [
                      "GET" : {
                         "allowtoken" : 1,
                         "description" : "Read Journal",
+                        "download_allowed" : 1,
                         "method" : "GET",
                         "name" : "journal",
                         "parameters" : {
@@ -18886,7 +18944,7 @@ var apiSchema = [
                "GET" : {
                   "allowtoken" : 1,
                   "description" : "Download E-Mail or Attachment from Quarantine.",
-                  "download" : 1,
+                  "download_allowed" : 1,
                   "method" : "GET",
                   "name" : "download",
                   "parameters" : {
@@ -19664,7 +19722,7 @@ var apiSchema = [
                            "type" : "number"
                         },
                         "pregreet_rejects" : {
-                           "description" : "PREGREET recject count.",
+                           "description" : "PREGREET reject count.",
                            "type" : "integer"
                         },
                         "rbl_rejects" : {
@@ -19956,7 +20014,7 @@ var apiSchema = [
                               "type" : "integer"
                            },
                            "pregreet_rejects" : {
-                              "description" : "PREGREET recject count.",
+                              "description" : "PREGREET reject count.",
                               "type" : "integer"
                            },
                            "rbl_rejects" : {
@@ -20341,11 +20399,11 @@ var apiSchema = [
                               "type" : "integer"
                            },
                            "pregreet_rejects" : {
-                              "description" : "PREGREET recject count.",
+                              "description" : "PREGREET reject count.",
                               "type" : "integer"
                            },
                            "rbl_rejects" : {
-                              "description" : "RBL recject count.",
+                              "description" : "RBL reject count.",
                               "type" : "integer"
                            },
                            "time" : {

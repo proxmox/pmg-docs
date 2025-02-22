@@ -1,3 +1,7 @@
+`dkim-use-domain`: `<envelope | header>` ('default =' `envelope`)::
+
+Whether to sign using the domain found in the header or the envelope.
+
 `dkim_selector`: `<string>` ::
 
 Default DKIM selector

@@ -1,6 +1,6 @@
 `allowhrefs`: `<boolean>` ('default =' `1`)::
 
-Allow to view hyperlinks.
+Allow to view hyperlinks. When disabled hyperlinks will be displayed as plain-text.
 
 `lifetime`: `<integer> (1 - N)` ('default =' `7`)::
 

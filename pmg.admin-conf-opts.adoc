@@ -32,7 +32,7 @@ Demo mode - do not start SMTP filter.
 
 `dkim-use-domain`: `<envelope | header>` ('default =' `envelope`)::
 
-Whether to sign using the address from the header or the envelope.
+Whether to sign using the domain found in the header or the envelope.
 
 `dkim_selector`: `<string>` ::
 

@@ -34,7 +34,7 @@ Demo mode - do not start SMTP filter.
 
 `dkim-use-domain`: `<envelope | header>` ('default =' `envelope`)::
 
-Whether to sign using the address from the header or the envelope.
+Whether to sign using the domain found in the header or the envelope.
 
 `dkim_selector`: `<string>` ::
 
@@ -218,7 +218,7 @@ Transport protocol for relay host.
 
 `smarthost`: `<string>` ::
 
-When set, all outgoing mails are deliverd to the specified smarthost. (postfix option `default_transport`)
+When set, all outgoing mails are delivered to the specified smarthost. (postfix option `default_transport`)
 
 `smarthostport`: `<integer> (1 - 65535)` ('default =' `25`)::
 
@@ -294,7 +294,7 @@ Whitelist legitimate bounce relays.
 
 `allowhrefs`: `<boolean>` ('default =' `1`)::
 
-Allow to view hyperlinks.
+Allow to view hyperlinks. When disabled hyperlinks will be displayed as plain-text.
 
 `authmode`: `<ldap | ldapticket | ticket>` ('default =' `ticket`)::
 
@@ -336,7 +336,7 @@ Allow to view images.
 
 `allowhrefs`: `<boolean>` ('default =' `1`)::
 
-Allow to view hyperlinks.
+Allow to view hyperlinks. When disabled hyperlinks will be displayed as plain-text.
 
 `lifetime`: `<integer> (1 - N)` ('default =' `7`)::
 

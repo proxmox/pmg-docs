@@ -14,7 +14,7 @@ Debug mode. Print raw email to stdout instead of sending them.
 
 `--receiver` `<string>` ::
 
-Send report to this email address. Default is the administratior email address.
+Send report to this email address. Default is the administrator email address.
 
 `--timespan` `<today | yesterday>` ('default =' `today`)::
 

@@ -1,6 +1,6 @@
 `allowhrefs`: `<boolean>` ('default =' `1`)::
 
-Allow to view hyperlinks.
+Allow to view hyperlinks. When disabled hyperlinks will be displayed as plain-text.
 
 `authmode`: `<ldap | ldapticket | ticket>` ('default =' `ticket`)::
 
