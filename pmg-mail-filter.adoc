@@ -300,11 +300,19 @@ Matches on infected mails.
 
 Match Field::
 
-Match specified mail header fields (for example, `Subject:`, `From:`, ...)
+Match specified mail header fields (for example, `Subject:`, `From:`, ...).
+Header fields of all mail-parts are taken into account by default, including the
+headers of any attached mails, or the meta-information provided for attachments.
+This can be restricted to only consider the headers of the top part of the mail.
 
 Content Type Filter::
 
-Can be used to match specific content types.
+Can be used to match specific content types. By default the content type
+information is taken from all available sources: The type determined by looking
+at the content ('file magic') of the file, the provided `Content-Type:`
+header of the attachment mail part, the type determined by looking at the suffix
+of the suggested filename. Optionally this matching can be restricted to
+consider the file contents.
 
 Match Filename::
 
