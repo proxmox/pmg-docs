@@ -10458,10 +10458,10 @@ var apiSchema = [
                               "delete" : {
                                  "description" : "A list of settings you want to delete.",
                                  "enum" : [
-                                    "origin",
+                                    "id",
                                     "allow-subdomains",
-                                    "rp",
-                                    "id"
+                                    "origin",
+                                    "rp"
                                  ],
                                  "optional" : 1,
                                  "type" : "string"
@@ -10571,6 +10571,13 @@ var apiSchema = [
                   "parameters" : {
                      "additionalProperties" : 0,
                      "properties" : {
+                        "admin-mail-from" : {
+                           "default" : "Proxmox Mail Gateway <postmaster>",
+                           "description" : "Text for 'From' header in admin mails and bounces.",
+                           "optional" : 1,
+                           "pattern" : "^\\p{PosixPrint}{1,998}$",
+                           "type" : "string"
+                        },
                         "advfilter" : {
                            "default" : 0,
                            "description" : "Enable advanced filters for statistic.",
@@ -17248,8 +17255,16 @@ var apiSchema = [
                               },
                               "password" : {
                                  "description" : "Password",
-                                 "maxLength" : 32,
-                                 "minLength" : 5,
+                                 "maxLength" : 64,
+                                 "minLength" : 8,
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
+                              "realm" : {
+                                 "default" : "pmg",
+                                 "description" : "Authentication realm.",
+                                 "format" : "pmg-realm",
                                  "optional" : 1,
                                  "type" : "string",
                                  "typetext" : "<string>"
@@ -17409,8 +17424,16 @@ var apiSchema = [
                         },
                         "password" : {
                            "description" : "Password",
-                           "maxLength" : 32,
-                           "minLength" : 5,
+                           "maxLength" : 64,
+                           "minLength" : 8,
+                           "optional" : 1,
+                           "type" : "string",
+                           "typetext" : "<string>"
+                        },
+                        "realm" : {
+                           "default" : "pmg",
+                           "description" : "Authentication realm.",
+                           "format" : "pmg-realm",
                            "optional" : 1,
                            "type" : "string",
                            "typetext" : "<string>"
@@ -17873,6 +17896,477 @@ var apiSchema = [
             "text" : "tfa"
          },
          {
+            "children" : [
+               {
+                  "info" : {
+                     "DELETE" : {
+                        "allowtoken" : 1,
+                        "description" : "Delete an authentication server.",
+                        "method" : "DELETE",
+                        "name" : "delete",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "realm" : {
+                                 "description" : "Authentication domain ID",
+                                 "format" : "pmg-realm",
+                                 "maxLength" : 32,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              }
+                           }
+                        },
+                        "permissions" : {
+                           "check" : [
+                              "admin"
+                           ]
+                        },
+                        "protected" : 1,
+                        "returns" : {
+                           "type" : "null"
+                        }
+                     },
+                     "GET" : {
+                        "allowtoken" : 1,
+                        "description" : "Get auth server configuration.",
+                        "method" : "GET",
+                        "name" : "read",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "realm" : {
+                                 "description" : "Authentication domain ID",
+                                 "format" : "pmg-realm",
+                                 "maxLength" : 32,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              }
+                           }
+                        },
+                        "permissions" : {
+                           "check" : [
+                              "admin",
+                              "qmanager",
+                              "audit"
+                           ]
+                        },
+                        "returns" : {}
+                     },
+                     "PUT" : {
+                        "allowtoken" : 1,
+                        "description" : "Update authentication server settings.",
+                        "method" : "PUT",
+                        "name" : "update",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "acr-values" : {
+                                 "description" : "Specifies the Authentication Context Class Reference values that theAuthorization Server is being requested to use for the Auth Request.",
+                                 "optional" : 1,
+                                 "pattern" : "(?^:^[a-zA-Z0-9._:-]+$)",
+                                 "type" : "string"
+                              },
+                              "autocreate" : {
+                                 "default" : 0,
+                                 "description" : "Automatically create users if they do not exist.",
+                                 "optional" : 1,
+                                 "type" : "boolean",
+                                 "typetext" : "<boolean>"
+                              },
+                              "autocreate-role" : {
+                                 "default" : "audit",
+                                 "description" : "Automatically create users with a specific role.",
+                                 "enum" : [
+                                    "admin",
+                                    "qmanager",
+                                    "audit",
+                                    "helpdesk"
+                                 ],
+                                 "optional" : 1,
+                                 "type" : "string"
+                              },
+                              "client-id" : {
+                                 "description" : "OpenID Connect Client ID",
+                                 "maxLength" : 256,
+                                 "optional" : 1,
+                                 "pattern" : "(?^:^[a-zA-Z0-9._:-]+$)",
+                                 "type" : "string"
+                              },
+                              "client-key" : {
+                                 "description" : "OpenID Connect Client Key",
+                                 "maxLength" : 256,
+                                 "optional" : 1,
+                                 "pattern" : "(?^:^[a-zA-Z0-9._:-]+$)",
+                                 "type" : "string"
+                              },
+                              "comment" : {
+                                 "description" : "Description.",
+                                 "maxLength" : 4096,
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
+                              "default" : {
+                                 "description" : "Use this as default realm",
+                                 "optional" : 1,
+                                 "type" : "boolean",
+                                 "typetext" : "<boolean>"
+                              },
+                              "delete" : {
+                                 "description" : "A list of settings you want to delete.",
+                                 "format" : "pve-configid-list",
+                                 "maxLength" : 4096,
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
+                              "digest" : {
+                                 "description" : "Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications.",
+                                 "maxLength" : 64,
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
+                              "issuer-url" : {
+                                 "description" : "OpenID Connect Issuer Url",
+                                 "maxLength" : 256,
+                                 "optional" : 1,
+                                 "pattern" : "(?^:^(https?)://([a-zA-Z0-9.-]+)(:[0-9]{1,5})?(/[^\\s]*)?$)",
+                                 "type" : "string"
+                              },
+                              "prompt" : {
+                                 "description" : "Specifies whether the Authorization Server prompts the End-User for reauthentication and consent.",
+                                 "optional" : 1,
+                                 "pattern" : "(?:none|login|consent|select_account|\\S+)",
+                                 "type" : "string"
+                              },
+                              "realm" : {
+                                 "description" : "Authentication domain ID",
+                                 "format" : "pmg-realm",
+                                 "maxLength" : 32,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
+                              "scopes" : {
+                                 "default" : "email profile",
+                                 "description" : "Specifies the scopes (user details) that should be authorized and returned, for example 'email' or 'profile'.",
+                                 "optional" : 1,
+                                 "pattern" : "(?^:^[a-zA-Z0-9._:-]+$)",
+                                 "type" : "string"
+                              }
+                           },
+                           "type" : "object"
+                        },
+                        "permissions" : {
+                           "check" : [
+                              "admin"
+                           ]
+                        },
+                        "protected" : 1,
+                        "returns" : {
+                           "type" : "null"
+                        }
+                     }
+                  },
+                  "leaf" : 1,
+                  "path" : "/access/auth-realm/{realm}",
+                  "text" : "{realm}"
+               }
+            ],
+            "info" : {
+               "GET" : {
+                  "allowtoken" : 1,
+                  "description" : "Authentication realm index.",
+                  "method" : "GET",
+                  "name" : "index",
+                  "parameters" : {
+                     "additionalProperties" : 0
+                  },
+                  "permissions" : {
+                     "description" : "Anyone can access that, because we need that list for the login box (before the user is authenticated).",
+                     "user" : "world"
+                  },
+                  "returns" : {
+                     "items" : {
+                        "properties" : {
+                           "comment" : {
+                              "description" : "A comment. The GUI use this text when you select a authentication realm on the login window.",
+                              "optional" : 1,
+                              "type" : "string"
+                           },
+                           "realm" : {
+                              "type" : "string"
+                           },
+                           "type" : {
+                              "type" : "string"
+                           }
+                        },
+                        "type" : "object"
+                     },
+                     "links" : [
+                        {
+                           "href" : "{realm}",
+                           "rel" : "child"
+                        }
+                     ],
+                     "type" : "array"
+                  }
+               },
+               "POST" : {
+                  "allowtoken" : 1,
+                  "description" : "Add an authentication server.",
+                  "method" : "POST",
+                  "name" : "create",
+                  "parameters" : {
+                     "additionalProperties" : 0,
+                     "properties" : {
+                        "acr-values" : {
+                           "description" : "Specifies the Authentication Context Class Reference values that theAuthorization Server is being requested to use for the Auth Request.",
+                           "optional" : 1,
+                           "pattern" : "(?^:^[a-zA-Z0-9._:-]+$)",
+                           "type" : "string"
+                        },
+                        "autocreate" : {
+                           "default" : 0,
+                           "description" : "Automatically create users if they do not exist.",
+                           "optional" : 1,
+                           "type" : "boolean",
+                           "typetext" : "<boolean>"
+                        },
+                        "autocreate-role" : {
+                           "default" : "audit",
+                           "description" : "Automatically create users with a specific role.",
+                           "enum" : [
+                              "admin",
+                              "qmanager",
+                              "audit",
+                              "helpdesk"
+                           ],
+                           "optional" : 1,
+                           "type" : "string"
+                        },
+                        "client-id" : {
+                           "description" : "OpenID Connect Client ID",
+                           "maxLength" : 256,
+                           "optional" : 1,
+                           "pattern" : "(?^:^[a-zA-Z0-9._:-]+$)",
+                           "type" : "string"
+                        },
+                        "client-key" : {
+                           "description" : "OpenID Connect Client Key",
+                           "maxLength" : 256,
+                           "optional" : 1,
+                           "pattern" : "(?^:^[a-zA-Z0-9._:-]+$)",
+                           "type" : "string"
+                        },
+                        "comment" : {
+                           "description" : "Description.",
+                           "maxLength" : 4096,
+                           "optional" : 1,
+                           "type" : "string",
+                           "typetext" : "<string>"
+                        },
+                        "default" : {
+                           "description" : "Use this as default realm",
+                           "optional" : 1,
+                           "type" : "boolean",
+                           "typetext" : "<boolean>"
+                        },
+                        "issuer-url" : {
+                           "description" : "OpenID Connect Issuer Url",
+                           "maxLength" : 256,
+                           "optional" : 1,
+                           "pattern" : "(?^:^(https?)://([a-zA-Z0-9.-]+)(:[0-9]{1,5})?(/[^\\s]*)?$)",
+                           "type" : "string"
+                        },
+                        "prompt" : {
+                           "description" : "Specifies whether the Authorization Server prompts the End-User for reauthentication and consent.",
+                           "optional" : 1,
+                           "pattern" : "(?:none|login|consent|select_account|\\S+)",
+                           "type" : "string"
+                        },
+                        "realm" : {
+                           "description" : "Authentication domain ID",
+                           "format" : "pmg-realm",
+                           "maxLength" : 32,
+                           "type" : "string",
+                           "typetext" : "<string>"
+                        },
+                        "scopes" : {
+                           "default" : "email profile",
+                           "description" : "Specifies the scopes (user details) that should be authorized and returned, for example 'email' or 'profile'.",
+                           "optional" : 1,
+                           "pattern" : "(?^:^[a-zA-Z0-9._:-]+$)",
+                           "type" : "string"
+                        },
+                        "type" : {
+                           "description" : "Realm type.",
+                           "enum" : [
+                              "oidc",
+                              "pam",
+                              "pmg"
+                           ],
+                           "type" : "string"
+                        },
+                        "username-claim" : {
+                           "default" : "sub",
+                           "description" : "OpenID Connect claim used to generate the unique username.",
+                           "optional" : 1,
+                           "pattern" : "(?^:^[a-zA-Z0-9._:-]+$)",
+                           "type" : "string"
+                        }
+                     },
+                     "type" : "object"
+                  },
+                  "permissions" : {
+                     "check" : [
+                        "admin"
+                     ]
+                  },
+                  "protected" : 1,
+                  "returns" : {
+                     "type" : "null"
+                  }
+               }
+            },
+            "leaf" : 0,
+            "path" : "/access/auth-realm",
+            "text" : "auth-realm"
+         },
+         {
+            "children" : [
+               {
+                  "info" : {
+                     "POST" : {
+                        "allowtoken" : 1,
+                        "description" : "Get the OpenId Connect Authorization Url for the specified realm.",
+                        "method" : "POST",
+                        "name" : "auth_url",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "realm" : {
+                                 "description" : "Authentication domain ID",
+                                 "maxLength" : 32,
+                                 "pattern" : "(?^:[A-Za-z][A-Za-z0-9\\.\\-_]+)",
+                                 "type" : "string"
+                              },
+                              "redirect-url" : {
+                                 "description" : "Redirection Url. The client should set this to the used server url (location.origin).",
+                                 "maxLength" : 255,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              }
+                           }
+                        },
+                        "permissions" : {
+                           "user" : "world"
+                        },
+                        "protected" : 1,
+                        "returns" : {
+                           "description" : "Redirection URL.",
+                           "type" : "string"
+                        }
+                     }
+                  },
+                  "leaf" : 1,
+                  "path" : "/access/oidc/auth-url",
+                  "text" : "auth-url"
+               },
+               {
+                  "info" : {
+                     "POST" : {
+                        "allowtoken" : 1,
+                        "description" : " Verify OpenID Connect authorization code and create a ticket.",
+                        "method" : "POST",
+                        "name" : "login",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "code" : {
+                                 "description" : "OpenId Connect authorization code.",
+                                 "maxLength" : 4096,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
+                              "redirect-url" : {
+                                 "description" : "Redirection Url. The client should set this to the used server url (location.origin).",
+                                 "maxLength" : 255,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
+                              "state" : {
+                                 "description" : "OpenId Connect state.",
+                                 "maxLength" : 1024,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              }
+                           }
+                        },
+                        "permissions" : {
+                           "user" : "world"
+                        },
+                        "protected" : 1,
+                        "returns" : {
+                           "properties" : {
+                              "CSRFPreventionToken" : {
+                                 "type" : "string"
+                              },
+                              "role" : {
+                                 "optional" : 1,
+                                 "type" : "string"
+                              },
+                              "ticket" : {
+                                 "type" : "string"
+                              },
+                              "username" : {
+                                 "type" : "string"
+                              }
+                           }
+                        }
+                     }
+                  },
+                  "leaf" : 1,
+                  "path" : "/access/oidc/login",
+                  "text" : "login"
+               }
+            ],
+            "info" : {
+               "GET" : {
+                  "allowtoken" : 1,
+                  "description" : "Directory index.",
+                  "method" : "GET",
+                  "name" : "index",
+                  "parameters" : {
+                     "additionalProperties" : 0
+                  },
+                  "permissions" : {
+                     "user" : "all"
+                  },
+                  "returns" : {
+                     "items" : {
+                        "properties" : {
+                           "subdir" : {
+                              "type" : "string"
+                           }
+                        },
+                        "type" : "object"
+                     },
+                     "links" : [
+                        {
+                           "href" : "{subdir}",
+                           "rel" : "child"
+                        }
+                     ],
+                     "type" : "array"
+                  }
+               }
+            },
+            "leaf" : 0,
+            "path" : "/access/oidc",
+            "text" : "oidc"
+         },
+         {
             "info" : {
                "GET" : {
                   "allowtoken" : 1,
@@ -17917,14 +18411,11 @@ var apiSchema = [
                         },
                         "realm" : {
                            "description" : "You can optionally pass the realm using this parameter. Normally the realm is simply added to the username <username>@<relam>.",
-                           "enum" : [
-                              "pam",
-                              "pmg",
-                              "quarantine"
-                           ],
+                           "format" : "pmg-realm",
                            "maxLength" : 32,
                            "optional" : 1,
-                           "type" : "string"
+                           "type" : "string",
+                           "typetext" : "<string>"
                         },
                         "tfa-challenge" : {
                            "description" : "The signed TFA challenge string the user wants to respond to.",
@@ -17984,7 +18475,7 @@ var apiSchema = [
                         "password" : {
                            "description" : "The new password.",
                            "maxLength" : 64,
-                           "minLength" : 5,
+                           "minLength" : 8,
                            "type" : "string",
                            "typetext" : "<string>"
                         },
@@ -18310,8 +18801,8 @@ var apiSchema = [
                            "description" : "Query this type of quarantine for users.",
                            "enum" : [
                               "spam",
-                              "virus",
-                              "attachment"
+                              "attachment",
+                              "virus"
                            ],
                            "optional" : 1,
                            "type" : "string"

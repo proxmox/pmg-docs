@@ -1,3 +1,7 @@
+`admin-mail-from`: `^\p{PosixPrint}{1,998}$` ('default =' `Proxmox Mail Gateway <postmaster>`)::
+
+Text for 'From' header in admin mails and bounces.
+
 `advfilter`: `<boolean>` ('default =' `0`)::
 
 Enable advanced filters for statistic.

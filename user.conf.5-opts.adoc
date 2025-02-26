@@ -34,6 +34,10 @@ Last name.
 
 Password
 
+`realm`: `<string>` ('default =' `pmg`)::
+
+Authentication realm.
+
 `role`: `<admin | audit | helpdesk | qmanager | root>` ::
 
 User role. Role 'root' is reserved for the Unix Superuser.
