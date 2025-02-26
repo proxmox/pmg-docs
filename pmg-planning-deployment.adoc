@@ -129,6 +129,9 @@ Recommended System Requirements
 ** for use in a virtual machine, activate Intel VT/AMD-V CPU flag
 
 * 4 GiB RAM
++
+Memory requirements can increase significantly with heavy email traffic, many
+filter rules, enabling additional signatures or third-party tools.
 
 * Bootable CD-ROM-drive or USB boot support
 
