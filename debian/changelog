@@ -1,3 +1,30 @@
+pmg-docs (8.2.0) bookworm; urgency=medium
+
+  * add basic documentation for authenticaion realms and OIDC
+
+  * update static schema info
+
+  * fix various typos
+
+  * installation: add section about unattended/automatic installation
+
+  * faq: split up upgrade section into major and point release upgrades
+
+  * fix #5771: faq: add 7 to 8 upgrade link
+
+  * pmg-mail-filter: clarify matching of Who-objects
+
+  * pmg-mail-filter: add short docs for top-part-only and only-content
+
+  * installation: adapt to raised root password length requirement of 8
+    characters
+
+  * bump minimum memory requirement from 2 GiB to 2.5 GiB
+
+  * document DKIM-signing of locally generated mail
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 27 Feb 2025 11:37:36 +0100
+
 pmg-docs (8.1.2) bookworm; urgency=medium
 
   * installation: fix codeblock rendering in zfs performance tips
