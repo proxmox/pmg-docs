@@ -10458,10 +10458,10 @@ var apiSchema = [
                               "delete" : {
                                  "description" : "A list of settings you want to delete.",
                                  "enum" : [
-                                    "id",
+                                    "rp",
                                     "allow-subdomains",
                                     "origin",
-                                    "rp"
+                                    "id"
                                  ],
                                  "optional" : 1,
                                  "type" : "string"
@@ -17975,7 +17975,7 @@ var apiSchema = [
                               },
                               "autocreate-role" : {
                                  "default" : "audit",
-                                 "description" : "Automatically create users with a specific role.",
+                                 "description" : "Automatically create users with a specific role. NOTE: Deprecated, favor 'autocreate-role-assignment'",
                                  "enum" : [
                                     "admin",
                                     "qmanager",
@@ -17984,6 +17984,44 @@ var apiSchema = [
                                  ],
                                  "optional" : 1,
                                  "type" : "string"
+                              },
+                              "autocreate-role-assignment" : {
+                                 "default" : "source=fixed,fixed-role=auditor",
+                                 "description" : "Defines which role should be assigned to auto-created users.",
+                                 "format" : {
+                                    "fixed-role" : {
+                                       "default" : "audit",
+                                       "description" : "The fixed role that should be assigned to auto-created users.",
+                                       "enum" : [
+                                          "admin",
+                                          "qmanager",
+                                          "audit",
+                                          "helpdesk"
+                                       ],
+                                       "optional" : 1,
+                                       "type" : "string"
+                                    },
+                                    "role-claim" : {
+                                       "default" : "role",
+                                       "description" : "OIDC claim used to assign the unique username.",
+                                       "format_description" : "Role claim.",
+                                       "optional" : 1,
+                                       "pattern" : "(?^:^[a-zA-Z0-9._:-]+$)",
+                                       "type" : "string"
+                                    },
+                                    "source" : {
+                                       "default" : "fixed",
+                                       "description" : "How the access role for a newly auto-created user should be selected.",
+                                       "enum" : [
+                                          "fixed",
+                                          "from-claim"
+                                       ],
+                                       "type" : "string"
+                                    }
+                                 },
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "source=<fixed|from-claim> [,fixed-role=<enum>] [,role-claim=<Role claim.>]"
                               },
                               "client-id" : {
                                  "description" : "OpenID Connect Client ID",
@@ -18135,7 +18173,7 @@ var apiSchema = [
                         },
                         "autocreate-role" : {
                            "default" : "audit",
-                           "description" : "Automatically create users with a specific role.",
+                           "description" : "Automatically create users with a specific role. NOTE: Deprecated, favor 'autocreate-role-assignment'",
                            "enum" : [
                               "admin",
                               "qmanager",
@@ -18144,6 +18182,44 @@ var apiSchema = [
                            ],
                            "optional" : 1,
                            "type" : "string"
+                        },
+                        "autocreate-role-assignment" : {
+                           "default" : "source=fixed,fixed-role=auditor",
+                           "description" : "Defines which role should be assigned to auto-created users.",
+                           "format" : {
+                              "fixed-role" : {
+                                 "default" : "audit",
+                                 "description" : "The fixed role that should be assigned to auto-created users.",
+                                 "enum" : [
+                                    "admin",
+                                    "qmanager",
+                                    "audit",
+                                    "helpdesk"
+                                 ],
+                                 "optional" : 1,
+                                 "type" : "string"
+                              },
+                              "role-claim" : {
+                                 "default" : "role",
+                                 "description" : "OIDC claim used to assign the unique username.",
+                                 "format_description" : "Role claim.",
+                                 "optional" : 1,
+                                 "pattern" : "(?^:^[a-zA-Z0-9._:-]+$)",
+                                 "type" : "string"
+                              },
+                              "source" : {
+                                 "default" : "fixed",
+                                 "description" : "How the access role for a newly auto-created user should be selected.",
+                                 "enum" : [
+                                    "fixed",
+                                    "from-claim"
+                                 ],
+                                 "type" : "string"
+                              }
+                           },
+                           "optional" : 1,
+                           "type" : "string",
+                           "typetext" : "source=<fixed|from-claim> [,fixed-role=<enum>] [,role-claim=<Role claim.>]"
                         },
                         "client-id" : {
                            "description" : "OpenID Connect Client ID",
@@ -18801,8 +18877,8 @@ var apiSchema = [
                            "description" : "Query this type of quarantine for users.",
                            "enum" : [
                               "spam",
-                              "attachment",
-                              "virus"
+                              "virus",
+                              "attachment"
                            ],
                            "optional" : 1,
                            "type" : "string"
