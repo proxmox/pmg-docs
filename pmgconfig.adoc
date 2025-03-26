@@ -1214,6 +1214,13 @@ exist. While authentication is done at the OpenID server, all users still need
 an entry in the {pmg} user configuration. You can either add them manually, or
 use the `autocreate` option to automatically add new users.
 
+* `Autocreate Users with Assigned Role` (`autocreate-role-assignment`): By
+default, all autocreated users will be assigned the Audit role. You can either
+assign a fixed xref:pmgconfig_localuser[role] to all autocreated users (for
+example, `source=fixed,fixed-role=helpdesk`), or set a custom claim that is used
+to assign users to different roles (for example,
+`source=from-claim,role-claim=custom_role_claim`).
+
 * `Username Claim` (`username-claim`): OpenID claim used to generate the unique
 username (`sub` or `preferred_username`).
 
