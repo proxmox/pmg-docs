@@ -1215,24 +1215,24 @@ an entry in the {pmg} user configuration. You can either add them manually, or
 use the `autocreate` option to automatically add new users.
 
 * `Username Claim` (`username-claim`): OpenID claim used to generate the unique
-username (`subject` or `username`).
+username (`sub` or `preferred_username`).
 
 Username mapping
 ^^^^^^^^^^^^^^^^
 
 The OpenID Connect specification defines a single unique attribute
-('claim' in OpenID terms) named `subject`. By default, we use the
+('claim' in OpenID terms) named `sub` (Subject). By default, we use the
 value of this attribute to generate {pmg} usernames, by simple adding
 `@` and the realm name: `${subject}@${realm}`.
 
-Unfortunately, most OpenID servers use random strings for `subject`, like
+Unfortunately, most OpenID servers use random strings for `sub` (Subject), like
 `DGH76OKH34BNG3245SB`, so a typical username would look like
 `DGH76OKH34BNG3245SB@yourrealm`. While unique, it is difficult for
 humans to remember such random strings, making it quite impossible to
 associate real users with this.
 
 The `username-claim` setting allows you to use other attributes for
-the username mapping. Setting it to `username` is preferred if the
+the username mapping. Setting it to `preferred_username` is preferred if the
 OpenID Connect server provides that attribute and guarantees its
 uniqueness.
 
