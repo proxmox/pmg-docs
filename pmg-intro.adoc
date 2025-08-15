@@ -48,7 +48,7 @@ easily queried by computer programs on the Internet. The technology is
 built on top of the Domain Name System. DNSBLs are used to publish
 lists of addresses linked to spamming.
 
-SMTP Whitelist::
+SMTP Welcomelist::
 
 Exclude senders from SMTP blocking. To prevent all SMTP checks
 (Greylisting, Receiver Verification, SPF and DNSBL) and accept all
@@ -65,9 +65,9 @@ recognize those words, the Bayesian filter checks every email and adjusts the
 probabilities of it being a spam word or not in its database. This is
 done automatically.
 
-Black- and Whitelists::
+Block- and Welcomelists::
 
-Black- and Whitelists are an access control mechanism to accept,
+Block- and Welcomelists are an access control mechanism to accept,
 block, or quarantine emails to recipients. This allows you to tune the
 rule-system by applying different objects like domains, email address,
 regular expression, IP Network, LDAP Group, and others.

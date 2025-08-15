@@ -113,11 +113,12 @@ attachments or deliver/delete them.
 NOTE: Use the options of the 'Remove attachment' action to control the Attachment Quarantine.
 
 
+[[pmg_userblockwelcomelist]]
 [[pmg_userblackwhitelist]]
-User White- and Blacklist
-~~~~~~~~~~~~~~~~~~~~~~~~~
+User Welcome- and Blocklists
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This is mostly useful to debug or verify white- and blacklist user
+This is mostly useful to debug or verify welcome- and blocklist user
 settings. The administrator should not change these values because
 users can manage this themselves.
 
@@ -175,7 +176,7 @@ combines the results from the first and second phase.
 [options="header",cols="2s,1d,5d"]
 |====
 |Status |Phase |Description
-|rejected             |1 | Email rejected (for example, the sender IP is listed on an IP blacklist)
+|rejected             |1 | Email rejected (for example, the sender IP is listed on an IP blocklist)
 |greylisted           |1 | Email temporarily rejected by greylisting
 |queued/deferred      |1 | Internal email was queued, still trying to deliver
 |queued/bounced       |1 | Internal email was queued but not accepted by the target email server (for example, user unknown)

@@ -261,8 +261,8 @@ LDAP User or Group::
 
 Test if the mail address belongs to a specific LDAP user or group.
 
-We have two important 'Who' objects called 'Blacklist' and
-'Whitelist'. These are used in the default ruleset to globally block
+We have two important 'Who' objects called 'Blocklist' and
+'Welcomelist'. These are used in the default ruleset to globally block
 or allow specific senders.
 
 Note that 'Who' objects match against the mail addresses given during the SMTP

@@ -203,43 +203,44 @@ NOTE: Modified templates from `/etc/pmg/templates/` are automatically
 synced from the master node to all cluster members.
 
 [[pmgconfig_whitelist_overview]]
-White- and Blacklists
+[[pmgconfig_welcomelist_overview]]
+Welcome- and Blocklists
 ---------------------
 
-{pmg} has multiple white- and blacklists. It differentiates between the
-xref:pmgconfig_mailproxy_options[SMTP Whitelist], the rule-based whitelist
-and the user whitelist.
-In addition to the whitelists, there are two separate blacklists: the rule-based
-blacklist and the user blacklist.
+{pmg} has multiple welcome- and blocklists. It differentiates between the
+xref:pmgconfig_mailproxy_options[SMTP Welcomelist], the rule-based welcomelist
+and the user welcomelist.
+In addition to the welcomelists, there are two separate blocklists: the rule-based
+blocklist and the user blocklist.
 
-SMTP Whitelist
+SMTP Welcomelist
 ~~~~~~~~~~~~~~
 
-The xref:pmgconfig_mailproxy_whitelist[SMTP Whitelist] is responsible for disabling
+The xref:pmgconfig_mailproxy_welcomelist[SMTP Welcomelist] is responsible for disabling
 greylisting, as well as SPF and DNSBL checks. These are done during the SMTP
 dialogue.
 
-Rule-based White-/Blacklist
+Rule-based Welcome-/Blocklist
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The xref:chapter_mailfilter[rule-based white- and blacklists] are predefined
+The xref:chapter_mailfilter[rule-based welcome- and blocklists] are predefined
 rules. They work by checking the attached 'Who' objects, containing, for
 example, a domain or a mail address for a match. If it matches, the assigned
-action is used, which by default is 'Accept' for the whitelist rule and 'Block'
-for the blacklist rule. In the default setup, the blacklist rule has priority
-over the whitelist rule and spam checks.
+action is used, which by default is 'Accept' for the welcomelist rule and 'Block'
+for the blocklist rule. In the default setup, the blocklist rule has priority
+over the welcomelist rule and spam checks.
 
-User White-/Blacklist
+User Welcome-/Blocklist
 ~~~~~~~~~~~~~~~~~~~~~
 
-The user white- and blacklist are user specific. Every user can add mail addresses
-to their white- and blacklist. When a user adds a mail address to the whitelist,
+The user welcome- and blocklist are user specific. Every user can add mail addresses
+to their welcome- and blocklist. When a user adds a mail address to the welcomelist,
 the result of the spam analysis will be discarded for that recipient. This can
 help in the mail being accepted, but what happens next still depends on the
 other rules. In the default setup, this results in the mail being accepted for
 this recipient.
 
-For mail addresses on a user's blacklist, the spam score will be increased by
+For mail addresses on a user's blocklist, the spam score will be increased by
 100. What happens when a high spam score is encountered still depends on the
 rule system. In the default setup, it will be recognized as spam and quarantined
 (spam score of 3 or higher).
@@ -281,7 +282,7 @@ iface ens18 inet static
 
 Many tests to detect SPAM mails use DNS queries, so it is important to
 have a fast and reliable DNS server. We also query some publicly
-available DNS Blacklists. Most of them apply rate limits for clients,
+available DNS Blackholelists. Most of them apply rate limits for clients,
 so they simply will not work if you use a public DNS server (because
 they are usually blocked). We recommend to use your own DNS server,
 which needs to be configured in 'recursive' mode.
@@ -395,8 +396,8 @@ addresses are subscribed to the same mailing list), the situation is more
 complicated; your mail server can only reject or accept the mail for all
 recipients, after having received the complete message, while your rule setup
 might accept the mail for part of the recipients and reject it for others. This
-can be due to a complicated rule setup, or if your users use the 'User White-
-and Blacklist' feature.
+can be due to a complicated rule setup, or if your users use the 'User Welcome-
+and Blocklist' feature.
 
 If the resulting action of the rule system is the same for all recipients, {pmg}
 responds accordingly, if configured for before-queue filtering (sending '554'
@@ -624,11 +625,12 @@ include::pmg.admin-dkim-conf-opts.adoc[]
 
 
 [[pmgconfig_mailproxy_whitelist]]
-Whitelist
+[[pmgconfig_mailproxy_welcomelist]]
+Welcomelist
 ~~~~~~~~~
 
 ifndef::manvolnum[]
-[thumbnail="screenshot/pmg-gui-mailproxy-whitelist.png", big=1]
+[thumbnail="screenshot/pmg-gui-mailproxy-welcomelist.png", big=1]
 endif::manvolnum[]
 
 All SMTP checks are disabled for those entries (e.g. Greylisting,
@@ -931,7 +933,7 @@ configuration and upgrading.
 
 Quarantine manager::
 
-Is allowed to manage quarantines, blacklists and whitelists, but not other
+Is allowed to manage quarantines, blocklists and welcomelists, but not other
 settings. Has no right to view any other data.
 
 Auditor::
