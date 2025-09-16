@@ -459,11 +459,11 @@ directly using `apt`, or via the GUI (Administration -> Updates).
 .File `/etc/apt/sources.list`
 ----
 # basic Debian repositories:
-deb http://deb.debian.org/debian bookworm main contrib
-deb http://deb.debian.org/debian bookworm-updates main contrib
+deb http://deb.debian.org/debian trixie main contrib
+deb http://deb.debian.org/debian trixie-updates main contrib
 
 # security updates
-deb http://security.debian.org/debian-security bookworm-security main contrib
+deb http://security.debian.org/debian-security trixie-security main contrib
 
 # Proxmox Mail Gateway repo required too - see below!
 ----
@@ -482,7 +482,7 @@ enabled by default:
 
 .File `/etc/apt/sources.list.d/pmg-enterprise.list`
 ----
-deb https://enterprise.proxmox.com/debian/pmg bookworm pmg-enterprise
+deb https://enterprise.proxmox.com/debian/pmg trixie pmg-enterprise
 ----
 
 As soon as updates are available, the `root@pam` user is notified via email
@@ -512,15 +512,15 @@ We recommend configuring this repository in `/etc/apt/sources.list`.
 
 .File `/etc/apt/sources.list`
 ----
-deb http://ftp.debian.org/debian bookworm main contrib
-deb http://ftp.debian.org/debian bookworm-updates main contrib
+deb http://ftp.debian.org/debian trixie main contrib
+deb http://ftp.debian.org/debian trixie-updates main contrib
 
 # security updates
-deb http://security.debian.org/debian-security bookworm-security main contrib
+deb http://security.debian.org/debian-security trixie-security main contrib
 
 # PMG pmg-no-subscription repository provided by proxmox.com,
 # NOT recommended for production use
-deb http://download.proxmox.com/debian/pmg bookworm pmg-no-subscription
+deb http://download.proxmox.com/debian/pmg trixie pmg-no-subscription
 ----
 
 
@@ -533,7 +533,7 @@ to test new features. To configure it, add the following line to
 
 .sources.list entry for `pmgtest`
 ----
-deb http://download.proxmox.com/debian/pmg bookworm pmgtest
+deb http://download.proxmox.com/debian/pmg trixie pmg-test
 ----
 
 WARNING: The `pmgtest` repository should (as the name implies) only be used for
@@ -552,21 +552,21 @@ If you install {pmg} on top of Debian, download and install
 the key by executing the following commands as `root` user:
 
 ----
- # wget https://enterprise.proxmox.com/debian/proxmox-release-bookworm.gpg -O /etc/apt/trusted.gpg.d/proxmox-release-bookworm.gpg
+ # wget https://enterprise.proxmox.com/debian/proxmox-release-trixie.gpg -O /etc/apt/trusted.gpg.d/proxmox-release-trixie.gpg
 ----
 
 Verify the checksum afterwards with the `sha512sum` CLI tool:
 
 ----
-# sha512sum /etc/apt/trusted.gpg.d/proxmox-release-bookworm.gpg
-7da6fe34168adc6e479327ba517796d4702fa2f8b4f0a9833f5ea6e6b48f6507a6da403a274fe201595edc86a84463d50383d07f64bdde2e3658108db7d6dc87 /etc/apt/trusted.gpg.d/proxmox-release-bookworm.gpg
+# sha256sum /etc/apt/trusted.gpg.d/proxmox-release-trixie.gpg
+1bcd2d5bab556076c9ea756a84fe2b7445b13f4ef6e97b2e412b68778377ba6d /etc/apt/trusted.gpg.d/proxmox-release-trixie.gpg
 ----
 
 or the `md5sum` CLI tool:
 
 ----
-# md5sum /etc/apt/trusted.gpg.d/proxmox-release-bookworm.gpg
-41558dc019ef90bd0f6067644a51cf5b /etc/apt/trusted.gpg.d/proxmox-release-bookworm.gpg
+# md5sum /etc/apt/trusted.gpg.d/proxmox-release-trixie.gpg
+c94e3775fbafec13fec20f981db61e93 /etc/apt/trusted.gpg.d/proxmox-release-trixie.gpg
 ----
 
 
