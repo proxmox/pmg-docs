@@ -1,5 +1,7 @@
+[[cli_pmgproxy]]
 *pmgproxy* `<COMMAND> [ARGS] [OPTIONS]`
 
+[[cli_pmgproxy_help]]
 *pmgproxy help* `[OPTIONS]`
 
 Get help about specified command.
@@ -12,10 +14,12 @@ Shows help for a specific command
 
 Verbose output format.
 
+[[cli_pmgproxy_restart]]
 *pmgproxy restart*
 
 Restart the daemon (or start if not running).
 
+[[cli_pmgproxy_start]]
 *pmgproxy start* `[OPTIONS]`
 
 Start the daemon.
@@ -24,10 +28,12 @@ Start the daemon.
 
 Debug mode - stay in foreground
 
+[[cli_pmgproxy_status]]
 *pmgproxy status*
 
 Get daemon status.
 
+[[cli_pmgproxy_stop]]
 *pmgproxy stop*
 
 Stop the daemon.

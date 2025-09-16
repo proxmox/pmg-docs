@@ -1,13 +1,17 @@
+[[cli_pmgsubscription]]
 *pmgsubscription* `<COMMAND> [ARGS] [OPTIONS]`
 
+[[cli_pmgsubscription_delete]]
 *pmgsubscription delete*
 
 Delete subscription key.
 
+[[cli_pmgsubscription_get]]
 *pmgsubscription get*
 
 Read subscription info.
 
+[[cli_pmgsubscription_help]]
 *pmgsubscription help* `[OPTIONS]`
 
 Get help about specified command.
@@ -20,6 +24,7 @@ Shows help for a specific command
 
 Verbose output format.
 
+[[cli_pmgsubscription_set]]
 *pmgsubscription set* `<key>`
 
 Set subscription key.
@@ -28,6 +33,7 @@ Set subscription key.
 
 Proxmox Mail Gateway subscription key
 
+[[cli_pmgsubscription_set-offline-key]]
 *pmgsubscription set-offline-key* `<data>`
 
 (Internal use only!) Set a signed subscription info blob as offline key
@@ -36,6 +42,7 @@ Proxmox Mail Gateway subscription key
 
 no description available
 
+[[cli_pmgsubscription_update]]
 *pmgsubscription update* `[OPTIONS]`
 
 Update subscription info.

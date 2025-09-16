@@ -1,5 +1,7 @@
+[[cli_pmgqm]]
 *pmgqm* `<COMMAND> [ARGS] [OPTIONS]`
 
+[[cli_pmgqm_help]]
 *pmgqm help* `[OPTIONS]`
 
 Get help about specified command.
@@ -12,6 +14,7 @@ Shows help for a specific command
 
 Verbose output format.
 
+[[cli_pmgqm_purge]]
 *pmgqm purge* `[OPTIONS]`
 
 Cleanup Quarantine database. Remove entries older than configured
@@ -21,6 +24,7 @@ quarantine lifetime.
 
 Only search for quarantine files older than configured quarantine lifetime. Just print found files, but do not remove them.
 
+[[cli_pmgqm_send]]
 *pmgqm send* `[OPTIONS]`
 
 Generate and send spam report emails.
@@ -45,6 +49,7 @@ Spam report style. Default value is read from spam quarantine configuration.
 
 Select time span.
 
+[[cli_pmgqm_status]]
 *pmgqm status* `[OPTIONS]`
 
 Print quarantine status (mails per user) for specified time span.

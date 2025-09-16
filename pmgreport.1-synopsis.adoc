@@ -1,5 +1,7 @@
+[[cli_pmgreport_help]]
 *pmgreport* `help`
 
+[[cli_pmgreport]]
 *pmgreport* `[OPTIONS]`
 
 Generate and send daily system report email.

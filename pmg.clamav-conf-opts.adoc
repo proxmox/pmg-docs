@@ -26,10 +26,6 @@ This option sets the lowest number of Credit Card or Social Security numbers fou
 
 Sets the maximum amount of data (in bytes) to be scanned for each input file.
 
-`safebrowsing`: `<boolean>` ('default =' `0`)::
-
-Enables support for Google Safe Browsing. (deprecated option, will be ignored)
-
 `scriptedupdates`: `<boolean>` ('default =' `1`)::
 
 Enables ScriptedUpdates (incremental download of signatures)

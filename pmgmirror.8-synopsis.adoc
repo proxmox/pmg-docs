@@ -1,5 +1,7 @@
+[[cli_pmgmirror]]
 *pmgmirror* `<COMMAND> [ARGS] [OPTIONS]`
 
+[[cli_pmgmirror_help]]
 *pmgmirror help* `[OPTIONS]`
 
 Get help about specified command.
@@ -12,10 +14,12 @@ Shows help for a specific command
 
 Verbose output format.
 
+[[cli_pmgmirror_restart]]
 *pmgmirror restart*
 
 Restart the Database Mirror Daemon
 
+[[cli_pmgmirror_start]]
 *pmgmirror start* `[OPTIONS]`
 
 Start the Database Mirror Daemon
@@ -24,6 +28,7 @@ Start the Database Mirror Daemon
 
 Debug mode - stay in foreground
 
+[[cli_pmgmirror_stop]]
 *pmgmirror stop*
 
 Stop the Database Mirror Daemon

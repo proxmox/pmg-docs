@@ -4899,7 +4899,979 @@ var apiSchema = [
                         "info" : {
                            "DELETE" : {
                               "allowtoken" : 1,
-                              "description" : "Remove an object from the SMTP whitelist.",
+                              "description" : "Remove an object from the SMTP welcomelist.",
+                              "method" : "DELETE",
+                              "name" : "delete_object",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "id" : {
+                                       "description" : "Object ID.",
+                                       "type" : "integer",
+                                       "typetext" : "<integer>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin"
+                                 ]
+                              },
+                              "protected" : 1,
+                              "proxyto" : "master",
+                              "returns" : {
+                                 "type" : "null"
+                              }
+                           }
+                        },
+                        "leaf" : 1,
+                        "path" : "/config/welcomelist/objects/{id}",
+                        "text" : "{id}"
+                     }
+                  ],
+                  "info" : {
+                     "GET" : {
+                        "allowtoken" : 1,
+                        "description" : "Get list of all SMTP welcomelist entries.",
+                        "method" : "GET",
+                        "name" : "objects",
+                        "parameters" : {
+                           "additionalProperties" : 0
+                        },
+                        "permissions" : {
+                           "check" : [
+                              "admin",
+                              "audit"
+                           ]
+                        },
+                        "proxyto" : "master",
+                        "returns" : {
+                           "items" : {
+                              "properties" : {
+                                 "id" : {
+                                    "type" : "integer"
+                                 }
+                              },
+                              "type" : "object"
+                           },
+                           "links" : [
+                              {
+                                 "href" : "{id}",
+                                 "rel" : "child"
+                              }
+                           ],
+                           "type" : "array"
+                        }
+                     }
+                  },
+                  "leaf" : 0,
+                  "path" : "/config/welcomelist/objects",
+                  "text" : "objects"
+               },
+               {
+                  "children" : [
+                     {
+                        "info" : {
+                           "GET" : {
+                              "allowtoken" : 1,
+                              "description" : "Read 'Mail address' object settings.",
+                              "method" : "GET",
+                              "name" : "read_email",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "id" : {
+                                       "description" : "Object ID.",
+                                       "type" : "integer",
+                                       "typetext" : "<integer>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin",
+                                    "audit"
+                                 ]
+                              },
+                              "proxyto" : "master",
+                              "returns" : {
+                                 "properties" : {
+                                    "id" : {
+                                       "type" : "integer"
+                                    }
+                                 },
+                                 "type" : "object"
+                              }
+                           },
+                           "PUT" : {
+                              "allowtoken" : 1,
+                              "description" : "Update 'Mail address' object.",
+                              "method" : "PUT",
+                              "name" : "update_email",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "email" : {
+                                       "description" : "Email address.",
+                                       "format" : "email",
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    },
+                                    "id" : {
+                                       "description" : "Object ID.",
+                                       "type" : "integer",
+                                       "typetext" : "<integer>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin"
+                                 ]
+                              },
+                              "protected" : 1,
+                              "proxyto" : "master",
+                              "returns" : {
+                                 "type" : "null"
+                              }
+                           }
+                        },
+                        "leaf" : 1,
+                        "path" : "/config/welcomelist/email/{id}",
+                        "text" : "{id}"
+                     }
+                  ],
+                  "info" : {
+                     "POST" : {
+                        "allowtoken" : 1,
+                        "description" : "Add 'Mail address' object.",
+                        "method" : "POST",
+                        "name" : "email",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "email" : {
+                                 "description" : "Email address.",
+                                 "format" : "email",
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              }
+                           }
+                        },
+                        "permissions" : {
+                           "check" : [
+                              "admin"
+                           ]
+                        },
+                        "protected" : 1,
+                        "proxyto" : "master",
+                        "returns" : {
+                           "description" : "The object ID.",
+                           "type" : "integer"
+                        }
+                     }
+                  },
+                  "leaf" : 0,
+                  "path" : "/config/welcomelist/email",
+                  "text" : "email"
+               },
+               {
+                  "children" : [
+                     {
+                        "info" : {
+                           "GET" : {
+                              "allowtoken" : 1,
+                              "description" : "Read 'Mail address' object settings.",
+                              "method" : "GET",
+                              "name" : "read_receiver",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "id" : {
+                                       "description" : "Object ID.",
+                                       "type" : "integer",
+                                       "typetext" : "<integer>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin",
+                                    "audit"
+                                 ]
+                              },
+                              "proxyto" : "master",
+                              "returns" : {
+                                 "properties" : {
+                                    "id" : {
+                                       "type" : "integer"
+                                    }
+                                 },
+                                 "type" : "object"
+                              }
+                           },
+                           "PUT" : {
+                              "allowtoken" : 1,
+                              "description" : "Update 'Mail address' object.",
+                              "method" : "PUT",
+                              "name" : "update_receiver",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "email" : {
+                                       "description" : "Email address.",
+                                       "format" : "email",
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    },
+                                    "id" : {
+                                       "description" : "Object ID.",
+                                       "type" : "integer",
+                                       "typetext" : "<integer>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin"
+                                 ]
+                              },
+                              "protected" : 1,
+                              "proxyto" : "master",
+                              "returns" : {
+                                 "type" : "null"
+                              }
+                           }
+                        },
+                        "leaf" : 1,
+                        "path" : "/config/welcomelist/receiver/{id}",
+                        "text" : "{id}"
+                     }
+                  ],
+                  "info" : {
+                     "POST" : {
+                        "allowtoken" : 1,
+                        "description" : "Add 'Mail address' object.",
+                        "method" : "POST",
+                        "name" : "receiver",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "email" : {
+                                 "description" : "Email address.",
+                                 "format" : "email",
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              }
+                           }
+                        },
+                        "permissions" : {
+                           "check" : [
+                              "admin"
+                           ]
+                        },
+                        "protected" : 1,
+                        "proxyto" : "master",
+                        "returns" : {
+                           "description" : "The object ID.",
+                           "type" : "integer"
+                        }
+                     }
+                  },
+                  "leaf" : 0,
+                  "path" : "/config/welcomelist/receiver",
+                  "text" : "receiver"
+               },
+               {
+                  "children" : [
+                     {
+                        "info" : {
+                           "GET" : {
+                              "allowtoken" : 1,
+                              "description" : "Read 'Domain' object settings.",
+                              "method" : "GET",
+                              "name" : "read_domain",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "id" : {
+                                       "description" : "Object ID.",
+                                       "type" : "integer",
+                                       "typetext" : "<integer>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin",
+                                    "audit"
+                                 ]
+                              },
+                              "proxyto" : "master",
+                              "returns" : {
+                                 "properties" : {
+                                    "id" : {
+                                       "type" : "integer"
+                                    }
+                                 },
+                                 "type" : "object"
+                              }
+                           },
+                           "PUT" : {
+                              "allowtoken" : 1,
+                              "description" : "Update 'Domain' object.",
+                              "method" : "PUT",
+                              "name" : "update_domain",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "domain" : {
+                                       "description" : "DNS domain name (Sender).",
+                                       "format" : "dns-name",
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    },
+                                    "id" : {
+                                       "description" : "Object ID.",
+                                       "type" : "integer",
+                                       "typetext" : "<integer>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin"
+                                 ]
+                              },
+                              "protected" : 1,
+                              "proxyto" : "master",
+                              "returns" : {
+                                 "type" : "null"
+                              }
+                           }
+                        },
+                        "leaf" : 1,
+                        "path" : "/config/welcomelist/domain/{id}",
+                        "text" : "{id}"
+                     }
+                  ],
+                  "info" : {
+                     "POST" : {
+                        "allowtoken" : 1,
+                        "description" : "Add 'Domain' object.",
+                        "method" : "POST",
+                        "name" : "domain",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "domain" : {
+                                 "description" : "DNS domain name (Sender).",
+                                 "format" : "dns-name",
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              }
+                           }
+                        },
+                        "permissions" : {
+                           "check" : [
+                              "admin"
+                           ]
+                        },
+                        "protected" : 1,
+                        "proxyto" : "master",
+                        "returns" : {
+                           "description" : "The object ID.",
+                           "type" : "integer"
+                        }
+                     }
+                  },
+                  "leaf" : 0,
+                  "path" : "/config/welcomelist/domain",
+                  "text" : "domain"
+               },
+               {
+                  "children" : [
+                     {
+                        "info" : {
+                           "GET" : {
+                              "allowtoken" : 1,
+                              "description" : "Read 'Domain' object settings.",
+                              "method" : "GET",
+                              "name" : "read_receiver_domain",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "id" : {
+                                       "description" : "Object ID.",
+                                       "type" : "integer",
+                                       "typetext" : "<integer>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin",
+                                    "audit"
+                                 ]
+                              },
+                              "proxyto" : "master",
+                              "returns" : {
+                                 "properties" : {
+                                    "id" : {
+                                       "type" : "integer"
+                                    }
+                                 },
+                                 "type" : "object"
+                              }
+                           },
+                           "PUT" : {
+                              "allowtoken" : 1,
+                              "description" : "Update 'Domain' object.",
+                              "method" : "PUT",
+                              "name" : "update_receiver_domain",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "domain" : {
+                                       "description" : "DNS domain name (Sender).",
+                                       "format" : "dns-name",
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    },
+                                    "id" : {
+                                       "description" : "Object ID.",
+                                       "type" : "integer",
+                                       "typetext" : "<integer>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin"
+                                 ]
+                              },
+                              "protected" : 1,
+                              "proxyto" : "master",
+                              "returns" : {
+                                 "type" : "null"
+                              }
+                           }
+                        },
+                        "leaf" : 1,
+                        "path" : "/config/welcomelist/receiver_domain/{id}",
+                        "text" : "{id}"
+                     }
+                  ],
+                  "info" : {
+                     "POST" : {
+                        "allowtoken" : 1,
+                        "description" : "Add 'Domain' object.",
+                        "method" : "POST",
+                        "name" : "receiver_domain",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "domain" : {
+                                 "description" : "DNS domain name (Sender).",
+                                 "format" : "dns-name",
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              }
+                           }
+                        },
+                        "permissions" : {
+                           "check" : [
+                              "admin"
+                           ]
+                        },
+                        "protected" : 1,
+                        "proxyto" : "master",
+                        "returns" : {
+                           "description" : "The object ID.",
+                           "type" : "integer"
+                        }
+                     }
+                  },
+                  "leaf" : 0,
+                  "path" : "/config/welcomelist/receiver_domain",
+                  "text" : "receiver_domain"
+               },
+               {
+                  "children" : [
+                     {
+                        "info" : {
+                           "GET" : {
+                              "allowtoken" : 1,
+                              "description" : "Read 'Regular Expression' object settings.",
+                              "method" : "GET",
+                              "name" : "read_regex",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "id" : {
+                                       "description" : "Object ID.",
+                                       "type" : "integer",
+                                       "typetext" : "<integer>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin",
+                                    "audit"
+                                 ]
+                              },
+                              "proxyto" : "master",
+                              "returns" : {
+                                 "properties" : {
+                                    "id" : {
+                                       "type" : "integer"
+                                    }
+                                 },
+                                 "type" : "object"
+                              }
+                           },
+                           "PUT" : {
+                              "allowtoken" : 1,
+                              "description" : "Update 'Regular Expression' object.",
+                              "method" : "PUT",
+                              "name" : "update_regex",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "id" : {
+                                       "description" : "Object ID.",
+                                       "type" : "integer",
+                                       "typetext" : "<integer>"
+                                    },
+                                    "regex" : {
+                                       "description" : "Email address regular expression.",
+                                       "maxLength" : 1024,
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin"
+                                 ]
+                              },
+                              "protected" : 1,
+                              "proxyto" : "master",
+                              "returns" : {
+                                 "type" : "null"
+                              }
+                           }
+                        },
+                        "leaf" : 1,
+                        "path" : "/config/welcomelist/regex/{id}",
+                        "text" : "{id}"
+                     }
+                  ],
+                  "info" : {
+                     "POST" : {
+                        "allowtoken" : 1,
+                        "description" : "Add 'Regular Expression' object.",
+                        "method" : "POST",
+                        "name" : "regex",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "regex" : {
+                                 "description" : "Email address regular expression.",
+                                 "maxLength" : 1024,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              }
+                           }
+                        },
+                        "permissions" : {
+                           "check" : [
+                              "admin"
+                           ]
+                        },
+                        "protected" : 1,
+                        "proxyto" : "master",
+                        "returns" : {
+                           "description" : "The object ID.",
+                           "type" : "integer"
+                        }
+                     }
+                  },
+                  "leaf" : 0,
+                  "path" : "/config/welcomelist/regex",
+                  "text" : "regex"
+               },
+               {
+                  "children" : [
+                     {
+                        "info" : {
+                           "GET" : {
+                              "allowtoken" : 1,
+                              "description" : "Read 'Regular Expression' object settings.",
+                              "method" : "GET",
+                              "name" : "read_receiver_regex",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "id" : {
+                                       "description" : "Object ID.",
+                                       "type" : "integer",
+                                       "typetext" : "<integer>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin",
+                                    "audit"
+                                 ]
+                              },
+                              "proxyto" : "master",
+                              "returns" : {
+                                 "properties" : {
+                                    "id" : {
+                                       "type" : "integer"
+                                    }
+                                 },
+                                 "type" : "object"
+                              }
+                           },
+                           "PUT" : {
+                              "allowtoken" : 1,
+                              "description" : "Update 'Regular Expression' object.",
+                              "method" : "PUT",
+                              "name" : "update_receiver_regex",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "id" : {
+                                       "description" : "Object ID.",
+                                       "type" : "integer",
+                                       "typetext" : "<integer>"
+                                    },
+                                    "regex" : {
+                                       "description" : "Email address regular expression.",
+                                       "maxLength" : 1024,
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin"
+                                 ]
+                              },
+                              "protected" : 1,
+                              "proxyto" : "master",
+                              "returns" : {
+                                 "type" : "null"
+                              }
+                           }
+                        },
+                        "leaf" : 1,
+                        "path" : "/config/welcomelist/receiver_regex/{id}",
+                        "text" : "{id}"
+                     }
+                  ],
+                  "info" : {
+                     "POST" : {
+                        "allowtoken" : 1,
+                        "description" : "Add 'Regular Expression' object.",
+                        "method" : "POST",
+                        "name" : "receiver_regex",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "regex" : {
+                                 "description" : "Email address regular expression.",
+                                 "maxLength" : 1024,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              }
+                           }
+                        },
+                        "permissions" : {
+                           "check" : [
+                              "admin"
+                           ]
+                        },
+                        "protected" : 1,
+                        "proxyto" : "master",
+                        "returns" : {
+                           "description" : "The object ID.",
+                           "type" : "integer"
+                        }
+                     }
+                  },
+                  "leaf" : 0,
+                  "path" : "/config/welcomelist/receiver_regex",
+                  "text" : "receiver_regex"
+               },
+               {
+                  "children" : [
+                     {
+                        "info" : {
+                           "GET" : {
+                              "allowtoken" : 1,
+                              "description" : "Read 'IP Address' object settings.",
+                              "method" : "GET",
+                              "name" : "read_ip",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "id" : {
+                                       "description" : "Object ID.",
+                                       "type" : "integer",
+                                       "typetext" : "<integer>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin",
+                                    "audit"
+                                 ]
+                              },
+                              "proxyto" : "master",
+                              "returns" : {
+                                 "properties" : {
+                                    "id" : {
+                                       "type" : "integer"
+                                    }
+                                 },
+                                 "type" : "object"
+                              }
+                           },
+                           "PUT" : {
+                              "allowtoken" : 1,
+                              "description" : "Update 'IP Address' object.",
+                              "method" : "PUT",
+                              "name" : "update_ip",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "id" : {
+                                       "description" : "Object ID.",
+                                       "type" : "integer",
+                                       "typetext" : "<integer>"
+                                    },
+                                    "ip" : {
+                                       "description" : "IP address",
+                                       "format" : "ip",
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin"
+                                 ]
+                              },
+                              "protected" : 1,
+                              "proxyto" : "master",
+                              "returns" : {
+                                 "type" : "null"
+                              }
+                           }
+                        },
+                        "leaf" : 1,
+                        "path" : "/config/welcomelist/ip/{id}",
+                        "text" : "{id}"
+                     }
+                  ],
+                  "info" : {
+                     "POST" : {
+                        "allowtoken" : 1,
+                        "description" : "Add 'IP Address' object.",
+                        "method" : "POST",
+                        "name" : "ip",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "ip" : {
+                                 "description" : "IP address",
+                                 "format" : "ip",
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              }
+                           }
+                        },
+                        "permissions" : {
+                           "check" : [
+                              "admin"
+                           ]
+                        },
+                        "protected" : 1,
+                        "proxyto" : "master",
+                        "returns" : {
+                           "description" : "The object ID.",
+                           "type" : "integer"
+                        }
+                     }
+                  },
+                  "leaf" : 0,
+                  "path" : "/config/welcomelist/ip",
+                  "text" : "ip"
+               },
+               {
+                  "children" : [
+                     {
+                        "info" : {
+                           "GET" : {
+                              "allowtoken" : 1,
+                              "description" : "Read 'IP Network' object settings.",
+                              "method" : "GET",
+                              "name" : "read_network",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "id" : {
+                                       "description" : "Object ID.",
+                                       "type" : "integer",
+                                       "typetext" : "<integer>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin",
+                                    "audit"
+                                 ]
+                              },
+                              "proxyto" : "master",
+                              "returns" : {
+                                 "properties" : {
+                                    "id" : {
+                                       "type" : "integer"
+                                    }
+                                 },
+                                 "type" : "object"
+                              }
+                           },
+                           "PUT" : {
+                              "allowtoken" : 1,
+                              "description" : "Update 'IP Network' object.",
+                              "method" : "PUT",
+                              "name" : "update_network",
+                              "parameters" : {
+                                 "additionalProperties" : 0,
+                                 "properties" : {
+                                    "cidr" : {
+                                       "description" : "Network address in CIDR notation.",
+                                       "format" : "CIDR",
+                                       "type" : "string",
+                                       "typetext" : "<string>"
+                                    },
+                                    "id" : {
+                                       "description" : "Object ID.",
+                                       "type" : "integer",
+                                       "typetext" : "<integer>"
+                                    }
+                                 }
+                              },
+                              "permissions" : {
+                                 "check" : [
+                                    "admin"
+                                 ]
+                              },
+                              "protected" : 1,
+                              "proxyto" : "master",
+                              "returns" : {
+                                 "type" : "null"
+                              }
+                           }
+                        },
+                        "leaf" : 1,
+                        "path" : "/config/welcomelist/network/{id}",
+                        "text" : "{id}"
+                     }
+                  ],
+                  "info" : {
+                     "POST" : {
+                        "allowtoken" : 1,
+                        "description" : "Add 'IP Network' object.",
+                        "method" : "POST",
+                        "name" : "network",
+                        "parameters" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "cidr" : {
+                                 "description" : "Network address in CIDR notation.",
+                                 "format" : "CIDR",
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              }
+                           }
+                        },
+                        "permissions" : {
+                           "check" : [
+                              "admin"
+                           ]
+                        },
+                        "protected" : 1,
+                        "proxyto" : "master",
+                        "returns" : {
+                           "description" : "The object ID.",
+                           "type" : "integer"
+                        }
+                     }
+                  },
+                  "leaf" : 0,
+                  "path" : "/config/welcomelist/network",
+                  "text" : "network"
+               }
+            ],
+            "info" : {
+               "GET" : {
+                  "allowtoken" : 1,
+                  "description" : "Directory index.",
+                  "method" : "GET",
+                  "name" : "index",
+                  "parameters" : {
+                     "additionalProperties" : 0
+                  },
+                  "permissions" : {
+                     "check" : [
+                        "admin",
+                        "audit"
+                     ]
+                  },
+                  "returns" : {
+                     "items" : {
+                        "properties" : {
+                           "subdir" : {
+                              "type" : "string"
+                           }
+                        },
+                        "type" : "object"
+                     },
+                     "links" : [
+                        {
+                           "href" : "{subdir}",
+                           "rel" : "child"
+                        }
+                     ],
+                     "type" : "array"
+                  }
+               }
+            },
+            "leaf" : 0,
+            "path" : "/config/welcomelist",
+            "text" : "welcomelist"
+         },
+         {
+            "children" : [
+               {
+                  "children" : [
+                     {
+                        "info" : {
+                           "DELETE" : {
+                              "allowtoken" : 1,
+                              "description" : "Remove an object from the SMTP welcomelist.",
                               "method" : "DELETE",
                               "name" : "delete_object",
                               "parameters" : {
@@ -4932,7 +5904,7 @@ var apiSchema = [
                   "info" : {
                      "GET" : {
                         "allowtoken" : 1,
-                        "description" : "Get list of all SMTP whitelist entries.",
+                        "description" : "Get list of all SMTP welcomelist entries.",
                         "method" : "GET",
                         "name" : "objects",
                         "parameters" : {
@@ -9486,6 +10458,7 @@ var apiSchema = [
                                           "aws",
                                           "azion",
                                           "azure",
+                                          "beget",
                                           "bookmyname",
                                           "bunny",
                                           "cf",
@@ -9517,11 +10490,13 @@ var apiSchema = [
                                           "dynu",
                                           "dynv6",
                                           "easydns",
+                                          "edgecenter",
                                           "edgedns",
                                           "euserv",
                                           "exoscale",
                                           "fornex",
                                           "freedns",
+                                          "freemyip",
                                           "gandi_livedns",
                                           "gcloud",
                                           "gcore",
@@ -9529,6 +10504,7 @@ var apiSchema = [
                                           "geoscaling",
                                           "googledomains",
                                           "he",
+                                          "he_ddns",
                                           "hetzner",
                                           "hexonet",
                                           "hostingde",
@@ -9558,6 +10534,7 @@ var apiSchema = [
                                           "maradns",
                                           "me",
                                           "miab",
+                                          "mijnhost",
                                           "misaka",
                                           "myapi",
                                           "mydevil",
@@ -9767,6 +10744,7 @@ var apiSchema = [
                                     "aws",
                                     "azion",
                                     "azure",
+                                    "beget",
                                     "bookmyname",
                                     "bunny",
                                     "cf",
@@ -9798,11 +10776,13 @@ var apiSchema = [
                                     "dynu",
                                     "dynv6",
                                     "easydns",
+                                    "edgecenter",
                                     "edgedns",
                                     "euserv",
                                     "exoscale",
                                     "fornex",
                                     "freedns",
+                                    "freemyip",
                                     "gandi_livedns",
                                     "gcloud",
                                     "gcore",
@@ -9810,6 +10790,7 @@ var apiSchema = [
                                     "geoscaling",
                                     "googledomains",
                                     "he",
+                                    "he_ddns",
                                     "hetzner",
                                     "hexonet",
                                     "hostingde",
@@ -9839,6 +10820,7 @@ var apiSchema = [
                                     "maradns",
                                     "me",
                                     "miab",
+                                    "mijnhost",
                                     "misaka",
                                     "myapi",
                                     "mydevil",
@@ -10458,10 +11440,10 @@ var apiSchema = [
                               "delete" : {
                                  "description" : "A list of settings you want to delete.",
                                  "enum" : [
-                                    "rp",
                                     "allow-subdomains",
+                                    "id",
                                     "origin",
-                                    "id"
+                                    "rp"
                                  ],
                                  "optional" : 1,
                                  "type" : "string"
@@ -10813,13 +11795,6 @@ var apiSchema = [
                            "type" : "integer",
                            "typetext" : "<integer> (1000000 - N)"
                         },
-                        "safebrowsing" : {
-                           "default" : 0,
-                           "description" : "Enables support for Google Safe Browsing. (deprecated option, will be ignored)",
-                           "optional" : 1,
-                           "type" : "boolean",
-                           "typetext" : "<boolean>"
-                        },
                         "scriptedupdates" : {
                            "default" : 1,
                            "description" : "Enables ScriptedUpdates (incremental download of signatures)",
@@ -10922,7 +11897,7 @@ var apiSchema = [
                            "typetext" : "<string>"
                         },
                         "dnsbl_sites" : {
-                           "description" : "Optional list of DNS white/blacklist domains (postfix option `postscreen_dnsbl_sites`).",
+                           "description" : "Optional list of DNS welcome/blocklist domains (postfix option `postscreen_dnsbl_sites`).",
                            "format" : "dnsbl-entry-list",
                            "optional" : 1,
                            "type" : "string",
@@ -11288,14 +12263,14 @@ var apiSchema = [
                         },
                         "rbl_checks" : {
                            "default" : 1,
-                           "description" : "Enable real time blacklists (RBL) checks.",
+                           "description" : "Enable real time blocklists (RBL) checks.",
                            "optional" : 1,
                            "type" : "boolean",
                            "typetext" : "<boolean>"
                         },
                         "use_awl" : {
                            "default" : 0,
-                           "description" : "Use the Auto-Whitelist plugin.",
+                           "description" : "Use the Auto-Welcomelist plugin.",
                            "optional" : 1,
                            "type" : "boolean",
                            "typetext" : "<boolean>"
@@ -11315,7 +12290,7 @@ var apiSchema = [
                            "typetext" : "<boolean>"
                         },
                         "wl_bounce_relays" : {
-                           "description" : "Whitelist legitimate bounce relays.",
+                           "description" : "Welcomelist legitimate bounce relays.",
                            "optional" : 1,
                            "type" : "string",
                            "typetext" : "<string>"
@@ -18027,14 +19002,14 @@ var apiSchema = [
                                  "description" : "OpenID Connect Client ID",
                                  "maxLength" : 256,
                                  "optional" : 1,
-                                 "pattern" : "(?^:^[a-zA-Z0-9._:-]+$)",
+                                 "pattern" : "(?^:^[\\x20-\\x7E]+$)",
                                  "type" : "string"
                               },
                               "client-key" : {
                                  "description" : "OpenID Connect Client Key",
                                  "maxLength" : 256,
                                  "optional" : 1,
-                                 "pattern" : "(?^:^[a-zA-Z0-9._:-]+$)",
+                                 "pattern" : "(?^:^[\\x20-\\x7E]+$)",
                                  "type" : "string"
                               },
                               "comment" : {
@@ -18225,14 +19200,14 @@ var apiSchema = [
                            "description" : "OpenID Connect Client ID",
                            "maxLength" : 256,
                            "optional" : 1,
-                           "pattern" : "(?^:^[a-zA-Z0-9._:-]+$)",
+                           "pattern" : "(?^:^[\\x20-\\x7E]+$)",
                            "type" : "string"
                         },
                         "client-key" : {
                            "description" : "OpenID Connect Client Key",
                            "maxLength" : 256,
                            "optional" : 1,
-                           "pattern" : "(?^:^[a-zA-Z0-9._:-]+$)",
+                           "pattern" : "(?^:^[\\x20-\\x7E]+$)",
                            "type" : "string"
                         },
                         "comment" : {
@@ -18621,7 +19596,251 @@ var apiSchema = [
             "info" : {
                "DELETE" : {
                   "allowtoken" : 1,
-                  "description" : "Delete user whitelist entries.",
+                  "description" : "Delete user welcomelist entries.",
+                  "method" : "DELETE",
+                  "name" : "welcomelist_delete_base",
+                  "parameters" : {
+                     "additionalProperties" : 0,
+                     "properties" : {
+                        "address" : {
+                           "description" : "The address, or comma-separated list of addresses, you want to remove.",
+                           "minLength" : 3,
+                           "pattern" : "",
+                           "type" : "string"
+                        },
+                        "pmail" : {
+                           "description" : "List entries for the user with this primary email address. Quarantine users cannot specify this parameter, but it is required for all other roles.",
+                           "maxLength" : 512,
+                           "minLength" : 3,
+                           "optional" : 1,
+                           "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                           "type" : "string"
+                        }
+                     }
+                  },
+                  "permissions" : {
+                     "check" : [
+                        "admin",
+                        "qmanager",
+                        "audit",
+                        "quser"
+                     ]
+                  },
+                  "protected" : 1,
+                  "proxyto" : "master",
+                  "returns" : {
+                     "type" : "null"
+                  }
+               },
+               "GET" : {
+                  "allowtoken" : 1,
+                  "description" : "Show user welcomelist.",
+                  "method" : "GET",
+                  "name" : "welcomelist",
+                  "parameters" : {
+                     "additionalProperties" : 0,
+                     "properties" : {
+                        "pmail" : {
+                           "description" : "List entries for the user with this primary email address. Quarantine users cannot specify this parameter, but it is required for all other roles.",
+                           "maxLength" : 512,
+                           "minLength" : 3,
+                           "optional" : 1,
+                           "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                           "type" : "string"
+                        }
+                     }
+                  },
+                  "permissions" : {
+                     "check" : [
+                        "admin",
+                        "qmanager",
+                        "audit",
+                        "quser"
+                     ]
+                  },
+                  "proxyto" : "master",
+                  "returns" : {
+                     "items" : {
+                        "properties" : {
+                           "address" : {
+                              "type" : "string"
+                           }
+                        },
+                        "type" : "object"
+                     },
+                     "type" : "array"
+                  }
+               },
+               "POST" : {
+                  "allowtoken" : 1,
+                  "description" : "Add user welcomelist entries.",
+                  "method" : "POST",
+                  "name" : "welcomelist_add",
+                  "parameters" : {
+                     "additionalProperties" : 0,
+                     "properties" : {
+                        "address" : {
+                           "description" : "The address you want to add.",
+                           "minLength" : 3,
+                           "pattern" : "(?:[^\\s\\/\\\\;\\,]+)(?:\\,[^\\s\\/\\\\;\\,]+)*",
+                           "type" : "string"
+                        },
+                        "pmail" : {
+                           "description" : "List entries for the user with this primary email address. Quarantine users cannot specify this parameter, but it is required for all other roles.",
+                           "maxLength" : 512,
+                           "minLength" : 3,
+                           "optional" : 1,
+                           "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                           "type" : "string"
+                        }
+                     }
+                  },
+                  "permissions" : {
+                     "check" : [
+                        "admin",
+                        "qmanager",
+                        "audit",
+                        "quser"
+                     ]
+                  },
+                  "protected" : 1,
+                  "proxyto" : "master",
+                  "returns" : {
+                     "type" : "null"
+                  }
+               }
+            },
+            "leaf" : 1,
+            "path" : "/quarantine/welcomelist",
+            "text" : "welcomelist"
+         },
+         {
+            "info" : {
+               "DELETE" : {
+                  "allowtoken" : 1,
+                  "description" : "Delete user blocklist entries.",
+                  "method" : "DELETE",
+                  "name" : "blocklist_delete_base",
+                  "parameters" : {
+                     "additionalProperties" : 0,
+                     "properties" : {
+                        "address" : {
+                           "description" : "The address, or comma-separated list of addresses, you want to remove.",
+                           "minLength" : 3,
+                           "pattern" : "",
+                           "type" : "string"
+                        },
+                        "pmail" : {
+                           "description" : "List entries for the user with this primary email address. Quarantine users cannot specify this parameter, but it is required for all other roles.",
+                           "maxLength" : 512,
+                           "minLength" : 3,
+                           "optional" : 1,
+                           "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                           "type" : "string"
+                        }
+                     }
+                  },
+                  "permissions" : {
+                     "check" : [
+                        "admin",
+                        "qmanager",
+                        "audit",
+                        "quser"
+                     ]
+                  },
+                  "protected" : 1,
+                  "proxyto" : "master",
+                  "returns" : {
+                     "type" : "null"
+                  }
+               },
+               "GET" : {
+                  "allowtoken" : 1,
+                  "description" : "Show user blocklist.",
+                  "method" : "GET",
+                  "name" : "blocklist",
+                  "parameters" : {
+                     "additionalProperties" : 0,
+                     "properties" : {
+                        "pmail" : {
+                           "description" : "List entries for the user with this primary email address. Quarantine users cannot specify this parameter, but it is required for all other roles.",
+                           "maxLength" : 512,
+                           "minLength" : 3,
+                           "optional" : 1,
+                           "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                           "type" : "string"
+                        }
+                     }
+                  },
+                  "permissions" : {
+                     "check" : [
+                        "admin",
+                        "qmanager",
+                        "audit",
+                        "quser"
+                     ]
+                  },
+                  "proxyto" : "master",
+                  "returns" : {
+                     "items" : {
+                        "properties" : {
+                           "address" : {
+                              "type" : "string"
+                           }
+                        },
+                        "type" : "object"
+                     },
+                     "type" : "array"
+                  }
+               },
+               "POST" : {
+                  "allowtoken" : 1,
+                  "description" : "Add user blocklist entries.",
+                  "method" : "POST",
+                  "name" : "blocklist_add",
+                  "parameters" : {
+                     "additionalProperties" : 0,
+                     "properties" : {
+                        "address" : {
+                           "description" : "The address you want to add.",
+                           "minLength" : 3,
+                           "pattern" : "(?:[^\\s\\/\\\\;\\,]+)(?:\\,[^\\s\\/\\\\;\\,]+)*",
+                           "type" : "string"
+                        },
+                        "pmail" : {
+                           "description" : "List entries for the user with this primary email address. Quarantine users cannot specify this parameter, but it is required for all other roles.",
+                           "maxLength" : 512,
+                           "minLength" : 3,
+                           "optional" : 1,
+                           "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                           "type" : "string"
+                        }
+                     }
+                  },
+                  "permissions" : {
+                     "check" : [
+                        "admin",
+                        "qmanager",
+                        "audit",
+                        "quser"
+                     ]
+                  },
+                  "protected" : 1,
+                  "proxyto" : "master",
+                  "returns" : {
+                     "type" : "null"
+                  }
+               }
+            },
+            "leaf" : 1,
+            "path" : "/quarantine/blocklist",
+            "text" : "blocklist"
+         },
+         {
+            "info" : {
+               "DELETE" : {
+                  "allowtoken" : 1,
+                  "description" : "Delete user welcomelist entries.",
                   "method" : "DELETE",
                   "name" : "whitelist_delete_base",
                   "parameters" : {
@@ -18652,13 +19871,14 @@ var apiSchema = [
                      ]
                   },
                   "protected" : 1,
+                  "proxyto" : "master",
                   "returns" : {
                      "type" : "null"
                   }
                },
                "GET" : {
                   "allowtoken" : 1,
-                  "description" : "Show user whitelist.",
+                  "description" : "Show user welcomelist.",
                   "method" : "GET",
                   "name" : "whitelist",
                   "parameters" : {
@@ -18682,6 +19902,7 @@ var apiSchema = [
                         "quser"
                      ]
                   },
+                  "proxyto" : "master",
                   "returns" : {
                      "items" : {
                         "properties" : {
@@ -18696,7 +19917,7 @@ var apiSchema = [
                },
                "POST" : {
                   "allowtoken" : 1,
-                  "description" : "Add user whitelist entries.",
+                  "description" : "Add user welcomelist entries.",
                   "method" : "POST",
                   "name" : "whitelist_add",
                   "parameters" : {
@@ -18727,6 +19948,7 @@ var apiSchema = [
                      ]
                   },
                   "protected" : 1,
+                  "proxyto" : "master",
                   "returns" : {
                      "type" : "null"
                   }
@@ -18740,7 +19962,7 @@ var apiSchema = [
             "info" : {
                "DELETE" : {
                   "allowtoken" : 1,
-                  "description" : "Delete user blacklist entries.",
+                  "description" : "Delete user blocklist entries.",
                   "method" : "DELETE",
                   "name" : "blacklist_delete_base",
                   "parameters" : {
@@ -18771,13 +19993,14 @@ var apiSchema = [
                      ]
                   },
                   "protected" : 1,
+                  "proxyto" : "master",
                   "returns" : {
                      "type" : "null"
                   }
                },
                "GET" : {
                   "allowtoken" : 1,
-                  "description" : "Show user blacklist.",
+                  "description" : "Show user blocklist.",
                   "method" : "GET",
                   "name" : "blacklist",
                   "parameters" : {
@@ -18801,6 +20024,7 @@ var apiSchema = [
                         "quser"
                      ]
                   },
+                  "proxyto" : "master",
                   "returns" : {
                      "items" : {
                         "properties" : {
@@ -18815,7 +20039,7 @@ var apiSchema = [
                },
                "POST" : {
                   "allowtoken" : 1,
-                  "description" : "Add user blacklist entries.",
+                  "description" : "Add user blocklist entries.",
                   "method" : "POST",
                   "name" : "blacklist_add",
                   "parameters" : {
@@ -18846,6 +20070,7 @@ var apiSchema = [
                      ]
                   },
                   "protected" : 1,
+                  "proxyto" : "master",
                   "returns" : {
                      "type" : "null"
                   }
@@ -18876,9 +20101,9 @@ var apiSchema = [
                            "default" : "spam",
                            "description" : "Query this type of quarantine for users.",
                            "enum" : [
+                              "attachment",
                               "spam",
-                              "virus",
-                              "attachment"
+                              "virus"
                            ],
                            "optional" : 1,
                            "type" : "string"
@@ -18965,7 +20190,7 @@ var apiSchema = [
             "info" : {
                "GET" : {
                   "allowtoken" : 1,
-                  "description" : "Get a list of users with whitelist/blacklist settings.",
+                  "description" : "Get a list of users with welcomelist/blocklist settings.",
                   "method" : "GET",
                   "name" : "quarusers",
                   "parameters" : {
@@ -19419,6 +20644,8 @@ var apiSchema = [
                         "action" : {
                            "description" : "Action - specify what you want to do with the mail.",
                            "enum" : [
+                              "welcomelist",
+                              "blocklist",
                               "whitelist",
                               "blacklist",
                               "deliver",

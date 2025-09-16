@@ -1,5 +1,7 @@
+[[cli_pmgversion_help]]
 *pmgversion* `help`
 
+[[cli_pmgversion]]
 *pmgversion* `[OPTIONS]`
 
 Print version information for Proxmox Mail Gateway packages.

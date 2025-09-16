@@ -16,7 +16,7 @@ The maximal number of connection attempts any client is allowed to make to this 
 
 `dnsbl_sites`: `<string>` ::
 
-Optional list of DNS white/blacklist domains (postfix option `postscreen_dnsbl_sites`).
+Optional list of DNS welcome/blocklist domains (postfix option `postscreen_dnsbl_sites`).
 
 `dnsbl_threshold`: `<integer> (0 - N)` ('default =' `1`)::
 

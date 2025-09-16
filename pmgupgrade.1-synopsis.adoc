@@ -1,5 +1,7 @@
+[[cli_pmgupgrade_help]]
 *pmgupgrade* `help`
 
+[[cli_pmgupgrade]]
 *pmgupgrade* `[OPTIONS]`
 
 Upgrade Proxmox Mail Gateway

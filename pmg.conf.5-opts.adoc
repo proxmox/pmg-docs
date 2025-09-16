@@ -94,10 +94,6 @@ This option sets the lowest number of Credit Card or Social Security numbers fou
 
 Sets the maximum amount of data (in bytes) to be scanned for each input file.
 
-`safebrowsing`: `<boolean>` ('default =' `0`)::
-
-Enables support for Google Safe Browsing. (deprecated option, will be ignored)
-
 `scriptedupdates`: `<boolean>` ('default =' `1`)::
 
 Enables ScriptedUpdates (incremental download of signatures)
@@ -122,7 +118,7 @@ The maximal number of connection attempts any client is allowed to make to this 
 
 `dnsbl_sites`: `<string>` ::
 
-Optional list of DNS white/blacklist domains (postfix option `postscreen_dnsbl_sites`).
+Optional list of DNS welcome/blocklist domains (postfix option `postscreen_dnsbl_sites`).
 
 `dnsbl_threshold`: `<integer> (0 - N)` ('default =' `1`)::
 
@@ -276,11 +272,11 @@ Maximum size of spam messages in bytes.
 
 `rbl_checks`: `<boolean>` ('default =' `1`)::
 
-Enable real time blacklists (RBL) checks.
+Enable real time blocklists (RBL) checks.
 
 `use_awl`: `<boolean>` ('default =' `0`)::
 
-Use the Auto-Whitelist plugin.
+Use the Auto-Welcomelist plugin.
 
 `use_bayes`: `<boolean>` ('default =' `0`)::
 
@@ -292,7 +288,7 @@ Whether to use Razor2, if it is available.
 
 `wl_bounce_relays`: `<string>` ::
 
-Whitelist legitimate bounce relays.
+Welcomelist legitimate bounce relays.
 
 .Section 'spamquar'
 

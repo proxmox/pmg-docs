@@ -1,5 +1,7 @@
+[[cli_pmgperf_help]]
 *pmgperf* `help`
 
+[[cli_pmgperf]]
 *pmgperf* `[<path>]`
 
 Proxmox benchmark.

@@ -1,5 +1,7 @@
+[[cli_pmgdaemon]]
 *pmgdaemon* `<COMMAND> [ARGS] [OPTIONS]`
 
+[[cli_pmgdaemon_help]]
 *pmgdaemon help* `[OPTIONS]`
 
 Get help about specified command.
@@ -12,10 +14,12 @@ Shows help for a specific command
 
 Verbose output format.
 
+[[cli_pmgdaemon_restart]]
 *pmgdaemon restart*
 
 Restart the daemon (or start if not running).
 
+[[cli_pmgdaemon_start]]
 *pmgdaemon start* `[OPTIONS]`
 
 Start the daemon.
@@ -24,10 +28,12 @@ Start the daemon.
 
 Debug mode - stay in foreground
 
+[[cli_pmgdaemon_status]]
 *pmgdaemon status*
 
 Get daemon status.
 
+[[cli_pmgdaemon_stop]]
 *pmgdaemon stop*
 
 Stop the daemon.

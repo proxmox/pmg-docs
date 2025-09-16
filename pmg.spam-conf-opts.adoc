@@ -20,11 +20,11 @@ Maximum size of spam messages in bytes.
 
 `rbl_checks`: `<boolean>` ('default =' `1`)::
 
-Enable real time blacklists (RBL) checks.
+Enable real time blocklists (RBL) checks.
 
 `use_awl`: `<boolean>` ('default =' `0`)::
 
-Use the Auto-Whitelist plugin.
+Use the Auto-Welcomelist plugin.
 
 `use_bayes`: `<boolean>` ('default =' `0`)::
 
@@ -36,5 +36,5 @@ Whether to use Razor2, if it is available.
 
 `wl_bounce_relays`: `<string>` ::
 
-Whitelist legitimate bounce relays.
+Welcomelist legitimate bounce relays.
 

@@ -1,9 +1,12 @@
+[[cli_pmgdb]]
 *pmgdb* `<COMMAND> [ARGS] [OPTIONS]`
 
+[[cli_pmgdb_delete]]
 *pmgdb delete*
 
 Delete PMG rule database.
 
+[[cli_pmgdb_dump]]
 *pmgdb dump* `[OPTIONS]`
 
 Print the PMG rule database.
@@ -12,6 +15,7 @@ Print the PMG rule database.
 
 Which rules should be printed
 
+[[cli_pmgdb_help]]
 *pmgdb help* `[OPTIONS]`
 
 Get help about specified command.
@@ -24,6 +28,7 @@ Shows help for a specific command
 
 Verbose output format.
 
+[[cli_pmgdb_init]]
 *pmgdb init* `[OPTIONS]`
 
 Initialize/Upgrade the PMG rule database.
@@ -36,10 +41,12 @@ Delete existing database.
 
 Reset and update statistic database.
 
+[[cli_pmgdb_reset]]
 *pmgdb reset*
 
 Reset PMG rule database back to factory defaults.
 
+[[cli_pmgdb_update]]
 *pmgdb update*
 
 Update the PMG statistic database.

@@ -1,9 +1,12 @@
+[[cli_pmgcm]]
 *pmgcm* `<COMMAND> [ARGS] [OPTIONS]`
 
+[[cli_pmgcm_create]]
 *pmgcm create*
 
 Create initial cluster config with current node as master.
 
+[[cli_pmgcm_delete]]
 *pmgcm delete* `<cid>`
 
 Remove a node from the cluster.
@@ -12,6 +15,7 @@ Remove a node from the cluster.
 
 Cluster Node ID.
 
+[[cli_pmgcm_help]]
 *pmgcm help* `[OPTIONS]`
 
 Get help about specified command.
@@ -24,6 +28,7 @@ Shows help for a specific command
 
 Verbose output format.
 
+[[cli_pmgcm_join]]
 *pmgcm join* `<master_ip>` `[OPTIONS]`
 
 Join a new node to an existing cluster.
@@ -36,19 +41,23 @@ IP address.
 
 SSL certificate fingerprint.
 
+[[cli_pmgcm_join-cmd]]
 *pmgcm join-cmd*
 
 Prints the command for joining an new node to the cluster. You need to
 execute the command on the new node.
 
+[[cli_pmgcm_join_cmd]]
 *pmgcm join_cmd*
 
 An alias for 'pmgcm join-cmd'.
 
+[[cli_pmgcm_promote]]
 *pmgcm promote*
 
 Promote current node to become the new master.
 
+[[cli_pmgcm_status]]
 *pmgcm status* `[OPTIONS]`
 
 Cluster node status.
@@ -57,6 +66,7 @@ Cluster node status.
 
 List local node if there is no cluster defined. Please note that RSA keys and fingerprint are not valid in that case.
 
+[[cli_pmgcm_sync]]
 *pmgcm sync* `[OPTIONS]`
 
 Synchronize cluster configuration.
@@ -65,6 +75,7 @@ Synchronize cluster configuration.
 
 Optional IP address for master node.
 
+[[cli_pmgcm_update-fingerprints]]
 *pmgcm update-fingerprints*
 
 Notify master to refresh all certificate fingerprints

@@ -1,5 +1,7 @@
+[[cli_pmgtunnel]]
 *pmgtunnel* `<COMMAND> [ARGS] [OPTIONS]`
 
+[[cli_pmgtunnel_help]]
 *pmgtunnel help* `[OPTIONS]`
 
 Get help about specified command.
@@ -12,10 +14,12 @@ Shows help for a specific command
 
 Verbose output format.
 
+[[cli_pmgtunnel_restart]]
 *pmgtunnel restart*
 
 Restart the Cluster Tunnel Daemon
 
+[[cli_pmgtunnel_start]]
 *pmgtunnel start* `[OPTIONS]`
 
 Start the Cluster Tunnel Daemon
@@ -24,10 +28,12 @@ Start the Cluster Tunnel Daemon
 
 Debug mode - stay in foreground
 
+[[cli_pmgtunnel_status]]
 *pmgtunnel status*
 
 Print cluster tunnel status.
 
+[[cli_pmgtunnel_stop]]
 *pmgtunnel stop*
 
 Stop the Cluster Tunnel Daemon

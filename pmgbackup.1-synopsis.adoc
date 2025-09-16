@@ -1,5 +1,7 @@
+[[cli_pmgbackup]]
 *pmgbackup* `<COMMAND> [ARGS] [OPTIONS]`
 
+[[cli_pmgbackup_backup]]
 *pmgbackup backup* `[OPTIONS]`
 
 Backup the system configuration.
@@ -12,6 +14,7 @@ Specify when to notify via e-mail
 
 Backup statistic databases.
 
+[[cli_pmgbackup_help]]
 *pmgbackup help* `[OPTIONS]`
 
 Get help about specified command.
@@ -24,10 +27,12 @@ Shows help for a specific command
 
 Verbose output format.
 
+[[cli_pmgbackup_list]]
 *pmgbackup list*
 
 List all stored backups (files named proxmox-backup_{DATE}.tgz).
 
+[[cli_pmgbackup_proxmox-backup_backup]]
 *pmgbackup proxmox-backup backup* `<remote>` `[OPTIONS]`
 
 Create a new backup and prune the backup group afterwards, if configured.
@@ -44,6 +49,7 @@ Specify when to notify via e-mail
 
 Backup statistic databases.
 
+[[cli_pmgbackup_proxmox-backup_forget]]
 *pmgbackup proxmox-backup forget* `<remote> <backup-id> <backup-time>`
 
 Forget a snapshot
@@ -60,6 +66,7 @@ ID (hostname) of backup snapshot
 
 Backup time in RFC 3339 format
 
+[[cli_pmgbackup_proxmox-backup_job_create]]
 *pmgbackup proxmox-backup job create* `<remote>` `[OPTIONS]`
 
 Create backup schedule
@@ -76,6 +83,7 @@ Randomized delay to add to the starttime (RandomizedDelaySec setting of the syst
 
 Schedule for the backup (OnCalendar setting of the systemd.timer)
 
+[[cli_pmgbackup_proxmox-backup_job_delete]]
 *pmgbackup proxmox-backup job delete* `<remote>`
 
 Delete backup schedule
@@ -84,6 +92,7 @@ Delete backup schedule
 
 Proxmox Backup Server ID.
 
+[[cli_pmgbackup_proxmox-backup_job_show]]
 *pmgbackup proxmox-backup job show* `<remote>` `[FORMAT_OPTIONS]`
 
 Get timer specification
@@ -92,6 +101,7 @@ Get timer specification
 
 Proxmox Backup Server ID.
 
+[[cli_pmgbackup_proxmox-backup_list]]
 *pmgbackup proxmox-backup list* `<remote>` `[FORMAT_OPTIONS]`
 
 Get snapshots stored on remote.
@@ -100,6 +110,7 @@ Get snapshots stored on remote.
 
 Proxmox Backup Server ID.
 
+[[cli_pmgbackup_proxmox-backup_remote_add]]
 *pmgbackup proxmox-backup remote add* `<remote> --datastore <string> --server <string>` `[OPTIONS]`
 
 Add Proxmox Backup Server remote instance.
@@ -172,10 +183,12 @@ Proxmox Backup Server address.
 
 Username or API token ID on the Proxmox Backup Server
 
+[[cli_pmgbackup_proxmox-backup_remote_list]]
 *pmgbackup proxmox-backup remote list* `[FORMAT_OPTIONS]`
 
 List all configured Proxmox Backup Server instances.
 
+[[cli_pmgbackup_proxmox-backup_remote_remove]]
 *pmgbackup proxmox-backup remote remove* `<remote>`
 
 Delete an PBS remote
@@ -184,6 +197,7 @@ Delete an PBS remote
 
 Profile ID.
 
+[[cli_pmgbackup_proxmox-backup_remote_set]]
 *pmgbackup proxmox-backup remote set* `<remote>` `[OPTIONS]`
 
 Update PBS remote settings.
@@ -264,6 +278,7 @@ Proxmox Backup Server address.
 
 Username or API token ID on the Proxmox Backup Server
 
+[[cli_pmgbackup_proxmox-backup_restore]]
 *pmgbackup proxmox-backup restore* `<remote> <backup-id> <backup-time>` `[OPTIONS]`
 
 Restore the system configuration.
@@ -292,6 +307,7 @@ Restore the rule database. This is the default.
 
 Restore statistic databases. Only considered when you restore the 'database'.
 
+[[cli_pmgbackup_restore]]
 *pmgbackup restore* `--filename <string>` `[OPTIONS]`
 
 Restore the system configuration.
