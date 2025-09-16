@@ -162,7 +162,7 @@ $(DSC): $(BUILDDIR)
 sbuild: $(DSC)
 	sbuild $(DSC)
 
-deb: $(DOC_DEB)
+deb:
 	rm -f $(GEN_DEB) $(DOC_DEB)
 	rm -rf $(BUILDDIR)
 	$(MAKE) $(DOC_DEB)
