@@ -1,4 +1,4 @@
-pmg-docs (9.0.0) bookworm; urgency=medium
+pmg-docs (9.0.0) trixie; urgency=medium
 
   * basic adaptions for Proxmox Mail Gateway 9 based on Debian 13 Trixie.
 
