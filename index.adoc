@@ -8,14 +8,12 @@ image:./images/proxmox-logo.svg[] pass:[<br>] {pmg} Documentation Index
 {pmg} Administration Guide
 --------------------------
 
-[width="100%",options="header"]
-|===========================================================
-|Format               |Link
-|Printable version    |link:pmg-admin-guide.pdf[]
-|Online HTML version  |link:pmg-admin-guide.html[]
-|E-Book version       |link:pmg-admin-guide.epub[]
-|===========================================================
+You can browse the link:pmg-admin-guide.html[administration guide as a single-page HTML document].
 
+You can also download the guide in the following formats:
+
+* link:pmg-admin-guide.pdf[PDF file]
+* link:pmg-admin-guide.epub[E-book (ePub)]
 
 {pmg} Manual Pages
 ------------------
