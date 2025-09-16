@@ -1,3 +1,36 @@
+pmg-docs (9.0.0) bookworm; urgency=medium
+
+  * basic adaptions for Proxmox Mail Gateway 9 based on Debian 13 Trixie.
+
+  * update static schema info
+
+  * css: prefer Open Sans, sans-serif for general text font.
+
+  * css: do not differentiate visited links.
+
+  * css: ensure index image doesn't overflows ovoer the screen.
+
+  * html: make table overflow the x-axis automatically to avoid that whole
+    documentation gets a horizontal scroll-bar just due to one or two wider
+    tables, rather make those tables scrollable.
+
+  * html/css: add toggle menu for TOC on narrow (mobile) screens to have more
+    useable space for reading the actual documentation.
+
+  * html: rework index to order chapters and avoid visual noise from to many
+    table and table columns.
+
+  * asciidoc-pve scan-exjts: add allow-missing option to make bootstrapping
+    easier.
+
+  * fix: #3755: rename black/whitelist to block/welcomelist
+
+  * OIDC: add 'Autocreate Users with Assigned Role' description
+
+  * OIDC: rename subject to sub and username to preferred_username
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 16 Sep 2025 23:02:31 +0200
+
 pmg-docs (8.2.0) bookworm; urgency=medium
 
   * add basic documentation for authenticaion realms and OIDC
