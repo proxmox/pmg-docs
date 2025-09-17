@@ -1009,9 +1009,14 @@ Sync
 the information is quickly available, even when the LDAP/AD server is
 temporarily inaccessible.
 
+You can actively trigger a synchronization with `pmgconfig`:
+
+----
+# pmgconfig ldapsync
+----
+
 After a successful sync, the groups and users should be visible on the web
 interface. Following this, you can create rules targeting LDAP users and groups.
-
 
 [[pmgconfig_fetchmail]]
 Fetchmail
