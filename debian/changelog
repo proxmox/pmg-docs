@@ -1,3 +1,9 @@
+pmg-docs (9.0.1) trixie; urgency=medium
+
+  * fix regression in online-help generation for UI documentation hyperlinks.
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 17 Sep 2025 15:24:16 +0200
+
 pmg-docs (9.0.0) trixie; urgency=medium
 
   * basic adaptions for Proxmox Mail Gateway 9 based on Debian 13 Trixie.
