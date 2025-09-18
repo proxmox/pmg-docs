@@ -431,8 +431,10 @@ new software, but are also important to get new updates.
 NOTE: You need valid Debian and Proxmox repositories to get the latest
 security updates, bug fixes and new features.
 
-APT Repositories are defined in the file `/etc/apt/sources.list` and in `.list`
-files placed in `/etc/apt/sources.list.d/`.
+APT Repositories are defined in the file `/etc/apt/sources.list` in the legacy
+single-line format and in `.sources` files placed in `/etc/apt/sources.list.d/`
+for the modern deb822 multi-line format, see
+xref:pmg_install_apt_repo_formats[Repository Formats] for details.
 
 Repository Management
 ^^^^^^^^^^^^^^^^^^^^^
@@ -447,28 +449,55 @@ configured repositories.
 Basic repository management, for example, activating or deactivating a
 repository, is also supported.
 
-Sources.list
-^^^^^^^^^^^^
+[[pmg_install_apt_repo_formats]]
+Repository Formats
+^^^^^^^^^^^^^^^^^^
 
-In a `sources.list` file, each line defines a package repository. The preferred
-source must come first.  Empty lines are ignored. A `#` character anywhere on a
-line marks the remainder of that line as a comment. The available packages from
-a repository are acquired by running `apt update`. Updates can be installed
-directly using `apt`, or via the GUI (Administration -> Updates).
+Package repositories can be configured in the source list
+'/etc/apt/sources.list' and the files contained in '/etc/apt/sources.list.d/'.
 
-.File `/etc/apt/sources.list`
+There are two formats supported:
+
+single line::
+
+In a single-line `sources.list` file, each line defines a package repository.
+Empty lines are ignored. A `#` character anywhere on a line marks the remainder
+of that line as a comment.
+This is the legacy format. Since Debian 13 Trixie apt will complain about using
+this format. You can automatically migrate most repositories using the `apt
+modernize-sources` command.
+
+deb822::
+
+In the multi-line format `repo.sources` file each entry consists of multiple
+lines of key-value pairs. A file can include multiple entries by separating each
+group with a blank line. This is the modern format.
+
+Available Repositories
+
+{pmg} provides three different package repositories in addition to requiring the
+base Debian repositories.
+
+
+Debian Base Repositories
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.File `/etc/apt/sources.list.d/debian.sources`
 ----
-# basic Debian repositories:
-deb http://deb.debian.org/debian trixie main contrib
-deb http://deb.debian.org/debian trixie-updates main contrib
+Types: deb deb-src
+URIs: http://deb.debian.org/debian/
+Suites: trixie trixie-updates
+Components: main non-free-firmware
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
 
-# security updates
-deb http://security.debian.org/debian-security trixie-security main contrib
-
-# Proxmox Mail Gateway repo required too - see below!
+Types: deb deb-src
+URIs: http://security.debian.org/debian-security/
+Suites: trixie-security
+Components: main non-free-firmware
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
 ----
 
-{pmg} provides three different package repositories.
+
 
 
 [[pmg_enterprise_repository]]
@@ -480,9 +509,13 @@ all {pmg} subscription users. It contains the most stable packages,
 and is suitable for production use. The `pmg-enterprise` repository is
 enabled by default:
 
-.File `/etc/apt/sources.list.d/pmg-enterprise.list`
+.File `/etc/apt/sources.list.d/pve-enterprise.sources`
 ----
-deb https://enterprise.proxmox.com/debian/pmg trixie pmg-enterprise
+Types: deb
+URIs: https://enterprise.proxmox.com/debian/pve
+Suites: trixie
+Components: pve-enterprise
+Signed-By: /usr/share/keyrings/proxmox-archive-keyring.gpg
 ----
 
 As soon as updates are available, the `root@pam` user is notified via email
@@ -494,12 +527,12 @@ Please note that you need a valid subscription key to access the
 `pmg-enterprise` repository. We offer different support levels, which you can
 find further details about at {pricing-url}.
 
-NOTE: You can disable this repository by commenting out the above line using a
-`#` (at the start of the line). This prevents error messages if your host does
+NOTE: You can disable this repository by adding `Enabled: False` in a line of
+of its own to the file. This prevents error messages if your host does
 not have a subscription key. Please configure the `pmg-no-subscription`
 repository in that case.
 
-
+[[pmg_no_subscription_repository]]
 {pmg} No-Subscription Repository
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -508,37 +541,43 @@ this repository. It can be used for testing and non-production
 use. It's not recommended to use this on production servers, as these
 packages are not always heavily tested and validated.
 
-We recommend configuring this repository in `/etc/apt/sources.list`.
+We recommend to configure this repository in
+`/etc/apt/sources.list.d/proxmox.sources`.
 
-.File `/etc/apt/sources.list`
+.File `/etc/apt/sources.list.d/proxmox.sources`
 ----
-deb http://ftp.debian.org/debian trixie main contrib
-deb http://ftp.debian.org/debian trixie-updates main contrib
-
-# security updates
-deb http://security.debian.org/debian-security trixie-security main contrib
-
-# PMG pmg-no-subscription repository provided by proxmox.com,
-# NOT recommended for production use
-deb http://download.proxmox.com/debian/pmg trixie pmg-no-subscription
+Types: deb
+URIs: http://download.proxmox.com/debian/pmg
+Suites: trixie
+Components: pmg-no-subscription
+Signed-By: /usr/share/keyrings/proxmox-archive-keyring.gpg
 ----
 
+NOTE: Remember that you will always need the base Debian repositories in
+addition to a {pmg} Proxmox repository.
 
+
+[[pmg_test_repository]]
 {pmg} Test Repository
 ~~~~~~~~~~~~~~~~~~~~~
 
 This repository contains the latest packages and is primarily used by developers
-to test new features. To configure it, add the following line to
-`/etc/apt/sources.list`:
+to test new features. To configure it, add the following stanza to the file
+`/etc/apt/sources.list.d/proxmox.sources`:
 
-.sources.list entry for `pmgtest`
+.File `/etc/apt/sources.list.d/proxmox.sources`
 ----
-deb http://download.proxmox.com/debian/pmg trixie pmg-test
+Types: deb
+URIs: http://download.proxmox.com/debian/pmg
+Suites: trixie
+Components: pmg-test
+Signed-By: /usr/share/keyrings/proxmox-archive-keyring.gpg
 ----
 
-WARNING: The `pmgtest` repository should (as the name implies) only be used for
+WARNING: The `pmg-test` repository should (as the name implies) only be used for
 testing new features or bug fixes.
 
+[[pmg_repos_secure_apt]]
 SecureApt
 ~~~~~~~~~
 
@@ -549,26 +588,35 @@ If you install {pmg} from an official ISO image, the key for verification is
 already installed.
 
 If you install {pmg} on top of Debian, download and install
-the key by executing the following commands as `root` user:
+the key with the following commands:
 
 ----
- # wget https://enterprise.proxmox.com/debian/proxmox-release-trixie.gpg -O /etc/apt/trusted.gpg.d/proxmox-release-trixie.gpg
+ # wget https://enterprise.proxmox.com/debian/proxmox-archive-keyring-trixie.gpg -O /usr/share/keyrings/proxmox-archive-keyring.gpg
 ----
+
+NOTE: The `wget` command above adds the keyring for Proxmox releases based on
+Debian Trixie. Once the `proxmox-archive-keyring` package is installed, it will
+manage this file. At that point, the hashes below may no longer match the hashes
+of this file, as keys for new Proxmox releases get added or removed. This is
+intended, `apt` will ensure that only trusted keys are being used.
+*Modifying this file is discouraged once `proxmox-archive-keyring` is installed.*
 
 Verify the checksum afterwards with the `sha512sum` CLI tool:
 
 ----
-# sha256sum /etc/apt/trusted.gpg.d/proxmox-release-trixie.gpg
-1bcd2d5bab556076c9ea756a84fe2b7445b13f4ef6e97b2e412b68778377ba6d /etc/apt/trusted.gpg.d/proxmox-release-trixie.gpg
+# sha256sum /usr/share/keyrings/proxmox-archive-keyring.gpg
+ 136673be77aba35dcce385b28737689ad64fd785a797e57897589aed08db6e45 /usr/share/keyrings/proxmox-archive-keyring.gpg
 ----
 
 or the `md5sum` CLI tool:
 
 ----
-# md5sum /etc/apt/trusted.gpg.d/proxmox-release-trixie.gpg
-c94e3775fbafec13fec20f981db61e93 /etc/apt/trusted.gpg.d/proxmox-release-trixie.gpg
+# md5sum /usr/share/keyrings/proxmox-archive-keyring.gpg
+77c8b1166d15ce8350102ab1bca2fcbf /usr/share/keyrings/proxmox-archive-keyring.gpg
 ----
 
+NOTE: Make sure the path you install the key to matches the `Signed-By:` lines
+in your repository stanzas.
 
 Debian Non-Free Repository
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -584,7 +632,7 @@ are needed in order to support the RAR archive format:
 
 * `libclamunrar` for detecting viruses in RAR archives.
 
-To enable the `non-free` component, run `editor /etc/apt/sources.list` and
+To enable the `non-free` component, run `editor /etc/apt/sources.list.d/debian.sources` and
 append `non-free` to the end of each `.debian.org` repository line.
 
 Following this, you can install the required packages with:
@@ -608,5 +656,5 @@ xref:pmg_firmware_runtime_files[Runtime Firmware Files] not already included in
 the pre-installed package `pve-firmware`.
 
 To be able to install packages from this component, run
-`editor /etc/apt/sources.list`, append `non-free-firmware` to the end of each
-`.debian.org` repository line and run `apt update`.
+`editor /etc/apt/sources.list.d/debian.sources`, append `non-free-firmware` to
+the end of each `.debian.org` repository line and run `apt update`.
