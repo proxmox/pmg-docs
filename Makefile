@@ -191,6 +191,7 @@ gen-install: $(GEN_DEB_SOURCES) asciidoc-pmg
 	install -m 0755 asciidoc-pmg $(DESTDIR)/usr/bin/
 	install -dm755 $(DESTDIR)/usr/share/$(GEN_PACKAGE)/asciidoc/
 	install -m 0644 asciidoc/asciidoc-pmg.conf $(DESTDIR)/usr/share/$(GEN_PACKAGE)/asciidoc/
+	install -m 0644 asciidoc/pmg-docbook.conf $(DESTDIR)/usr/share/$(GEN_PACKAGE)/asciidoc/
 	install -m 0644 asciidoc/pmg-html.conf $(DESTDIR)/usr/share/$(GEN_PACKAGE)/asciidoc/
 
 .PHONY: doc-install
