@@ -1,3 +1,15 @@
+pmg-docs (9.0.2) trixie; urgency=medium
+
+  * pmgconfig: document how to trigger an ldap realm sync via CLI.
+
+  * docbook config: sync over improvements from PVE, adding support for
+    rendering level 4 headings in manual pages.
+
+  * doc-gen: actually ship pmg docbook config now that it's used over the
+    asciidoc default.
+
+ -- Proxmox Support Team <support@proxmox.com>  Thu, 18 Sep 2025 11:51:16 +0200
+
 pmg-docs (9.0.1) trixie; urgency=medium
 
   * fix regression in online-help generation for UI documentation hyperlinks.
