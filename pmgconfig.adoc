@@ -163,9 +163,11 @@ configuration is changed.
 notifications it can send to administrators and users. These can be adjusted in
 the same way as configuration files. For some reports and notifications, both
 HTML and plain-text variants exist, which will be send together as multi-part
-mail. These can be recognized by being suffixed using `.html.tt` or `.plain.tt`,
-respectively, and should be modified together if available to present a
-consistent experience to users.
+mail. These can be recognized by being suffixed using `.tt`, for the html part
+for historic reasons or `.plain.tt`, for the plain-text part respectively, and
+should be modified together if available to present a consistent experience to
+users. Dropping either part to get a single-part mail can be done by creating
+an empty file as override.
 
 We use a template-based approach to generate these files. The {tts} is
 a well known, fast and flexible template processing system. You can
