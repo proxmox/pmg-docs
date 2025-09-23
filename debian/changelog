@@ -1,3 +1,21 @@
+pmg-docs (9.0.3) trixie; urgency=medium
+
+  * faq: update information for rough Proxmox Mail Gateway 8 life cycle and
+    add entry for upcoming Proxmox Mail Gateway 9 and reference upgrade guide.
+
+  * installation: adapt repository documentation to newer used deb822 sources
+    config format.
+
+  * update some relevant screenshots to current web UI state.
+
+  * pmgconfig: explain how multipart mail templates can be overridden.
+
+  * pmgconfig: add initial network pinning docs.
+
+  * update static API schema info and synopsis.
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 23 Sep 2025 21:37:18 +0200
+
 pmg-docs (9.0.2) trixie; urgency=medium
 
   * pmgconfig: document how to trigger an ldap realm sync via CLI.
