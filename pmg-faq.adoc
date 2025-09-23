@@ -87,3 +87,5 @@ performed:
 * https://pmg.proxmox.com/wiki/index.php/Upgrade_from_5.x_to_6.0[Upgrade from {pmg} 5 to 6]
 
 * https://pmg.proxmox.com/wiki/index.php/Upgrade_from_7_to_8[Upgrade from {pmg} 7 to 8]
+
+* https://pmg.proxmox.com/wiki/index.php/Upgrade_from_8_to_9[Upgrade from {pmg} 8 to 9]
