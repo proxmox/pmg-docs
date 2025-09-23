@@ -82,8 +82,8 @@ Although the specific upgrade steps depend on your respective setup, we
 provide general instructions and advice on how an upgrade should be
 performed:
 +
-* https://pmg.proxmox.com/wiki/index.php/Upgrade_from_6.x_to_7.0[Upgrade from {pmg} 6.x to 7.0]
+* https://pmg.proxmox.com/wiki/index.php/Upgrade_from_6.x_to_7.0[Upgrade from {pmg} 6 to 7]
 
-* https://pmg.proxmox.com/wiki/index.php/Upgrade_from_5.x_to_6.0[Upgrade from {pmg} 5.x to 6.0]
+* https://pmg.proxmox.com/wiki/index.php/Upgrade_from_5.x_to_6.0[Upgrade from {pmg} 5 to 6]
 
-* https://pmg.proxmox.com/wiki/index.php/Upgrade_from_7_to_8[Upgrade from {pmg} 7.x to 8.0]
+* https://pmg.proxmox.com/wiki/index.php/Upgrade_from_7_to_8[Upgrade from {pmg} 7 to 8]
