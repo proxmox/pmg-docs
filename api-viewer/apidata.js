@@ -8943,6 +8943,11 @@ var apiSchema = [
                   "parameters" : {
                      "additionalProperties" : 0
                   },
+                  "permissions" : {
+                     "check" : [
+                        "admin"
+                     ]
+                  },
                   "returns" : {
                      "items" : {
                         "properties" : {

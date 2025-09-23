@@ -45,17 +45,17 @@ Redirect spam report email to this address.
 
 Spam report style. Default value is read from spam quarantine configuration.
 
-`--timespan` `<today | week | yesterday>` ('default =' `today`)::
+`--timespan` `^(today|yesterday|week|([1-9]|1[0-9]|2[0-4])h)$` ('default =' `today`)::
 
-Select time span.
+Select time span. Accepts 'today', 'yesterday', 'week' or '1h'..'24h' for the last N hours.
 
 [[cli_pmgqm_status]]
 *pmgqm status* `[OPTIONS]`
 
 Print quarantine status (mails per user) for specified time span.
 
-`--timespan` `<today | week | yesterday>` ('default =' `today`)::
+`--timespan` `^(today|yesterday|week|([1-9]|1[0-9]|2[0-4])h)$` ('default =' `today`)::
 
-Select time span.
+Select time span. Accepts 'today', 'yesterday', 'week' or '1h'..'24h' for the last N hours.
 
 
