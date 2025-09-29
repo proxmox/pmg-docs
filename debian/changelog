@@ -1,3 +1,9 @@
+pmg-docs (9.0.4) trixie; urgency=medium
+
+  * update static API schema info and synopsis.
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 29 Sep 2025 18:11:56 +0200
+
 pmg-docs (9.0.3) trixie; urgency=medium
 
   * faq: update information for rough Proxmox Mail Gateway 8 life cycle and
