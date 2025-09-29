@@ -9595,7 +9595,7 @@ var apiSchema = [
                   "info" : {
                      "DELETE" : {
                         "allowtoken" : 1,
-                        "description" : "Edit custom SpamAssassin score",
+                        "description" : "Delete custom SpamAssassin score",
                         "method" : "DELETE",
                         "name" : "delete_score",
                         "parameters" : {
@@ -9614,6 +9614,11 @@ var apiSchema = [
                                  "type" : "string"
                               }
                            }
+                        },
+                        "permissions" : {
+                           "check" : [
+                              "admin"
+                           ]
                         },
                         "protected" : 1,
                         "proxyto" : "master",
@@ -9636,7 +9641,12 @@ var apiSchema = [
                               }
                            }
                         },
-                        "protected" : 1,
+                        "permissions" : {
+                           "check" : [
+                              "admin",
+                              "audit"
+                           ]
+                        },
                         "proxyto" : "master",
                         "returns" : {
                            "properties" : {
@@ -9690,6 +9700,11 @@ var apiSchema = [
                                  "typetext" : "<number>"
                               }
                            }
+                        },
+                        "permissions" : {
+                           "check" : [
+                              "admin"
+                           ]
                         },
                         "protected" : 1,
                         "proxyto" : "master",
@@ -9807,6 +9822,11 @@ var apiSchema = [
                            "typetext" : "<number>"
                         }
                      }
+                  },
+                  "permissions" : {
+                     "check" : [
+                        "admin"
+                     ]
                   },
                   "protected" : 1,
                   "proxyto" : "master",
@@ -12714,10 +12734,9 @@ var apiSchema = [
                                                 },
                                                 "queue_id" : {
                                                    "description" : "The Message queue ID.",
-                                                   "maxLength" : 20,
-                                                   "minLength" : 8,
-                                                   "pattern" : "[a-zA-Z0-9]+",
-                                                   "type" : "string"
+                                                   "format" : "pmg-postfix-queue-id",
+                                                   "type" : "string",
+                                                   "typetext" : "<string>"
                                                 }
                                              }
                                           },
@@ -12779,10 +12798,9 @@ var apiSchema = [
                                                 },
                                                 "queue_id" : {
                                                    "description" : "The Message queue ID.",
-                                                   "maxLength" : 20,
-                                                   "minLength" : 8,
-                                                   "pattern" : "[a-zA-Z0-9]+",
-                                                   "type" : "string"
+                                                   "format" : "pmg-postfix-queue-id",
+                                                   "type" : "string",
+                                                   "typetext" : "<string>"
                                                 }
                                              }
                                           },
@@ -12823,10 +12841,9 @@ var apiSchema = [
                                                 },
                                                 "queue_id" : {
                                                    "description" : "The Message queue ID.",
-                                                   "maxLength" : 20,
-                                                   "minLength" : 8,
-                                                   "pattern" : "[a-zA-Z0-9]+",
-                                                   "type" : "string"
+                                                   "format" : "pmg-postfix-queue-id",
+                                                   "type" : "string",
+                                                   "typetext" : "<string>"
                                                 }
                                              }
                                           },
@@ -12972,6 +12989,57 @@ var apiSchema = [
                                           }
                                        ],
                                        "type" : "array"
+                                    }
+                                 },
+                                 "POST" : {
+                                    "allowtoken" : 1,
+                                    "description" : "Perform an action on the given queue IDs (delete/deliver).",
+                                    "method" : "POST",
+                                    "name" : "queue_action",
+                                    "parameters" : {
+                                       "additionalProperties" : 0,
+                                       "properties" : {
+                                          "action" : {
+                                             "description" : "Operation to perform on the given IDs.",
+                                             "enum" : [
+                                                "delete",
+                                                "deliver"
+                                             ],
+                                             "type" : "string"
+                                          },
+                                          "ids" : {
+                                             "description" : "Queue ID(s).",
+                                             "format" : "pmg-postfix-queue-id-list",
+                                             "type" : "string",
+                                             "typetext" : "<string>"
+                                          },
+                                          "node" : {
+                                             "description" : "The cluster node name.",
+                                             "format" : "pve-node",
+                                             "type" : "string",
+                                             "typetext" : "<string>"
+                                          },
+                                          "queue" : {
+                                             "description" : "Postfix queue name.",
+                                             "enum" : [
+                                                "deferred",
+                                                "active",
+                                                "incoming",
+                                                "hold"
+                                             ],
+                                             "type" : "string"
+                                          }
+                                       }
+                                    },
+                                    "permissions" : {
+                                       "check" : [
+                                          "admin"
+                                       ]
+                                    },
+                                    "protected" : 1,
+                                    "proxyto" : "node",
+                                    "returns" : {
+                                       "type" : "null"
                                     }
                                  }
                               },
