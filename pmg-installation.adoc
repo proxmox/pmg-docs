@@ -509,12 +509,12 @@ all {pmg} subscription users. It contains the most stable packages,
 and is suitable for production use. The `pmg-enterprise` repository is
 enabled by default:
 
-.File `/etc/apt/sources.list.d/pve-enterprise.sources`
+.File `/etc/apt/sources.list.d/pmg-enterprise.sources`
 ----
 Types: deb
-URIs: https://enterprise.proxmox.com/debian/pve
+URIs: https://enterprise.proxmox.com/debian/pmg
 Suites: trixie
-Components: pve-enterprise
+Components: pmg-enterprise
 Signed-By: /usr/share/keyrings/proxmox-archive-keyring.gpg
 ----
 
