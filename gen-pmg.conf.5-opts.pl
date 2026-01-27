@@ -44,6 +44,7 @@ my $key_groups = {
 	    ndr_on_block => 1,
 	    smtputf8 => 1,
 	    'filter-timeout' => 1,
+	    'accept-broken-mime' => 1,
 	}],
     'mail-tls' => [
 	'mail' , {
