@@ -1,3 +1,11 @@
+pmg-docs (9.0.5) trixie; urgency=medium
+
+  * installation: fix pve/pmg copy & paste error in apt sources list.
+
+  * doc-generator: add new option accept-broken-mime.
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 28 Jan 2026 17:46:59 +0100
+
 pmg-docs (9.0.4) trixie; urgency=medium
 
   * update static API schema info and synopsis.
