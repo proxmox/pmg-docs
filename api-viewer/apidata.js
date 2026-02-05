@@ -14029,8 +14029,8 @@ var apiSchema = [
                                  "properties" : {
                                     "name" : {
                                        "description" : "Package name.",
-                                       "type" : "string",
-                                       "typetext" : "<string>"
+                                       "pattern" : "(?^:[a-z0-9][-+.a-z0-9:]+)",
+                                       "type" : "string"
                                     },
                                     "node" : {
                                        "description" : "The cluster node name.",
@@ -18027,14 +18027,14 @@ var apiSchema = [
                                  "description" : "OpenID Connect Client ID",
                                  "maxLength" : 256,
                                  "optional" : 1,
-                                 "pattern" : "(?^:^[a-zA-Z0-9._:-]+$)",
+                                 "pattern" : "(?^:^[\\x20-\\x7E]+$)",
                                  "type" : "string"
                               },
                               "client-key" : {
                                  "description" : "OpenID Connect Client Key",
                                  "maxLength" : 256,
                                  "optional" : 1,
-                                 "pattern" : "(?^:^[a-zA-Z0-9._:-]+$)",
+                                 "pattern" : "(?^:^[\\x20-\\x7E]+$)",
                                  "type" : "string"
                               },
                               "comment" : {
@@ -18225,14 +18225,14 @@ var apiSchema = [
                            "description" : "OpenID Connect Client ID",
                            "maxLength" : 256,
                            "optional" : 1,
-                           "pattern" : "(?^:^[a-zA-Z0-9._:-]+$)",
+                           "pattern" : "(?^:^[\\x20-\\x7E]+$)",
                            "type" : "string"
                         },
                         "client-key" : {
                            "description" : "OpenID Connect Client Key",
                            "maxLength" : 256,
                            "optional" : 1,
-                           "pattern" : "(?^:^[a-zA-Z0-9._:-]+$)",
+                           "pattern" : "(?^:^[\\x20-\\x7E]+$)",
                            "type" : "string"
                         },
                         "comment" : {
