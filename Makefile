@@ -16,6 +16,8 @@ DOC_DEB=$(DOC_PACKAGE)_$(DEB_VERSION_UPSTREAM_REVISION)_all.deb
 export SOURCE_DATE_EPOCH ?= $(shell dpkg-parsechangelog -STimestamp)
 SOURCE_DATE_HUMAN := $(shell date -d "@$(SOURCE_DATE_EPOCH)")
 
+# ensure all pmg.conf keys are accounted for in their respective section.
+export PMG_DOCS_IGNORE_MISSING_KEY ?= 0
 
 all: index.html
 

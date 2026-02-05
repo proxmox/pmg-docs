@@ -75,6 +75,8 @@ my $key_groups = {
 	}],
 };
 
+my $die_on_missing = !( $ENV{PMG_DOCS_IGNORE_MISSING_KEY} // 1);
+
 if (1) {
     # verify if we document all mail settings
     my $plugin = PMG::Config::Base->lookup('mail');
@@ -98,7 +100,7 @@ if (1) {
 	next if $k =~ m/^max_(filters|policy|smtpd_in|smtpd_out)$/;
 
 	if (!defined($found_mail_keys->{$k})) {
-	    die "undocumented key '$k'" if !$ENV{PMG_DOCS_IGNORE_MISSING_KEY};
+	    die "undocumented key '$k'" if $die_on_missing;
 	    warn "WARNING: undocumented key '$k'\n";
 	}
     }
