@@ -687,6 +687,22 @@ using the following configuration keys:
 
 include::pmg.admin-dkim-conf-opts.adoc[]
 
+[[pmgconfig_mailproxy_broken_mime]]
+Handling of Messages With Broken MIME Structure
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Messages with broken MIME structure and ambiguous content can be used to bypass
+security checks. Therefore, they are rejected by {pmg} before being passed to
+the rule system.
+
+As some legitimate messages also have a broken MIME structure, you can
+optionally allow broken messages to be accepted by the parser by enabling the
+`accept-broken-mime` setting in the `mail` subsection in `/etc/pmg/pmg.conf`.
+
+If enabled, a `X-Proxmox-Broken-Message` header is added to each suspicious
+message. This header can be used in the rule system to selectively accept or
+block such messages.
+
 
 [[pmgconfig_mailproxy_whitelist]]
 [[pmgconfig_mailproxy_welcomelist]]
