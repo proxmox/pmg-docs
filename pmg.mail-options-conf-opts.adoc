@@ -1,3 +1,7 @@
+`accept-broken-mime`: `<boolean>` ('default =' `0`)::
+
+Accept e-mails with broken MIME structure (insecure). If enabled, a `X-Proxmox-Broken-Message` header is added to each mail with broken MIME structure.
+
 `banner`: `<string>` ('default =' `ESMTP Proxmox`)::
 
 ESMTP banner.

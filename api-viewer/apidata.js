@@ -11875,6 +11875,13 @@ var apiSchema = [
                   "parameters" : {
                      "additionalProperties" : 0,
                      "properties" : {
+                        "accept-broken-mime" : {
+                           "default" : 0,
+                           "description" : "Accept e-mails with broken MIME structure (insecure). If enabled, a `X-Proxmox-Broken-Message` header is added to each mail with broken MIME structure.",
+                           "optional" : 1,
+                           "type" : "boolean",
+                           "typetext" : "<boolean>"
+                        },
                         "banner" : {
                            "default" : "ESMTP Proxmox",
                            "description" : "ESMTP banner.",
@@ -15077,8 +15084,8 @@ var apiSchema = [
                                  "properties" : {
                                     "name" : {
                                        "description" : "Package name.",
-                                       "type" : "string",
-                                       "typetext" : "<string>"
+                                       "pattern" : "(?^:[a-z0-9][-+.a-z0-9:]+)",
+                                       "type" : "string"
                                     },
                                     "node" : {
                                        "description" : "The cluster node name.",

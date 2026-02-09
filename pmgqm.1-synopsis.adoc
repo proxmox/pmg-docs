@@ -47,7 +47,7 @@ Spam report style. Default value is read from spam quarantine configuration.
 
 `--timespan` `^(today|yesterday|week|([1-9]|1[0-9]|2[0-4])h)$` ('default =' `today`)::
 
-Select time span. Accepts 'today', 'yesterday', 'week' or '1h'..'24h' for the last N hours.
+Select time span. Accepts 'today', 'yesterday', 'week' or 'Nh' for the last N hours, e.g., '1h' or '16h'.
 
 [[cli_pmgqm_status]]
 *pmgqm status* `[OPTIONS]`
@@ -56,6 +56,6 @@ Print quarantine status (mails per user) for specified time span.
 
 `--timespan` `^(today|yesterday|week|([1-9]|1[0-9]|2[0-4])h)$` ('default =' `today`)::
 
-Select time span. Accepts 'today', 'yesterday', 'week' or '1h'..'24h' for the last N hours.
+Select time span. Accepts 'today', 'yesterday', 'week' or 'Nh' for the last N hours, e.g., '1h' or '16h'.
 
 
