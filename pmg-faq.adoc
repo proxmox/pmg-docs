@@ -32,10 +32,11 @@ for 32-bit platform support.
 [[faq-support-table]]
 How long will my {pmg} version be supported?::
 
-{pmg} versions are supported at least as long as the corresponding
-Debian Version is
-https://wiki.debian.org/DebianOldStable[oldstable]. {pmg} uses a
-rolling release model, and using the latest stable version is always
+{pmg} versions are supported *at least as long* as the corresponding Debian
+version is supported by the Debian Security Team, i.e. approximately 3 years
+after its initial release, see
+https://www.debian.org/security/faq#lifespan[Debian lifespan]. {pmg} uses a
+rolling release model and using the latest stable version is always
 recommended.
 +
 [width="100%",cols="5*d",options="header"]
