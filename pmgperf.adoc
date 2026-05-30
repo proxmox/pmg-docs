@@ -13,7 +13,7 @@ pmgperf - Proxmox Simple Performance Benchmark
 SYNOPSIS
 --------
 
-include::pmgperf.1-synopsis.adoc[]
+include::generated/pmgperf.1-synopsis.adoc[]
 
 
 DESCRIPTION

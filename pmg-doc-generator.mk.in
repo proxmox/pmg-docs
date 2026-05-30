@@ -13,7 +13,8 @@ PMG_COMMON_DOC_SOURCES=                 \
 
 all:
 
-pmgsh.1-synopsis.adoc:
+generated/pmgsh.1-synopsis.adoc:
+	@mkdir -p generated
 	@echo 'Interactive session:' >$@.tmp
 	@echo '' >>$@.tmp
 	@echo '*pmgsh*' >>$@.tmp
@@ -23,13 +24,15 @@ pmgsh.1-synopsis.adoc:
 	@echo '*pmgsh* `(get|set|create|help)` `<path>` `[OPTIONS]`' >>$@.tmp
 	mv $@.tmp $@
 
-pmg-smtp-filter.8-synopsis.adoc:
+generated/pmg-smtp-filter.8-synopsis.adoc:
+	@mkdir -p generated
 	@echo 'Please use systemd tools to manage this service.' >$@.tmp
 	@echo '' >>$@.tmp
 	@echo '*systemctl* `(start|stop|restart|reload|status)` `pmg-smtp-filter`' >>$@.tmp
 	mv $@.tmp $@
 
-pmgpolicy.8-synopsis.adoc:
+generated/pmgpolicy.8-synopsis.adoc:
+	@mkdir -p generated
 	@echo 'Please use systemd tools to manage this service.' >$@.tmp
 	@echo '' >>$@.tmp
 	@echo '*systemctl* `(start|stop|restart|reload|status)` `pmgpolicy`' >>$@.tmp
@@ -39,23 +42,28 @@ docinfo.xml:
 	cp ${DGDIR}/$@ $@.tmp
 	mv $@.tmp $@
 
-%-opts.adoc: ${DGDIR}/gen-%-opts.pl
+generated/%-opts.adoc: ${DGDIR}/gen-%-opts.pl
+	@mkdir -p generated
 	$(PERL_DOC_ENV) perl -I. ${DGDIR}/gen-$*-opts.pl >$@.tmp
 	mv $@.tmp $@
 
-pmg.%-conf-opts.adoc: ${DGDIR}/gen-pmg.conf.5-opts.pl
+generated/pmg.%-conf-opts.adoc: ${DGDIR}/gen-pmg.conf.5-opts.pl
+	@mkdir -p generated
 	$(PERL_DOC_ENV) perl -I. ${DGDIR}/gen-pmg.conf.5-opts.pl $* >$@.tmp
 	mv $@.tmp $@
 
-%.adoc: ${DGDIR}/gen-%-adoc.pl
+generated/%.adoc: ${DGDIR}/gen-%-adoc.pl
+	@mkdir -p generated
 	$(PERL_DOC_ENV) perl -I. ${DGDIR}/gen-$*-adoc.pl >$@.tmp
 	mv $@.tmp $@
 
-%.1-synopsis.adoc:
+generated/%.1-synopsis.adoc:
+	@mkdir -p generated
 	$(PERL_DOC_ENV) perl -I. -e "use PMG::CLI::$(subst -,_,$*);print PMG::CLI::$(subst -,_,$*)->generate_asciidoc_synopsis();" > $@.tmp
 	mv $@.tmp $@
 
-%.8-synopsis.adoc:
+generated/%.8-synopsis.adoc:
+	@mkdir -p generated
 	$(PERL_DOC_ENV) perl -I. -e "use PMG::Service::$(subst -,_,$*);print PMG::Service::$(subst -,_,$*)->generate_asciidoc_synopsis();" > $@.tmp
 	mv $@.tmp $@
 
@@ -72,29 +80,30 @@ endif
 chapter-%.html: %.adoc ${PMG_COMMON_DOC_SOURCES}
 	${ASCIIDOC_PMG} compile-chapter -o $@ $*.adoc
 
-%.1: %.adoc %.1-synopsis.adoc ${PMG_COMMON_DOC_SOURCES}
+%.1: %.adoc generated/%.1-synopsis.adoc ${PMG_COMMON_DOC_SOURCES}
 	${ASCIIDOC_PMG} compile-man -o $@ $*.adoc
 
-%.1.html: %.adoc %.1-synopsis.adoc ${PMG_COMMON_DOC_SOURCES}
+%.1.html: %.adoc generated/%.1-synopsis.adoc ${PMG_COMMON_DOC_SOURCES}
 	${ASCIIDOC_PMG} compile-man-html -o $@ $*.adoc
 
-%.8: %.adoc %.8-synopsis.adoc ${PMG_COMMON_DOC_SOURCES}
+%.8: %.adoc generated/%.8-synopsis.adoc ${PMG_COMMON_DOC_SOURCES}
 	${ASCIIDOC_PMG} compile-man -o $@ $*.adoc
 
-%.8.html: %.adoc %.8-synopsis.adoc ${PMG_COMMON_DOC_SOURCES}
+%.8.html: %.adoc generated/%.8-synopsis.adoc ${PMG_COMMON_DOC_SOURCES}
 	${ASCIIDOC_PMG} compile-man-html -o $@ $*.adoc
 
-%.5: %.adoc %.5-opts.adoc ${PMG_COMMON_DOC_SOURCES}
+%.5: %.adoc generated/%.5-opts.adoc ${PMG_COMMON_DOC_SOURCES}
 	${ASCIIDOC_PMG} compile-man -o $@ $*.adoc
 
-%.5.html: %.adoc %.5-opts.adoc ${PMG_COMMON_DOC_SOURCES}
+%.5.html: %.adoc generated/%.5-opts.adoc ${PMG_COMMON_DOC_SOURCES}
 	${ASCIIDOC_PMG} compile-man-html -o $@ $*.adoc
 
-%.5-plain.html: %.adoc %.5-opts.adoc ${PMG_COMMON_DOC_SOURCES}
+%.5-plain.html: %.adoc generated/%.5-opts.adoc ${PMG_COMMON_DOC_SOURCES}
 	${ASCIIDOC_PMG} compile-man-wiki -o $@ $*.adoc
 
 
 .PHONY: cleanup-docgen
 cleanup-docgen:
 	rm -f *.xml.tmp *.1 *.5 *.8 *.adoc docinfo.xml
+	rm -rf generated
 

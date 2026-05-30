@@ -12,7 +12,7 @@ pmgtunnel - Proxmox Mail Gateway Cluster Tunnel Daemon
 SYNOPSIS
 --------
 
-include::pmgtunnel.8-synopsis.adoc[]
+include::generated/pmgtunnel.8-synopsis.adoc[]
 
 DESCRIPTION
 -----------

@@ -50,7 +50,7 @@ character are treated as comments and are also ignored.
 Options
 -------
 
-include::pmg.conf.5-opts.adoc[]
+include::generated/pmg.conf.5-opts.adoc[]
 
 
 ifdef::manvolnum[]

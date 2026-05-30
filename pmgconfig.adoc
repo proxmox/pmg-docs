@@ -13,7 +13,7 @@ pmgconfig - Proxmox Mail Gateway Configuration Management Toolkit
 SYNOPSIS
 --------
 
-include::pmgconfig.1-synopsis.adoc[]
+include::generated/pmgconfig.1-synopsis.adoc[]
 
 
 DESCRIPTION
@@ -363,7 +363,7 @@ endif::manvolnum[]
 These settings are saved to the 'admin' subsection in `/etc/pmg/pmg.conf`,
 using the following configuration keys:
 
-include::pmg.admin-conf-opts.adoc[]
+include::generated/pmg.admin-conf-opts.adoc[]
 
 
 include::pmg-ssl-certificate.adoc[]
@@ -385,7 +385,7 @@ https://www.postfix.org/postconf.5.html[postconf documentation]).
 
 They use the following configuration keys:
 
-include::pmg.mail-relaying-conf-opts.adoc[]
+include::generated/pmg.mail-relaying-conf-opts.adoc[]
 
 [[pmgconfig_mailproxy_relay_domains]]
 Relay Domains
@@ -414,7 +414,7 @@ https://www.postfix.org/postconf.5.html[postconf documentation]).
 
 They use the following configuration keys:
 
-include::pmg.mail-ports-conf-opts.adoc[]
+include::generated/pmg.mail-ports-conf-opts.adoc[]
 
 
 [[pmgconfig_mailproxy_options]]
@@ -428,7 +428,7 @@ endif::manvolnum[]
 These settings are saved to the 'mail' subsection in `/etc/pmg/pmg.conf`,
 using the following configuration keys:
 
-include::pmg.mail-options-conf-opts.adoc[]
+include::generated/pmg.mail-options-conf-opts.adoc[]
 
 
 [[pmgconfig_mailproxy_before_after_queue]]
@@ -604,7 +604,7 @@ message header.
 Those settings are saved to subsection 'mail' in `/etc/pmg/pmg.conf`,
 using the following configuration keys:
 
-include::pmg.mail-tls-conf-opts.adoc[]
+include::generated/pmg.mail-tls-conf-opts.adoc[]
 
 
 [[pmgconfig_mailproxy_dkim]]
@@ -685,7 +685,7 @@ the from header in certain situations.
 These settings are saved to the 'admin' subsection in `/etc/pmg/pmg.conf`,
 using the following configuration keys:
 
-include::pmg.admin-dkim-conf-opts.adoc[]
+include::generated/pmg.admin-dkim-conf-opts.adoc[]
 
 [[pmgconfig_mailproxy_broken_mime]]
 Handling of Messages With Broken MIME Structure
@@ -745,7 +745,7 @@ assigned. The system attempts to optimize the efficiency of the rules
 that are run in terms of minimizing the number of false positives and
 false negatives.
 
-include::pmg.spam-conf-opts.adoc[]
+include::generated/pmg.spam-conf-opts.adoc[]
 
 
 [[pmgconfig_spamdetector_quarantine]]
@@ -767,7 +767,7 @@ only sent if there are new messages in the quarantine.
 Some options are only available in the config file `/etc/pmg/pmg.conf`,
 and not in the web interface.
 
-include::pmg.spamquar-conf-opts.adoc[]
+include::generated/pmg.spamquar-conf-opts.adoc[]
 
 
 [[pmgconfig_spamdetector_customscores]]
@@ -823,7 +823,7 @@ not required to change them.
 {clamav} related settings are saved to subsection 'clamav' in `/etc/pmg/pmg.conf`,
 using the following configuration keys:
 
-include::pmg.clamav-conf-opts.adoc[]
+include::generated/pmg.clamav-conf-opts.adoc[]
 
 ifndef::manvolnum[]
 [thumbnail="screenshot/pmg-gui-clamav-database.png", big=1]
@@ -850,7 +850,7 @@ individual users about received virus mails.
 Virus quarantine related settings are saved to subsection 'virusquar'
 in `/etc/pmg/pmg.conf`, using the following configuration keys:
 
-include::pmg.virusquar-conf-opts.adoc[]
+include::generated/pmg.virusquar-conf-opts.adoc[]
 
 
 Custom SpamAssassin configuration
@@ -1114,7 +1114,7 @@ according to your configuration.
 
 The API and web interface offer the following configuration options:
 
-include::fetchmail.conf.5-opts.adoc[]
+include::generated/fetchmail.conf.5-opts.adoc[]
 
 [[user_tfa_auth]]
 Two-Factor Authentication

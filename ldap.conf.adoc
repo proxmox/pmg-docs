@@ -46,7 +46,7 @@ character are treated as comments and are also ignored.
 Options
 -------
 
-include::ldap.conf.5-opts.adoc[]
+include::generated/ldap.conf.5-opts.adoc[]
 
 
 ifdef::manvolnum[]

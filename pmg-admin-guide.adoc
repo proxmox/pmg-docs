@@ -107,37 +107,37 @@ Command-line Interface
 *pmgbackup* - Proxmox Mail Gateway Backup and Restore Utility
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-include::pmgbackup.1-synopsis.adoc[]
+include::generated/pmgbackup.1-synopsis.adoc[]
 
 
 *pmgcm* - Proxmox Mail Gateway Cluster Management Toolkit
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-include::pmgcm.1-synopsis.adoc[]
+include::generated/pmgcm.1-synopsis.adoc[]
 
 
 *pmgsh* - API Shell
 ~~~~~~~~~~~~~~~~~~~
 
-include::pmgsh.1-synopsis.adoc[]
+include::generated/pmgsh.1-synopsis.adoc[]
 
 
 *pmgperf* - Proxmox Simple Performance Benchmark
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-include::pmgperf.1-synopsis.adoc[]
+include::generated/pmgperf.1-synopsis.adoc[]
 
 
 *pmgconfig* - Configuration Management Toolkit
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-include::pmgconfig.1-synopsis.adoc[]
+include::generated/pmgconfig.1-synopsis.adoc[]
 
 
 *pmgdb* - Database Management Toolkit
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-include::pmgdb.1-synopsis.adoc[]
+include::generated/pmgdb.1-synopsis.adoc[]
 
 
 [appendix]
@@ -147,37 +147,37 @@ Service Daemons
 *pmgdaemon* - {pmg} API Daemon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-include::pmgdaemon.8-synopsis.adoc[]
+include::generated/pmgdaemon.8-synopsis.adoc[]
 
 
 *pmgproxy* - {pmg} API Proxy Daemon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-include::pmgproxy.8-synopsis.adoc[]
+include::generated/pmgproxy.8-synopsis.adoc[]
 
 
 *pmg-smtp-filter* - Proxmox SMTP Filter Daemon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-include::pmg-smtp-filter.8-synopsis.adoc[]
+include::generated/pmg-smtp-filter.8-synopsis.adoc[]
 
 
 *pmgpolicy* - {pmg} Policy Daemon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-include::pmgpolicy.8-synopsis.adoc[]
+include::generated/pmgpolicy.8-synopsis.adoc[]
 
 
 *pmgtunnel* - Cluster Tunnel Daemon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-include::pmgtunnel.8-synopsis.adoc[]
+include::generated/pmgtunnel.8-synopsis.adoc[]
 
 
 *pmgmirror* - Database Mirror Daemon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-include::pmgmirror.8-synopsis.adoc[]
+include::generated/pmgmirror.8-synopsis.adoc[]
 
 
 [appendix]

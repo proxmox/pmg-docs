@@ -12,7 +12,7 @@ pmgmirror - Proxmox Mail Gateway Database Mirror Daemon
 SYNOPSIS
 --------
 
-include::pmgmirror.8-synopsis.adoc[]
+include::generated/pmgmirror.8-synopsis.adoc[]
 
 DESCRIPTION
 -----------

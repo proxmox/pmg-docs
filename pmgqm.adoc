@@ -13,7 +13,7 @@ pmgqm - Quarantine Management Toolkit
 SYNOPSIS
 --------
 
-include::pmgqm.1-synopsis.adoc[]
+include::generated/pmgqm.1-synopsis.adoc[]
 
 
 DESCRIPTION

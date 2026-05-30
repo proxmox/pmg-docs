@@ -12,7 +12,7 @@ pmgproxy - Proxmox Mail Gateway API Proxy Daemon
 SYNOPSIS
 --------
 
-include::pmgproxy.8-synopsis.adoc[]
+include::generated/pmgproxy.8-synopsis.adoc[]
 
 DESCRIPTION
 -----------

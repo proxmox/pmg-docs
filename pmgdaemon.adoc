@@ -12,7 +12,7 @@ pmgdaemon - Proxmox Mail Gateway API Daemon
 SYNOPSIS
 --------
 
-include::pmgdaemon.8-synopsis.adoc[]
+include::generated/pmgdaemon.8-synopsis.adoc[]
 
 DESCRIPTION
 -----------

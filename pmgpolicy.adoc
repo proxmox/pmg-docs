@@ -12,7 +12,7 @@ pmgpolicy - Proxmox Mail Gateway Policy Daemon
 SYNOPSIS
 --------
 
-include::pmgpolicy.8-synopsis.adoc[]
+include::generated/pmgpolicy.8-synopsis.adoc[]
 
 DESCRIPTION
 -----------

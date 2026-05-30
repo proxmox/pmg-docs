@@ -40,7 +40,7 @@ userid:enable:expire:crypt_pass:role:email:firstname:lastname:keys:
 Options
 -------
 
-include::user.conf.5-opts.adoc[]
+include::generated/user.conf.5-opts.adoc[]
 
 
 ifdef::manvolnum[]

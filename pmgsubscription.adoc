@@ -12,7 +12,7 @@ pmgsubscription - Proxmox Mail Gateway Subscription Manager
 SYNOPSIS
 --------
 
-include::pmgsubscription.1-synopsis.adoc[]
+include::generated/pmgsubscription.1-synopsis.adoc[]
 
 DESCRIPTION
 -----------

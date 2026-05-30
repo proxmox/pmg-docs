@@ -54,7 +54,7 @@ character are treated as comments and are also ignored.
 Options
 -------
 
-include::cluster.conf.5-opts.adoc[]
+include::generated/cluster.conf.5-opts.adoc[]
 
 
 ifdef::manvolnum[]

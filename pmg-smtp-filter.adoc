@@ -12,7 +12,7 @@ pmg-smtp-filter - Proxmox SMTP Filter Daemon
 SYNOPSIS
 --------
 
-include::pmg-smtp-filter.8-synopsis.adoc[]
+include::generated/pmg-smtp-filter.8-synopsis.adoc[]
 
 DESCRIPTION
 -----------

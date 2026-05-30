@@ -23,7 +23,7 @@ verify-images: png-verify.pl
 	for i in ./images/screenshot/*.png; do ./png-verify.pl $$i || :; done
 	for i in ./images/installer/*.png; do ./png-verify.pl $$i || :; done
 
-ADOC_SOURCES_GUESS=$(filter-out %-synopsis.adoc %-opts.adoc %-table.adoc, $(wildcard *.adoc))
+ADOC_SOURCES_GUESS=$(filter-out %-table.adoc, $(wildcard *.adoc))
 .pmg-doc-depends link-refs.json: $(ADOC_SOURCES_GUESS) scan-adoc-refs
 	./scan-adoc-refs *.adoc --depends .pmg-doc-depends.tmp > link-refs.json.tmp
 	@cmp --quiet .pmg-doc-depends .pmg-doc-depends.tmp || mv .pmg-doc-depends.tmp .pmg-doc-depends
@@ -216,7 +216,7 @@ upload: $(GEN_DEB) $(DOC_DEB)
 
 .PHONY: update
 update: clean
-	find . -regex '.*-\(opts\|synopsis\)\.adoc' -exec rm -f \{\} \;
+	find generated -regex '.*-\(opts\|synopsis\)\.adoc' -exec rm -f \{\} \;
 	rm -f api-viewer/apidata.js
 	make all
 
@@ -224,7 +224,7 @@ clean:
 	find . -name '*~' -exec rm {} ';'
 	rm -rf *.html *.pdf *.epub *.tmp *.1 *.5 *.8
 	rm -f *.deb *dsc *.tar.* *.changes *.buildinfo *.build
-	rm -f api-viewer/apidoc.js chapter-*.html *-plain.html chapter-*.html pmg-admin-guide.chunked asciidoc-pmg link-refs.json .asciidoc-pmg-tmp_* pmg-smtp-filter.8-synopsis.adoc pmgpolicy.8-synopsis.adoc pmgsh.1-synopsis.adoc
+	rm -f api-viewer/apidoc.js chapter-*.html *-plain.html chapter-*.html pmg-admin-guide.chunked asciidoc-pmg link-refs.json .asciidoc-pmg-tmp_* generated/pmg-smtp-filter.8-synopsis.adoc generated/pmgpolicy.8-synopsis.adoc generated/pmgsh.1-synopsis.adoc
 	rm -rf .pmg-doc-depends 
 	rm -f pmg-doc-generator.mk chapter-index-table.adoc man1-index-table.adoc man5-index-table.adoc man8-index-table.adoc pmg-admin-guide-docinfo.xml pmg-copyright.adoc
 	rm -rf $(DEB_SOURCE)-[0-9]*
