@@ -1,6 +1,7 @@
 include /usr/share/dpkg/pkg-info.mk
 
 DGDIR=.
+GENSCRIPTDIR=./scripts
 ASCIIDOC_PMG=./asciidoc-pmg
 
 BUILDDIR ?= $(DEB_SOURCE)-$(DEB_VERSION)
@@ -19,13 +20,13 @@ SOURCE_DATE_HUMAN := $(shell date -d "@$(SOURCE_DATE_EPOCH)")
 all: index.html
 
 .PHONY: verify-images
-verify-images: png-verify.pl
-	for i in ./images/screenshot/*.png; do ./png-verify.pl $$i || :; done
-	for i in ./images/installer/*.png; do ./png-verify.pl $$i || :; done
+verify-images: scripts/png-verify.pl
+	for i in ./images/screenshot/*.png; do ./scripts/png-verify.pl $$i || :; done
+	for i in ./images/installer/*.png; do ./scripts/png-verify.pl $$i || :; done
 
 ADOC_SOURCES_GUESS=$(filter-out %-table.adoc, $(wildcard *.adoc))
-.pmg-doc-depends link-refs.json: $(ADOC_SOURCES_GUESS) scan-adoc-refs
-	./scan-adoc-refs *.adoc --depends .pmg-doc-depends.tmp > link-refs.json.tmp
+.pmg-doc-depends link-refs.json: $(ADOC_SOURCES_GUESS) scripts/scan-adoc-refs
+	./scripts/scan-adoc-refs *.adoc --depends .pmg-doc-depends.tmp > link-refs.json.tmp
 	@cmp --quiet .pmg-doc-depends .pmg-doc-depends.tmp || mv .pmg-doc-depends.tmp .pmg-doc-depends
 	@cmp --quiet link-refs.json link-refs.json.tmp || mv link-refs.json.tmp link-refs.json
 
@@ -42,11 +43,11 @@ GEN_DEB_SOURCES=				\
 	docinfo.xml
 
 GEN_SCRIPTS=					\
-	gen-cluster.conf.5-opts.pl		\
-	gen-fetchmail.conf.5-opts.pl		\
-	gen-ldap.conf.5-opts.pl			\
-	gen-pmg.conf.5-opts.pl			\
-	gen-user.conf.5-opts.pl
+	scripts/gen-cluster.conf.5-opts.pl	\
+	scripts/gen-fetchmail.conf.5-opts.pl	\
+	scripts/gen-ldap.conf.5-opts.pl		\
+	scripts/gen-pmg.conf.5-opts.pl		\
+	scripts/gen-user.conf.5-opts.pl
 
 API_VIEWER_FILES=							\
 	api-viewer/apidata.js						\
@@ -57,8 +58,8 @@ API_VIEWER_SOURCES=				\
 	api-viewer/index.html			\
 	api-viewer/apidoc.js
 
-asciidoc-pmg: asciidoc-pmg.in link-refs.json
-	cat asciidoc-pmg.in link-refs.json >asciidoc-pmg.tmp
+asciidoc-pmg: scripts/asciidoc-pmg.in link-refs.json
+	cat scripts/asciidoc-pmg.in link-refs.json >asciidoc-pmg.tmp
 	sed -e s/@RELEASE@/$(DOCRELEASE)/ -i asciidoc-pmg.tmp
 	chmod +x asciidoc-pmg.tmp
 	mv asciidoc-pmg.tmp asciidoc-pmg
@@ -136,8 +137,8 @@ pmg-admin-guide.epub: $(PMG_ADMIN_GUIDE_ADOCDEPENDS)
 	a2x -D $@.tmp -f epub --asciidoc-opts="$(PMG_DOCBOOK_CONF)" pmg-admin-guide.adoc
 	mv $@.tmp/$@ $@
 
-api-viewer/apidata.js: extractapi.pl
-	./extractapi.pl >$@
+api-viewer/apidata.js: scripts/extractapi.pl
+	./scripts/extractapi.pl >$@
 
 api-viewer/apidoc.js: $(API_VIEWER_FILES)
 	cat $(API_VIEWER_FILES) >$@.tmp

@@ -28,7 +28,7 @@ my $tmpprefix = '.asciidoc-pmg-tmp' . $$ . '_';
 my $adoc_source_dir = "/usr/share/pmg-doc-generator";
 
 # inside pmg-docs source dir?
-if (-f "asciidoc-pmg.in" && -f "pmg-admin-guide.adoc") {
+if (-f "scripts/asciidoc-pmg.in" && -f "pmg-admin-guide.adoc") {
     $adoc_source_dir = getcwd();
 }
 

@@ -1,6 +1,7 @@
 DOCRELEASE=@RELEASE@
 
 DGDIR?=/usr/share/pmg-doc-generator
+GENSCRIPTDIR?=${DGDIR}
 
 ASCIIDOC_PMG?=/usr/bin/asciidoc-pmg
 
@@ -42,19 +43,19 @@ docinfo.xml:
 	cp ${DGDIR}/$@ $@.tmp
 	mv $@.tmp $@
 
-generated/%-opts.adoc: ${DGDIR}/gen-%-opts.pl
+generated/%-opts.adoc: ${GENSCRIPTDIR}/gen-%-opts.pl
 	@mkdir -p generated
-	$(PERL_DOC_ENV) perl -I. ${DGDIR}/gen-$*-opts.pl >$@.tmp
+	$(PERL_DOC_ENV) perl -I. ${GENSCRIPTDIR}/gen-$*-opts.pl >$@.tmp
 	mv $@.tmp $@
 
-generated/pmg.%-conf-opts.adoc: ${DGDIR}/gen-pmg.conf.5-opts.pl
+generated/pmg.%-conf-opts.adoc: ${GENSCRIPTDIR}/gen-pmg.conf.5-opts.pl
 	@mkdir -p generated
-	$(PERL_DOC_ENV) perl -I. ${DGDIR}/gen-pmg.conf.5-opts.pl $* >$@.tmp
+	$(PERL_DOC_ENV) perl -I. ${GENSCRIPTDIR}/gen-pmg.conf.5-opts.pl $* >$@.tmp
 	mv $@.tmp $@
 
-generated/%.adoc: ${DGDIR}/gen-%-adoc.pl
+generated/%.adoc: ${GENSCRIPTDIR}/gen-%-adoc.pl
 	@mkdir -p generated
-	$(PERL_DOC_ENV) perl -I. ${DGDIR}/gen-$*-adoc.pl >$@.tmp
+	$(PERL_DOC_ENV) perl -I. ${GENSCRIPTDIR}/gen-$*-adoc.pl >$@.tmp
 	mv $@.tmp $@
 
 generated/%.1-synopsis.adoc:
