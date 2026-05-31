@@ -601,7 +601,7 @@ of this file, as keys for new Proxmox releases get added or removed. This is
 intended, `apt` will ensure that only trusted keys are being used.
 *Modifying this file is discouraged once `proxmox-archive-keyring` is installed.*
 
-Verify the checksum afterwards with the `sha512sum` CLI tool:
+Verify the checksum afterwards with the `sha256sum` CLI tool:
 
 ----
 # sha256sum /usr/share/keyrings/proxmox-archive-keyring.gpg
