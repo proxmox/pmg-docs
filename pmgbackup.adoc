@@ -54,7 +54,7 @@ backup finished
 
 Local backups are stored inside directory `/var/lib/pmg/backup/`. It is
 usually best to mount a remote file system to that directory, so that
-the resulting backups gets stored remotely.
+the resulting backups get stored remotely.
 
 You can list the contents of that directory with:
 

@@ -59,8 +59,8 @@ to 5.2, can be done just like any normal update. But you should still check the
 https://pmg.proxmox.com/wiki/index.php/Roadmap[release notes] for any relevant
 notable, or breaking change.
 +
-For the update itself use either through the __Node -> Updates__ panel or
-through the command line with:
+For the update itself use either the __Node -> Updates__ panel or
+the command line with:
 +
 ----
 apt update

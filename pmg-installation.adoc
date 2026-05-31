@@ -332,7 +332,7 @@ Adding the `nomodeset` Kernel Parameter
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Problems may arise on very old or very new hardware due to graphics drivers. If
-the installation hangs during the boot. In that case, you can try adding the
+the installation hangs during the boot, you can try adding the
 `nomodeset` parameter. This prevents the Linux kernel from loading any
 graphics drivers and forces it to continue using the BIOS/UEFI-provided
 framebuffer.

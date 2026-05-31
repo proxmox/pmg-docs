@@ -34,7 +34,7 @@ The file `/etc/pmg/pmg.conf` is the main configuration.
 File Format
 -----------
 
-The file is divided into several section. Each section has
+The file is divided into several sections. Each section has
 the following format:
 
 ----
@@ -43,7 +43,7 @@ section: NAME
 	 ...
 ----
 
-Blank lines in the file separates sections, and lines starting with a `#`
+Blank lines in the file separate sections, and lines starting with a `#`
 character are treated as comments and are also ignored.
 
 

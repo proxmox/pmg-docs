@@ -46,7 +46,7 @@ systemctl edit pmgspamreport.timer
 
 Note that adding another `OnCalendar` event will cause the report to be sent in
 addition to the default time. If you want to prevent the default email at
-00:05, you must first reset the original `OnCalendar` setting, For example, to
+00:05, you must first reset the original `OnCalendar` setting. For example, to
 send the emails *only* at 06:00 you would enter the following lines when
 editing the timer unit:
 

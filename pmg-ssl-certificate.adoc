@@ -32,7 +32,7 @@ Certificate Authority (CA)).
 automatic renewal; this is also integrated in the {pmg} API and web interface.
 
 Certificates are managed through the {pmg} web-interface/API or using the
-the `pmgconfig` CLI tool.
+`pmgconfig` CLI tool.
 
 [[sysadmin_certs_upload_custom]]
 Upload Custom Certificate

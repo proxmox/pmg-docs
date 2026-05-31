@@ -66,7 +66,7 @@ The `Virus Charts` panel gives you an overview of how many virus files were
 tried to be transmitted through your mail infrastructure, but got caught early
 by the {pmg}.
 
-The list shows which and how often a certain viruses were detected in the
+The list shows which and how often certain viruses were detected in the
 selected time period.
 
 See xref:pmgconfig_clamav[Virus Detector Configuration] for details about how

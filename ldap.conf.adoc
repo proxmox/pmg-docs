@@ -39,7 +39,7 @@ ldap: NAME
 	 ...
 ----
 
-Blank lines in the file separates sections, and lines starting with a `#`
+Blank lines in the file separate sections, and lines starting with a `#`
 character are treated as comments and are also ignored.
 
 

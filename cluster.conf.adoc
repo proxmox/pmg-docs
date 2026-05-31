@@ -34,7 +34,7 @@ The file `/etc/pmg/cluster.conf` contains the cluster configuration.
 File Format
 -----------
 
-The file is divided into several section. There is one 'master' and
+The file is divided into several sections. There is one 'master' and
 several 'node' sections.
 
 ----
@@ -47,7 +47,7 @@ node: <cid>
 	 ...
 ----
 
-Blank lines in the file separates sections, and lines starting with a `#`
+Blank lines in the file separate sections, and lines starting with a `#`
 character are treated as comments and are also ignored.
 
 
