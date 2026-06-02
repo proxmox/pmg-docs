@@ -7,6 +7,17 @@ status of services, and managing mail queues. It also provides server
 statistics, in order to verify server health.
 
 
+Dashboard
+---------
+
+[thumbnail="screenshot/pmg-gui-dashboard.png", big=1]
+
+The Dashboard is the landing page of the web interface. It provides a quick
+overview of the system: recent mail volume and processing statistics, the
+subscription status, node resource usage, the top receivers and top senders
+by mail volume, and the average resource usage across all cluster nodes.
+
+
 Server Administration
 ---------------------
 
