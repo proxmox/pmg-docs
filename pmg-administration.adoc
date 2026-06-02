@@ -108,6 +108,10 @@ A mail can also be marked as seen without delivering or deleting it. This is
 useful for shared mailboxes, where it lets reviewers keep track of which
 quarantined mails were already handled.
 
+The 'Score' column shows the total spam score of each mail together with the
+sums of its positive and negative test scores. This helps to judge borderline
+mails, where a few strong negative scores can mask many positive test hits.
+
 Users can access their personalized quarantine via the daily spam report or by
 navigating to the URL configured for the quarantine (defaults to
 `https://<pmg-host>:8006/quarantine`) and logging in with their LDAP credentials
