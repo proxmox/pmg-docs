@@ -187,6 +187,9 @@ specific text string in the logs ('Filter' entry).
 
 NOTE: Search is faster if you use a shorter time interval.
 
+A search returns at most 2000 entries by default. For queries over large time
+ranges, the 'Result Limit' field can raise that cap, up to 100000 entries.
+
 The 'Status' field summarizes what happened with an email. {pmg} is a
 mail proxy, meaning that the proxy receives mails from outside,
 processes them and finally sends the result to the receiver.
