@@ -86,6 +86,17 @@ The email preview on the web interface is very secure, as malicious
 code (attacking your operating system or email client) is removed by
 {pmg}.
 
+How externally hosted images are handled in the preview is configurable. With
+the `on-demand` image mode, the preview shows only embedded images and offers a
+'Load Images' button to fetch external ones on request, so that opening a mail
+does not signal back to the sender that it was read. See the
+xref:pmgconfig_spamdetector_quarantine[quarantine configuration] for the image
+and hyperlink viewing modes.
+
+A mail can also be marked as seen without delivering or deleting it. This is
+useful for shared mailboxes, where it lets reviewers keep track of which
+quarantined mails were already handled.
+
 Users can access their personalized quarantine via the daily spam report or by
 navigating to the URL configured for the quarantine (defaults to
 `https://<pmg-host>:8006/quarantine`) and logging in with their LDAP credentials

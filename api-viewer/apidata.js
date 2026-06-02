@@ -8693,9 +8693,9 @@ var apiSchema = [
                            "additionalProperties" : 0,
                            "properties" : {
                               "fingerprint" : {
-                                 "description" : "SSL certificate fingerprint.",
+                                 "description" : "Certificate SHA 256 fingerprint.",
                                  "optional" : 0,
-                                 "pattern" : "^(:?[A-Z0-9][A-Z0-9]:){31}[A-Z0-9][A-Z0-9]$",
+                                 "pattern" : "([A-Fa-f0-9]{2}:){31}[A-Fa-f0-9]{2}",
                                  "type" : "string"
                               },
                               "hostrsapubkey" : {
@@ -8843,6 +8843,45 @@ var apiSchema = [
                },
                {
                   "info" : {
+                     "GET" : {
+                        "allowtoken" : 1,
+                        "description" : "Return the information needed to join an existing cluster, namely the master node's address and certificate fingerprint. The new node passes this to its join call, typically base64-encoded to pre-fill the join dialog.",
+                        "method" : "GET",
+                        "name" : "join_info",
+                        "parameters" : {
+                           "additionalProperties" : 0
+                        },
+                        "permissions" : {
+                           "check" : [
+                              "admin",
+                              "audit"
+                           ]
+                        },
+                        "returns" : {
+                           "additionalProperties" : 0,
+                           "properties" : {
+                              "fingerprint" : {
+                                 "description" : "SSL certificate fingerprint of the cluster's master node.",
+                                 "pattern" : "([A-Fa-f0-9]{2}:){31}[A-Fa-f0-9]{2}",
+                                 "type" : "string"
+                              },
+                              "ip" : {
+                                 "description" : "IP address of the cluster's master node to connect to when joining.",
+                                 "format" : "ip",
+                                 "type" : "string"
+                              },
+                              "product" : {
+                                 "description" : "Product identifier of the cluster, to guard against joining the wrong product.",
+                                 "type" : "string"
+                              },
+                              "version" : {
+                                 "description" : "The cluster's release as major.minor version, to detect version mismatches between the joining node and the cluster.",
+                                 "type" : "string"
+                              }
+                           },
+                           "type" : "object"
+                        }
+                     },
                      "POST" : {
                         "allowtoken" : 1,
                         "description" : "Join local node to an existing cluster.",
@@ -8852,8 +8891,8 @@ var apiSchema = [
                            "additionalProperties" : 0,
                            "properties" : {
                               "fingerprint" : {
-                                 "description" : "SSL certificate fingerprint.",
-                                 "pattern" : "^(:?[A-Z0-9][A-Z0-9]:){31}[A-Z0-9][A-Z0-9]$",
+                                 "description" : "Certificate SHA 256 fingerprint.",
+                                 "pattern" : "([A-Fa-f0-9]{2}:){31}[A-Fa-f0-9]{2}",
                                  "type" : "string"
                               },
                               "master_ip" : {
@@ -10531,6 +10570,7 @@ var apiSchema = [
                                           "he",
                                           "he_ddns",
                                           "hetzner",
+                                          "hetznercloud",
                                           "hexonet",
                                           "hostingde",
                                           "huaweicloud",
@@ -10585,6 +10625,7 @@ var apiSchema = [
                                           "one",
                                           "online",
                                           "openprovider",
+                                          "openprovider_rest",
                                           "openstack",
                                           "opnsense",
                                           "ovh",
@@ -10603,6 +10644,7 @@ var apiSchema = [
                                           "selfhost",
                                           "servercow",
                                           "simply",
+                                          "spaceship",
                                           "technitium",
                                           "tele3",
                                           "tencent",
@@ -10817,6 +10859,7 @@ var apiSchema = [
                                     "he",
                                     "he_ddns",
                                     "hetzner",
+                                    "hetznercloud",
                                     "hexonet",
                                     "hostingde",
                                     "huaweicloud",
@@ -10871,6 +10914,7 @@ var apiSchema = [
                                     "one",
                                     "online",
                                     "openprovider",
+                                    "openprovider_rest",
                                     "openstack",
                                     "opnsense",
                                     "ovh",
@@ -10889,6 +10933,7 @@ var apiSchema = [
                                     "selfhost",
                                     "servercow",
                                     "simply",
+                                    "spaceship",
                                     "technitium",
                                     "tele3",
                                     "tencent",
@@ -12025,7 +12070,7 @@ var apiSchema = [
                            "typetext" : "<integer> (1 - 65535)"
                         },
                         "max_filters" : {
-                           "default" : 25,
+                           "default" : 38,
                            "description" : "Maximum number of pmg-smtp-filter processes.",
                            "maximum" : 40,
                            "minimum" : 3,
@@ -12468,11 +12513,15 @@ var apiSchema = [
                            "type" : "string"
                         },
                         "viewimages" : {
-                           "default" : 1,
-                           "description" : "Allow to view images.",
+                           "default" : "1",
+                           "description" : "Control how images in quarantined mails are displayed. '1' shows all images, including externally hosted ones; '0' hides all images; 'on-demand' shows only embedded images and lets the user load externally hosted ones manually (avoids leaking that a mail was opened).",
+                           "enum" : [
+                              "0",
+                              "1",
+                              "on-demand"
+                           ],
                            "optional" : 1,
-                           "type" : "boolean",
-                           "typetext" : "<boolean>"
+                           "type" : "string"
                         }
                      },
                      "type" : "object"
@@ -12553,11 +12602,15 @@ var apiSchema = [
                            "typetext" : "<integer> (1 - N)"
                         },
                         "viewimages" : {
-                           "default" : 1,
-                           "description" : "Allow to view images.",
+                           "default" : "1",
+                           "description" : "Control how images in quarantined mails are displayed. '1' shows all images, including externally hosted ones; '0' hides all images; 'on-demand' shows only embedded images and lets the user load externally hosted ones manually (avoids leaking that a mail was opened).",
+                           "enum" : [
+                              "0",
+                              "1",
+                              "on-demand"
+                           ],
                            "optional" : 1,
-                           "type" : "boolean",
-                           "typetext" : "<boolean>"
+                           "type" : "string"
                         }
                      },
                      "type" : "object"
@@ -15660,6 +15713,15 @@ var apiSchema = [
                                  "type" : "boolean",
                                  "typetext" : "<boolean>"
                               },
+                              "limit" : {
+                                 "default" : 2000,
+                                 "description" : "The maximum number of entries to return. Use '0' for no limit, but be aware that this can take a long time and use a lot of memory.",
+                                 "maximum" : 100000,
+                                 "minimum" : 0,
+                                 "optional" : 1,
+                                 "type" : "integer",
+                                 "typetext" : "<integer> (0 - 100000)"
+                              },
                               "ndr" : {
                                  "default" : 0,
                                  "description" : "Include NDRs (non delivery reports).",
@@ -17709,7 +17771,7 @@ var apiSchema = [
                   "info" : {
                      "GET" : {
                         "allowtoken" : 1,
-                        "description" : "Opens a weksocket for VNC traffic.",
+                        "description" : "Opens a websocket for VNC traffic.",
                         "method" : "GET",
                         "name" : "vncwebsocket",
                         "parameters" : {
@@ -17722,14 +17784,14 @@ var apiSchema = [
                                  "typetext" : "<string>"
                               },
                               "port" : {
-                                 "description" : "Port number returned by previous vncproxy call.",
+                                 "description" : "Port number returned by previous termproxy call.",
                                  "maximum" : 5999,
                                  "minimum" : 5900,
                                  "type" : "integer",
                                  "typetext" : "<integer> (5900 - 5999)"
                               },
                               "vncticket" : {
-                                 "description" : "Ticket from previous call to vncproxy.",
+                                 "description" : "Ticket from previous call to termproxy.",
                                  "maxLength" : 512,
                                  "type" : "string",
                                  "typetext" : "<string>"
@@ -19501,7 +19563,7 @@ var apiSchema = [
             "info" : {
                "GET" : {
                   "allowtoken" : 1,
-                  "description" : "Dummy. Useful for formatters which want to priovde a login page.",
+                  "description" : "Dummy. Useful for formatters which want to provide a login page.",
                   "method" : "GET",
                   "name" : "get_ticket",
                   "parameters" : {
@@ -19563,7 +19625,7 @@ var apiSchema = [
                      }
                   },
                   "permissions" : {
-                     "description" : "You need to pass valid credientials.",
+                     "description" : "You need to pass valid credentials.",
                      "user" : "world"
                   },
                   "protected" : 1,
@@ -19599,7 +19661,7 @@ var apiSchema = [
                   "allowtoken" : 1,
                   "description" : "Change user password.",
                   "method" : "PUT",
-                  "name" : "change_passsword",
+                  "name" : "change_password",
                   "parameters" : {
                      "additionalProperties" : 0,
                      "properties" : {
@@ -19633,6 +19695,55 @@ var apiSchema = [
             "leaf" : 1,
             "path" : "/access/password",
             "text" : "password"
+         },
+         {
+            "info" : {
+               "POST" : {
+                  "allowtoken" : 1,
+                  "description" : "verify VNC authentication ticket.",
+                  "method" : "POST",
+                  "name" : "verify_vnc_ticket",
+                  "parameters" : {
+                     "additionalProperties" : 0,
+                     "properties" : {
+                        "authid" : {
+                           "description" : "User ID.",
+                           "maxLength" : 64,
+                           "type" : "string",
+                           "typetext" : "<string>"
+                        },
+                        "path" : {
+                           "description" : "Verify ticket, and check that it was created for this 'path'.",
+                           "maxLength" : 64,
+                           "type" : "string",
+                           "typetext" : "<string>"
+                        },
+                        "port" : {
+                           "description" : "Verify that the ticket is valid for this port.",
+                           "optional" : 1,
+                           "type" : "integer",
+                           "typetext" : "<integer>"
+                        },
+                        "vncticket" : {
+                           "description" : "The VNC ticket.",
+                           "type" : "string",
+                           "typetext" : "<string>"
+                        }
+                     }
+                  },
+                  "permissions" : {
+                     "description" : "You need to pass valid credentials.",
+                     "user" : "world"
+                  },
+                  "protected" : 1,
+                  "returns" : {
+                     "type" : "null"
+                  }
+               }
+            },
+            "leaf" : 1,
+            "path" : "/access/vncticket",
+            "text" : "vncticket"
          }
       ],
       "info" : {
@@ -20377,6 +20488,11 @@ var apiSchema = [
                               "description" : "Receiver email address",
                               "type" : "string"
                            },
+                           "seen" : {
+                              "description" : "Whether the mail was marked as seen.",
+                              "optional" : 1,
+                              "type" : "boolean"
+                           },
                            "sender" : {
                               "description" : "Header 'Sender' field.",
                               "optional" : 1,
@@ -20384,6 +20500,16 @@ var apiSchema = [
                            },
                            "spamlevel" : {
                               "description" : "Spam score.",
+                              "type" : "number"
+                           },
+                           "spamlevel_negative" : {
+                              "description" : "Sum of all negative spam test scores.",
+                              "optional" : 1,
+                              "type" : "number"
+                           },
+                           "spamlevel_positive" : {
+                              "description" : "Sum of all positive spam test scores.",
+                              "optional" : 1,
                               "type" : "number"
                            },
                            "subject" : {
@@ -20641,6 +20767,13 @@ var apiSchema = [
                            "pattern" : "C\\d+R\\d+T\\d+",
                            "type" : "string"
                         },
+                        "images" : {
+                           "default" : 0,
+                           "description" : "Load all images, including externally hosted ones. Only has an effect when the configured 'viewimages' mode is 'on-demand'; used by the 'htmlmail' formatter to load external images on user request.",
+                           "optional" : 1,
+                           "type" : "boolean",
+                           "typetext" : "<boolean>"
+                        },
                         "raw" : {
                            "default" : 0,
                            "description" : "Display 'raw' eml data. Deactivates size limit.",
@@ -20672,6 +20805,11 @@ var apiSchema = [
                            "description" : "SMTP envelope sender.",
                            "type" : "string"
                         },
+                        "external_images" : {
+                           "description" : "Whether the mail references external images that the 'on-demand' image mode blocks. Only set in that mode, so the UI can show the 'Load Images' control just when it would actually fetch something.",
+                           "optional" : 1,
+                           "type" : "boolean"
+                        },
                         "from" : {
                            "description" : "Header 'From' field.",
                            "type" : "string"
@@ -20688,6 +20826,11 @@ var apiSchema = [
                            "description" : "Receiver email address",
                            "type" : "string"
                         },
+                        "seen" : {
+                           "description" : "Whether the mail was marked as seen.",
+                           "optional" : 1,
+                           "type" : "boolean"
+                        },
                         "sender" : {
                            "description" : "Header 'Sender' field.",
                            "optional" : 1,
@@ -20699,6 +20842,16 @@ var apiSchema = [
                         },
                         "spamlevel" : {
                            "description" : "Spam score.",
+                           "type" : "number"
+                        },
+                        "spamlevel_negative" : {
+                           "description" : "Sum of all negative spam test scores.",
+                           "optional" : 1,
+                           "type" : "number"
+                        },
+                        "spamlevel_positive" : {
+                           "description" : "Sum of all positive spam test scores.",
+                           "optional" : 1,
                            "type" : "number"
                         },
                         "subject" : {
@@ -20729,7 +20882,9 @@ var apiSchema = [
                               "whitelist",
                               "blacklist",
                               "deliver",
-                              "delete"
+                              "delete",
+                              "mark-seen",
+                              "mark-unseen"
                            ],
                            "type" : "string"
                         },
@@ -21793,6 +21948,65 @@ var apiSchema = [
             "leaf" : 1,
             "path" : "/statistics/recentreceivers",
             "text" : "recentreceivers"
+         },
+         {
+            "info" : {
+               "GET" : {
+                  "allowtoken" : 1,
+                  "description" : "Top recent Mail Senders (including spam)",
+                  "method" : "GET",
+                  "name" : "recentsenders",
+                  "parameters" : {
+                     "additionalProperties" : 0,
+                     "properties" : {
+                        "hours" : {
+                           "default" : 12,
+                           "description" : "How many hours you want to get",
+                           "maximum" : 24,
+                           "minimum" : 1,
+                           "optional" : 1,
+                           "type" : "integer",
+                           "typetext" : "<integer> (1 - 24)"
+                        },
+                        "limit" : {
+                           "default" : 5,
+                           "description" : "The maximum number of senders to return.",
+                           "maximum" : 50,
+                           "minimum" : 1,
+                           "optional" : 1,
+                           "type" : "integer",
+                           "typetext" : "<integer> (1 - 50)"
+                        }
+                     }
+                  },
+                  "permissions" : {
+                     "check" : [
+                        "admin",
+                        "qmanager",
+                        "audit"
+                     ]
+                  },
+                  "returns" : {
+                     "items" : {
+                        "properties" : {
+                           "count" : {
+                              "description" : "The count of incoming E-Mails (including blocked ones)",
+                              "type" : "integer"
+                           },
+                           "sender" : {
+                              "description" : "The sender",
+                              "type" : "string"
+                           }
+                        },
+                        "type" : "object"
+                     },
+                     "type" : "array"
+                  }
+               }
+            },
+            "leaf" : 1,
+            "path" : "/statistics/recentsenders",
+            "text" : "recentsenders"
          },
          {
             "info" : {

@@ -168,7 +168,7 @@ Hide received header in outgoing mails.
 
 SMTP port number for outgoing mail (trusted).
 
-`max_filters`: `<integer> (3 - 40)` ('default =' `25`)::
+`max_filters`: `<integer> (3 - 40)` ('default =' `38`)::
 
 Maximum number of pmg-smtp-filter processes.
 
@@ -332,9 +332,9 @@ Enables user self-service for Quarantine Links. Caution: this is accessible with
 
 Spam report style.
 
-`viewimages`: `<boolean>` ('default =' `1`)::
+`viewimages`: `<0 | 1 | on-demand>` ('default =' `1`)::
 
-Allow to view images.
+Control how images in quarantined mails are displayed. '1' shows all images, including externally hosted ones; '0' hides all images; 'on-demand' shows only embedded images and lets the user load externally hosted ones manually (avoids leaking that a mail was opened).
 
 .Section 'virusquar'
 
@@ -346,7 +346,7 @@ Allow to view hyperlinks. When disabled hyperlinks will be displayed as plain-te
 
 Quarantine life time (days)
 
-`viewimages`: `<boolean>` ('default =' `1`)::
+`viewimages`: `<0 | 1 | on-demand>` ('default =' `1`)::
 
-Allow to view images.
+Control how images in quarantined mails are displayed. '1' shows all images, including externally hosted ones; '0' hides all images; 'on-demand' shows only embedded images and lets the user load externally hosted ones manually (avoids leaking that a mail was opened).
 
