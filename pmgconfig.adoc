@@ -431,6 +431,22 @@ using the following configuration keys:
 include::generated/pmg.mail-options-conf-opts.adoc[]
 
 
+[[pmgconfig_mailproxy_log_headers]]
+Logging Mail Header Information
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For auditing and troubleshooting, you can enable the `log-headers` option in the
+mail proxy settings. {pmg} then logs the envelope sender and recipient together
+with the decoded `From`, `To`, and `Subject` headers of each processed mail to
+the mail log, in addition to the queue and rule information that is always
+logged.
+
+NOTE: The logged headers can contain personal data, such as mail subjects and
+sender or recipient addresses. Make sure that logging this information, and
+keeping it in the system logs, is compatible with your data-protection
+obligations before you enable this option. It is disabled by default.
+
+
 [[pmgconfig_mailproxy_before_after_queue]]
 Before and After Queue scanning
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

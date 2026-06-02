@@ -45,6 +45,7 @@ my $key_groups = {
 	    smtputf8 => 1,
 	    'filter-timeout' => 1,
 	    'accept-broken-mime' => 1,
+	    'log-headers' => 1,
 	}],
     'mail-tls' => [
 	'mail' , {
