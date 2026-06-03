@@ -256,10 +256,16 @@ the master.
 pmgcm join <master_ip>
 ----
 
-You need to enter the root password of the master host, when asked for
-a password. When joining a cluster using the GUI, you also need to
-enter the 'fingerprint' of the master node. You can get this information
-by pressing the `Add` button on the master node.
+You need to enter the root password of the master host, when asked for a
+password. When joining a cluster using the GUI, press the `Add` button on the
+master node to display its join information, copy that text, and paste it into
+the `Join` dialog on the new node. The dialog decodes the join information and
+fills in the master address and fingerprint automatically. You can still enter
+the address and fingerprint manually instead.
+
+NOTE: The join information records the product and release of the master. The
+`Join` dialog rejects join information from a different product and warns you if
+the releases differ.
 
 NOTE: Joining a cluster with two-factor authentication enabled for the `root`
 user is not supported. Remove the second factor when joining the cluster.
