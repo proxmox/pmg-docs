@@ -15,6 +15,13 @@ of July would be possible with the following command:
 pmg-log-tracker -i /var/log/mail.log -s "2021-07-01 00:00:00" -e "2021-07-15 23:59:59"
 ----
 
+To scan a whole rotated log series instead of a single file, use the
+`--input-base` option. For example, `--input-base /var/log/mail.log` parses
+`/var/log/mail.log`, `/var/log/mail.log.1`, `/var/log/mail.log.2.gz`, and so on.
+Prefer this over `-i` when the system logs mail events to a dedicated file and
+you want to cover rotated logs as well. Compression is detected per file, so
+custom logrotate compression settings are handled.
+
 Start time `-s` and end time `-e` are optional. By default the end time will be
 the current time and the start time will be 0:00 of the current day.
 
@@ -24,6 +31,9 @@ complete log for every mail.
 It is also possible to filter the log entries based on hostname, from address,
 to address, and other parameters. For a complete overview of all available
 options, see `pmg-log-tracker --help`.
+
+Postfix long queue IDs, as generated when the postfix option
+`enable_long_queue_ids` is set, are supported.
 
 As a side effect of parsing the syslog, which doesn't contain information about
 the year of the entries, the year passed to the `-s` and `-e` options has to
