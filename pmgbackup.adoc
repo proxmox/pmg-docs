@@ -136,7 +136,7 @@ You can also encrypt backups, by autogenerating or providing an encryption key
 for a Proxmox Backup Server remote.
 
 NOTE: Keep a copy of the symmetric encryption key in a secure place, or print
-it out. Without the encryption key will not be able to restore an encrypted
+it out. Without the encryption key you will not be able to restore an encrypted
 backup. Alternatively, you can add a master public key to a remote's
 configuration, so that a copy of the symmetric encryption key, encrypted with
 the master key, is stored in each backup.
@@ -147,6 +147,13 @@ the master key, is stored in each backup.
 Enter new password: ******
 Retype new password: ******
 ----
+
+The encryption key is stored at `/etc/pmg/pbs/<remote>.enc` and, in a cluster,
+is synchronized to all nodes together with the other remote settings. Each
+backup snapshot is encrypted with the key that was active when it was created,
+so replacing or removing a remote's key makes the snapshots created with the
+previous key unrecoverable. Only change the key when you no longer need to
+restore older backups.
 
 Additionally, you can configure `prune-settings` for each remote, giving you
 flexible control over how many backups should be stored on the Proxmox Backup
