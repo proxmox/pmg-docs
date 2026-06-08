@@ -351,6 +351,13 @@ so they simply will not work if you use a public DNS server (because
 they are usually blocked). We recommend to use your own DNS server,
 which needs to be configured in 'recursive' mode.
 
+[[gui_consent_banner]]
+.Consent Banner
+
+A custom consent banner that has to be accepted before login can be configured
+in __Configuration -> Options -> Consent Text__. If there is no content, the
+consent banner will not be displayed. The text will be stored as a base64
+string in the `admin` section of `/etc/pmg/pmg.conf`.
 
 Options
 ~~~~~~~
