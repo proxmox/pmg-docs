@@ -46,6 +46,7 @@ my $key_groups = {
 	    'filter-timeout' => 1,
 	    'accept-broken-mime' => 1,
 	    'log-headers' => 1,
+	    'queue-lifetime' => 1,
 	}],
     'mail-tls' => [
 	'mail' , {
