@@ -1,3 +1,19 @@
+pmg-docs (9.0.7) trixie; urgency=medium
+
+  * fix #4941: pmgconfig: document the optional logging of mail header
+    information.
+
+  * fix #3946: pmgconfig: document the configurable maximal queue lifetime.
+
+  * fix #3226: pmgbackup: document client-side encryption of backups to a
+    Proxmox Backup Server, including key management.
+
+  * pmgconfig: document the consent banner shown before login.
+
+  * update static API schema info and synopsis.
+
+ -- Proxmox Support Team <support@proxmox.com>  Mon, 08 Jun 2026 10:34:00 +0200
+
 pmg-docs (9.0.6) trixie; urgency=medium
 
   * config: document behavior of new 'accept-broken-mime' option.
