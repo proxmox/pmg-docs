@@ -58,6 +58,10 @@ Use SMTP HELO tests. (postfix option `smtpd_helo_restrictions`)
 
 Hide received header in outgoing mails.
 
+`log-headers`: `<boolean>` ('default =' `0`)::
+
+Log the envelope sender and recipient together with the decoded From, To, and Subject headers of each processed mail to the mail log. This eases auditing and tracing, but writes potentially personal data, such as mail subjects and addresses, to the host log. Make sure this is compatible with your data-protection obligations before enabling it.
+
 `maxsize`: `<integer> (1024 - N)` ('default =' `10485760`)::
 
 Maximum email size. Larger mails are rejected. (postfix option `message_size_limit`)
@@ -69,6 +73,10 @@ The maximal number of message delivery requests that any client is allowed to ma
 `ndr_on_block`: `<boolean>` ('default =' `0`)::
 
 Send out NDR when mail gets blocked
+
+`queue-lifetime`: `<integer> (1 - 100)` ::
+
+Maximum time (in days) a deferred message is kept in the queue before it is returned to the sender as undeliverable. Also applies to bounce (notification) messages. (postfix options `maximal_queue_lifetime` and `bounce_queue_lifetime`)
 
 `rejectunknown`: `<boolean>` ('default =' `0`)::
 

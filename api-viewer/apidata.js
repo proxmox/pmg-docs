@@ -10004,6 +10004,12 @@ var apiSchema = [
                                  "type" : "boolean",
                                  "typetext" : "<boolean>"
                               },
+                              "encryption-key" : {
+                                 "description" : "Encryption key. Use 'autogen' to generate one automatically without passphrase.",
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
+                              },
                               "fingerprint" : {
                                  "description" : "Certificate SHA 256 fingerprint.",
                                  "optional" : 1,
@@ -10063,6 +10069,12 @@ var apiSchema = [
                                  "optional" : 1,
                                  "type" : "integer",
                                  "typetext" : "<N>"
+                              },
+                              "master-pubkey" : {
+                                 "description" : "Base64-encoded, PEM-formatted public RSA key. Used to encrypt a copy of the encryption-key which will be added to each encrypted backup.",
+                                 "optional" : 1,
+                                 "type" : "string",
+                                 "typetext" : "<string>"
                               },
                               "namespace" : {
                                  "description" : "Proxmox Backup Server namespace in the datastore, defaults to the root NS.",
@@ -10129,7 +10141,26 @@ var apiSchema = [
                         "protected" : 1,
                         "proxyto" : "master",
                         "returns" : {
-                           "type" : "null"
+                           "properties" : {
+                              "config" : {
+                                 "additionalProperties" : 1,
+                                 "description" : "Partial, possibly server generated, configuration properties.",
+                                 "optional" : 1,
+                                 "properties" : {
+                                    "encryption-key" : {
+                                       "description" : "The, possibly auto-generated, encryption-key.",
+                                       "optional" : 1,
+                                       "type" : "string"
+                                    }
+                                 },
+                                 "type" : "object"
+                              },
+                              "remote" : {
+                                 "description" : "The ID of the created PBS remote.",
+                                 "type" : "string"
+                              }
+                           },
+                           "type" : "object"
                         }
                      }
                   },
@@ -10169,6 +10200,11 @@ var apiSchema = [
                               "description" : "Flag to disable (deactivate) the entry.",
                               "optional" : 1,
                               "type" : "boolean"
+                           },
+                           "encryption-key" : {
+                              "description" : "Encryption key. Use 'autogen' to generate one automatically without passphrase.",
+                              "optional" : 1,
+                              "type" : "string"
                            },
                            "fingerprint" : {
                               "description" : "Certificate SHA 256 fingerprint.",
@@ -10222,6 +10258,11 @@ var apiSchema = [
                               "minimum" : "0",
                               "optional" : 1,
                               "type" : "integer"
+                           },
+                           "master-pubkey" : {
+                              "description" : "Base64-encoded, PEM-formatted public RSA key. Used to encrypt a copy of the encryption-key which will be added to each encrypted backup.",
+                              "optional" : 1,
+                              "type" : "string"
                            },
                            "namespace" : {
                               "description" : "Proxmox Backup Server namespace in the datastore, defaults to the root NS.",
@@ -10305,6 +10346,12 @@ var apiSchema = [
                            "type" : "boolean",
                            "typetext" : "<boolean>"
                         },
+                        "encryption-key" : {
+                           "description" : "Encryption key. Use 'autogen' to generate one automatically without passphrase.",
+                           "optional" : 1,
+                           "type" : "string",
+                           "typetext" : "<string>"
+                        },
                         "fingerprint" : {
                            "description" : "Certificate SHA 256 fingerprint.",
                            "optional" : 1,
@@ -10364,6 +10411,12 @@ var apiSchema = [
                            "optional" : 1,
                            "type" : "integer",
                            "typetext" : "<N>"
+                        },
+                        "master-pubkey" : {
+                           "description" : "Base64-encoded, PEM-formatted public RSA key. Used to encrypt a copy of the encryption-key which will be added to each encrypted backup.",
+                           "optional" : 1,
+                           "type" : "string",
+                           "typetext" : "<string>"
                         },
                         "namespace" : {
                            "description" : "Proxmox Backup Server namespace in the datastore, defaults to the root NS.",
@@ -10430,7 +10483,26 @@ var apiSchema = [
                   "protected" : 1,
                   "proxyto" : "master",
                   "returns" : {
-                     "type" : "null"
+                     "properties" : {
+                        "config" : {
+                           "additionalProperties" : 1,
+                           "description" : "Partial, possibly server generated, configuration properties.",
+                           "optional" : 1,
+                           "properties" : {
+                              "encryption-key" : {
+                                 "description" : "The, possibly auto-generated, encryption-key.",
+                                 "optional" : 1,
+                                 "type" : "string"
+                              }
+                           },
+                           "type" : "object"
+                        },
+                        "remote" : {
+                           "description" : "The ID of the created PBS remote.",
+                           "type" : "string"
+                        }
+                     },
+                     "type" : "object"
                   }
                }
             },
@@ -11652,6 +11724,14 @@ var apiSchema = [
                            "type" : "boolean",
                            "typetext" : "<boolean>"
                         },
+                        "consent-text" : {
+                           "default" : "",
+                           "description" : "Consent text that is displayed before logging in.",
+                           "maxLength" : 65536,
+                           "optional" : 1,
+                           "type" : "string",
+                           "typetext" : "<string>"
+                        },
                         "custom_check" : {
                            "default" : 0,
                            "description" : "Use Custom Check Script. The script has to take the defined arguments and can return Virus findings or a Spamscore.",
@@ -12069,6 +12149,13 @@ var apiSchema = [
                            "type" : "integer",
                            "typetext" : "<integer> (1 - 65535)"
                         },
+                        "log-headers" : {
+                           "default" : 0,
+                           "description" : "Log the envelope sender and recipient together with the decoded From, To, and Subject headers of each processed mail to the mail log. This eases auditing and tracing, but writes potentially personal data, such as mail subjects and addresses, to the host log. Make sure this is compatible with your data-protection obligations before enabling it.",
+                           "optional" : 1,
+                           "type" : "boolean",
+                           "typetext" : "<boolean>"
+                        },
                         "max_filters" : {
                            "default" : 38,
                            "description" : "Maximum number of pmg-smtp-filter processes.",
@@ -12127,6 +12214,14 @@ var apiSchema = [
                            "optional" : 1,
                            "type" : "boolean",
                            "typetext" : "<boolean>"
+                        },
+                        "queue-lifetime" : {
+                           "description" : "Maximum time (in days) a deferred message is kept in the queue before it is returned to the sender as undeliverable. Also applies to bounce (notification) messages. (postfix options `maximal_queue_lifetime` and `bounce_queue_lifetime`)",
+                           "maximum" : 100,
+                           "minimum" : 1,
+                           "optional" : 1,
+                           "type" : "integer",
+                           "typetext" : "<integer> (1 - 100)"
                         },
                         "rejectunknown" : {
                            "default" : 0,
@@ -16090,6 +16185,59 @@ var apiSchema = [
                                  {
                                     "children" : [
                                        {
+                                          "children" : [
+                                             {
+                                                "info" : {
+                                                   "POST" : {
+                                                      "allowtoken" : 1,
+                                                      "description" : "Verify a snapshot. This starts a verification task on the Proxmox Backup Server and returns its UPID.",
+                                                      "method" : "POST",
+                                                      "name" : "verify_snapshot",
+                                                      "parameters" : {
+                                                         "additionalProperties" : 0,
+                                                         "properties" : {
+                                                            "backup-id" : {
+                                                               "description" : "ID (hostname) of the backup snapshot.",
+                                                               "type" : "string",
+                                                               "typetext" : "<string>"
+                                                            },
+                                                            "backup-time" : {
+                                                               "description" : "Backup time in RFC 3339 format.",
+                                                               "type" : "string",
+                                                               "typetext" : "<string>"
+                                                            },
+                                                            "node" : {
+                                                               "description" : "The cluster node name.",
+                                                               "format" : "pve-node",
+                                                               "type" : "string",
+                                                               "typetext" : "<string>"
+                                                            },
+                                                            "remote" : {
+                                                               "description" : "Proxmox Backup Server ID.",
+                                                               "format" : "pve-configid",
+                                                               "type" : "string",
+                                                               "typetext" : "<string>"
+                                                            }
+                                                         }
+                                                      },
+                                                      "permissions" : {
+                                                         "check" : [
+                                                            "admin"
+                                                         ]
+                                                      },
+                                                      "protected" : 1,
+                                                      "proxyto" : "node",
+                                                      "returns" : {
+                                                         "description" : "UPID of the verification task on the Proxmox Backup Server.",
+                                                         "type" : "string"
+                                                      }
+                                                   }
+                                                },
+                                                "leaf" : 1,
+                                                "path" : "/nodes/{node}/pbs/{remote}/snapshot/{backup-id}/{backup-time}/verify",
+                                                "text" : "verify"
+                                             }
+                                          ],
                                           "info" : {
                                              "DELETE" : {
                                                 "allowtoken" : 1,
@@ -16200,7 +16348,7 @@ var apiSchema = [
                                                 }
                                              }
                                           },
-                                          "leaf" : 1,
+                                          "leaf" : 0,
                                           "path" : "/nodes/{node}/pbs/{remote}/snapshot/{backup-id}/{backup-time}",
                                           "text" : "{backup-time}"
                                        }
@@ -16317,8 +16465,28 @@ var apiSchema = [
                                              "ctime" : {
                                                 "type" : "string"
                                              },
+                                             "encrypted" : {
+                                                "description" : "If the backup is encrypted the value is the encryption-key fingerprint",
+                                                "optional" : 1,
+                                                "type" : "string"
+                                             },
                                              "size" : {
                                                 "type" : "integer"
+                                             },
+                                             "verification" : {
+                                                "description" : "Backup verification result",
+                                                "optional" : 1,
+                                                "properties" : {
+                                                   "state" : {
+                                                      "description" : "Backup verification state.",
+                                                      "type" : "string"
+                                                   },
+                                                   "upid" : {
+                                                      "description" : "Backup verification UPID.",
+                                                      "type" : "string"
+                                                   }
+                                                },
+                                                "type" : "object"
                                              }
                                           },
                                           "type" : "object"
@@ -16632,6 +16800,11 @@ var apiSchema = [
                                     "optional" : 1,
                                     "type" : "boolean"
                                  },
+                                 "encryption-key" : {
+                                    "description" : "Encryption key. Use 'autogen' to generate one automatically without passphrase.",
+                                    "optional" : 1,
+                                    "type" : "string"
+                                 },
                                  "fingerprint" : {
                                     "description" : "Certificate SHA 256 fingerprint.",
                                     "optional" : 1,
@@ -16684,6 +16857,11 @@ var apiSchema = [
                                     "minimum" : "0",
                                     "optional" : 1,
                                     "type" : "integer"
+                                 },
+                                 "master-pubkey" : {
+                                    "description" : "Base64-encoded, PEM-formatted public RSA key. Used to encrypt a copy of the encryption-key which will be added to each encrypted backup.",
+                                    "optional" : 1,
+                                    "type" : "string"
                                  },
                                  "namespace" : {
                                     "description" : "Proxmox Backup Server namespace in the datastore, defaults to the root NS.",
@@ -20488,6 +20666,16 @@ var apiSchema = [
                               "description" : "Receiver email address",
                               "type" : "string"
                            },
+                           "score-negative" : {
+                              "description" : "Sum of negative spam score matches.",
+                              "optional" : 1,
+                              "type" : "number"
+                           },
+                           "score-positive" : {
+                              "description" : "Sum of positive spam score matches.",
+                              "optional" : 1,
+                              "type" : "number"
+                           },
                            "seen" : {
                               "description" : "Whether the mail was marked as seen.",
                               "optional" : 1,
@@ -20500,16 +20688,6 @@ var apiSchema = [
                            },
                            "spamlevel" : {
                               "description" : "Spam score.",
-                              "type" : "number"
-                           },
-                           "spamlevel_negative" : {
-                              "description" : "Sum of all negative spam test scores.",
-                              "optional" : 1,
-                              "type" : "number"
-                           },
-                           "spamlevel_positive" : {
-                              "description" : "Sum of all positive spam test scores.",
-                              "optional" : 1,
                               "type" : "number"
                            },
                            "subject" : {
@@ -20826,6 +21004,16 @@ var apiSchema = [
                            "description" : "Receiver email address",
                            "type" : "string"
                         },
+                        "score-negative" : {
+                           "description" : "Sum of negative spam score matches.",
+                           "optional" : 1,
+                           "type" : "number"
+                        },
+                        "score-positive" : {
+                           "description" : "Sum of positive spam score matches.",
+                           "optional" : 1,
+                           "type" : "number"
+                        },
                         "seen" : {
                            "description" : "Whether the mail was marked as seen.",
                            "optional" : 1,
@@ -20842,16 +21030,6 @@ var apiSchema = [
                         },
                         "spamlevel" : {
                            "description" : "Spam score.",
-                           "type" : "number"
-                        },
-                        "spamlevel_negative" : {
-                           "description" : "Sum of all negative spam test scores.",
-                           "optional" : 1,
-                           "type" : "number"
-                        },
-                        "spamlevel_positive" : {
-                           "description" : "Sum of all positive spam test scores.",
-                           "optional" : 1,
                            "type" : "number"
                         },
                         "subject" : {
@@ -21041,6 +21219,47 @@ var apiSchema = [
             "leaf" : 1,
             "path" : "/quarantine/sendlink",
             "text" : "sendlink"
+         },
+         {
+            "info" : {
+               "GET" : {
+                  "allowtoken" : 1,
+                  "description" : "Get a Quarantine login link for the given e-mail address. The link grants full access to that recipient's quarantine, so only pass it to the legitimate owner.",
+                  "method" : "GET",
+                  "name" : "link",
+                  "parameters" : {
+                     "additionalProperties" : 0,
+                     "properties" : {
+                        "mail" : {
+                           "description" : "Email Address (allow most characters).",
+                           "maxLength" : 512,
+                           "minLength" : 3,
+                           "pattern" : "(?:[^\\s\\\\@]+\\@[^\\s\\/\\\\@]+)",
+                           "type" : "string"
+                        }
+                     }
+                  },
+                  "permissions" : {
+                     "check" : [
+                        "admin",
+                        "qmanager"
+                     ]
+                  },
+                  "protected" : 1,
+                  "returns" : {
+                     "properties" : {
+                        "link" : {
+                           "description" : "The Quarantine login link for the given e-mail address.",
+                           "type" : "string"
+                        }
+                     },
+                     "type" : "object"
+                  }
+               }
+            },
+            "leaf" : 1,
+            "path" : "/quarantine/link",
+            "text" : "link"
          }
       ],
       "info" : {

@@ -18,6 +18,10 @@ Use Avast Virus Scanner (/usr/bin/scan). You need to buy and install 'Avast Core
 
 Use ClamAV Virus Scanner. This is the default virus scanner and is enabled by default.
 
+`consent-text`: `<string>` ('default =' ``)::
+
+Consent text that is displayed before logging in.
+
 `custom_check`: `<boolean>` ('default =' `0`)::
 
 Use Custom Check Script. The script has to take the defined arguments and can return Virus findings or a Spamscore.

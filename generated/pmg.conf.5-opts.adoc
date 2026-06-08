@@ -20,6 +20,10 @@ Use Avast Virus Scanner (/usr/bin/scan). You need to buy and install 'Avast Core
 
 Use ClamAV Virus Scanner. This is the default virus scanner and is enabled by default.
 
+`consent-text`: `<string>` ('default =' ``)::
+
+Consent text that is displayed before logging in.
+
 `custom_check`: `<boolean>` ('default =' `0`)::
 
 Use Custom Check Script. The script has to take the defined arguments and can return Virus findings or a Spamscore.
@@ -168,6 +172,10 @@ Hide received header in outgoing mails.
 
 SMTP port number for outgoing mail (trusted).
 
+`log-headers`: `<boolean>` ('default =' `0`)::
+
+Log the envelope sender and recipient together with the decoded From, To, and Subject headers of each processed mail to the mail log. This eases auditing and tracing, but writes potentially personal data, such as mail subjects and addresses, to the host log. Make sure this is compatible with your data-protection obligations before enabling it.
+
 `max_filters`: `<integer> (3 - 40)` ('default =' `38`)::
 
 Maximum number of pmg-smtp-filter processes.
@@ -195,6 +203,10 @@ The maximal number of message delivery requests that any client is allowed to ma
 `ndr_on_block`: `<boolean>` ('default =' `0`)::
 
 Send out NDR when mail gets blocked
+
+`queue-lifetime`: `<integer> (1 - 100)` ::
+
+Maximum time (in days) a deferred message is kept in the queue before it is returned to the sender as undeliverable. Also applies to bounce (notification) messages. (postfix options `maximal_queue_lifetime` and `bounce_queue_lifetime`)
 
 `rejectunknown`: `<boolean>` ('default =' `0`)::
 

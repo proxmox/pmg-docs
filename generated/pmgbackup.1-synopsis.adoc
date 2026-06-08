@@ -127,6 +127,10 @@ Proxmox Backup Server datastore name.
 
 Flag to disable (deactivate) the entry.
 
+`--encryption-key` `a file containing an encryption key, or the special value "autogen"` ::
+
+Encryption key. Use 'autogen' to generate one automatically without passphrase.
+
 `--fingerprint` `([A-Fa-f0-9]{2}:){31}[A-Fa-f0-9]{2}` ::
 
 Certificate SHA 256 fingerprint.
@@ -158,6 +162,10 @@ Keep backups for the last <N> different weeks. If there ismore than one backup f
 `--keep-yearly` `<N>` ::
 
 Keep backups for the last <N> different years. If there is more than one backup for a single year, only the latest one is kept.
+
+`--master-pubkey` `a file containing a PEM-formatted master public key` ::
+
+Base64-encoded, PEM-formatted public RSA key. Used to encrypt a copy of the encryption-key which will be added to each encrypted backup.
 
 `--namespace` `(?:(?:[A-Za-z0-9_][A-Za-z0-9._\-]*)/){0,7}(?:(?:[A-Za-z0-9_][A-Za-z0-9._\-]*))?` ::
 
@@ -222,6 +230,10 @@ Prevent changes if current configuration file has a different digest. This can b
 
 Flag to disable (deactivate) the entry.
 
+`--encryption-key` `a file containing an encryption key, or the special value "autogen"` ::
+
+Encryption key. Use 'autogen' to generate one automatically without passphrase.
+
 `--fingerprint` `([A-Fa-f0-9]{2}:){31}[A-Fa-f0-9]{2}` ::
 
 Certificate SHA 256 fingerprint.
@@ -253,6 +265,10 @@ Keep backups for the last <N> different weeks. If there ismore than one backup f
 `--keep-yearly` `<N>` ::
 
 Keep backups for the last <N> different years. If there is more than one backup for a single year, only the latest one is kept.
+
+`--master-pubkey` `a file containing a PEM-formatted master public key` ::
+
+Base64-encoded, PEM-formatted public RSA key. Used to encrypt a copy of the encryption-key which will be added to each encrypted backup.
 
 `--namespace` `(?:(?:[A-Za-z0-9_][A-Za-z0-9._\-]*)/){0,7}(?:(?:[A-Za-z0-9_][A-Za-z0-9._\-]*))?` ::
 
