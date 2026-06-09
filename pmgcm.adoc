@@ -242,7 +242,7 @@ pmg5(1)              192.168.2.127   master A       1 day 21:18   0.30    80%   
 Adding Cluster Nodes
 ~~~~~~~~~~~~~~~~~~~~
 
-[thumbnail="screenshot/pmg-gui-cluster-join.png", big=1]
+[thumbnail="screenshot/pmg-gui-cluster-join-assisted.png", big=1]
 
 When you add a new node to a cluster (using `join`), all data on that node is
 destroyed. The whole database is initialized with the cluster data from
@@ -257,11 +257,11 @@ pmgcm join <master_ip>
 ----
 
 You need to enter the root password of the master host, when asked for a
-password. When joining a cluster using the GUI, press the `Add` button on the
-master node to display its join information, copy that text, and paste it into
-the `Join` dialog on the new node. The dialog decodes the join information and
-fills in the master address and fingerprint automatically. You can still enter
-the address and fingerprint manually instead.
+password. When joining a cluster using the GUI, press the `Join Information`
+button on the master node to display its join information, copy that text, and
+paste it into the `Join` dialog on the new node. The dialog decodes the join
+information and fills in the master address and fingerprint automatically. You
+can still enter the address and fingerprint manually instead.
 
 NOTE: The join information records the product and release of the master. The
 `Join` dialog rejects join information from a different product and warns you if
