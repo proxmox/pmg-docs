@@ -6863,6 +6863,7 @@ var apiSchema = [
                                     "audit"
                                  ]
                               },
+                              "protected" : 1,
                               "proxyto" : "master",
                               "returns" : {}
                            },
@@ -7368,6 +7369,7 @@ var apiSchema = [
                         "audit"
                      ]
                   },
+                  "protected" : 1,
                   "proxyto" : "master",
                   "returns" : {
                      "items" : {
@@ -19261,6 +19263,12 @@ var apiSchema = [
                                  "pattern" : "(?^:^[a-zA-Z0-9._:-]+$)",
                                  "type" : "string"
                               },
+                              "audiences" : {
+                                 "description" : "A list of audiences that the OpenID Issuer may include that are accepted in addition to 'client-id'.",
+                                 "optional" : 1,
+                                 "pattern" : "(?^:^[a-zA-Z0-9._:-]+$)",
+                                 "type" : "string"
+                              },
                               "autocreate" : {
                                  "default" : 0,
                                  "description" : "Automatically create users if they do not exist.",
@@ -19455,6 +19463,12 @@ var apiSchema = [
                      "properties" : {
                         "acr-values" : {
                            "description" : "Specifies the Authentication Context Class Reference values that theAuthorization Server is being requested to use for the Auth Request.",
+                           "optional" : 1,
+                           "pattern" : "(?^:^[a-zA-Z0-9._:-]+$)",
+                           "type" : "string"
+                        },
+                        "audiences" : {
+                           "description" : "A list of audiences that the OpenID Issuer may include that are accepted in addition to 'client-id'.",
                            "optional" : 1,
                            "pattern" : "(?^:^[a-zA-Z0-9._:-]+$)",
                            "type" : "string"
