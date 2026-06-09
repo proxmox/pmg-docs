@@ -1,3 +1,12 @@
+pmg-docs (9.1.0) trixie; urgency=medium
+
+  * bump for Proxmox Mail Gateway 9.1
+
+  * pmgbackup: document how to recover a lost encryption key from a backup
+    with the help of a configured master key.
+
+ -- Proxmox Support Team <support@proxmox.com>  Tue, 09 Jun 2026 23:45:12 +0200
+
 pmg-docs (9.0.7) trixie; urgency=medium
 
   * fix #4941: pmgconfig: document the optional logging of mail header
