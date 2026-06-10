@@ -72,7 +72,9 @@ select which parts you want to restore:
 
 System Configuration::
 
-Basically the contents of `/etc/pmg/`.
+Basically the contents of `/etc/pmg/`. The cluster configuration
+(`cluster.conf`) is never restored, as the cluster membership is bound
+to the specific node; rejoin the node instead if needed.
 
 Rule Database::
 
