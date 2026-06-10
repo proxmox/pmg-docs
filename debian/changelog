@@ -1,3 +1,21 @@
+pmg-docs (9.1.1) trixie; urgency=medium
+
+  * pmgbackup: clarify that a restore always replaces existing statistic
+    data and that the mail logs backing the Tracking Center are not part
+    of a backup.
+
+  * pmgbackup: state that the cluster configuration is never restored,
+    as cluster membership is bound to the specific node.
+
+  * pmgconfig: note that custom check scripts run unprivileged and can
+    no longer elevate privileges with sudo.
+
+  * update screenshots to the current web interface state, including the
+    assisted cluster join, the backup encryption configuration, and the
+    deb822-based APT repository management.
+
+ -- Proxmox Support Team <support@proxmox.com>  Wed, 10 Jun 2026 20:46:21 +0200
+
 pmg-docs (9.1.0) trixie; urgency=medium
 
   * bump for Proxmox Mail Gateway 9.1
