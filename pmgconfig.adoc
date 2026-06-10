@@ -1011,6 +1011,11 @@ section: admin
 The location of the custom check executable can also be set there with the key
 `custom_check_path` and defaults to `/usr/local/bin/pmg-custom-check`.
 
+NOTE: The custom check executable runs as the unprivileged
+`pmg-smtp-filter` daemon user. It cannot elevate privileges with tools
+like `sudo`, as the service runs with the systemd `NoNewPrivileges`
+hardening enabled.
+
 
 User Management
 ---------------
