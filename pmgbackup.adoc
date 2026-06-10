@@ -34,7 +34,8 @@ mail filter rules, and the statistic database.
 
 NOTE: The backup does not include the network setup, nor does it
 contain mail data from the postfix queue or the spam and virus
-quarantines.
+quarantines. The mail logs that the Tracking Center is based on are
+not part of the backup either.
 
 Backups can be created locally or stored on a
 https://www.proxmox.com/en/proxmox-backup-server/overview[Proxmox Backup Server]
@@ -80,6 +81,11 @@ The mail filter rule database.
 Statistic::
 
 All statistical data.
+
+NOTE: Restoring the rule database recreates the complete database,
+including all statistical data. Existing statistics are removed and only
+restored if the backup contains them and the 'Statistic' option is
+selected.
 
 For example, you can selectively restore the mail filter rules from an
 older backup:
