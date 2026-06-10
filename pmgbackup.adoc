@@ -132,8 +132,16 @@ Retype new password: ******
 The fingerprint is optional, if the certificate of the Proxmox Backup Server
 remote is signed by a CA trusted by {pmg}.
 
+ifndef::manvolnum[]
+[thumbnail="screenshot/pmg-gui-pbs-encryption.png"]
+endif::manvolnum[]
+
 You can also encrypt backups, by autogenerating or providing an encryption key
 for a Proxmox Backup Server remote.
+
+ifndef::manvolnum[]
+[thumbnail="screenshot/pmg-gui-pbs-backup-enc2.png"]
+endif::manvolnum[]
 
 NOTE: Keep a copy of the symmetric encryption key in a secure place, or print
 it out. Without the encryption key you will not be able to restore an encrypted
