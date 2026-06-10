@@ -10150,7 +10150,7 @@ var apiSchema = [
                                  "optional" : 1,
                                  "properties" : {
                                     "encryption-key" : {
-                                       "description" : "The, possibly auto-generated, encryption-key.",
+                                       "description" : "The auto-generated encryption key, only returned when one was newly generated.",
                                        "optional" : 1,
                                        "type" : "string"
                                     }
@@ -10492,7 +10492,7 @@ var apiSchema = [
                            "optional" : 1,
                            "properties" : {
                               "encryption-key" : {
-                                 "description" : "The, possibly auto-generated, encryption-key.",
+                                 "description" : "The auto-generated encryption key, only returned when one was newly generated.",
                                  "optional" : 1,
                                  "type" : "string"
                               }
