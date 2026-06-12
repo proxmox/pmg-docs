@@ -22,6 +22,9 @@ Prefer this over `-i` when the system logs mail events to a dedicated file and
 you want to cover rotated logs as well. Compression is detected per file, so
 custom logrotate compression settings are handled.
 
+You can set the `--input-base` parameter used for the Tracking Center at
+__Configuration -> Options -> Maillog base name__.
+
 Start time `-s` and end time `-e` are optional. By default the end time will be
 the current time and the start time will be 0:00 of the current day.
 
