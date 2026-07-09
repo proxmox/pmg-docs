@@ -68,6 +68,11 @@ apt update
 apt full-upgrade
 ----
 +
+WARNING: As {pmg} uses a rolling release model on top of Debian, performing an `apt
+upgrade` may result in a partially upgraded or broken package state. This is because
+`apt full-upgrade` can also remove existing packages to satisfy dependencies if needed,
+while `apt upgrade` cannot.
++
 NOTE: Always ensure that you correctly set up the
 xref:pmg_package_repositories[package repositories], and only continue with the
 actual upgrade if `apt update` did not hit any errors.
