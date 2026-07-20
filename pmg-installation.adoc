@@ -577,6 +577,25 @@ Signed-By: /usr/share/keyrings/proxmox-archive-keyring.gpg
 WARNING: The `pmg-test` repository should (as the name implies) only be used for
 testing new features or bug fixes.
 
+{pmg} Debug Symbol Repository
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Debug symbol packages, named `<package>-dbgsym`, contain the detached debug
+information for the matching binary package. They are not needed for normal
+operation, but let tools such as `gdb`, `systemd-coredump` or `crash` produce
+useful backtraces when analyzing a crash or hang. They are provided in a
+dedicated repository, separate from the regular ones, for the Debian Bookworm
+and Trixie based {pmg} releases (and newer). To configure it, add the following
+line to `/etc/apt/sources.list`:
+
+.sources.list entry for `pmg-dbgsym`
+----
+deb https://dbgsym.proxmox.com/debian/pmg bookworm pmg-dbgsym
+----
+
+After enabling the repository, install the `-dbgsym` package that matches the
+binary you want to debug.
+
 [[pmg_repos_secure_apt]]
 SecureApt
 ~~~~~~~~~
